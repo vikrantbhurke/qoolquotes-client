@@ -84,6 +84,7 @@ export const Header = () => {
           <NormalModal normalOpened={normalOpened} normalClose={normalClose} />
           <FullModal fullOpened={fullOpened} fullClose={fullClose} />
           <Drawer
+            size="xs"
             styles={drawer}
             opened={drawerOpened}
             onClose={drawerClose}
