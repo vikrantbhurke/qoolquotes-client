@@ -40,17 +40,17 @@ export const PlaylistsPage = () => {
             style={{ borderRadius: 0 }}
             value="gallery"
             leftSection={<IconPhoto stroke={1.5} size={20} />}>
-            All Playlists
+            Community
           </Tabs.Tab>
           <Tabs.Tab
             value="messages"
             leftSection={<IconMessageCircle stroke={1.5} size={20} />}>
-            Saved Playlists
+            Saved
           </Tabs.Tab>
           <Tabs.Tab
             value="settings"
             leftSection={<IconSettings stroke={1.5} size={20} />}>
-            Created Playlists
+            Created
           </Tabs.Tab>
         </Tabs.List>
 

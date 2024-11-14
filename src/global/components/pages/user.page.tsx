@@ -1,3 +1,4 @@
+import { oneBg, oneTx } from "@/global/styles/app.css";
 import {
   getFormTextInput,
   getMainContentHeight,
@@ -25,12 +26,10 @@ export const UserPage = () => {
 
   return (
     <Container
-      p={0}
       size={mainContentWidth}
       mih={getMainContentHeight(headerHeight, footerHeight, 0, width)}>
-      {/* <ScrollArea> */}
       <Flex justify="center" align="center">
-        <Stack miw={400} gap="xl" justify="center" py="xl">
+        <Stack miw={350} gap="xl" justify="center" py="xl">
           <Stack gap={0} align="center">
             <Title>Welcome!</Title>
 
@@ -119,12 +118,11 @@ export const UserPage = () => {
             />
           </Stack>
 
-          <Button type="submit" fullWidth radius="xl">
+          <Button type="submit" fullWidth radius="xl" c={oneBg} bg={oneTx}>
             Sign Up
           </Button>
         </Stack>
       </Flex>
-      {/* </ScrollArea> */}
     </Container>
   );
 };
