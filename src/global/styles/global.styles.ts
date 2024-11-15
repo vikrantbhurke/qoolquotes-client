@@ -1,5 +1,5 @@
 import { Breakpoint } from "../enums";
-import { borderStyle, twoBg } from "./app.css";
+import { borderStyle, oneBg, oneTx, twoBg } from "./app.css";
 
 export const getMainAndContentGap = (
   mainWidth: number,
@@ -18,10 +18,10 @@ export const getMainAndContentGap = (
 export const getMainContentHeight = (
   headerHeight: number,
   footerHeight: number,
-  tabHeight: number,
+  subheaderHeight: number,
   width: number
 ) =>
-  `calc(100vh - ${headerHeight}px - ${width < Breakpoint.md ? footerHeight : 0}px - ${tabHeight}px)`;
+  `calc(100vh - ${headerHeight}px - ${width < Breakpoint.md ? footerHeight : 0}px - ${subheaderHeight}px)`;
 
 // Component Styles
 export const getAppShell = (
@@ -101,4 +101,16 @@ export const drawer = {
     borderRadius: "20px 20px 0 0",
     backgroundColor: `${twoBg}`,
   },
+};
+
+export const subheaderButton = (isActive: boolean) => {
+  return {
+    backgroundColor: oneBg,
+    color: oneTx,
+    borderRadius: 0,
+    borderBottom: isActive ? "2px solid white" : "none",
+    borderTop: "none",
+    borderLeft: "none",
+    borderRight: "none",
+  };
 };

@@ -5,9 +5,9 @@ export interface ViewState {
   mainWidth: number;
   mainHeight: number;
   mainContentWidth: number;
+  subheaderHeight: number;
   headerHeight: number;
   footerHeight: number;
-  tabHeight: number;
   listButtonHeight: number;
   navbarAsideWidth: number;
   containerWidth: number;
@@ -20,9 +20,9 @@ const initialState: ViewState = {
   mainWidth: 0,
   mainHeight: 0,
   mainContentWidth: 800,
+  subheaderHeight: 50,
   headerHeight: 60,
   footerHeight: 60,
-  tabHeight: 50,
   listButtonHeight: 60,
   navbarAsideWidth: 300,
   containerWidth: 1200,

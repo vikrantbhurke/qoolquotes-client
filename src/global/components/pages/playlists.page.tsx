@@ -1,88 +1,84 @@
-import { borderStyle, buttonPseudo, oneTx } from "@/global/styles/app.css";
+import { borderStyle, buttonPseudo } from "@/global/styles/app.css";
 import {
   getMainAndContentGap,
   getMainContentHeight,
+  subheaderButton,
 } from "@/global/styles/global.styles";
-import { Button, Container, ScrollArea, Tabs } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
 import {
-  IconMessageCircle,
-  IconPhoto,
-  IconSettings,
-} from "@tabler/icons-react";
+  Button,
+  Container,
+  Group,
+  Radio,
+  ScrollArea,
+  Stack,
+} from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export const PlaylistsPage = () => {
   const { width } = useViewportSize();
+  const [value, setValue] = useState<string | null>(null);
 
   const {
     mainContentWidth,
+    subheaderHeight,
     navbarAsideWidth,
     headerHeight,
     footerHeight,
     mainWidth,
     listButtonHeight,
-    tabHeight,
   } = useSelector((state: any) => state.view);
+
+  const cards = ["Community", "Saved", "Created"].map((item) => (
+    <Button
+      h={subheaderHeight}
+      radius={0}
+      style={subheaderButton(value === item)}
+      onClick={() => setValue(item)}>
+      {item}
+    </Button>
+  ));
 
   return (
     <Container size={mainContentWidth} p={0}>
-      <Tabs
-        radius={0}
-        color={oneTx}
-        defaultValue="gallery"
+      <Stack
+        gap={0}
         style={getMainAndContentGap(
           mainWidth,
           navbarAsideWidth,
           mainContentWidth
         )}>
-        <Tabs.List justify="center" h={tabHeight}>
-          <Tabs.Tab
-            value="gallery"
-            leftSection={<IconPhoto stroke={1.5} size={20} />}>
-            Community
-          </Tabs.Tab>
-          <Tabs.Tab
-            value="messages"
-            leftSection={<IconMessageCircle stroke={1.5} size={20} />}>
-            Saved
-          </Tabs.Tab>
-          <Tabs.Tab
-            value="settings"
-            leftSection={<IconSettings stroke={1.5} size={20} />}>
-            Created
-          </Tabs.Tab>
-        </Tabs.List>
+        <Radio.Group value={value} onChange={setValue}>
+          <Group justify="center" gap={0} maw={mainContentWidth}>
+            {cards}
+          </Group>
+        </Radio.Group>
 
-        <Tabs.Panel value="gallery">
-          <ScrollArea
-            h={getMainContentHeight(
-              headerHeight,
-              footerHeight,
-              tabHeight,
-              width
-            )}>
-            {Array.from({ length: 20 }).map((_, k) => (
-              <Button
-                key={k}
-                fullWidth
-                h={listButtonHeight}
-                radius={0}
-                className={buttonPseudo}
-                style={{
-                  borderBottom: k === 19 ? "none" : borderStyle,
-                }}
-                onClick={() => {}}>
-                Community Playlist {k}
-              </Button>
-            ))}
-          </ScrollArea>
-        </Tabs.Panel>
-
-        <Tabs.Panel value="messages">Messages tab content</Tabs.Panel>
-
-        <Tabs.Panel value="settings">Settings tab content</Tabs.Panel>
-      </Tabs>
+        <ScrollArea
+          h={getMainContentHeight(
+            headerHeight,
+            footerHeight,
+            subheaderHeight,
+            width
+          )}>
+          {Array.from({ length: 20 }).map((_, k) => (
+            <Button
+              key={k}
+              fullWidth
+              h={listButtonHeight}
+              radius={0}
+              className={buttonPseudo}
+              style={{
+                borderTop: k === 0 ? borderStyle : "none",
+                borderBottom: k === 19 ? "none" : borderStyle,
+              }}
+              onClick={() => {}}>
+              Community Playlist {k}
+            </Button>
+          ))}
+        </ScrollArea>
+      </Stack>
     </Container>
   );
 };
