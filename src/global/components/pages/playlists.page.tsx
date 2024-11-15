@@ -49,7 +49,12 @@ export const PlaylistsPage = () => {
           navbarAsideWidth,
           mainContentWidth
         )}>
-        <Radio.Group value={value} onChange={setValue}>
+        <Radio.Group
+          value={value}
+          onChange={setValue}
+          style={{
+            borderBottom: borderStyle,
+          }}>
           <Group justify="center" gap={0} maw={mainContentWidth}>
             {cards}
           </Group>
@@ -70,7 +75,6 @@ export const PlaylistsPage = () => {
               radius={0}
               className={buttonPseudo}
               style={{
-                borderTop: k === 0 ? borderStyle : "none",
                 borderBottom: k === 19 ? "none" : borderStyle,
               }}
               onClick={() => {}}>
