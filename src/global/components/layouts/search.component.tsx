@@ -49,7 +49,10 @@ export const Search = () => {
         rightSection={
           <>
             {search && (
-              <ActionIcon size="xs" onMouseDown={handleClearSearch}>
+              <ActionIcon
+                size="xs"
+                onMouseDown={handleClearSearch}
+                bg="transparent">
                 <IconX />
               </ActionIcon>
             )}
