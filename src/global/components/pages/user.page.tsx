@@ -25,10 +25,11 @@ export const UserPage = () => {
   );
 
   return (
-    <Container
-      size={mainContentWidth}
-      mih={getMainContentHeight(headerHeight, footerHeight, 0, width)}>
-      <Flex justify="center" align="center">
+    <Container p={0} size={mainContentWidth}>
+      <Flex
+        justify="center"
+        align="center"
+        mih={getMainContentHeight(headerHeight, footerHeight, 0, width)}>
         <Stack miw={350} gap="xl" justify="center" py="xl">
           <Stack gap={0} align="center">
             <Title>Welcome!</Title>
@@ -57,51 +58,6 @@ export const UserPage = () => {
               required
               label="Username"
               placeholder="johndoe"
-            />
-
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Firstname"
-              placeholder="John"
-            />
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Lastname"
-              placeholder="Doe"
-            />
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Username"
-              placeholder="johndoe"
-            />
-
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Firstname"
-              placeholder="John"
-            />
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Lastname"
-              placeholder="Doe"
-            />
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Username"
-              placeholder="johndoe"
-            />
-
-            <TextInput
-              styles={getFormTextInput}
-              required
-              label="Firstname"
-              placeholder="John"
             />
 
             <PasswordInput

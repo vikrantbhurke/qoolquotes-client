@@ -23,7 +23,7 @@ const initialState: ViewState = {
   headerHeight: 60,
   footerHeight: 60,
   tabHeight: 50,
-  listButtonHeight: 50,
+  listButtonHeight: 60,
   navbarAsideWidth: 300,
   containerWidth: 1200,
   isLoadingOverlayVisible: false,

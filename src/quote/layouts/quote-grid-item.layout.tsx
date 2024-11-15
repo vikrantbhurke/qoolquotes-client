@@ -9,7 +9,7 @@ import {
 
 export const QuoteGridItem = ({ item }: any) => {
   return (
-    <Stack p="lg" justify="center" align="center">
+    <Stack p="xl" justify="center" align="center">
       <Text ta="center">{item.content}</Text>
       <Text ta="center">{item.author}</Text>
 

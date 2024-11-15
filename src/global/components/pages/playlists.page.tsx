@@ -36,7 +36,7 @@ export const PlaylistsPage = () => {
           navbarAsideWidth,
           mainContentWidth
         )}>
-        <Tabs.List justify="center" h={50}>
+        <Tabs.List justify="center" h={tabHeight}>
           <Tabs.Tab
             value="gallery"
             leftSection={<IconPhoto stroke={1.5} size={20} />}>
@@ -56,7 +56,7 @@ export const PlaylistsPage = () => {
 
         <Tabs.Panel value="gallery">
           <ScrollArea
-            mih={getMainContentHeight(
+            h={getMainContentHeight(
               headerHeight,
               footerHeight,
               tabHeight,
