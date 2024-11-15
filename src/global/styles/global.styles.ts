@@ -90,15 +90,15 @@ export const modal = {
   header: { backgroundColor: `${twoBg}` },
 };
 
+export const modalOverlayProps = {
+  backgroundOpacity: 0.55,
+  blur: 3,
+};
+
 export const drawer = {
   header: { backgroundColor: `${twoBg}` },
   content: {
     borderRadius: "20px 20px 0 0",
     backgroundColor: `${twoBg}`,
   },
-};
-
-export const modalOverlayProps = {
-  backgroundOpacity: 0.55,
-  blur: 3,
 };

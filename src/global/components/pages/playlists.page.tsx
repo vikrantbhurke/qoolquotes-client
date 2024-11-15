@@ -28,6 +28,7 @@ export const PlaylistsPage = () => {
   return (
     <Container size={mainContentWidth} p={0}>
       <Tabs
+        radius={0}
         color={oneTx}
         defaultValue="gallery"
         style={getMainAndContentGap(
@@ -37,7 +38,6 @@ export const PlaylistsPage = () => {
         )}>
         <Tabs.List justify="center" h={50}>
           <Tabs.Tab
-            style={{ borderRadius: 0 }}
             value="gallery"
             leftSection={<IconPhoto stroke={1.5} size={20} />}>
             Community

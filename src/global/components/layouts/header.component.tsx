@@ -27,15 +27,18 @@ import { useNavigate } from "react-router-dom";
 import { Search } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useViewportSize } from "@mantine/hooks";
 import {
   drawer,
   modal,
   modalOverlayProps,
 } from "@/global/styles/global.styles";
 import { oneTx } from "@/global/styles/app.css";
+import { Breakpoint } from "@/global/enums";
 
 export const Header = () => {
+  const { width } = useViewportSize();
+
   const [normalOpened, { open: normalOpen, close: normalClose }] =
     useDisclosure(false);
 
@@ -101,7 +104,7 @@ export const Header = () => {
             <Title order={3}>{import.meta.env.VITE_APP_NAME}</Title>
           </Group>
 
-          <Group gap="xs">
+          <Group gap={width < Breakpoint.md ? 6 : "xs"}>
             <ActionIcon onClick={drawerOpen} bg="transparent" c={oneTx}>
               <IconDownload stroke={1.5} size={20} />
             </ActionIcon>
