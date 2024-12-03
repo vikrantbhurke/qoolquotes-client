@@ -63,7 +63,7 @@ export const CreatePlaylistFormLayout = () => {
 
           <TextInput
             minLength={3}
-            maxLength={30}
+            maxLength={20}
             w="100%"
             placeholder="Name"
             styles={modalTextInput}

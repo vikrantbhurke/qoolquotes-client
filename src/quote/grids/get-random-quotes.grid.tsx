@@ -36,7 +36,7 @@ export const GetRandomQuotesGrid = () => {
         next={() => fetchQuotes()}
         hasMore={true}
         scrollThreshold={0.5}
-        loader={<UtilComponent message="Loading more quotes..." />}
+        loader={<UtilComponent message="Loading quotes..." />}
         endMessage={<CustomLoader subheaderHeight={subheaderHeight} />}>
         <Grid grow justify="center" gutter={0}>
           {randomQuotes.map((item: any, index: number) => {
