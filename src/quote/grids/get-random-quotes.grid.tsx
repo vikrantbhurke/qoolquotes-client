@@ -6,7 +6,7 @@ import {
   headerHeight,
   subheaderHeight,
 } from "@/global/styles/global.styles";
-import { Center, Grid, Stack } from "@mantine/core";
+import { Center, Grid, Stack, Text } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { QuoteGridItemLayout } from "../layouts";
@@ -22,7 +22,7 @@ export const GetRandomQuotesGrid = () => {
       p="xl"
       className={normalPseudo}
       style={getGridBorder(isMobile, 1, randomQuotes.length)}>
-      {message}
+      <Text>{message}</Text>
     </Center>
   );
 
