@@ -5,12 +5,15 @@ import { searchTopics } from "@/topic/topic.network";
 
 export const useSearchTopics = () => {
   const { search } = useSelector((state: RootState) => state.view);
-  const { sort, order, page } = useSelector((state: RootState) => state.topic);
+  const { sort, order, page, alpha } = useSelector(
+    (state: RootState) => state.topic
+  );
 
   const searchTopicsDTO = {
     search,
     sort,
     order,
+    alpha,
   };
 
   const {

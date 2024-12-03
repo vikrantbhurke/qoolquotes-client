@@ -5,12 +5,15 @@ import { searchAuthors } from "@/author/author.network";
 
 export const useSearchAuthors = () => {
   const { search } = useSelector((state: RootState) => state.view);
-  const { sort, order, page } = useSelector((state: RootState) => state.author);
+  const { sort, order, page, alpha } = useSelector(
+    (state: RootState) => state.author
+  );
 
   const searchAuthorsDTO = {
     search,
     sort,
     order,
+    alpha,
   };
 
   const {
