@@ -39,7 +39,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
   return (
     <Stack
       px="md"
-      gap={0}
+      gap="xs"
       justify="center"
       h={listItemHeight}
       className={`${oneTxOneBgButtonPseudo} ${borderBottom}`}>
@@ -76,19 +76,17 @@ export const PlaylistListItemLayout = ({ item }: any) => {
         </Group>
       </Group>
 
-      <Group justify="start" align="center" gap="xs">
-        <Group onClick={handleNavigateToPlaylist}>
-          {item.creatorId.profilepic ? (
-            <Avatar size="sm" src={item.creatorId.profilepic} radius="50%" />
-          ) : (
-            <Avatar size="sm">
-              {item.creatorId.firstname[0]}
-              {item.creatorId.lastname[0]}
-            </Avatar>
-          )}
+      <Group onClick={handleNavigateToPlaylist} gap="xs">
+        {item.creatorId.profilepic ? (
+          <Avatar size="sm" src={item.creatorId.profilepic} radius="50%" />
+        ) : (
+          <Avatar size="sm">
+            {item.creatorId.firstname[0]}
+            {item.creatorId.lastname[0]}
+          </Avatar>
+        )}
 
-          <Text fz="xs">{item.creatorId.username}</Text>
-        </Group>
+        <Text fz="xs">{item.creatorId.username}</Text>
       </Group>
     </Stack>
   );

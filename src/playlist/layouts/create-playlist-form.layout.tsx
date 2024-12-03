@@ -9,7 +9,6 @@ import {
   ActionIcon,
   Button,
   Group,
-  Loader,
   Space,
   Stack,
   Text,
@@ -20,7 +19,6 @@ import { useDispatch } from "react-redux";
 import { modalTextInput } from "@/global/styles/global.styles";
 import { playlistUtility } from "../playlist.utility";
 import { IconRefresh } from "@tabler/icons-react";
-import { oneTx } from "@/global/styles/app.css";
 
 export const CreatePlaylistFormLayout = () => {
   const dispatch = useDispatch();
@@ -111,8 +109,14 @@ export const CreatePlaylistFormLayout = () => {
           />
         </Stack>
 
-        <Button type="submit" fullWidth bg="green" radius="sm">
-          {isPending ? <Loader type="dots" color={oneTx} /> : "Create Playlist"}
+        <Button
+          type="submit"
+          fullWidth
+          bg="green"
+          radius="sm"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Create Playlist
         </Button>
       </Stack>
     </form>

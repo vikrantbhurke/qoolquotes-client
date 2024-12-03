@@ -1,7 +1,6 @@
-import { Button, Loader, Modal, Stack, Text } from "@mantine/core";
+import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeletePlaylistById } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import { oneTx } from "@/global/styles/app.css";
 
 export const DeletePlaylistModalLayout = ({ pid, opened, close }: any) => {
   const { deletePlaylistByIdMutation, isPending } = useDeletePlaylistById();
@@ -24,8 +23,10 @@ export const DeletePlaylistModalLayout = ({ pid, opened, close }: any) => {
           onClick={handleDeletePlaylistById}
           fullWidth
           radius="sm"
-          bg="red">
-          {isPending ? <Loader type="dots" color={oneTx} /> : "Delete Playlist"}
+          bg="red"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Delete Playlist
         </Button>
       </Stack>
     </Modal>

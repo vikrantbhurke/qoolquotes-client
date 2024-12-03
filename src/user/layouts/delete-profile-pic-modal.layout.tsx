@@ -1,10 +1,9 @@
-import { Button, Loader, Modal, Stack, Text } from "@mantine/core";
+import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeleteProfilePicById } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { oneTx } from "@/global/styles/app.css";
 
 export const DeleteProfilePicModalLayout = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -36,12 +35,10 @@ export const DeleteProfilePicModalLayout = ({ opened, close }: any) => {
           onClick={handleDeleteProfilePicById}
           fullWidth
           radius="sm"
-          bg="red">
-          {isPending ? (
-            <Loader type="dots" color={oneTx} />
-          ) : (
-            "Delete Profile Pic"
-          )}
+          bg="red"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Delete Profile Pic
         </Button>
       </Stack>
     </Modal>

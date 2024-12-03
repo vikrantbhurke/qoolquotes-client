@@ -3,7 +3,6 @@ import {
   ActionIcon,
   Button,
   Group,
-  Loader,
   Space,
   Stack,
   Text,
@@ -14,7 +13,6 @@ import { modalTextInput } from "@/global/styles/global.styles";
 import { IconRefresh } from "@tabler/icons-react";
 import { citedQuoteUtility } from "../cited-quote.utility";
 import { I } from "@/global/components/components";
-import { oneTx } from "@/global/styles/app.css";
 
 export const CreateCitedQuoteFormLayout = () => {
   const { form, handleCreateCitedQuote, isPending } = useCreateCitedQuoteForm();
@@ -117,8 +115,14 @@ export const CreateCitedQuoteFormLayout = () => {
           />
         </Stack>
 
-        <Button type="submit" fullWidth bg="green" radius="sm">
-          {isPending ? <Loader type="dots" color={oneTx} /> : "Cite Quote"}
+        <Button
+          type="submit"
+          fullWidth
+          bg="green"
+          radius="sm"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Cite Quote
         </Button>
       </Stack>
     </form>

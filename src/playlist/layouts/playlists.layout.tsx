@@ -27,10 +27,12 @@ import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
 import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
+import { useIsMobile } from "@/global/hooks";
 
 export const PlaylistsLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const [
     deletePlaylistOpened,
@@ -131,9 +133,14 @@ export const PlaylistsLayout = () => {
                 align="center"
                 onClick={openRemovePlaylist}>
                 <I I={IconTrash} color="crimson" />
-                <Text pt={3} c="crimson">
-                  Remove All
-                </Text>
+
+                {isMobile ? (
+                  <Space />
+                ) : (
+                  <Text pt={3} c="crimson">
+                    Remove All
+                  </Text>
+                )}
               </Group>
             ) : tab === "Created" && data.totalElements ? (
               <Group
@@ -142,9 +149,14 @@ export const PlaylistsLayout = () => {
                 align="center"
                 onClick={openDeletePlaylist}>
                 <I I={IconTrash} color="crimson" />
-                <Text pt={3} c="crimson">
-                  Delete All
-                </Text>
+
+                {isMobile ? (
+                  <Space />
+                ) : (
+                  <Text pt={3} c="crimson">
+                    Delete All
+                  </Text>
+                )}
               </Group>
             ) : (
               <Space w="xl" />

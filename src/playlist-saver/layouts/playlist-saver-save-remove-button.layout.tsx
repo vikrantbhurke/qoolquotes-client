@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import { Button, Loader } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useCheckPlaylistSaver } from "../hooks/read";
 import { useSavePlaylist } from "../hooks/create";
 import { RemovePlaylistModalLayout } from "./remove-playlist-modal.layout";
-import { oneTx } from "@/global/styles/app.css";
 
 export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -16,8 +15,7 @@ export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
 
   const { playlistSaver } = useCheckPlaylistSaver({ pid });
 
-  const { savePlaylistMutation, isPending: isSavingPending } =
-    useSavePlaylist();
+  const { savePlaylistMutation, isPending } = useSavePlaylist();
 
   const handleSavePlaylist = () => {
     savePlaylistMutation({
@@ -41,11 +39,13 @@ export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
       ) : (
         <Button
           fullWidth
-          disabled={isSavingPending}
+          disabled={isPending}
           radius="sm"
           bg="green"
-          onClick={handleSavePlaylist}>
-          {isSavingPending ? <Loader type="dots" color={oneTx} /> : "Save"}
+          onClick={handleSavePlaylist}
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Save
         </Button>
       )}
     </>

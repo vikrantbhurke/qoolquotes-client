@@ -14,13 +14,11 @@ import {
   TextInput,
   Text,
   Grid,
-  Loader,
   Avatar,
 } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useUpdatePlaylistByIdForm } from "../hooks/update";
 import { IconQuote, IconRefresh } from "@tabler/icons-react";
-import { oneTx } from "@/global/styles/app.css";
 import { setAccess } from "../playlist.slice";
 import { useDispatch } from "react-redux";
 import { CustomEnumCombobox, I } from "@/global/components/components";
@@ -184,8 +182,10 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 disabled={isPending}
                 type="submit"
                 radius="sm"
-                bg="blue">
-                {isPending ? <Loader type="dots" color={oneTx} /> : "Update"}
+                bg="blue"
+                loading={isPending}
+                loaderProps={{ type: "dots" }}>
+                Update
               </Button>
             </Grid.Col>
 

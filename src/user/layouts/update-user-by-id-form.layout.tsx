@@ -21,7 +21,6 @@ import {
   Modal,
   Center,
   Image,
-  Loader,
   Text,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -43,12 +42,8 @@ export const UpdateUserByIdFormLayout = () => {
   const [picViewOpened, setOpened] = useState(false);
   const [picDeleteOpened, { open, close }] = useDisclosure();
 
-  const {
-    user,
-    form,
-    handleUpdateUserById,
-    isPending: isUpdateUserByIdPending,
-  } = useUpdateUserByIdForm();
+  const { user, form, handleUpdateUserById, isPending } =
+    useUpdateUserByIdForm();
 
   const handleCancel = () => {
     navigate(-1);
@@ -199,16 +194,14 @@ export const UpdateUserByIdFormLayout = () => {
             <Grid>
               <Grid.Col span={6}>
                 <Button
-                  disabled={isUpdateUserByIdPending}
+                  disabled={isPending}
                   type="submit"
                   fullWidth
                   radius="sm"
-                  bg="blue">
-                  {isUpdateUserByIdPending ? (
-                    <Loader type="dots" color={oneTx} />
-                  ) : (
-                    "Update Profile"
-                  )}
+                  bg="blue"
+                  loading={isPending}
+                  loaderProps={{ type: "dots" }}>
+                  Update Profile
                 </Button>
               </Grid.Col>
 

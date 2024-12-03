@@ -15,7 +15,6 @@ import {
   Button,
   Container,
   Group,
-  Loader,
   PasswordInput,
   Space,
   Stack,
@@ -110,8 +109,10 @@ export const SignInUserFormLayout = () => {
               fullWidth
               radius="sm"
               c={oneBg}
-              bg={oneTx}>
-              {isPending ? <Loader color={oneBg} type="dots" /> : "Sign In"}
+              bg={oneTx}
+              loading={isPending}
+              loaderProps={{ type: "dots" }}>
+              Sign In
             </Button>
           </Stack>
         </Stack>

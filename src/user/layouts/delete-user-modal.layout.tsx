@@ -1,10 +1,9 @@
-import { Button, Loader, Modal, Stack, Text } from "@mantine/core";
+import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeleteUserById } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { oneTx } from "@/global/styles/app.css";
 
 export const DeleteUserModalLayout = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -28,8 +27,14 @@ export const DeleteUserModalLayout = ({ opened, close }: any) => {
       <Stack gap="lg">
         <Text ta="center">Are you sure you want to delete account?</Text>
 
-        <Button onClick={handleDeleteUserById} fullWidth radius="sm" bg="red">
-          {isPending ? <Loader type="dots" color={oneTx} /> : "Delete Account"}
+        <Button
+          onClick={handleDeleteUserById}
+          fullWidth
+          radius="sm"
+          bg="red"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Delete Account
         </Button>
       </Stack>
     </Modal>

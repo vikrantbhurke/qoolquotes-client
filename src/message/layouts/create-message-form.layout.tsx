@@ -3,7 +3,6 @@ import {
   ActionIcon,
   Button,
   Group,
-  Loader,
   Space,
   Stack,
   Text,
@@ -20,7 +19,6 @@ import { Reason } from "../enums";
 import { setReason } from "../message.slice";
 import { IconRefresh } from "@tabler/icons-react";
 import { messageUtility } from "../message.utility";
-import { oneTx } from "@/global/styles/app.css";
 
 export const CreateMessageFormLayout = () => {
   const dispatch = useDispatch();
@@ -127,8 +125,14 @@ export const CreateMessageFormLayout = () => {
           />
         </Stack>
 
-        <Button type="submit" fullWidth bg="green" radius="sm">
-          {isPending ? <Loader type="dots" color={oneTx} /> : "Send Message"}
+        <Button
+          type="submit"
+          fullWidth
+          bg="green"
+          radius="sm"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Send Message
         </Button>
       </Stack>
     </form>

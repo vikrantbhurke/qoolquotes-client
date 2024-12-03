@@ -1,8 +1,7 @@
-import { Button, Loader, Modal, Stack, Text } from "@mantine/core";
+import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useRemovePlaylistsBySaverId } from "@/playlist-saver/hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
-import { oneTx } from "@/global/styles/app.css";
 
 export const RemovePlaylistsModalLayout = ({ opened, close }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -31,12 +30,10 @@ export const RemovePlaylistsModalLayout = ({ opened, close }: any) => {
           onClick={handleRemovePlaylistsBySaverId}
           fullWidth
           radius="sm"
-          bg="red">
-          {isPending ? (
-            <Loader type="dots" color={oneTx} />
-          ) : (
-            "Remove Playlists"
-          )}
+          bg="red"
+          loading={isPending}
+          loaderProps={{ type: "dots" }}>
+          Remove Playlists
         </Button>
       </Stack>
     </Modal>
