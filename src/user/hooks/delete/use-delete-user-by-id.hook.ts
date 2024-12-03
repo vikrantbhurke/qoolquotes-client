@@ -1,0 +1,59 @@
+import { AxiosError } from "axios";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { signOut } from "@/user/auth.slice";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "@/global/hooks";
+import { RootState } from "@/global/states/store";
+import { deleteUserById } from "@/user/user.network";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { NotificationColor } from "@/global/enums";
+
+export const useDeleteUserById = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const { auth } = useSelector((state: RootState) => state.auth);
+  const { showNotification } = useNotification();
+
+  const {
+    mutate: deleteUserByIdMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: deleteUserById,
+
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: ["getUserById", auth.id],
+      });
+
+      const previousUser = await queryClient.getQueryData([
+        "getUserById",
+        auth.id,
+      ]);
+
+      await queryClient.setQueryData(["getUserById", auth.id], () => null);
+
+      return { previousUser };
+    },
+
+    onSuccess: async () => {
+      dispatch(signOut());
+      navigate("/sign-up");
+      await queryClient.invalidateQueries();
+      showNotification("Account deleted!", NotificationColor.Success);
+    },
+
+    onError: async (error: AxiosError, { uid }: any, context: any) => {
+      showNotification(error.message, NotificationColor.Failure);
+
+      await queryClient.setQueryData(
+        ["getUserById", uid],
+        context.previousUser
+      );
+    },
+  });
+
+  return { deleteUserByIdMutation, isPending, isSuccess };
+};

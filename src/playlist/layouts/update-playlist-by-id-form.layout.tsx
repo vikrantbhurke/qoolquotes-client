@@ -1,0 +1,202 @@
+import {
+  footerHeight,
+  formTextInput,
+  getMainContentHeight,
+  headerHeight,
+} from "@/global/styles/global.styles";
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Space,
+  Stack,
+  Textarea,
+  TextInput,
+  Text,
+  Grid,
+  Loader,
+  Avatar,
+} from "@mantine/core";
+import { useSelector } from "react-redux";
+import { useUpdatePlaylistByIdForm } from "../hooks/update";
+import { IconQuote, IconRefresh } from "@tabler/icons-react";
+import { oneTx } from "@/global/styles/app.css";
+import { setAccess } from "../playlist.slice";
+import { useDispatch } from "react-redux";
+import { CustomEnumCombobox, I } from "@/global/components/components";
+import { Access } from "../enums";
+import { globalUtility } from "@/global/utilities";
+import { useNavigate } from "react-router-dom";
+import {
+  PlaylistLikerUnlikeButtonLayout,
+  PlaylistLikesCountLayout,
+} from "@/playlist-liker/layouts";
+import { playlistUtility } from "../playlist.utility";
+import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
+import { useIsMobile } from "@/global/hooks";
+
+export const UpdatePlaylistByIdFormLayout = () => {
+  const isMobile = useIsMobile();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { access } = useSelector((state: any) => state.playlist);
+
+  const { playlist, form, handleUpdatePlaylistById, isPending } =
+    useUpdatePlaylistByIdForm();
+
+  const handleAccess = (value: any) => {
+    dispatch(setAccess(value));
+  };
+
+  const handleFormReset = () => {
+    form.reset();
+    dispatch(setAccess(Access.Public));
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
+  return (
+    <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
+      <Stack
+        px="md"
+        h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
+        gap="xl"
+        justify="center"
+        align="center"
+        py="xl">
+        <Stack maw={500} miw={400} gap="lg">
+          <Group gap={0} align="center" justify="space-between">
+            <Space w="md" />
+
+            {form.isDirty() ? (
+              <ActionIcon aria-label="Refresh" onClick={handleFormReset}>
+                <I I={IconRefresh} />
+              </ActionIcon>
+            ) : (
+              <ActionIcon
+                disabled
+                c="transparent"
+                aria-label="Refresh Disabled"
+              />
+            )}
+          </Group>
+
+          <Stack gap="sm">
+            <Stack gap={0}>
+              <Group justify="space-between" w="100%">
+                <Text>Name</Text>
+                <Text
+                  fz="xs"
+                  c={playlistUtility.getNameColor(form.values.name.length)}>
+                  {form.values.name.length} / 30
+                </Text>
+              </Group>
+
+              <TextInput
+                minLength={3}
+                maxLength={30}
+                styles={formTextInput}
+                placeholder={playlist.name}
+                key={form.key("name")}
+                {...form.getInputProps("name")}
+              />
+            </Stack>
+
+            <Stack gap={0}>
+              <Group justify="space-between" w="100%">
+                <Text>Description</Text>
+                <Text
+                  fz="xs"
+                  c={playlistUtility.getDescriptionColor(
+                    form.values.description.length
+                  )}>
+                  {form.values.description.length} / 100
+                </Text>
+              </Group>
+
+              <Textarea
+                styles={formTextInput}
+                autosize
+                minRows={2}
+                maxRows={2}
+                minLength={0}
+                maxLength={100}
+                placeholder={playlist.description}
+                key={form.key("description")}
+                {...form.getInputProps("description")}
+              />
+            </Stack>
+
+            <Stack gap={0} align="stretch">
+              <Text>Access</Text>
+
+              <CustomEnumCombobox
+                EnumObject={Access}
+                label="Access"
+                data={Object.values(Access)}
+                handleValue={handleAccess}
+                value={globalUtility.getKeyByValue(Access, access)}
+              />
+            </Stack>
+
+            <Group align="center">
+              {playlist.creatorId.profilepic ? (
+                <Avatar
+                  size="lg"
+                  src={playlist.creatorId.profilepic}
+                  radius="50%"
+                />
+              ) : (
+                <Avatar size="lg">
+                  {playlist.creatorId.firstname[0]}
+                  {playlist.creatorId.lastname[0]}
+                </Avatar>
+              )}
+
+              <TextInput
+                miw="82%"
+                readOnly
+                styles={formTextInput}
+                label="Creator"
+                value={playlist.creatorId.username}
+              />
+            </Group>
+
+            <Group>
+              <Group gap={4}>
+                <PlaylistLikerUnlikeButtonLayout pid={playlist.id} />
+                <PlaylistLikesCountLayout pid={playlist.id} />
+              </Group>
+
+              <Group gap={4}>
+                <I I={IconQuote} />
+                <PlaylistQuotesCountLayout pid={playlist.id} />
+              </Group>
+            </Group>
+          </Stack>
+
+          <Grid>
+            <Grid.Col span={6}>
+              <Button
+                fullWidth
+                disabled={isPending}
+                type="submit"
+                radius="sm"
+                bg="blue">
+                {isPending ? <Loader type="dots" color={oneTx} /> : "Update"}
+              </Button>
+            </Grid.Col>
+
+            <Grid.Col span={6}>
+              <Button fullWidth radius="sm" bg="yellow" onClick={handleCancel}>
+                Cancel
+              </Button>
+            </Grid.Col>
+          </Grid>
+        </Stack>
+      </Stack>
+    </form>
+  );
+};
