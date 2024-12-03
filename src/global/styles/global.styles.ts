@@ -10,6 +10,11 @@ export const navbarAsideWidth = 400;
 export const containerWidth = 1000;
 export const responsiveBreakpoint = "md";
 
+export const getComboboxStyles = (colorScheme: string) => ({
+  optionBg: colorScheme === "dark" ? threeBg : oneBg,
+  dropdownBg: colorScheme === "dark" ? oneBg : threeBg,
+});
+
 export const getMainAndContentGap = (
   mainWidth: number,
   navbarAsideWidth: number,

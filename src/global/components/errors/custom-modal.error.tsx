@@ -1,5 +1,5 @@
 import { oneBg, roundBorder } from "@/global/styles/app.css";
-import { Center, Group, Pagination, Space, Stack } from "@mantine/core";
+import { Center, Group, Pagination, Space, Stack, Text } from "@mantine/core";
 
 export const CustomModalError = ({ message }: any) => {
   return (
@@ -11,7 +11,11 @@ export const CustomModalError = ({ message }: any) => {
       className={roundBorder}
       justify="space-between">
       <Space />
-      <Center>{message}</Center>
+
+      <Center>
+        <Text>{message}</Text>
+      </Center>
+
       <Pagination.Root value={0} onChange={() => {}} total={0}>
         <Group gap={5} justify="space-evenly" py={2}>
           <Pagination.Previous w="49%" />

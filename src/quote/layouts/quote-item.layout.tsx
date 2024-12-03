@@ -7,22 +7,9 @@ import {
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { PlaylistModal } from "@/playlist/layouts";
-import {
-  ActionIcon,
-  Group,
-  Pill,
-  Space,
-  Stack,
-  Text,
-  Tooltip,
-} from "@mantine/core";
+import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
-import {
-  IconCopy,
-  IconPlaylistAdd,
-  IconCheck,
-  IconArrowLeft,
-} from "@tabler/icons-react";
+import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -59,14 +46,14 @@ export const QuoteItemLayout = ({ quote }: any) => {
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
     navigate(`/quotes/authorId/${quote.authorId._id}?page=1`, {
-      state: { name: quote.authorId.name },
+      state: { name: quote.authorId.name, aid: quote.authorId._id },
     });
   };
 
-  const handleNavigateToQuoteByTopic = (quote: any) => {
+  const handleNavigateToQuoteByTopic = (topic: any) => {
     dispatch(setPage(1));
-    navigate(`/quotes/topicId/${quote._id}?page=1`, {
-      state: { name: quote.name },
+    navigate(`/quotes/topicId/${topic._id}?page=1`, {
+      state: { name: topic.name, tid: topic._id },
     });
   };
 
@@ -86,22 +73,12 @@ export const QuoteItemLayout = ({ quote }: any) => {
     setTimeout(() => setOpened(false), 1500);
   };
 
-  const handlePreviousPage = () => {
-    navigate(-1);
-  };
-
   return (
     <Stack
       h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
-      justify="space-between"
+      justify="center"
       align="center">
       <PlaylistModal opened={modalOpened} close={close} />
-
-      <Group w="100%" p="sm">
-        <ActionIcon size="sm" onClick={handlePreviousPage}>
-          <I I={IconArrowLeft} />
-        </ActionIcon>
-      </Group>
 
       <Stack
         maw={mainContentWidth}
@@ -153,8 +130,6 @@ export const QuoteItemLayout = ({ quote }: any) => {
           </Tooltip>
         </Group>
       </Stack>
-
-      <Space />
     </Stack>
   );
 };

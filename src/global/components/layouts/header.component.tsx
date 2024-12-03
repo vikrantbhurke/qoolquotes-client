@@ -65,7 +65,7 @@ export const Header = ({ opened, toggle }: any) => {
         <Search />
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
-          <Group gap="xs" onClick={handleNavigateToFeed} align="flex-start">
+          <Group gap={4} onClick={handleNavigateToFeed} align="flex-start">
             <Stack>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

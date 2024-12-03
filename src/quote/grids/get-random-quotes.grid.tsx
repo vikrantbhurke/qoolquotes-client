@@ -14,7 +14,7 @@ import { CustomLoader } from "@/global/components/loaders";
 import { useIsMobile } from "@/global/hooks";
 
 export const GetRandomQuotesGrid = () => {
-  const { randomQuotes, totalElements, fetchQuotes } = useGetRandomQuotes();
+  const { randomQuotes, fetchQuotes } = useGetRandomQuotes();
   const isMobile = useIsMobile();
 
   const UtilComponent = ({ message }: any) => (
@@ -34,7 +34,8 @@ export const GetRandomQuotesGrid = () => {
       <InfiniteScroll
         dataLength={randomQuotes.length}
         next={() => fetchQuotes()}
-        hasMore={randomQuotes.length < totalElements}
+        hasMore={true}
+        scrollThreshold={0.5}
         loader={<UtilComponent message="Loading more quotes..." />}
         endMessage={<CustomLoader subheaderHeight={subheaderHeight} />}>
         <Grid grow justify="center" gutter={0}>

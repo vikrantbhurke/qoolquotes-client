@@ -15,9 +15,6 @@ import {
   Center,
   Image,
   Text,
-  Group,
-  ActionIcon,
-  Space,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { oneTx } from "@/global/styles/app.css";
@@ -25,8 +22,6 @@ import { useNavigate } from "react-router-dom";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 import { useState } from "react";
 import { useIsMobile } from "@/global/hooks";
-import { IconArrowLeft } from "@tabler/icons-react";
-import { I } from "@/global/components/components";
 
 export const UserItemLayout = ({ user }: any) => {
   const isMobile = useIsMobile();
@@ -34,22 +29,12 @@ export const UserItemLayout = ({ user }: any) => {
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
 
-  const handlePreviousPage = () => {
-    navigate(-1);
-  };
-
   return (
     <Stack
       h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
       gap="xl"
-      justify="space-between"
+      justify="center"
       align="center">
-      <Group w="100%" p="sm">
-        <ActionIcon size="sm" onClick={handlePreviousPage}>
-          <I I={IconArrowLeft} />
-        </ActionIcon>
-      </Group>
-
       <Stack maw={500} miw={400} gap="lg">
         <DeleteUserModalLayout opened={opened} close={close} />
 
@@ -123,8 +108,6 @@ export const UserItemLayout = ({ user }: any) => {
           </Grid.Col>
         </Grid>
       </Stack>
-
-      <Space />
     </Stack>
   );
 };

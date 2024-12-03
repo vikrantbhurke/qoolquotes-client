@@ -4,7 +4,7 @@ import {
   getMainContentHeight,
   headerHeight,
 } from "@/global/styles/global.styles";
-import { Stack } from "@mantine/core";
+import { Stack, Text } from "@mantine/core";
 
 export const CustomError = ({ subheaderHeight, message }: any) => {
   const isMobile = useIsMobile();
@@ -19,7 +19,7 @@ export const CustomError = ({ subheaderHeight, message }: any) => {
         subheaderHeight,
         isMobile
       )}>
-      {message}
+      <Text>{message}</Text>
     </Stack>
   );
 };

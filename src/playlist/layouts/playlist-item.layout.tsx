@@ -14,8 +14,6 @@ import {
   Loader,
   Avatar,
   Text,
-  ActionIcon,
-  Space,
 } from "@mantine/core";
 import {
   PlaylistLikerUnlikeButtonLayout,
@@ -28,7 +26,7 @@ import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IconArrowLeft, IconQuote } from "@tabler/icons-react";
+import { IconQuote } from "@tabler/icons-react";
 import { useClonePlaylist } from "../hooks/create";
 import { DeletePlaylistModalLayout } from "./delete-playlist-modal.layout";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
@@ -73,22 +71,12 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
     });
   };
 
-  const handlePreviousPage = () => {
-    navigate(-1);
-  };
-
   return (
     <Stack
       h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
       gap="xl"
-      justify="space-between"
+      justify="center"
       align="center">
-      <Group w="100%" p="sm">
-        <ActionIcon size="sm" onClick={handlePreviousPage}>
-          <I I={IconArrowLeft} />
-        </ActionIcon>
-      </Group>
-
       <Stack maw={500} miw={400} gap="lg">
         <DeletePlaylistModalLayout
           opened={deletePlaylistOpened}
@@ -227,8 +215,6 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
           )}
         </Grid>
       </Stack>
-
-      <Space />
     </Stack>
   );
 };

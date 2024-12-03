@@ -42,14 +42,15 @@ export const QuoteGridItemLayout = ({ item }: any) => {
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
     navigate(`/quotes/authorId/${item.authorId._id}?page=1`, {
-      state: { name: item.authorId.name },
+      state: { name: item.authorId.name, aid: item.authorId._id },
     });
   };
 
   const handleNavigateToQuoteByTopic = (item: any) => {
+    console.log(`/quotes/topicId/${item._id}?page=1`);
     dispatch(setPage(1));
     navigate(`/quotes/topicId/${item._id}?page=1`, {
-      state: { name: item.name },
+      state: { name: item.name, tid: item._id },
     });
   };
 
