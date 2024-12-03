@@ -5,13 +5,18 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
-import { borderBottom, oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
+import {
+  borderBottom,
+  oneTxOneBgButtonPseudo,
+  themeGreen,
+} from "@/global/styles/app.css";
 import { listButtonHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
   IconBallpen,
   IconCategory,
+  IconDownload,
   IconMessage,
   IconPlaylist,
   IconUser,
@@ -20,13 +25,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ContactModal, I } from "../components";
+import { useInstallApp } from "@/global/hooks";
 
 export const Navbar = ({ toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
   const { auth } = useSelector((state: RootState) => state.auth);
-
+  const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const [opened, { open, close }] = useDisclosure();
 
   const { sort: authorSort, order: authorOrder } = useSelector(
@@ -79,6 +85,19 @@ export const Navbar = ({ toggle }: any) => {
 
   return (
     <Stack gap={0} p={0}>
+      {!isInstalled && installPrompt && (
+        <CompOrFragmentRoute clearance={Clearance.LevelOne}>
+          <Button
+            c={themeGreen}
+            h={listButtonHeight}
+            className={buttonClasses}
+            leftSection={<I I={IconDownload} />}
+            onClick={handleInstallClick}>
+            Install
+          </Button>
+        </CompOrFragmentRoute>
+      )}
+
       <Button
         h={listButtonHeight}
         className={buttonClasses}

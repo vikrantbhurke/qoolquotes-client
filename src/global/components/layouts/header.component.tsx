@@ -8,7 +8,6 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import {
-  IconDownload,
   IconLogin,
   IconLogout,
   IconMoon,
@@ -21,10 +20,8 @@ import { Search } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
-import { oneTx, themeGreen } from "@/global/styles/app.css";
-import { CompOrFragmentRoute } from "@/global/routes";
-import { Clearance } from "@/user/enums";
-import { useInstallApp, useIsMobile } from "@/global/hooks";
+import { oneTx } from "@/global/styles/app.css";
+import { useIsMobile } from "@/global/hooks";
 import { signOut } from "@/user/auth.slice";
 import {
   headerHeight,
@@ -39,7 +36,6 @@ export const Header = ({ opened, toggle }: any) => {
   const [, scrollTo] = useWindowScroll();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
 
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
 
@@ -84,17 +80,6 @@ export const Header = ({ opened, toggle }: any) => {
           </Group>
 
           <Group gap={isMobile ? 6 : "xs"}>
-            {!isInstalled && installPrompt && (
-              <CompOrFragmentRoute clearance={Clearance.LevelOne}>
-                <ActionIcon
-                  size="sm"
-                  onClick={handleInstallClick}
-                  c={themeGreen}>
-                  <I I={IconDownload} />
-                </ActionIcon>
-              </CompOrFragmentRoute>
-            )}
-
             <ActionIcon size="sm" onClick={handleOpenSearchbar}>
               <I I={IconSearch} />
             </ActionIcon>
