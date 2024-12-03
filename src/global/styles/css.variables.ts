@@ -32,7 +32,8 @@ export const cssVariables = () => {
       "--quaternary-background": LightFour,
       "--quinary-text": DarkFive,
       "--quinary-background": LightFive,
-      "--border-color": LightBorder,
+      "--border-low-contrast": LightBorder,
+      "--border-high-contrast": DarkBorder,
     },
     dark: {
       "--primary-text": LightOne,
@@ -45,7 +46,8 @@ export const cssVariables = () => {
       "--quaternary-background": DarkFour,
       "--quinary-text": LightFive,
       "--quinary-background": DarkFive,
-      "--border-color": DarkBorder,
+      "--border-low-contrast": DarkBorder,
+      "--border-high-contrast": LightBorder,
     },
   };
 };

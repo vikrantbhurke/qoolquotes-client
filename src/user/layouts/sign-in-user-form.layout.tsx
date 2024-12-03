@@ -111,7 +111,7 @@ export const SignInUserFormLayout = () => {
               c={oneBg}
               bg={oneTx}
               loading={isPending}
-              loaderProps={{ type: "dots" }}>
+              loaderProps={{ type: "dots", color: oneBg }}>
               Sign In
             </Button>
           </Stack>

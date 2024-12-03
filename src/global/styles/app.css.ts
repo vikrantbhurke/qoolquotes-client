@@ -11,10 +11,12 @@ export const fourTx = "var(--quaternary-text)";
 export const fourBg = "var(--quaternary-background)";
 export const fiveTx = "var(--quinary-text)";
 export const fiveBg = "var(--quinary-background)";
-export const borderColor = "var(--border-color)";
+export const borderLowContrastColor = "var(--border-low-contrast)";
+export const borderHighContrastColor = "var(--border-high-contrast)";
 export const themeGreen = "var(--theme-green)";
 
-export const borderStyle = `1px solid ${borderColor}`;
+export const borderLowContrast = `1px solid ${borderLowContrastColor}`;
+export const borderHighContrast = `1px solid ${borderHighContrastColor}`;
 
 export const noBorder = style({
   border: "none",
@@ -205,23 +207,23 @@ export const oneTxThreeBgButtonPseudo = style({
 });
 
 export const border = style({
-  border: borderStyle,
+  border: borderLowContrast,
 });
 
 export const borderBottom = style({
-  borderBottom: borderStyle,
+  borderBottom: borderLowContrast,
 });
 
 export const borderTop = style({
-  borderTop: borderStyle,
+  borderTop: borderLowContrast,
 });
 
 export const borderLeft = style({
-  borderLeft: borderStyle,
+  borderLeft: borderLowContrast,
 });
 
 export const borderRight = style({
-  borderRight: borderStyle,
+  borderRight: borderLowContrast,
 });
 
 export const readexProFont = style({

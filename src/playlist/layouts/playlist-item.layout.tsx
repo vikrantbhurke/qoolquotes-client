@@ -11,7 +11,6 @@ import {
   Textarea,
   TextInput,
   Grid,
-  Loader,
   Avatar,
   Text,
 } from "@mantine/core";
@@ -49,8 +48,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
     { open: deletePlaylistOpen, close: deletePlaylistClose },
   ] = useDisclosure();
 
-  const { clonePlaylistMutation, isPending: isCloningPending } =
-    useClonePlaylist();
+  const { clonePlaylistMutation, isPending } = useClonePlaylist();
 
   const handleClonePlaylist = () => {
     if (auth.role === Role.Public) {
@@ -203,12 +201,10 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
                   fullWidth
                   radius="sm"
                   bg="blue"
-                  onClick={handleClonePlaylist}>
-                  {isCloningPending ? (
-                    <Loader type="dots" color={oneTx} />
-                  ) : (
-                    "Clone"
-                  )}
+                  onClick={handleClonePlaylist}
+                  loading={isPending}
+                  loaderProps={{ type: "dots" }}>
+                  Clone
                 </Button>
               </Grid.Col>
             </>

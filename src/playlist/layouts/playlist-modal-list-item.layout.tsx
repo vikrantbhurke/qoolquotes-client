@@ -1,12 +1,16 @@
-import { Group, Text } from "@mantine/core";
-import { roundBorder, threeBg } from "@/global/styles/app.css";
+import { Group, Text, useMantineColorScheme } from "@mantine/core";
+import { roundBorder } from "@/global/styles/app.css";
 import { PlaylistQuotesAddRemoveButtonLayout } from "@/playlist-quote/layouts";
+import { getComboboxStyles } from "@/global/styles/global.styles";
 
 export const PlaylistModalListItemLayout = ({ item }: any) => {
+  const { colorScheme } = useMantineColorScheme();
+  const { optionBg } = getComboboxStyles(colorScheme);
+
   return (
     <Group
       key={item.id}
-      bg={threeBg}
+      bg={optionBg}
       className={roundBorder}
       gap="xs"
       p="sm"

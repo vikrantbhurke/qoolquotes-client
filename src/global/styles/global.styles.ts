@@ -1,4 +1,4 @@
-import { borderStyle, oneBg, oneTx, threeBg, twoBg } from "./app.css";
+import { borderLowContrast, oneBg, oneTx, threeBg, twoBg } from "./app.css";
 
 export const mainContentWidth = 600;
 export const subheaderHeight = 60;
@@ -21,7 +21,7 @@ export const getMainAndContentGap = (
   mainContentWidth: number
 ) => {
   const mainAndContentGap = mainWidth - 2 * navbarAsideWidth - mainContentWidth;
-  let border = mainAndContentGap > 0 ? borderStyle : "none";
+  let border = mainAndContentGap > 0 ? borderLowContrast : "none";
 
   return {
     borderLeft: border,
@@ -73,9 +73,9 @@ export const getSearchTextInput = (
     height: headerHeight,
     width: isMobile ? width : width - (navbarAsideWidth + navbarAsideWidth),
     borderTop: "none",
-    borderLeft: isMobile ? "none" : borderStyle,
-    borderRight: isMobile ? "none" : borderStyle,
-    borderBottom: borderStyle,
+    borderLeft: isMobile ? "none" : borderLowContrast,
+    borderRight: isMobile ? "none" : borderLowContrast,
+    borderBottom: borderLowContrast,
     borderRadius: 0,
   },
 });
@@ -87,17 +87,17 @@ export const getGridBorder = (
 ) => {
   return {
     borderTop: "none",
-    borderBottom: borderStyle,
+    borderBottom: borderLowContrast,
     borderRight: isMobile
       ? "none"
       : index % 2 === 0 && index !== totalItems - 1
-        ? borderStyle
+        ? borderLowContrast
         : "none",
     borderLeft: "none",
   };
 };
 
-export const buttonBorder = { border: borderStyle, borderRadius: 5 };
+export const buttonBorder = { border: borderLowContrast, borderRadius: 5 };
 
 export const modal = {
   title: { fontFamily: "Readex Pro" },
