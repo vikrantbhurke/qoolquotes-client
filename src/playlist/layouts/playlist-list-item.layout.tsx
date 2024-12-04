@@ -7,7 +7,7 @@ import {
 import { listItemHeight } from "@/global/styles/global.styles";
 import { Avatar, Button, Group, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { IconQuote } from "@tabler/icons-react";
+import { IconMessage2 } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/quote/quote.slice";
 import {
@@ -60,7 +60,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
           </Group>
 
           <Group gap={4}>
-            <I I={IconQuote} />
+            <I I={IconMessage2} />
             <PlaylistQuotesCountLayout pid={item.id} />
           </Group>
 

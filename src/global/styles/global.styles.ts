@@ -1,4 +1,11 @@
-import { borderLowContrast, oneBg, oneTx, threeBg, twoBg } from "./app.css";
+import {
+  borderHighContrast,
+  borderLowContrast,
+  oneBg,
+  oneTx,
+  threeBg,
+  twoBg,
+} from "./app.css";
 
 export const mainContentWidth = 600;
 export const subheaderHeight = 60;
@@ -110,19 +117,22 @@ export const modalOverlayProps = {
   blur: 3,
 };
 
-export const formTextInput = {
+export const getFormTextInput = (isFocused: boolean) => ({
   input: {
-    backgroundColor: threeBg,
-    border: "none",
+    padding: "1.5rem",
+    backgroundColor: oneBg,
+    border: isFocused ? borderHighContrast : borderLowContrast,
   },
-};
+});
 
-export const modalTextInput = {
+export const getComboboxTextInput = (isFocused: boolean) => ({
   input: {
-    backgroundColor: threeBg,
-    border: "none",
+    textAlign: "center" as const,
+    padding: "1.5rem",
+    backgroundColor: oneBg,
+    border: isFocused ? borderHighContrast : borderLowContrast,
   },
-};
+});
 
 export const drawer = {
   title: { fontFamily: "Readex Pro" },

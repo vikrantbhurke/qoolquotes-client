@@ -14,22 +14,27 @@ import { listButtonHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
+  IconArticleFilledFilled,
   IconBallpen,
+  IconBallpenFilled,
   IconCategory,
   IconDownload,
-  IconMessage,
+  IconMail,
   IconPlaylist,
   IconUser,
+  IconUserFilled,
 } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ContactModal, I } from "../components";
 import { useInstallApp } from "@/global/hooks";
+import { IconCategoryFilled } from "@tabler/icons-react";
 
 export const Navbar = ({ toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [, scrollTo] = useWindowScroll();
   const { auth } = useSelector((state: RootState) => state.auth);
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
@@ -101,7 +106,13 @@ export const Navbar = ({ toggle }: any) => {
       <Button
         h={listButtonHeight}
         className={buttonClasses}
-        leftSection={<I I={IconArticle} />}
+        leftSection={
+          <I
+            I={
+              location.pathname === "/" ? IconArticleFilledFilled : IconArticle
+            }
+          />
+        }
         onClick={handleNavigateToFeed}>
         Feed
       </Button>
@@ -109,7 +120,15 @@ export const Navbar = ({ toggle }: any) => {
       <Button
         h={listButtonHeight}
         className={buttonClasses}
-        leftSection={<I I={IconCategory} />}
+        leftSection={
+          <I
+            I={
+              location.pathname === "/topics"
+                ? IconCategoryFilled
+                : IconCategory
+            }
+          />
+        }
         onClick={handleNavigateToTopics}>
         Topics
       </Button>
@@ -117,7 +136,13 @@ export const Navbar = ({ toggle }: any) => {
       <Button
         h={listButtonHeight}
         className={buttonClasses}
-        leftSection={<I I={IconBallpen} />}
+        leftSection={
+          <I
+            I={
+              location.pathname === "/authors" ? IconBallpenFilled : IconBallpen
+            }
+          />
+        }
         onClick={handleNavigateToAuthors}>
         Authors
       </Button>
@@ -134,7 +159,15 @@ export const Navbar = ({ toggle }: any) => {
         <Button
           h={listButtonHeight}
           className={buttonClasses}
-          leftSection={<I I={IconUser} />}
+          leftSection={
+            <I
+              I={
+                location.pathname.startsWith("/users")
+                  ? IconUserFilled
+                  : IconUser
+              }
+            />
+          }
           onClick={handleNavigateToProfile}>
           Profile
         </Button>
@@ -143,7 +176,7 @@ export const Navbar = ({ toggle }: any) => {
       <Button
         h={listButtonHeight}
         className={buttonClasses}
-        leftSection={<I I={IconMessage} />}
+        leftSection={<I I={IconMail} />}
         onClick={handleContact}>
         Contact
       </Button>

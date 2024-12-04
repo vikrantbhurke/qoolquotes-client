@@ -16,7 +16,7 @@ export const borderHighContrastColor = "var(--border-high-contrast)";
 export const themeGreen = "var(--theme-green)";
 
 export const borderLowContrast = `1px solid ${borderLowContrastColor}`;
-export const borderHighContrast = `1px solid ${borderHighContrastColor}`;
+export const borderHighContrast = `2px solid ${borderHighContrastColor}`;
 
 export const noBorder = style({
   border: "none",

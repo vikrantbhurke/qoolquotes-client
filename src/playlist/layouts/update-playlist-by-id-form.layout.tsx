@@ -1,6 +1,6 @@
 import {
   footerHeight,
-  formTextInput,
+  getFormTextInput,
   getMainContentHeight,
   headerHeight,
 } from "@/global/styles/global.styles";
@@ -18,7 +18,7 @@ import {
 } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useUpdatePlaylistByIdForm } from "../hooks/update";
-import { IconQuote, IconRefresh } from "@tabler/icons-react";
+import { IconMessage2, IconRefresh } from "@tabler/icons-react";
 import { setAccess } from "../playlist.slice";
 import { useDispatch } from "react-redux";
 import { CustomEnumCombobox, I } from "@/global/components/components";
@@ -32,12 +32,18 @@ import {
 import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { useIsMobile } from "@/global/hooks";
+import { RootState } from "@/global/states/store";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const UpdatePlaylistByIdFormLayout = () => {
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { access } = useSelector((state: any) => state.playlist);
+  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   const { playlist, form, handleUpdatePlaylistById, isPending } =
     useUpdatePlaylistByIdForm();
@@ -95,7 +101,11 @@ export const UpdatePlaylistByIdFormLayout = () => {
               <TextInput
                 minLength={3}
                 maxLength={30}
-                styles={formTextInput}
+                styles={getFormTextInput(focusedInput === "name")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("name"),
+                  onBlur: handleBlur,
+                }}
                 placeholder={playlist.name}
                 key={form.key("name")}
                 {...form.getInputProps("name")}
@@ -115,12 +125,16 @@ export const UpdatePlaylistByIdFormLayout = () => {
               </Group>
 
               <Textarea
-                styles={formTextInput}
                 autosize
                 minRows={2}
                 maxRows={2}
                 minLength={0}
                 maxLength={100}
+                styles={getFormTextInput(focusedInput === "description")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("description"),
+                  onBlur: handleBlur,
+                }}
                 placeholder={playlist.description}
                 key={form.key("description")}
                 {...form.getInputProps("description")}
@@ -153,13 +167,20 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 </Avatar>
               )}
 
-              <TextInput
-                miw="82%"
-                readOnly
-                styles={formTextInput}
-                label="Creator"
-                value={playlist.creatorId.username}
-              />
+              <Stack gap={0} miw="82%">
+                <Text>Creator</Text>
+
+                <TextInput
+                  miw="100%"
+                  readOnly
+                  styles={getFormTextInput(focusedInput === "creator")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("creator"),
+                    onBlur: handleBlur,
+                  }}
+                  value={playlist.creatorId.username}
+                />
+              </Stack>
             </Group>
 
             <Group>
@@ -169,7 +190,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
               </Group>
 
               <Group gap={4}>
-                <I I={IconQuote} />
+                <I I={IconMessage2} />
                 <PlaylistQuotesCountLayout pid={playlist.id} />
               </Group>
             </Group>

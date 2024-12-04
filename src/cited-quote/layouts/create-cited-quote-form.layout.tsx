@@ -9,13 +9,22 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { modalTextInput } from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import { IconRefresh } from "@tabler/icons-react";
 import { citedQuoteUtility } from "../cited-quote.utility";
 import { I } from "@/global/components/components";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const CreateCitedQuoteFormLayout = () => {
+  const dispatch = useDispatch();
   const { form, handleCreateCitedQuote, isPending } = useCreateCitedQuoteForm();
+  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
     <form onSubmit={form.onSubmit(handleCreateCitedQuote)}>
@@ -56,7 +65,11 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={500}
             w="100%"
             placeholder="A Qool Quote..."
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "content")}
+            wrapperProps={{
+              onFocus: () => handleFocus("content"),
+              onBlur: handleBlur,
+            }}
             key={form.key("content")}
             {...form.getInputProps("content")}
           />
@@ -77,7 +90,11 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={30}
             w="100%"
             placeholder="A Great Author"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "author")}
+            wrapperProps={{
+              onFocus: () => handleFocus("author"),
+              onBlur: handleBlur,
+            }}
             key={form.key("author")}
             {...form.getInputProps("author")}
           />
@@ -93,7 +110,11 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={200}
             w="100%"
             placeholder="Quote source link URL"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "citation")}
+            wrapperProps={{
+              onFocus: () => handleFocus("citation"),
+              onBlur: handleBlur,
+            }}
             key={form.key("citation")}
             {...form.getInputProps("citation")}
           />
@@ -109,7 +130,11 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={20}
             w="100%"
             placeholder="johndoe@gmail.com"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "email")}
+            wrapperProps={{
+              onFocus: () => handleFocus("email"),
+              onBlur: handleBlur,
+            }}
             key={form.key("email")}
             {...form.getInputProps("email")}
           />

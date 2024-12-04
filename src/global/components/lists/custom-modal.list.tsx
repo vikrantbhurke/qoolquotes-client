@@ -7,7 +7,7 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { getComboboxStyles } from "@/global/styles/global.styles";
 
 export const CustomModalList = ({
@@ -20,6 +20,22 @@ export const CustomModalList = ({
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
   const { optionBg, dropdownBg } = getComboboxStyles(colorScheme);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+
+  const handlePage = (page: number) => {
+    dispatch(setPage(page));
+
+    const scrollableContainer = scrollAreaRef.current?.querySelector(
+      ".mantine-ScrollArea-viewport"
+    );
+
+    if (scrollableContainer) {
+      scrollableContainer.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <Stack
@@ -29,7 +45,7 @@ export const CustomModalList = ({
       bg={dropdownBg}
       className={roundBorder}
       justify="space-between">
-      <ScrollArea scrollbarSize={2}>
+      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Stack gap={3}>
           {dataArray.map((item: any, index: number) => (
             <Fragment key={index}>
@@ -39,10 +55,7 @@ export const CustomModalList = ({
         </Stack>
       </ScrollArea>
 
-      <Pagination.Root
-        value={page}
-        onChange={(page: number) => dispatch(setPage(page))}
-        total={totalPages}>
+      <Pagination.Root value={page} onChange={handlePage} total={totalPages}>
         <Group gap={5} justify="space-evenly" py={2} bg={dropdownBg}>
           <Pagination.Previous w="49%" bg={optionBg} />
           <Pagination.Next w="49%" bg={optionBg} />

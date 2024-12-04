@@ -3,13 +3,13 @@ import {
   ActionIcon,
   Burger,
   Group,
-  Stack,
   Title,
   useMantineColorScheme,
 } from "@mantine/core";
 import {
   IconLogin,
   IconLogout,
+  IconMessage2,
   IconMoon,
   IconSearch,
   IconSun,
@@ -42,14 +42,19 @@ export const Header = ({ opened, toggle }: any) => {
   const handleSignOut = () => {
     dispatch(signOut());
     navigate("/sign-in");
+    opened && toggle();
   };
 
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
     navigate("/");
+    opened && toggle();
   };
 
-  const handleNavigateToSignIn = () => navigate("/sign-in");
+  const handleNavigateToSignIn = () => {
+    navigate("/sign-in");
+    opened && toggle();
+  };
 
   const handleOpenSearchbar = () => dispatch(setIsSearchbarVisible(true));
 
@@ -61,22 +66,9 @@ export const Header = ({ opened, toggle }: any) => {
         <Search />
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
-          <Group gap={4} onClick={handleNavigateToFeed} align="flex-start">
-            <Stack>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={28}
-                height={28}
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="icon icon-tabler icons-tabler-filled icon-tabler-quote">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M9 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" />
-                <path d="M18 5a2 2 0 0 1 2 2v6c0 3.13 -1.65 5.193 -4.757 5.97a1 1 0 1 1 -.486 -1.94c2.227 -.557 3.243 -1.827 3.243 -4.03v-1h-3a2 2 0 0 1 -1.995 -1.85l-.005 -.15v-3a2 2 0 0 1 2 -2z" />
-              </svg>
-            </Stack>
-
-            <Title order={3}>{import.meta.env.VITE_APP_NAME}</Title>
+          <Group gap={4} onClick={handleNavigateToFeed} align="center">
+            <IconMessage2 stroke={1.5} size={24} />
+            <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
           </Group>
 
           <Group gap={isMobile ? 6 : "xs"}>

@@ -7,13 +7,16 @@ import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
+  IconArticleFilledFilled,
   IconBallpen,
+  IconBallpenFilled,
   IconCategory,
+  IconCategoryFilled,
   IconSearch,
 } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { I } from "../components";
 
@@ -21,6 +24,7 @@ export const Footer = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
+  const location = useLocation();
 
   const { sort: authorSort, order: authorOrder } = useSelector(
     (state: RootState) => state.author
@@ -61,7 +65,9 @@ export const Footer = ({ opened, toggle }: any) => {
         h={footerHeight}
         className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToFeed}>
-        <I I={IconArticle} />
+        <I
+          I={location.pathname === "/" ? IconArticleFilledFilled : IconArticle}
+        />
         <Text>Feed</Text>
       </Stack>
 
@@ -72,7 +78,11 @@ export const Footer = ({ opened, toggle }: any) => {
         h={footerHeight}
         className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToTopics}>
-        <I I={IconCategory} />
+        <I
+          I={
+            location.pathname === "/topics" ? IconCategoryFilled : IconCategory
+          }
+        />
         <Text>Topics</Text>
       </Stack>
 
@@ -83,7 +93,9 @@ export const Footer = ({ opened, toggle }: any) => {
         h={footerHeight}
         className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToAuthors}>
-        <I I={IconBallpen} />
+        <I
+          I={location.pathname === "/authors" ? IconBallpenFilled : IconBallpen}
+        />
         <Text>Authors</Text>
       </Stack>
 

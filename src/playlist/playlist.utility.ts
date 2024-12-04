@@ -4,7 +4,7 @@ import { PlaylistError } from "./playlist.error";
 class PlaylistUtility {
   validateName = (name: string) => {
     const nameSchema = new Validator();
-    nameSchema.is().min(3).is().max(20);
+    nameSchema.is().min(3).is().max(30);
     return nameSchema.validate(name) ? null : PlaylistError.Name;
   };
 

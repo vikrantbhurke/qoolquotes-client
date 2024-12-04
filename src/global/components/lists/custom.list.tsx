@@ -7,8 +7,7 @@ import {
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import { Center, Pagination, ScrollArea, Stack } from "@mantine/core";
-import { useWindowScroll } from "@mantine/hooks";
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -21,15 +20,25 @@ export const CustomList = ({
 }: any) => {
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
-  const [, scrollTo] = useWindowScroll();
   let [searchParams, setSearchParams] = useSearchParams();
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("page", `${page}`);
     setSearchParams(newSearchParams);
-    scrollTo({ y: 0 });
+
+    const scrollableContainer = scrollAreaRef.current?.querySelector(
+      ".mantine-ScrollArea-viewport"
+    );
+
+    if (scrollableContainer) {
+      scrollableContainer.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -42,7 +51,7 @@ export const CustomList = ({
         subheaderHeight,
         isMobile
       )}>
-      <ScrollArea scrollbarSize={2}>
+      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         {dataArray.map((item: any, index: number) => {
           return (
             <Fragment key={index}>

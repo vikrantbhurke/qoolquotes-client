@@ -1,6 +1,6 @@
 import {
   footerHeight,
-  formTextInput,
+  getFormTextInput,
   getMainContentHeight,
   headerHeight,
   modal,
@@ -22,12 +22,21 @@ import { useNavigate } from "react-router-dom";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 import { useState } from "react";
 import { useIsMobile } from "@/global/hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
+import { useDispatch } from "react-redux";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const UserItemLayout = ({ user }: any) => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
+  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
     <Stack
@@ -71,22 +80,54 @@ export const UserItemLayout = ({ user }: any) => {
         <Stack gap="sm">
           <Stack gap={0}>
             <Text>Firstname</Text>
-            <TextInput readOnly styles={formTextInput} value={user.firstname} />
+            <TextInput
+              readOnly
+              styles={getFormTextInput(focusedInput === "firstname")}
+              wrapperProps={{
+                onFocus: () => handleFocus("firstname"),
+                onBlur: handleBlur,
+              }}
+              value={user.firstname}
+            />
           </Stack>
 
           <Stack gap={0}>
             <Text>Lastname</Text>
-            <TextInput readOnly styles={formTextInput} value={user.lastname} />
+            <TextInput
+              readOnly
+              styles={getFormTextInput(focusedInput === "lastname")}
+              wrapperProps={{
+                onFocus: () => handleFocus("lastname"),
+                onBlur: handleBlur,
+              }}
+              value={user.lastname}
+            />
           </Stack>
 
           <Stack gap={0}>
             <Text>Username</Text>
-            <TextInput readOnly styles={formTextInput} value={user.username} />
+            <TextInput
+              readOnly
+              styles={getFormTextInput(focusedInput === "username")}
+              wrapperProps={{
+                onFocus: () => handleFocus("username"),
+                onBlur: handleBlur,
+              }}
+              value={user.username}
+            />
           </Stack>
 
           <Stack gap={0}>
             <Text>Email</Text>
-            <TextInput readOnly styles={formTextInput} value={user.email} />
+            <TextInput
+              readOnly
+              styles={getFormTextInput(focusedInput === "email")}
+              wrapperProps={{
+                onFocus: () => handleFocus("email"),
+                onBlur: handleBlur,
+              }}
+              value={user.email}
+            />
           </Stack>
         </Stack>
 

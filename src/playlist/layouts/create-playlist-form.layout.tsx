@@ -16,14 +16,19 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
-import { modalTextInput } from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import { playlistUtility } from "../playlist.utility";
 import { IconRefresh } from "@tabler/icons-react";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const CreatePlaylistFormLayout = () => {
   const dispatch = useDispatch();
   const { form, handleCreatePlaylist, isPending } = useCreatePlaylistForm();
   const { access } = useSelector((state: RootState) => state.playlist);
+  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   const handleAccess = (access: any) => {
     dispatch(setAccess(access));
@@ -63,10 +68,14 @@ export const CreatePlaylistFormLayout = () => {
 
           <TextInput
             minLength={3}
-            maxLength={20}
+            maxLength={30}
             w="100%"
             placeholder="Name"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "name")}
+            wrapperProps={{
+              onFocus: () => handleFocus("name"),
+              onBlur: handleBlur,
+            }}
             key={form.key("name")}
             {...form.getInputProps("name")}
           />
@@ -91,7 +100,11 @@ export const CreatePlaylistFormLayout = () => {
             maxLength={100}
             w="100%"
             placeholder="Description"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "description")}
+            wrapperProps={{
+              onFocus: () => handleFocus("description"),
+              onBlur: handleBlur,
+            }}
             key={form.key("description")}
             {...form.getInputProps("description")}
           />

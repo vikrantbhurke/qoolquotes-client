@@ -1,9 +1,11 @@
 import { I } from "@/global/components/components";
 import { useAuthReroute, useIsMobile } from "@/global/hooks";
+import { RootState } from "@/global/states/store";
+import { setFocusedInput } from "@/global/states/view.slice";
 import { oneBg, oneTx } from "@/global/styles/app.css";
 import {
   footerHeight,
-  formTextInput,
+  getFormTextInput,
   getMainContentHeight,
   headerHeight,
   mainContentWidth,
@@ -23,15 +25,21 @@ import {
   Title,
 } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { form, handleSignInUser, isPending } = useSignInUserForm();
+  const { focusedInput } = useSelector((state: RootState) => state.view);
 
   const handleNavigateToSignUp = () => navigate("/sign-up");
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
     <Container size={mainContentWidth} p={0}>
@@ -78,10 +86,14 @@ export const SignInUserFormLayout = () => {
                 <Text>Username</Text>
 
                 <TextInput
+                  required
                   minLength={3}
                   maxLength={20}
-                  styles={formTextInput}
-                  required
+                  styles={getFormTextInput(focusedInput === "username")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("username"),
+                    onBlur: handleBlur,
+                  }}
                   placeholder="johndoe"
                   key={form.key("username")}
                   {...form.getInputProps("username")}
@@ -92,10 +104,14 @@ export const SignInUserFormLayout = () => {
                 <Text>Password</Text>
 
                 <PasswordInput
+                  required
                   minLength={6}
                   maxLength={20}
-                  styles={formTextInput}
-                  required
+                  styles={getFormTextInput(focusedInput === "password")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("password"),
+                    onBlur: handleBlur,
+                  }}
                   placeholder="Password123!"
                   key={form.key("password")}
                   {...form.getInputProps("password")}

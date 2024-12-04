@@ -19,6 +19,7 @@ export const theme = createTheme({
         className: readexProFont,
         fw: 300,
         radius: 0,
+        h: "3rem",
       },
     }),
 

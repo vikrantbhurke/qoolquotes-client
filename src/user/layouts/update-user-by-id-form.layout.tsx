@@ -1,6 +1,6 @@
 import {
   footerHeight,
-  formTextInput,
+  getFormTextInput,
   getMainContentHeight,
   headerHeight,
   mainContentWidth,
@@ -34,20 +34,24 @@ import { useState } from "react";
 import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
 import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
+import { useDispatch } from "react-redux";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const UpdateUserByIdFormLayout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isMobile = useIsMobile();
   const { auth } = useSelector((state: RootState) => state.auth);
   const [picViewOpened, setOpened] = useState(false);
   const [picDeleteOpened, { open, close }] = useDisclosure();
+  const { focusedInput } = useSelector((state: RootState) => state.view);
 
   const { user, form, handleUpdateUserById, isPending } =
     useUpdateUserByIdForm();
 
-  const handleCancel = () => {
-    navigate(-1);
-  };
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
+  const handleCancel = () => navigate(-1);
 
   return (
     <Container size={mainContentWidth} p={0}>
@@ -123,7 +127,11 @@ export const UpdateUserByIdFormLayout = () => {
               <Stack gap={0}>
                 <Text>Profile Picture</Text>
                 <FileInput
-                  styles={formTextInput}
+                  styles={getFormTextInput(focusedInput === "profilepic")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("profilepic"),
+                    onBlur: handleBlur,
+                  }}
                   clearable
                   key={form.key("profilepic")}
                   {...form.getInputProps("profilepic")}
@@ -133,10 +141,14 @@ export const UpdateUserByIdFormLayout = () => {
               <Stack gap={0}>
                 <Text>Firstname</Text>
                 <TextInput
+                  required
                   minLength={2}
                   maxLength={20}
-                  styles={formTextInput}
-                  required
+                  styles={getFormTextInput(focusedInput === "firstname")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("firstname"),
+                    onBlur: handleBlur,
+                  }}
                   key={form.key("firstname")}
                   {...form.getInputProps("firstname")}
                 />
@@ -145,10 +157,14 @@ export const UpdateUserByIdFormLayout = () => {
               <Stack gap={0}>
                 <Text>Lastname</Text>
                 <TextInput
+                  required
                   minLength={2}
                   maxLength={20}
-                  styles={formTextInput}
-                  required
+                  styles={getFormTextInput(focusedInput === "lastname")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("lastname"),
+                    onBlur: handleBlur,
+                  }}
                   key={form.key("lastname")}
                   {...form.getInputProps("lastname")}
                 />
@@ -159,7 +175,11 @@ export const UpdateUserByIdFormLayout = () => {
                 <TextInput
                   minLength={5}
                   maxLength={20}
-                  styles={formTextInput}
+                  styles={getFormTextInput(focusedInput === "email")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("email"),
+                    onBlur: handleBlur,
+                  }}
                   placeholder={user.email}
                   key={form.key("email")}
                   {...form.getInputProps("email")}
@@ -171,7 +191,11 @@ export const UpdateUserByIdFormLayout = () => {
                 <PasswordInput
                   minLength={6}
                   maxLength={20}
-                  styles={formTextInput}
+                  styles={getFormTextInput(focusedInput === "password")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("password"),
+                    onBlur: handleBlur,
+                  }}
                   placeholder=""
                   key={form.key("password")}
                   {...form.getInputProps("password")}
@@ -183,7 +207,11 @@ export const UpdateUserByIdFormLayout = () => {
                 <PasswordInput
                   minLength={6}
                   maxLength={20}
-                  styles={formTextInput}
+                  styles={getFormTextInput(focusedInput === "confirmPassword")}
+                  wrapperProps={{
+                    onFocus: () => handleFocus("confirmPassword"),
+                    onBlur: handleBlur,
+                  }}
                   placeholder=""
                   key={form.key("confirmPassword")}
                   {...form.getInputProps("confirmPassword")}

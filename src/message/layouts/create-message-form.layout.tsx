@@ -9,7 +9,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { modalTextInput } from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { globalUtility } from "@/global/utilities";
 import { useDispatch } from "react-redux";
@@ -19,15 +19,17 @@ import { Reason } from "../enums";
 import { setReason } from "../message.slice";
 import { IconRefresh } from "@tabler/icons-react";
 import { messageUtility } from "../message.utility";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const CreateMessageFormLayout = () => {
   const dispatch = useDispatch();
   const { form, handleCreateMessage, isPending } = useCreateMessageForm();
   const { reason } = useSelector((state: RootState) => state.message);
+  const { focusedInput } = useSelector((state: RootState) => state.view);
 
-  const handleReason = (order: any) => {
-    dispatch(setReason(order));
-  };
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
+  const handleReason = (order: any) => dispatch(setReason(order));
 
   return (
     <form onSubmit={form.onSubmit(handleCreateMessage)}>
@@ -78,7 +80,11 @@ export const CreateMessageFormLayout = () => {
             maxLength={30}
             w="100%"
             placeholder="Title of your message..."
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "title")}
+            wrapperProps={{
+              onFocus: () => handleFocus("title"),
+              onBlur: handleBlur,
+            }}
             key={form.key("title")}
             {...form.getInputProps("title")}
           />
@@ -103,7 +109,11 @@ export const CreateMessageFormLayout = () => {
             maxLength={200}
             w="100%"
             placeholder="Description of your message..."
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "description")}
+            wrapperProps={{
+              onFocus: () => handleFocus("description"),
+              onBlur: handleBlur,
+            }}
             key={form.key("description")}
             {...form.getInputProps("description")}
           />
@@ -119,7 +129,11 @@ export const CreateMessageFormLayout = () => {
             maxLength={20}
             w="100%"
             placeholder="johndoe@gmail.com"
-            styles={modalTextInput}
+            styles={getFormTextInput(focusedInput === "email")}
+            wrapperProps={{
+              onFocus: () => handleFocus("email"),
+              onBlur: handleBlur,
+            }}
             key={form.key("email")}
             {...form.getInputProps("email")}
           />

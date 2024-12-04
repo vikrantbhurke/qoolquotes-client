@@ -8,9 +8,9 @@ import {
 import { Center, Grid, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
 import { borderTop, normalPseudo } from "@/global/styles/app.css";
-import { useWindowScroll } from "@mantine/hooks";
 import { useDispatch } from "react-redux";
 import { useIsMobile } from "@/global/hooks";
+import { useRef } from "react";
 
 export const MantineGrid = ({
   page,
@@ -21,15 +21,25 @@ export const MantineGrid = ({
 }: any) => {
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
-  const [, scrollTo] = useWindowScroll();
   let [searchParams, setSearchParams] = useSearchParams();
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("page", `${page}`);
     setSearchParams(newSearchParams);
-    scrollTo({ y: 0 });
+
+    const scrollableContainer = scrollAreaRef.current?.querySelector(
+      ".mantine-ScrollArea-viewport"
+    );
+
+    if (scrollableContainer) {
+      scrollableContainer.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -42,7 +52,7 @@ export const MantineGrid = ({
         subheaderHeight,
         isMobile
       )}>
-      <ScrollArea scrollbarSize={2}>
+      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Grid grow justify="center" gutter={0}>
           {dataArray.map((item: any, index: number) => {
             return (

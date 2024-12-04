@@ -5,12 +5,14 @@ export interface ViewState {
   search: string;
   isLoadingOverlayVisible: boolean;
   isSearchbarVisible: boolean;
+  focusedInput: string;
 }
 
 const initialState: ViewState = {
   search: "",
   isLoadingOverlayVisible: false,
   isSearchbarVisible: false,
+  focusedInput: "",
 };
 
 export const viewSlice = createSlice({
@@ -26,10 +28,17 @@ export const viewSlice = createSlice({
     setIsLoadingOverlayVisible: (state, action: PayloadAction<boolean>) => {
       state.isLoadingOverlayVisible = action.payload;
     },
+    setFocusedInput: (state, action: PayloadAction<string>) => {
+      state.focusedInput = action.payload;
+    },
   },
 });
 
-export const { setSearch, setIsSearchbarVisible, setIsLoadingOverlayVisible } =
-  viewSlice.actions;
+export const {
+  setSearch,
+  setIsSearchbarVisible,
+  setIsLoadingOverlayVisible,
+  setFocusedInput,
+} = viewSlice.actions;
 
 export default viewSlice.reducer;

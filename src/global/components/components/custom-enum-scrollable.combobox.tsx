@@ -1,15 +1,22 @@
-import { noBorder, oneTxThreeBgButtonPseudo } from "@/global/styles/app.css";
-import { getComboboxStyles } from "@/global/styles/global.styles";
+import { RootState } from "@/global/states/store";
+import { setFocusedInput } from "@/global/states/view.slice";
+import { noBorder } from "@/global/styles/app.css";
+import {
+  getComboboxTextInput,
+  getComboboxStyles,
+} from "@/global/styles/global.styles";
 import { globalUtility } from "@/global/utilities";
 import {
   Combobox,
   useCombobox,
-  Button,
   Text,
   Stack,
   ScrollArea,
   useMantineColorScheme,
+  TextInput,
 } from "@mantine/core";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // Used for Alpha filter field
 // Sets Enum Value as value and Key as Display Label
@@ -19,8 +26,13 @@ export const CustomEnumScrollableCombobox = ({
   value,
   handleValue,
 }: any) => {
+  const dispatch = useDispatch();
+  const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
   const { optionBg, dropdownBg } = getComboboxStyles(colorScheme);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -42,13 +54,17 @@ export const CustomEnumScrollableCombobox = ({
         combobox.closeDropdown();
       }}>
       <Combobox.Target>
-        <Button
-          fullWidth
-          className={`${oneTxThreeBgButtonPseudo}`}
-          radius="sm"
-          onClick={() => combobox.openDropdown()}>
-          {value}
-        </Button>
+        <TextInput
+          miw="100%"
+          value={value}
+          readOnly
+          styles={getComboboxTextInput(focusedInput === "scrollableCombobox")}
+          wrapperProps={{
+            onFocus: () => handleFocus("scrollableCombobox"),
+            onBlur: handleBlur,
+          }}
+          onClick={() => combobox.openDropdown()}
+        />
       </Combobox.Target>
 
       <Combobox.Dropdown miw={120} className={noBorder} p={3} bg={dropdownBg}>

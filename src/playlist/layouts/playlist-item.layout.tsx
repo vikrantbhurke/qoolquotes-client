@@ -1,6 +1,6 @@
 import {
   footerHeight,
-  formTextInput,
+  getFormTextInput,
   getMainContentHeight,
   headerHeight,
 } from "@/global/styles/global.styles";
@@ -25,7 +25,7 @@ import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IconQuote } from "@tabler/icons-react";
+import { IconMessage2 } from "@tabler/icons-react";
 import { useClonePlaylist } from "../hooks/create";
 import { DeletePlaylistModalLayout } from "./delete-playlist-modal.layout";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
@@ -36,12 +36,18 @@ import {
 import { Role } from "@/user/enums";
 import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
+import { RootState } from "@/global/states/store";
+import { setFocusedInput } from "@/global/states/view.slice";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
+  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
+  const handleBlur = () => dispatch(setFocusedInput(""));
 
   const [
     deletePlaylistOpened,
@@ -85,7 +91,15 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
         <Stack gap="sm">
           <Stack gap={0}>
             <Text>Name</Text>
-            <TextInput readOnly styles={formTextInput} value={playlist.name} />
+            <TextInput
+              readOnly
+              styles={getFormTextInput(focusedInput === "name")}
+              wrapperProps={{
+                onFocus: () => handleFocus("name"),
+                onBlur: handleBlur,
+              }}
+              value={playlist.name}
+            />
           </Stack>
 
           <Stack gap={0}>
@@ -94,7 +108,11 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
               readOnly
               minRows={2}
               maxRows={2}
-              styles={formTextInput}
+              styles={getFormTextInput(focusedInput === "description")}
+              wrapperProps={{
+                onFocus: () => handleFocus("description"),
+                onBlur: handleBlur,
+              }}
               autosize
               value={playlist.description}
             />
@@ -104,7 +122,11 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
             <Text>Access</Text>
             <TextInput
               readOnly
-              styles={formTextInput}
+              styles={getFormTextInput(focusedInput === "access")}
+              wrapperProps={{
+                onFocus: () => handleFocus("access"),
+                onBlur: handleBlur,
+              }}
               value={playlist.access}
             />
           </Stack>
@@ -125,9 +147,14 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
 
             <Stack gap={0} miw="82%">
               <Text>Creator</Text>
+
               <TextInput
                 readOnly
-                styles={formTextInput}
+                styles={getFormTextInput(focusedInput === "creator")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("creator"),
+                  onBlur: handleBlur,
+                }}
                 value={playlist.creatorId.username}
               />
             </Stack>
@@ -145,7 +172,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
             </Group>
 
             <Group gap={4}>
-              <I I={IconQuote} />
+              <I I={IconMessage2} />
               <PlaylistQuotesCountLayout pid={playlist.id} />
             </Group>
           </Group>
