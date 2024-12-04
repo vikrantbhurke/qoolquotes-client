@@ -18,8 +18,11 @@ export const createQuote = async (createQuoteDTO: CreateQuoteDTO) => {
   return result.data;
 };
 
-export const getRandomQuotes = async () => {
-  const result = await axios.get(`/quotes/random`);
+export const getRandomQuotes = async (pageSize: number) => {
+  const params = new URLSearchParams();
+  params.append("pageSize", pageSize.toString());
+  const request = { params };
+  const result = await axios.get(`/quotes/random`, request);
   return result.data;
 };
 
