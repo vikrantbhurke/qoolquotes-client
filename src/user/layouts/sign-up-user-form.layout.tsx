@@ -54,7 +54,7 @@ export const SignUpUserFormLayout = () => {
     <Container size={mainContentWidth} p={0}>
       <form onSubmit={form.onSubmit(handleSignUpUser)}>
         <Stack
-          p="md"
+          px="md"
           justify="center"
           align="center"
           bg={oneBg}
@@ -69,7 +69,7 @@ export const SignUpUserFormLayout = () => {
                 overflow: "auto", // Ensure the browser scrollbar is used
               },
             }}>
-            <Stack maw={500} miw={400} gap="lg">
+            <Stack maw={500} miw={400} gap="lg" py="md">
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />
