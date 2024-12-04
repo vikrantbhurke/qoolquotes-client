@@ -59,7 +59,16 @@ export const SignUpUserFormLayout = () => {
           align="center"
           bg={oneBg}
           h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
-          <ScrollArea scrollbarSize={2}>
+          <ScrollArea
+            scrollbarSize={2}
+            styles={{
+              scrollbar: {
+                display: "none", // Hide Mantine's custom scrollbar
+              },
+              viewport: {
+                overflow: "auto", // Ensure the browser scrollbar is used
+              },
+            }}>
             <Stack maw={500} miw={400} gap="lg">
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
