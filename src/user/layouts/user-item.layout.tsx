@@ -1,10 +1,4 @@
-import {
-  footerHeight,
-  getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
-  modal,
-} from "@/global/styles/global.styles";
+import { getFormTextInput, modal } from "@/global/styles/global.styles";
 import {
   Button,
   Stack,
@@ -17,18 +11,16 @@ import {
   Text,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx, inputStyles } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 import { useState } from "react";
-import { useIsMobile } from "@/global/hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
 
 export const UserItemLayout = ({ user }: any) => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
@@ -39,11 +31,7 @@ export const UserItemLayout = ({ user }: any) => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Stack
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
-      gap="xl"
-      justify="center"
-      align="center">
+    <Stack h="100%" gap="xl" justify="center" align="center">
       <Stack maw={500} miw={400} gap="lg">
         <DeleteUserModalLayout opened={opened} close={close} />
 
@@ -82,6 +70,7 @@ export const UserItemLayout = ({ user }: any) => {
             <Text>Firstname</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "firstname")}
               wrapperProps={{
                 onFocus: () => handleFocus("firstname"),
@@ -95,6 +84,7 @@ export const UserItemLayout = ({ user }: any) => {
             <Text>Lastname</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "lastname")}
               wrapperProps={{
                 onFocus: () => handleFocus("lastname"),
@@ -108,6 +98,7 @@ export const UserItemLayout = ({ user }: any) => {
             <Text>Username</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "username")}
               wrapperProps={{
                 onFocus: () => handleFocus("username"),
@@ -121,6 +112,7 @@ export const UserItemLayout = ({ user }: any) => {
             <Text>Email</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "email")}
               wrapperProps={{
                 onFocus: () => handleFocus("email"),

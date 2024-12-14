@@ -7,14 +7,14 @@ export const likePlaylist = async (
   const { pid, lid } = playlistIdLikerIdDTO;
 
   const result = await axios.post(
-    `/playlists-likers/playlistId/${pid}/likerId/${lid}/like`
+    `/playlists-likers/playlistId/${pid}/likerId/${lid}`
   );
 
   return result.data;
 };
 
 export const countPlaylistLikes = async (pid: string) => {
-  const result = await axios.get(`/playlists-likers/${pid}/likes`);
+  const result = await axios.get(`/playlists-likers/playlistId/${pid}/likes`);
   return result.data;
 };
 
@@ -34,7 +34,7 @@ export const unlikePlaylist = async (
   const { pid, lid } = playlistIdLikerIdDTO;
 
   const result = await axios.delete(
-    `/playlists-likers/playlistId/${pid}/likerId/${lid}/unlike`
+    `/playlists-likers/playlistId/${pid}/likerId/${lid}`
   );
 
   return result.data;

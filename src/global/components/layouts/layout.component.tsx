@@ -1,7 +1,6 @@
 import { AppShell } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Header, Aside, Main, Footer, Navbar } from "./index";
-import { useRef } from "react";
 import {
   footerHeight,
   getAppShell,
@@ -21,7 +20,6 @@ import { useIsMobile } from "@/global/hooks";
 
 export const Layout = () => {
   const isMobile = useIsMobile();
-  const mainRef = useRef<any>(null);
   const [opened, { toggle }] = useDisclosure();
 
   const { navbar, aside, header, footer } = getAppShell(
@@ -53,7 +51,7 @@ export const Layout = () => {
         <Aside />
       </AppShell.Aside>
 
-      <AppShell.Main className={`${oneTxOneBg}`} ref={mainRef}>
+      <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
         <Main />
       </AppShell.Main>
 

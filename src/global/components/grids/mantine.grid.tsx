@@ -1,13 +1,7 @@
-import {
-  footerHeight,
-  getGridBorder,
-  getMainContentHeight,
-  headerHeight,
-  subheaderHeight,
-} from "@/global/styles/global.styles";
+import { getGridBorder, subheaderHeight } from "@/global/styles/global.styles";
 import { Center, Grid, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useSearchParams } from "react-router-dom";
-import { borderTop, normalPseudo } from "@/global/styles/app.css";
+import { borderTop } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
 import { useIsMobile } from "@/global/hooks";
 import { useRef } from "react";
@@ -46,12 +40,7 @@ export const MantineGrid = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={getMainContentHeight(
-        headerHeight,
-        footerHeight,
-        subheaderHeight,
-        isMobile
-      )}>
+      h={`calc(100% - ${subheaderHeight}px)`}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Grid grow justify="center" gutter={0}>
           {dataArray.map((item: any, index: number) => {
@@ -59,7 +48,6 @@ export const MantineGrid = ({
               <Grid.Col
                 span={{ base: 12, md: 6 }}
                 key={index}
-                className={normalPseudo}
                 style={getGridBorder(isMobile, index, dataArray.length)}>
                 <GridItemLayout item={item} />
               </Grid.Col>

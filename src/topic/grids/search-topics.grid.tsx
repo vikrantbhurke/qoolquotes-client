@@ -5,7 +5,6 @@ import { MantineGrid } from "@/global/components/grids";
 import { TopicGridItemLayout } from "../layouts";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
-import { subheaderHeight } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 
@@ -23,20 +22,12 @@ export const SearchTopicsGrid = () => {
     }));
   }, [topics, setData]);
 
-  if (isPending) return <CustomLoader subheaderHeight={subheaderHeight} />;
+  if (isPending) return <CustomLoader />;
 
-  if (isError)
-    return (
-      <CustomError subheaderHeight={subheaderHeight} message={error?.message} />
-    );
+  if (isError) return <CustomError message={error?.message} />;
 
   if (!topics.content.length)
-    return (
-      <CustomError
-        subheaderHeight={subheaderHeight}
-        message="Topics not found."
-      />
-    );
+    return <CustomError message="Topics not found." />;
 
   return (
     <MantineGrid

@@ -7,14 +7,14 @@ export const addQuoteToPlaylist = async (
   const { pid, qid } = playlistIdQuoteIdDTO;
 
   const result = await axios.post(
-    `/playlists-quotes/playlistId/${pid}/quoteId/${qid}/add`
+    `/playlists-quotes/playlistId/${pid}/quoteId/${qid}`
   );
 
   return result.data;
 };
 
 export const countPlaylistQuotes = async (pid: string) => {
-  const result = await axios.get(`/playlists-quotes/${pid}/quotes`);
+  const result = await axios.get(`/playlists-quotes/playlistId/${pid}/quotes`);
   return result.data;
 };
 
@@ -34,7 +34,7 @@ export const removeQuoteFromPlaylist = async (
   const { pid, qid } = playlistIdQuoteIdDTO;
 
   const result = await axios.delete(
-    `/playlists-quotes/playlistId/${pid}/quoteId/${qid}/remove`
+    `/playlists-quotes/playlistId/${pid}/quoteId/${qid}`
   );
 
   return result.data;

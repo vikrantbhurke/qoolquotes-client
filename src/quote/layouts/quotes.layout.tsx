@@ -1,12 +1,18 @@
-import { subheaderHeight } from "@/global/styles/global.styles";
+import {
+  footerHeight,
+  headerHeight,
+  subheaderHeight,
+} from "@/global/styles/global.styles";
 import { Group, Space, Stack, Text } from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
 import { borderBottom } from "@/global/styles/app.css";
 import { useState } from "react";
 import { I } from "@/global/components/components";
+import { useIsMobile } from "@/global/hooks";
 
 export const QuotesLayout = () => {
+  const isMobile = useIsMobile();
   const location = useLocation();
   const name = location.state.name;
 
@@ -17,13 +23,15 @@ export const QuotesLayout = () => {
   });
 
   return (
-    <Stack gap={0}>
+    <Stack
+      gap={0}
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
       <Group
         pl="xs"
         justify="space-between"
         gap={0}
-        className={borderBottom}
-        h={subheaderHeight}>
+        h={subheaderHeight}
+        className={borderBottom}>
         <Group gap={3}>
           <I I={IconFileDescription} />
 

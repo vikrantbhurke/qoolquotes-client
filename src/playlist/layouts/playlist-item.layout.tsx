@@ -1,9 +1,4 @@
-import {
-  footerHeight,
-  getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
-} from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import {
   Button,
   Group,
@@ -20,7 +15,7 @@ import {
   PlaylistLikerReadonlyButtonLayout,
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
-import { oneBg, oneTx } from "@/global/styles/app.css";
+import { oneBg, oneTx, inputStyles } from "@/global/styles/app.css";
 import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -34,13 +29,11 @@ import {
   PlaylistSaverSaveRemoveButtonLayout,
 } from "@/playlist-saver/layouts";
 import { Role } from "@/user/enums";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -76,11 +69,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
   };
 
   return (
-    <Stack
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
-      gap="xl"
-      justify="center"
-      align="center">
+    <Stack h="100%" gap="xl" justify="center" align="center">
       <Stack maw={500} miw={400} gap="lg">
         <DeletePlaylistModalLayout
           opened={deletePlaylistOpened}
@@ -93,6 +82,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
             <Text>Name</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "name")}
               wrapperProps={{
                 onFocus: () => handleFocus("name"),
@@ -108,6 +98,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
               readOnly
               minRows={2}
               maxRows={2}
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "description")}
               wrapperProps={{
                 onFocus: () => handleFocus("description"),
@@ -122,6 +113,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
             <Text>Access</Text>
             <TextInput
               readOnly
+              classNames={{ input: inputStyles }}
               styles={getFormTextInput(focusedInput === "access")}
               wrapperProps={{
                 onFocus: () => handleFocus("access"),
@@ -150,6 +142,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
 
               <TextInput
                 readOnly
+                classNames={{ input: inputStyles }}
                 styles={getFormTextInput(focusedInput === "creator")}
                 wrapperProps={{
                   onFocus: () => handleFocus("creator"),

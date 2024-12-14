@@ -1,13 +1,10 @@
 import { I } from "@/global/components/components";
-import { useAuthReroute, useIsMobile } from "@/global/hooks";
+import { useAuthReroute } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { oneBg, oneTx } from "@/global/styles/app.css";
+import { oneBg, oneTx, inputStyles } from "@/global/styles/app.css";
 import {
-  footerHeight,
   getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignInUserForm } from "@/user/hooks/create";
@@ -31,7 +28,6 @@ import { useNavigate } from "react-router-dom";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignInUser, isPending } = useSignInUserForm();
@@ -44,12 +40,7 @@ export const SignInUserFormLayout = () => {
   return (
     <Container size={mainContentWidth} p={0}>
       <form onSubmit={form.onSubmit(handleSignInUser)}>
-        <Stack
-          px="md"
-          justify="center"
-          align="center"
-          bg={oneBg}
-          h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
+        <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
           <Stack maw={500} miw={400} gap="lg">
             <Stack gap={0}>
               <Group gap={0} align="center" justify="space-between">
@@ -89,6 +80,7 @@ export const SignInUserFormLayout = () => {
                   required
                   minLength={3}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "username")}
                   wrapperProps={{
                     onFocus: () => handleFocus("username"),
@@ -107,6 +99,7 @@ export const SignInUserFormLayout = () => {
                   required
                   minLength={6}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "password")}
                   wrapperProps={{
                     onFocus: () => handleFocus("password"),

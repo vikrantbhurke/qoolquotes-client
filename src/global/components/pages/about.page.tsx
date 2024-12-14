@@ -2,7 +2,7 @@ import { Center, Stack, Text, Title } from "@mantine/core";
 
 export const AboutPage = () => {
   return (
-    <Stack p="md">
+    <Stack p="md" h="100%">
       <Center>
         <Title order={2}>About Page</Title>
       </Center>

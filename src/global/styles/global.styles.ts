@@ -127,6 +127,8 @@ export const getFormTextInput = (isFocused: boolean) => ({
 
 export const getComboboxTextInput = (isFocused: boolean) => ({
   input: {
+    fontFamily: "Readex Pro",
+    fontWeight: 300,
     textAlign: "center" as const,
     padding: "1.5rem",
     backgroundColor: oneBg,

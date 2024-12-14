@@ -20,6 +20,7 @@ import { setReason } from "../message.slice";
 import { IconRefresh } from "@tabler/icons-react";
 import { messageUtility } from "../message.utility";
 import { setFocusedInput } from "@/global/states/view.slice";
+import { inputStyles } from "@/global/styles/app.css";
 
 export const CreateMessageFormLayout = () => {
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={30}
             w="100%"
             placeholder="Title of your message..."
+            classNames={{ input: inputStyles }}
             styles={getFormTextInput(focusedInput === "title")}
             wrapperProps={{
               onFocus: () => handleFocus("title"),
@@ -109,6 +111,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={200}
             w="100%"
             placeholder="Description of your message..."
+            classNames={{ input: inputStyles }}
             styles={getFormTextInput(focusedInput === "description")}
             wrapperProps={{
               onFocus: () => handleFocus("description"),
@@ -129,6 +132,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={20}
             w="100%"
             placeholder="johndoe@gmail.com"
+            classNames={{ input: inputStyles }}
             styles={getFormTextInput(focusedInput === "email")}
             wrapperProps={{
               onFocus: () => handleFocus("email"),

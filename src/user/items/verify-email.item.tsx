@@ -4,17 +4,11 @@ import { Loader, Stack, Text } from "@mantine/core";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useIsMobile, useNotification } from "@/global/hooks";
-import {
-  footerHeight,
-  getMainContentHeight,
-  headerHeight,
-} from "@/global/styles/global.styles";
+import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
 import { oneTx } from "@/global/styles/app.css";
 
 export const VerifyEmailItem = () => {
-  const isMobile = useIsMobile();
   const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -37,10 +31,7 @@ export const VerifyEmailItem = () => {
   if (data) text = data.message;
 
   return (
-    <Stack
-      justify="center"
-      align="center"
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
+    <Stack justify="center" align="center" h="100%">
       <Loader type="dots" color={oneTx} />
       <Text>{text}</Text>
     </Stack>

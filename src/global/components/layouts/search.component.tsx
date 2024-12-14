@@ -16,7 +16,7 @@ import {
   navbarAsideWidth,
 } from "@/global/styles/global.styles";
 import { useLocation, useNavigate } from "react-router-dom";
-import { oneBg } from "@/global/styles/app.css";
+import { inputStyles, oneBg } from "@/global/styles/app.css";
 import { useIsMobile } from "@/global/hooks";
 import { I } from "../components";
 
@@ -107,6 +107,7 @@ export const Search = () => {
         bg={oneBg}
         value={search}
         ref={inputRef}
+        classNames={{ input: inputStyles }}
         styles={getSearchTextInput(
           isMobile,
           width,

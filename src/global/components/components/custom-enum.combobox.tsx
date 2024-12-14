@@ -1,6 +1,6 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { noBorder } from "@/global/styles/app.css";
+import { noBorder, inputStyles } from "@/global/styles/app.css";
 import {
   getComboboxTextInput,
   getComboboxStyles,
@@ -57,6 +57,7 @@ export const CustomEnumCombobox = ({
           miw="100%"
           value={value}
           readOnly
+          classNames={{ input: inputStyles }}
           styles={getComboboxTextInput(focusedInput === "enumCombobox")}
           wrapperProps={{
             onFocus: () => handleFocus("enumCombobox"),

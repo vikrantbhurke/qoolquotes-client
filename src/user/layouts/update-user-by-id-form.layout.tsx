@@ -1,8 +1,5 @@
 import {
-  footerHeight,
   getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
   mainContentWidth,
   modal,
 } from "@/global/styles/global.styles";
@@ -26,13 +23,12 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh, IconTrash } from "@tabler/icons-react";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx, inputStyles } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useState } from "react";
 import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -40,7 +36,6 @@ import { setFocusedInput } from "@/global/states/view.slice";
 export const UpdateUserByIdFormLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isMobile = useIsMobile();
   const { auth } = useSelector((state: RootState) => state.auth);
   const [picViewOpened, setOpened] = useState(false);
   const [picDeleteOpened, { open, close }] = useDisclosure();
@@ -58,7 +53,7 @@ export const UpdateUserByIdFormLayout = () => {
       <form onSubmit={form.onSubmit(handleUpdateUserById)}>
         <Stack
           px="md"
-          h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
+          h="100%"
           gap="xl"
           justify="center"
           align="center"
@@ -144,6 +139,7 @@ export const UpdateUserByIdFormLayout = () => {
                   required
                   minLength={2}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "firstname")}
                   wrapperProps={{
                     onFocus: () => handleFocus("firstname"),
@@ -160,6 +156,7 @@ export const UpdateUserByIdFormLayout = () => {
                   required
                   minLength={2}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "lastname")}
                   wrapperProps={{
                     onFocus: () => handleFocus("lastname"),
@@ -175,6 +172,7 @@ export const UpdateUserByIdFormLayout = () => {
                 <TextInput
                   minLength={5}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "email")}
                   wrapperProps={{
                     onFocus: () => handleFocus("email"),
@@ -191,6 +189,7 @@ export const UpdateUserByIdFormLayout = () => {
                 <PasswordInput
                   minLength={6}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "password")}
                   wrapperProps={{
                     onFocus: () => handleFocus("password"),
@@ -207,6 +206,7 @@ export const UpdateUserByIdFormLayout = () => {
                 <PasswordInput
                   minLength={6}
                   maxLength={20}
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "confirmPassword")}
                   wrapperProps={{
                     onFocus: () => handleFocus("confirmPassword"),

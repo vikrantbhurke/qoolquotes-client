@@ -1,11 +1,5 @@
-import { normalPseudo } from "@/global/styles/app.css";
-import {
-  footerHeight,
-  getGridBorder,
-  getMainContentHeight,
-  headerHeight,
-  subheaderHeight,
-} from "@/global/styles/global.styles";
+import { normalPseudo, oneBg } from "@/global/styles/app.css";
+import { getGridBorder } from "@/global/styles/global.styles";
 import { Center, Grid, Stack, Text } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -27,24 +21,21 @@ export const GetRandomQuotesGrid = () => {
   );
 
   return (
-    <Stack
-      gap={0}
-      justify="space-between"
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
+    <Stack gap={0} justify="space-between" h="100%">
       <InfiniteScroll
         dataLength={randomQuotes.length}
         next={() => fetchQuotes()}
         hasMore={true}
         scrollThreshold={0.5}
         loader={<UtilComponent message="Loading quotes..." />}
-        endMessage={<CustomLoader subheaderHeight={subheaderHeight} />}>
+        endMessage={<CustomLoader />}>
         <Grid grow justify="center" gutter={0}>
           {randomQuotes.map((item: any, index: number) => {
             return (
               <Grid.Col
                 span={{ base: 12, sm: 6 }}
                 key={index}
-                className={normalPseudo}
+                bg={oneBg}
                 style={getGridBorder(isMobile, index, randomQuotes.length)}>
                 <QuoteGridItemLayout item={item} />
               </Grid.Col>

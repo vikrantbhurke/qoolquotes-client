@@ -1,9 +1,4 @@
-import {
-  footerHeight,
-  getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
-} from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import {
   ActionIcon,
   Button,
@@ -31,12 +26,11 @@ import {
 } from "@/playlist-liker/layouts";
 import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
-import { useIsMobile } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
+import { inputStyles } from "@/global/styles/app.css";
 
 export const UpdatePlaylistByIdFormLayout = () => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { access } = useSelector((state: any) => state.playlist);
@@ -62,14 +56,8 @@ export const UpdatePlaylistByIdFormLayout = () => {
   };
 
   return (
-    <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
-      <Stack
-        px="md"
-        h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
-        gap="xl"
-        justify="center"
-        align="center"
-        py="xl">
+    <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
+      <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
         <Stack maw={500} miw={400} gap="lg">
           <Group gap={0} align="center" justify="space-between">
             <Space w="md" />
@@ -101,6 +89,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
               <TextInput
                 minLength={3}
                 maxLength={30}
+                classNames={{ input: inputStyles }}
                 styles={getFormTextInput(focusedInput === "name")}
                 wrapperProps={{
                   onFocus: () => handleFocus("name"),
@@ -130,6 +119,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 maxRows={2}
                 minLength={0}
                 maxLength={100}
+                classNames={{ input: inputStyles }}
                 styles={getFormTextInput(focusedInput === "description")}
                 wrapperProps={{
                   onFocus: () => handleFocus("description"),
@@ -173,6 +163,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 <TextInput
                   miw="100%"
                   readOnly
+                  classNames={{ input: inputStyles }}
                   styles={getFormTextInput(focusedInput === "creator")}
                   wrapperProps={{
                     onFocus: () => handleFocus("creator"),
@@ -217,7 +208,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
             </Grid.Col>
           </Grid>
         </Stack>
-      </Stack>
-    </form>
+      </form>
+    </Stack>
   );
 };

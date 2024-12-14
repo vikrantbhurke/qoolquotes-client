@@ -2,18 +2,12 @@ import { useVerifyAccount } from "@/user/hooks/read";
 import { Loader, Stack, Text } from "@mantine/core";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useIsMobile, useNotification } from "@/global/hooks";
-import {
-  footerHeight,
-  getMainContentHeight,
-  headerHeight,
-} from "@/global/styles/global.styles";
+import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
 import { oneTx } from "@/global/styles/app.css";
 
 export const VerifyAccountItem = () => {
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
   const { showNotification } = useNotification();
   const { isError, data, error } = useVerifyAccount();
 
@@ -34,10 +28,7 @@ export const VerifyAccountItem = () => {
   if (data) text = data.message;
 
   return (
-    <Stack
-      justify="center"
-      align="center"
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
+    <Stack justify="center" align="center" h="100%">
       <Loader type="dots" color={oneTx} />
       <Text>{text}</Text>
     </Stack>

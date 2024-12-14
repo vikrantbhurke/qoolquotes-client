@@ -1,10 +1,7 @@
 import { CustomEnumCombobox, I } from "@/global/components/components";
-import { oneBg, oneTx } from "@/global/styles/app.css";
+import { oneBg, oneTx, inputStyles } from "@/global/styles/app.css";
 import {
-  footerHeight,
   getFormTextInput,
-  getMainContentHeight,
-  headerHeight,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
@@ -30,12 +27,11 @@ import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
 import { setGender } from "../user.slice";
 import { useDispatch } from "react-redux";
-import { useAuthReroute, useIsMobile } from "@/global/hooks";
+import { useAuthReroute } from "@/global/hooks";
 import { setFocusedInput } from "@/global/states/view.slice";
 
 export const SignUpUserFormLayout = () => {
   useAuthReroute();
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignUpUser, isPending } = useSignUpUserForm();
@@ -53,12 +49,7 @@ export const SignUpUserFormLayout = () => {
   return (
     <Container size={mainContentWidth} p={0}>
       <form onSubmit={form.onSubmit(handleSignUpUser)}>
-        <Stack
-          px="md"
-          justify="center"
-          align="center"
-          bg={oneBg}
-          h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}>
+        <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
           <ScrollArea
             scrollbarSize={2}
             styles={{
@@ -111,6 +102,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={2}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(focusedInput === "firstname")}
                     wrapperProps={{
                       onFocus: () => handleFocus("firstname"),
@@ -129,6 +121,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={2}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(focusedInput === "lastname")}
                     wrapperProps={{
                       onFocus: () => handleFocus("lastname"),
@@ -147,6 +140,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={3}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(focusedInput === "username")}
                     wrapperProps={{
                       onFocus: () => handleFocus("username"),
@@ -165,6 +159,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={5}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(focusedInput === "email")}
                     wrapperProps={{
                       onFocus: () => handleFocus("email"),
@@ -183,6 +178,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={6}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(focusedInput === "password")}
                     wrapperProps={{
                       onFocus: () => handleFocus("password"),
@@ -201,6 +197,7 @@ export const SignUpUserFormLayout = () => {
                     required
                     minLength={6}
                     maxLength={20}
+                    classNames={{ input: inputStyles }}
                     styles={getFormTextInput(
                       focusedInput === "confirmPassword"
                     )}

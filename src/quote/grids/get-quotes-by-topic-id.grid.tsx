@@ -5,7 +5,6 @@ import { useOutletContext } from "react-router-dom";
 import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useEffect } from "react";
-import { subheaderHeight } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { setPage } from "../quote.slice";
 
@@ -23,20 +22,12 @@ export const GetQuotesByTopicIdGrid = () => {
     }));
   }, [quotes, setData]);
 
-  if (isPending) return <CustomLoader subheaderHeight={subheaderHeight} />;
+  if (isPending) return <CustomLoader />;
 
-  if (isError)
-    return (
-      <CustomError subheaderHeight={subheaderHeight} message={error?.message} />
-    );
+  if (isError) return <CustomError message={error?.message} />;
 
   if (!quotes.content.length)
-    return (
-      <CustomError
-        subheaderHeight={subheaderHeight}
-        message="Quotes not found."
-      />
-    );
+    return <CustomError message="Quotes not found." />;
 
   return (
     <MantineGrid

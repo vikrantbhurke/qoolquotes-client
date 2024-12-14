@@ -6,13 +6,11 @@ import { CustomError } from "@/global/components/errors";
 export const GetQuoteByIdItem = () => {
   const { quote, isPending, isError, error } = useGetQuoteById();
 
-  if (isPending) return <CustomLoader subheaderHeight={0} />;
+  if (isPending) return <CustomLoader />;
 
-  if (isError)
-    return <CustomError subheaderHeight={0} message={error?.message} />;
+  if (isError) return <CustomError message={error?.message} />;
 
-  if (!quote)
-    return <CustomError subheaderHeight={0} message="Quotes not found." />;
+  if (!quote) return <CustomError message="Quotes not found." />;
 
   return <QuoteItemLayout quote={quote} />;
 };

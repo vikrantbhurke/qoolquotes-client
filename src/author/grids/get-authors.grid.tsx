@@ -5,7 +5,6 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
-import { subheaderHeight } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 
@@ -23,20 +22,12 @@ export const GetAuthorsGrid = () => {
     }));
   }, [authors, setData]);
 
-  if (isPending) return <CustomLoader subheaderHeight={subheaderHeight} />;
+  if (isPending) return <CustomLoader />;
 
-  if (isError)
-    return (
-      <CustomError subheaderHeight={subheaderHeight} message={error?.message} />
-    );
+  if (isError) return <CustomError message={error?.message} />;
 
   if (!authors.content.length)
-    return (
-      <CustomError
-        subheaderHeight={subheaderHeight}
-        message="Authors not found."
-      />
-    );
+    return <CustomError message="Authors not found." />;
 
   return (
     <MantineGrid

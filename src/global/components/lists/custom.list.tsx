@@ -1,11 +1,5 @@
-import { useIsMobile } from "@/global/hooks";
 import { borderTop } from "@/global/styles/app.css";
-import {
-  footerHeight,
-  getMainContentHeight,
-  headerHeight,
-  subheaderHeight,
-} from "@/global/styles/global.styles";
+import { subheaderHeight } from "@/global/styles/global.styles";
 import { Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { Fragment, useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -18,7 +12,6 @@ export const CustomList = ({
   totalPages,
   ListItemLayout,
 }: any) => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
@@ -45,12 +38,7 @@ export const CustomList = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={getMainContentHeight(
-        headerHeight,
-        footerHeight,
-        subheaderHeight,
-        isMobile
-      )}>
+      h={`calc(100% - ${subheaderHeight}px)`}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         {dataArray.map((item: any, index: number) => {
           return (

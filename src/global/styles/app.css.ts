@@ -26,6 +26,18 @@ export const roundBorder = style({
   borderRadius: vars.radius.sm,
 });
 
+export const inputStyles = style({
+  color: oneTx,
+  fontFamily: "Readex Pro",
+  fontWeight: 300,
+
+  "::placeholder": {
+    color: "gray",
+    fontFamily: "Readex Pro",
+    fontWeight: 300,
+  },
+});
+
 export const oneTxOneBg = style({
   color: oneTx,
   backgroundColor: oneBg,

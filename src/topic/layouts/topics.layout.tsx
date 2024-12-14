@@ -1,4 +1,4 @@
-import { subheaderHeight } from "@/global/styles/global.styles";
+import { headerHeight, subheaderHeight } from "@/global/styles/global.styles";
 import { Button, Group, Stack, Text } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import {
@@ -40,7 +40,7 @@ export const TopicsLayout = () => {
   const isFilterApplied = order !== Order.Ascending || alpha !== Alpha.All;
 
   return (
-    <Stack gap={0}>
+    <Stack gap={0} h={`calc(100vh - ${headerHeight}px)`}>
       <Group pl="sm" justify="space-between" gap={0} className={borderBottom}>
         <Group gap={3}>
           <I I={IconFileDescription} />

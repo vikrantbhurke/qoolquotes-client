@@ -1,11 +1,6 @@
 import { setPage, setQid } from "@/quote/quote.slice";
 import { oneTx, threeBg } from "@/global/styles/app.css";
-import {
-  footerHeight,
-  getMainContentHeight,
-  headerHeight,
-  mainContentWidth,
-} from "@/global/styles/global.styles";
+import { mainContentWidth } from "@/global/styles/global.styles";
 import { PlaylistModal } from "@/playlist/layouts";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
@@ -20,11 +15,9 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 
 export const QuoteItemLayout = ({ quote }: any) => {
-  const isMobile = useIsMobile();
   const { auth } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -74,10 +67,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
   };
 
   return (
-    <Stack
-      h={getMainContentHeight(headerHeight, footerHeight, 0, isMobile)}
-      justify="center"
-      align="center">
+    <Stack h="100%" justify="center" align="center">
       <PlaylistModal opened={modalOpened} close={close} />
 
       <Stack

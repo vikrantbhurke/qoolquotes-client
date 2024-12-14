@@ -6,13 +6,11 @@ import { PlaylistItemLayout } from "../layouts";
 export const GetPlaylistByIdItem = () => {
   const { playlist, isPending, isError, error } = useGetPlaylistById();
 
-  if (isPending) return <CustomLoader subheaderHeight={0} />;
+  if (isPending) return <CustomLoader />;
 
-  if (isError)
-    return <CustomError subheaderHeight={0} message={error?.message} />;
+  if (isError) return <CustomError message={error?.message} />;
 
-  if (!playlist)
-    return <CustomError subheaderHeight={0} message="Playlist not found." />;
+  if (!playlist) return <CustomError message="Playlist not found." />;
 
   return <PlaylistItemLayout playlist={playlist} />;
 };
