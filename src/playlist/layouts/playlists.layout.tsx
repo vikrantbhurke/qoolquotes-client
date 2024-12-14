@@ -1,5 +1,6 @@
 import { borderBottom } from "@/global/styles/app.css";
 import {
+  footerHeight,
   getSubheaderButton,
   headerHeight,
   mainContentWidth,
@@ -76,7 +77,7 @@ export const PlaylistsLayout = () => {
     <Container
       size={mainContentWidth}
       p={0}
-      h={`calc(100vh - ${headerHeight}px)`}>
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
       <Stack gap={0} h="100%">
         <Radio.Group value={tab} className={borderBottom}>
           <DeletePlaylistsModalLayout
