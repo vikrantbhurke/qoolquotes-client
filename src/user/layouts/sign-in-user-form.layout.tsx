@@ -38,9 +38,9 @@ export const SignInUserFormLayout = () => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Container size={mainContentWidth} p={0}>
-      <form onSubmit={form.onSubmit(handleSignInUser)}>
-        <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
+    <Container size={mainContentWidth} p={0} h="100%">
+      <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
+        <form onSubmit={form.onSubmit(handleSignInUser)}>
           <Stack maw={500} miw={400} gap="lg">
             <Stack gap={0}>
               <Group gap={0} align="center" justify="space-between">
@@ -124,8 +124,8 @@ export const SignInUserFormLayout = () => {
               Sign In
             </Button>
           </Stack>
-        </Stack>
-      </form>
+        </form>
+      </Stack>
     </Container>
   );
 };

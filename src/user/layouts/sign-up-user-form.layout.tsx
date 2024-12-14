@@ -47,9 +47,9 @@ export const SignUpUserFormLayout = () => {
   };
 
   return (
-    <Container size={mainContentWidth} p={0}>
-      <form onSubmit={form.onSubmit(handleSignUpUser)}>
-        <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
+    <Container size={mainContentWidth} p={0} h="100%">
+      <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
+        <form onSubmit={form.onSubmit(handleSignUpUser)}>
           <ScrollArea
             scrollbarSize={2}
             styles={{
@@ -237,8 +237,8 @@ export const SignUpUserFormLayout = () => {
               </Button>
             </Stack>
           </ScrollArea>
-        </Stack>
-      </form>
+        </form>
+      </Stack>
     </Container>
   );
 };

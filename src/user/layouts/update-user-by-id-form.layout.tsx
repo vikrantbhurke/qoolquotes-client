@@ -49,15 +49,9 @@ export const UpdateUserByIdFormLayout = () => {
   const handleCancel = () => navigate(-1);
 
   return (
-    <Container size={mainContentWidth} p={0}>
-      <form onSubmit={form.onSubmit(handleUpdateUserById)}>
-        <Stack
-          px="md"
-          h="100%"
-          gap="xl"
-          justify="center"
-          align="center"
-          py="xl">
+    <Container size={mainContentWidth} p={0} h="100%">
+      <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
+        <form onSubmit={form.onSubmit(handleUpdateUserById)}>
           <Stack maw={500} miw={400} gap="lg">
             <Modal
               c={oneTx}
@@ -244,8 +238,8 @@ export const UpdateUserByIdFormLayout = () => {
               </Grid.Col>
             </Grid>
           </Stack>
-        </Stack>
-      </form>
+        </form>
+      </Stack>
     </Container>
   );
 };
