@@ -1,4 +1,4 @@
-import { setPage, setQid } from "@/quote/quote.slice";
+import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { oneTx, threeBg } from "@/global/styles/app.css";
 import { mainContentWidth } from "@/global/styles/global.styles";
 import { PlaylistModal } from "@/playlist/layouts";
@@ -38,16 +38,18 @@ export const QuoteItemLayout = ({ quote }: any) => {
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
-    navigate(`/quotes/authorId/${quote.authorId._id}?page=1`, {
-      state: { name: quote.authorId.name, aid: quote.authorId._id },
-    });
+
+    dispatch(
+      setFilterObject({ name: quote.authorId.name, id: quote.authorId._id })
+    );
+
+    navigate(`/quotes/authorId/${quote.authorId._id}?page=1`);
   };
 
   const handleNavigateToQuoteByTopic = (topic: any) => {
     dispatch(setPage(1));
-    navigate(`/quotes/topicId/${topic._id}?page=1`, {
-      state: { name: topic.name, tid: topic._id },
-    });
+    dispatch(setFilterObject({ name: topic.name, id: topic._id }));
+    navigate(`/quotes/topicId/${topic._id}?page=1`);
   };
 
   const handleModalOpen = () => {
