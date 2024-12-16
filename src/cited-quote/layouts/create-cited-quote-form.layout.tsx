@@ -83,13 +83,13 @@ export const CreateCitedQuoteFormLayout = () => {
             <Text
               fz="xs"
               c={citedQuoteUtility.getAuthorColor(form.values.author.length)}>
-              {form.values.author.length} / 30
+              {form.values.author.length} / 50
             </Text>
           </Group>
 
           <TextInput
             minLength={5}
-            maxLength={30}
+            maxLength={50}
             w="100%"
             placeholder="A Great Author"
             classNames={{ input: inputStyles }}

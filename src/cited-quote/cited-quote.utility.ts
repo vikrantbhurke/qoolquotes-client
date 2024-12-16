@@ -11,7 +11,7 @@ class CitedQuoteUtility {
 
   validateAuthor = (author: string) => {
     const authorSchema = new Validator();
-    authorSchema.is().min(5).is().max(30);
+    authorSchema.is().min(5).is().max(50);
     return authorSchema.validate(author) ? null : CitedQuoteError.Author;
   };
 
@@ -25,7 +25,7 @@ class CitedQuoteUtility {
   };
 
   getAuthorColor = (length: number): string => {
-    if (length < 5 || length > 30) return "red";
+    if (length < 5 || length > 50) return "red";
     else return "green";
   };
 }

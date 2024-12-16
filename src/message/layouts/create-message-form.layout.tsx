@@ -72,13 +72,13 @@ export const CreateMessageFormLayout = () => {
             <Text
               fz="xs"
               c={messageUtility.getTitleColor(form.values.title.length)}>
-              {form.values.title.length} / 30
+              {form.values.title.length} / 50
             </Text>
           </Group>
 
           <TextInput
             minLength={5}
-            maxLength={30}
+            maxLength={50}
             w="100%"
             placeholder="Title of your message..."
             classNames={{ input: inputStyles }}
@@ -100,7 +100,7 @@ export const CreateMessageFormLayout = () => {
               c={messageUtility.getDescriptionColor(
                 form.values.description.length
               )}>
-              {form.values.description.length} / 200
+              {form.values.description.length} / 500
             </Text>
           </Group>
 
@@ -108,7 +108,7 @@ export const CreateMessageFormLayout = () => {
             minRows={2}
             maxRows={2}
             minLength={5}
-            maxLength={200}
+            maxLength={500}
             w="100%"
             placeholder="Description of your message..."
             classNames={{ input: inputStyles }}
