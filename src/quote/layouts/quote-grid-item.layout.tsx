@@ -1,4 +1,4 @@
-import { setPage, setQid } from "@/quote/quote.slice";
+import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { oneTx, threeBg } from "@/global/styles/app.css";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
@@ -41,17 +41,18 @@ export const QuoteGridItemLayout = ({ item }: any) => {
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
-    navigate(`/quotes/authorId/${item.authorId._id}?page=1`, {
-      state: { name: item.authorId.name, aid: item.authorId._id },
-    });
+
+    dispatch(
+      setFilterObject({ name: item.authorId.name, id: item.authorId._id })
+    );
+
+    navigate(`/quotes/authorId/${item.authorId._id}?page=1`);
   };
 
   const handleNavigateToQuoteByTopic = (item: any) => {
-    console.log(`/quotes/topicId/${item._id}?page=1`);
     dispatch(setPage(1));
-    navigate(`/quotes/topicId/${item._id}?page=1`, {
-      state: { name: item.name, tid: item._id },
-    });
+    dispatch(setFilterObject({ name: item.name, id: item._id }));
+    navigate(`/quotes/topicId/${item._id}?page=1`);
   };
 
   const handleModalOpen = () => {
