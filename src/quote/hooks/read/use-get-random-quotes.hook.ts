@@ -8,7 +8,7 @@ export const useGetRandomQuotes = () => {
   const [totalElements, setTotalElements] = useState<number>(0);
 
   const fetchQuotes = async () => {
-    const quotes = await getRandomQuotes(isMobile ? 5 : 10);
+    const quotes = await getRandomQuotes(isMobile ? 10 : 15);
 
     setRandomQuotes((prevRandomQuotes: any) => [
       ...prevRandomQuotes,
