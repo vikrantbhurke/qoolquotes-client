@@ -11,26 +11,6 @@ export const useRemovePlaylist = () => {
   const { mutate: removePlaylistMutation, isPending } = useMutation({
     mutationFn: removePlaylist,
 
-    onMutate: async ({ pid, sid }: any) => {
-      await queryClient.cancelQueries({
-        queryKey: ["checkPlaylistSaver", pid, sid],
-      });
-
-      const previousCheckPlaylistSaver = queryClient.getQueryData([
-        "checkPlaylistSaver",
-        pid,
-        sid,
-      ]);
-
-      queryClient.setQueryData(["checkPlaylistSaver", pid, sid], {
-        exists: false,
-      });
-
-      return {
-        previousCheckPlaylistSaver,
-      };
-    },
-
     onSuccess: async (_data: any, { pid, sid }: any) => {
       showNotification(`Playlist removed.`, NotificationColor.Success);
 
@@ -39,17 +19,28 @@ export const useRemovePlaylist = () => {
       });
 
       await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistById", pid],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
+
+      await queryClient.invalidateQueries({
         queryKey: ["getPlaylistsBySaverId"],
       });
     },
 
-    onError: async (error: AxiosError, { pid, sid }: any, context: any) => {
+    onError: async (error: AxiosError) => {
       showNotification(error.message, NotificationColor.Failure);
-
-      queryClient.setQueryData(
-        ["checkPlaylistSaver", pid, sid],
-        context.previousCheckPlaylistSaver
-      );
     },
   });
 

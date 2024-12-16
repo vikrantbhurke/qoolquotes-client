@@ -32,22 +32,19 @@ export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
         pid={pid}
       />
 
-      {playlistSaver?.exists ? (
-        <Button fullWidth radius="sm" bg="red" onClick={removePlaylistOpen}>
-          Remove
-        </Button>
-      ) : (
-        <Button
-          fullWidth
-          disabled={isPending}
-          radius="sm"
-          bg="green"
-          onClick={handleSavePlaylist}
-          loading={isPending}
-          loaderProps={{ type: "dots" }}>
-          Save
-        </Button>
-      )}
+      <Button
+        fullWidth
+        disabled={isPending}
+        radius="sm"
+        bg={playlistSaver?.exists ? "red" : "green"}
+        onClick={() => {
+          if (playlistSaver?.exists) removePlaylistOpen();
+          else handleSavePlaylist();
+        }}
+        loading={isPending}
+        loaderProps={{ type: "dots" }}>
+        {playlistSaver?.exists ? "Remove" : "Save"}
+      </Button>
     </>
   );
 };

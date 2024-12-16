@@ -11,37 +11,28 @@ export const useRemovePlaylistsBySaverId = () => {
   const { mutate: removePlaylistsBySaverIdMutation, isPending } = useMutation({
     mutationFn: removePlaylistsBySaverId,
 
-    onMutate: async () => {
-      await queryClient.cancelQueries({
-        queryKey: ["getPlaylistsBySaverId"],
-      });
-
-      const previousPlaylists = queryClient.getQueryData([
-        "getPlaylistsBySaverId",
-      ]);
-
-      queryClient.setQueryData(["getPlaylistsBySaverId"], null);
-
-      return { previousPlaylists };
-    },
-
     onSuccess: async (_data: any) => {
       showNotification(`Playlists removed.`, NotificationColor.Success);
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
 
       await queryClient.invalidateQueries({
         queryKey: ["getPlaylistsBySaverId"],
       });
     },
 
-    onError: async (error: AxiosError, _variables: any, context: any) => {
+    onError: async (error: AxiosError, _variables: any) => {
       showNotification(error.message, NotificationColor.Failure);
-
-      if (context?.previousPlaylists) {
-        queryClient.setQueryData(
-          ["getPlaylistsBySaverId"],
-          context.previousPlaylists
-        );
-      }
     },
   });
 

@@ -55,6 +55,26 @@ export const useLikePlaylist = () => {
       await queryClient.invalidateQueries({
         queryKey: ["countPlaylistLikes", pid],
       });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistById", pid],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsBySaverId"],
+      });
     },
 
     onError: async (error: AxiosError, { pid, lid }: any, context: any) => {

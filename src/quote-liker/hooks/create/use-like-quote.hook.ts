@@ -52,6 +52,26 @@ export const useLikeQuote = () => {
       await queryClient.invalidateQueries({
         queryKey: ["countQuoteLikes", qid],
       });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getQuoteById", qid],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getQuotesByAuthorId"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getQuotesByTopicId"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getQuotesByPlaylistId"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchQuotes"],
+      });
     },
 
     onError: async (error: AxiosError, { qid, lid }: any, context: any) => {

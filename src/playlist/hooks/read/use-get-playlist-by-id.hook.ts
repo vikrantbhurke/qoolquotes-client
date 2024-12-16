@@ -3,8 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 export const useGetPlaylistById = () => {
-  let { pid } = useParams();
-
+  let params = useParams();
+  let { pid } = params;
+  console.log(params);
   const {
     data: playlist,
     isPending,

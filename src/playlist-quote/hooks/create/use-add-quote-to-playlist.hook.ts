@@ -16,34 +16,18 @@ export const useAddQuoteToPlaylist = () => {
         queryKey: ["checkPlaylistQuote", pid, qid],
       });
 
-      await queryClient.cancelQueries({
-        queryKey: ["countPlaylistQuotes", pid],
-      });
-
       const previousCheckPlaylistQuote = queryClient.getQueryData([
         "checkPlaylistQuote",
         pid,
         qid,
       ]);
 
-      const previousCountPlaylistQuotes: any = queryClient.getQueryData([
-        "countPlaylistQuotes",
-        pid,
-      ]);
-
       queryClient.setQueryData(["checkPlaylistQuote", pid, qid], {
         exists: true,
       });
 
-      queryClient.setQueryData(["countPlaylistQuotes", pid], {
-        count: previousCountPlaylistQuotes.count + 1,
-      });
-
       return {
-        previousData: {
-          previousCheckPlaylistQuote,
-          previousCountPlaylistQuotes,
-        },
+        previousCheckPlaylistQuote,
       };
     },
 
@@ -55,6 +39,26 @@ export const useAddQuoteToPlaylist = () => {
       await queryClient.invalidateQueries({
         queryKey: ["countPlaylistQuotes", pid],
       });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistById", pid],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsBySaverId"],
+      });
     },
 
     onError: async (error: AxiosError, { pid, qid }: any, context: any) => {
@@ -62,12 +66,7 @@ export const useAddQuoteToPlaylist = () => {
 
       queryClient.setQueryData(
         ["checkPlaylistQuote", pid, qid],
-        context.previousData.previousCheckPlaylistQuote
-      );
-
-      queryClient.setQueryData(
-        ["countPlaylistQuotes", pid],
-        context.previousData.previousCountPlaylistQuotes
+        context.previousCheckPlaylistQuote
       );
     },
   });

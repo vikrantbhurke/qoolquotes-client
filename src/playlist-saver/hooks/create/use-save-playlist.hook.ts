@@ -11,26 +11,6 @@ export const useSavePlaylist = () => {
   const { mutate: savePlaylistMutation, isPending } = useMutation({
     mutationFn: savePlaylist,
 
-    onMutate: async ({ pid, sid }: any) => {
-      await queryClient.cancelQueries({
-        queryKey: ["checkPlaylistSaver", pid, sid],
-      });
-
-      const previousCheckPlaylistSaver = queryClient.getQueryData([
-        "checkPlaylistSaver",
-        pid,
-        sid,
-      ]);
-
-      queryClient.setQueryData(["checkPlaylistSaver", pid, sid], {
-        exists: true,
-      });
-
-      return {
-        previousCheckPlaylistSaver,
-      };
-    },
-
     onSuccess: async (_data: any, { pid, sid }: any) => {
       showNotification(`Playlist saved.`, NotificationColor.Success);
 
@@ -39,19 +19,30 @@ export const useSavePlaylist = () => {
       });
 
       await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistById", pid],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
+
+      await queryClient.invalidateQueries({
         queryKey: ["getPlaylistsBySaverId"],
       });
     },
 
-    onError: (error: AxiosError, { pid, sid }: any, context: any) => {
+    onError: (error: AxiosError) => {
       const { message }: any = error?.response?.data;
       if (message) showNotification(message, NotificationColor.Warning);
       else showNotification(error.message, NotificationColor.Failure);
-
-      queryClient.setQueryData(
-        ["checkPlaylistSaver", pid, sid],
-        context.previousCheckPlaylistSaver
-      );
     },
   });
 
