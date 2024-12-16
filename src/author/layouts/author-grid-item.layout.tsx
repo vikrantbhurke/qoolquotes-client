@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCountAuthorQuotes } from "../hooks/read";
 import { globalUtility } from "@/global/utilities";
+import { setFilterObject } from "@/quote/quote.slice";
 
 export const AuthorGridItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -15,9 +16,8 @@ export const AuthorGridItemLayout = ({ item }: any) => {
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
-    navigate(`/quotes/authorId/${item.id}?page=1`, {
-      state: { name: item.name, aid: item.id },
-    });
+    dispatch(setFilterObject({ name: item.name, id: item.id }));
+    navigate(`/quotes/authorId/${item.id}?page=1`);
   };
 
   return (

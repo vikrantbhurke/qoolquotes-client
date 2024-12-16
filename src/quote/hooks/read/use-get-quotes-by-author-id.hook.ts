@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getQuotesByAuthorId } from "@/quote/quote.network";
-import { useLocation } from "react-router-dom";
 import { RootState } from "@/global/states/store";
 import { useSelector } from "react-redux";
 
 export const useGetQuotesByAuthorId = () => {
-  const location = useLocation();
-  const aid = location.state.aid;
-  const { page } = useSelector((state: RootState) => state.quote);
+  const { page, filterObject } = useSelector((state: RootState) => state.quote);
+  const { id: aid } = filterObject;
 
   const {
     data: quotes,

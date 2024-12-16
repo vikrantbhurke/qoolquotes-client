@@ -1,10 +1,10 @@
-import { getGridBorder, subheaderHeight } from "@/global/styles/global.styles";
-import { Center, Grid, Pagination, ScrollArea, Stack } from "@mantine/core";
-import { useSearchParams } from "react-router-dom";
-import { borderTop } from "@/global/styles/app.css";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useIsMobile } from "@/global/hooks";
-import { useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+import { borderTop } from "@/global/styles/app.css";
+import { Center, Grid, Pagination, ScrollArea, Stack } from "@mantine/core";
+import { getGridBorder, subheaderHeight } from "@/global/styles/global.styles";
 
 export const MantineGrid = ({
   page,

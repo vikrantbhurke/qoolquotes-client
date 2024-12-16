@@ -32,6 +32,7 @@ import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
+import { setFilterObject } from "@/quote/quote.slice";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
   const dispatch = useDispatch();
@@ -63,9 +64,8 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
 
   const handleNavigateToQuotesByPlaylist = () => {
     dispatch(setPage(1));
-    navigate(`/quotes/playlistId/${playlist.id}?page=1`, {
-      state: { name: playlist.name, pid: playlist.id },
-    });
+    dispatch(setFilterObject({ name: playlist.name, id: playlist.id }));
+    navigate(`/quotes/playlistId/${playlist.id}?page=1`);
   };
 
   return (

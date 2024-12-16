@@ -4,17 +4,18 @@ import {
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import { Group, Space, Stack, Text } from "@mantine/core";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
 import { borderBottom } from "@/global/styles/app.css";
 import { useState } from "react";
 import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
+import { useSelector } from "react-redux";
 
 export const QuotesLayout = () => {
   const isMobile = useIsMobile();
-  const location = useLocation();
-  const name = location.state.name;
+
+  const { filterObject } = useSelector((state: any) => state.quote);
 
   const [data, setData] = useState<any>({
     page: 0,
@@ -41,7 +42,7 @@ export const QuotesLayout = () => {
         </Group>
 
         <Text>
-          {name} ({data.totalElements})
+          {filterObject.name} ({data.totalElements})
         </Text>
 
         {/* <Button

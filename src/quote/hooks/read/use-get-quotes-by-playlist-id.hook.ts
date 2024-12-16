@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getQuotesByPlaylistId } from "@/quote/quote.network";
-import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
 export const useGetQuotesByPlaylistId = () => {
-  const location = useLocation();
-  const pid = location.state.pid;
-  const { page } = useSelector((state: RootState) => state.quote);
+  const { page, filterObject } = useSelector((state: RootState) => state.quote);
+  const { id: pid } = filterObject;
 
   const {
     data: quotes,

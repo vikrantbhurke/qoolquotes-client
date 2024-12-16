@@ -19,6 +19,7 @@ import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
+import { setFilterObject } from "@/quote/quote.slice";
 
 export const PlaylistListItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -31,9 +32,8 @@ export const PlaylistListItemLayout = ({ item }: any) => {
 
   const handleNavigateToQuotesByPlaylist = () => {
     dispatch(setPage(1));
-    navigate(`/quotes/playlistId/${item.id}?page=1`, {
-      state: { name: item.name, pid: item.id },
-    });
+    dispatch(setFilterObject({ name: item.name, id: item.id }));
+    navigate(`/quotes/playlistId/${item.id}?page=1`);
   };
 
   return (
