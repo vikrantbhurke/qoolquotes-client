@@ -19,6 +19,7 @@ import {
   IconBallpenFilled,
   IconCategory,
   IconDownload,
+  IconInfoCircle,
   IconMail,
   IconPlaylist,
   IconUser,
@@ -79,6 +80,11 @@ export const Navbar = ({ toggle }: any) => {
   const handleNavigateToProfile = () => {
     toggle();
     navigate(`/users/${auth.id}`);
+  };
+
+  const handleNavigateToAbout = () => {
+    toggle();
+    navigate(`/about`);
   };
 
   const handleContact = () => {
@@ -153,6 +159,14 @@ export const Navbar = ({ toggle }: any) => {
         leftSection={<I I={IconPlaylist} />}
         onClick={handleNavigateToPlaylists}>
         Playlists
+      </Button>
+
+      <Button
+        h={listButtonHeight}
+        className={buttonClasses}
+        leftSection={<I I={IconInfoCircle} />}
+        onClick={handleNavigateToAbout}>
+        About
       </Button>
 
       <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
