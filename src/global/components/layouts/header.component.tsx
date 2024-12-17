@@ -3,13 +3,13 @@ import {
   ActionIcon,
   Burger,
   Group,
+  Image,
   Title,
   useMantineColorScheme,
 } from "@mantine/core";
 import {
   IconLogin,
   IconLogout,
-  IconMessage2,
   IconMoon,
   IconSearch,
   IconSun,
@@ -28,6 +28,7 @@ import {
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
+import logo from "@/assets/logo.svg";
 
 export const Header = ({ opened, toggle }: any) => {
   const isMobile = useIsMobile();
@@ -67,7 +68,8 @@ export const Header = ({ opened, toggle }: any) => {
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
           <Group gap={4} onClick={handleNavigateToFeed} align="center">
-            <IconMessage2 stroke={1.5} size={24} />
+            {/* <IconMessage2 stroke={1.5} size={24} /> */}
+            <Image src={logo} alt="logo" w={32} />
             <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
           </Group>
 
