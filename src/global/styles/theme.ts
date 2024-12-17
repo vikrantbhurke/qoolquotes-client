@@ -9,6 +9,7 @@ import {
   TextInput,
   Textarea,
   ActionIcon,
+  Pill,
 } from "@mantine/core";
 
 export const theme = createTheme({
@@ -28,6 +29,12 @@ export const theme = createTheme({
         bg: "transparent",
         c: oneTx,
         size: "xs",
+      },
+    }),
+
+    Pill: Pill.extend({
+      defaultProps: {
+        fw: 300,
       },
     }),
 

@@ -1,24 +1,24 @@
-import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import {
-  borderLowContrastColor,
   oneTx,
   threeBg,
+  borderLowContrastColor,
 } from "@/global/styles/app.css";
-import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
-import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useClipboard, useDisclosure } from "@mantine/hooks";
-import { PlaylistModal } from "@/playlist/layouts";
-import { useState } from "react";
 import {
-  QuoteLikerLikeUnlikeButtonLayout,
   QuoteLikesCountLayout,
   QuoteLikerReadonlyButtonLayout,
+  QuoteLikerLikeUnlikeButtonLayout,
 } from "@/quote-liker/layouts";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
 import { useSelector } from "react-redux";
+import { PlaylistModal } from "@/playlist/layouts";
 import { I } from "@/global/components/components";
+import { useClipboard, useDisclosure } from "@mantine/hooks";
+import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
+import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
+import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 
 export const QuoteGridItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
