@@ -68,7 +68,6 @@ export const Header = ({ opened, toggle }: any) => {
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
           <Group gap={4} onClick={handleNavigateToFeed} align="center">
-            {/* <IconMessage2 stroke={1.5} size={24} /> */}
             <Image src={logo} alt="logo" w={32} />
             <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
           </Group>

@@ -1,5 +1,9 @@
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
-import { oneTx, threeBg } from "@/global/styles/app.css";
+import {
+  borderLowContrastColor,
+  oneTx,
+  threeBg,
+} from "@/global/styles/app.css";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
@@ -28,7 +32,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={threeBg}
+        bg={borderLowContrastColor}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>

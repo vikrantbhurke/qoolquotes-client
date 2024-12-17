@@ -1,5 +1,9 @@
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
-import { oneTx, threeBg } from "@/global/styles/app.css";
+import {
+  borderLowContrastColor,
+  oneTx,
+  threeBg,
+} from "@/global/styles/app.css";
 import { mainContentWidth } from "@/global/styles/global.styles";
 import { PlaylistModal } from "@/playlist/layouts";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
@@ -29,7 +33,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={threeBg}
+        bg={borderLowContrastColor}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>
