@@ -146,7 +146,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
         </Group>
       </Stack>
 
-      <Space h={150} />
+      <Space h={isMobile ? 110 : 150} />
     </Stack>
   );
 };
