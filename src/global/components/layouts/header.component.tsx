@@ -28,7 +28,8 @@ import {
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
-import logo from "@/assets/logo.svg";
+import logo from "@/assets/pwa-512x512.png";
+import logoDark from "@/assets/pwa-512x512-dark.png";
 
 export const Header = ({ opened, toggle }: any) => {
   const isMobile = useIsMobile();
@@ -68,7 +69,11 @@ export const Header = ({ opened, toggle }: any) => {
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
           <Group gap={4} onClick={handleNavigateToFeed} align="center">
-            <Image src={logo} alt="logo" w={32} />
+            <Image
+              src={colorScheme === "dark" ? logoDark : logo}
+              alt="logo"
+              w={32}
+            />
             <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
           </Group>
 
