@@ -1,6 +1,6 @@
 import { borderBottom, normalPseudo, oneBg } from "@/global/styles/app.css";
 import { getGridBorder } from "@/global/styles/global.styles";
-import { Center, Grid, Space, Stack, Text } from "@mantine/core";
+import { Center, Grid, Stack, Text } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { QuoteGridItemLayout } from "../layouts";
