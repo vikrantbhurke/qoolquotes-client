@@ -9,6 +9,7 @@ import {
   Center,
   Image,
   Text,
+  Space,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { oneTx, inputStyles } from "@/global/styles/app.css";
@@ -19,8 +20,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import { useIsMobile } from "@/global/hooks";
 
 export const UserItemLayout = ({ user }: any) => {
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
@@ -31,7 +36,13 @@ export const UserItemLayout = ({ user }: any) => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Stack h="100%" gap="xl" justify="center" align="center">
+    <Stack h="100%" gap="xl" align="center" justify="space-between">
+      <Center p="md">
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
+
       <Stack maw={500} miw={400} gap="lg">
         <DeleteUserModalLayout opened={opened} close={close} />
 
@@ -141,6 +152,8 @@ export const UserItemLayout = ({ user }: any) => {
           </Grid.Col>
         </Grid>
       </Stack>
+
+      <Space h={150} />
     </Stack>
   );
 };

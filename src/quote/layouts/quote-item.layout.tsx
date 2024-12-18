@@ -1,16 +1,25 @@
-import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import {
-  borderLowContrastColor,
   oneTx,
   threeBg,
+  borderLowContrastColor,
 } from "@/global/styles/app.css";
-import { mainContentWidth } from "@/global/styles/global.styles";
-import { PlaylistModal } from "@/playlist/layouts";
-import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
-import { useClipboard, useDisclosure } from "@mantine/hooks";
-import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { PlaylistModal } from "@/playlist/layouts";
+import { useClipboard, useDisclosure } from "@mantine/hooks";
+import { mainContentWidth } from "@/global/styles/global.styles";
+import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
+import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
+import {
+  ActionIcon,
+  Center,
+  Group,
+  Pill,
+  Space,
+  Stack,
+  Text,
+  Tooltip,
+} from "@mantine/core";
 import {
   QuoteLikerLikeUnlikeButtonLayout,
   QuoteLikesCountLayout,
@@ -20,8 +29,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import { useIsMobile } from "@/global/hooks";
 
 export const QuoteItemLayout = ({ quote }: any) => {
+  const isMobile = useIsMobile();
   const { auth } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -73,8 +86,14 @@ export const QuoteItemLayout = ({ quote }: any) => {
   };
 
   return (
-    <Stack h="100%" justify="center" align="center">
+    <Stack h="100%" align="center" justify="space-between">
       <PlaylistModal opened={modalOpened} close={close} />
+
+      <Center p="md">
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
 
       <Stack
         maw={mainContentWidth}
@@ -82,6 +101,10 @@ export const QuoteItemLayout = ({ quote }: any) => {
         px="md"
         justify="center"
         align="center">
+        <Stack h={90} p="md" maw={mainContentWidth} miw={mainContentWidth}>
+          <DesktopLeaderboard />
+        </Stack>
+
         <Text ta="center">{quote.content}</Text>
         <Text ta="center" onClick={handleNavigateToQuoteByAuthor}>
           {quote.authorId.name}
@@ -126,6 +149,8 @@ export const QuoteItemLayout = ({ quote }: any) => {
           </Tooltip>
         </Group>
       </Stack>
+
+      <Space h={150} />
     </Stack>
   );
 };

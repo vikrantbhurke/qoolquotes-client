@@ -8,6 +8,7 @@ import {
 } from "@/global/styles/global.styles";
 import {
   Button,
+  Center,
   Container,
   Group,
   Radio,
@@ -30,6 +31,8 @@ import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
 
 export const PlaylistsLayout = () => {
   const dispatch = useDispatch();
@@ -168,6 +171,12 @@ export const PlaylistsLayout = () => {
             )}
           </Group>
         </Radio.Group>
+
+        <Center p="md" className={borderBottom}>
+          <Stack h={90}>
+            {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+          </Stack>
+        </Center>
 
         <Outlet context={setData} />
       </Stack>

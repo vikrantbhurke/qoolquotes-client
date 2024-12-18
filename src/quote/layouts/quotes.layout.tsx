@@ -3,7 +3,7 @@ import {
   headerHeight,
   subheaderHeight,
 } from "@/global/styles/global.styles";
-import { Group, Space, Stack, Text } from "@mantine/core";
+import { Center, Group, Space, Stack, Text } from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
 import { borderBottom } from "@/global/styles/app.css";
@@ -11,6 +11,8 @@ import { useState } from "react";
 import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
 import { useSelector } from "react-redux";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
 
 export const QuotesLayout = () => {
   const isMobile = useIsMobile();
@@ -34,7 +36,7 @@ export const QuotesLayout = () => {
         pl="xs"
         justify="space-between"
         gap={0}
-        h={subheaderHeight}
+        mih={subheaderHeight}
         className={borderBottom}>
         <Group gap={3}>
           <I I={IconFileDescription} />
@@ -61,6 +63,12 @@ export const QuotesLayout = () => {
           <Space w="xl" />
         </Group>
       </Group>
+
+      <Center p="md" className={borderBottom}>
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
 
       <Outlet context={setData} />
     </Stack>

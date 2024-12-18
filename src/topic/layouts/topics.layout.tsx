@@ -3,7 +3,7 @@ import {
   headerHeight,
   subheaderHeight,
 } from "@/global/styles/global.styles";
-import { Button, Group, Stack, Text } from "@mantine/core";
+import { Button, Center, Group, Stack, Text } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import {
   IconFileDescription,
@@ -24,6 +24,8 @@ import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
 
 export const TopicsLayout = () => {
   const isMobile = useIsMobile();
@@ -77,6 +79,12 @@ export const TopicsLayout = () => {
         <TopicsFilterDrawer opened={drawerOpened} close={drawerClose} />
         <TopicsFilterModal opened={modalOpened} close={modalClose} />
       </Group>
+
+      <Center p="md" className={borderBottom}>
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
 
       <Outlet context={setData} />
     </Stack>

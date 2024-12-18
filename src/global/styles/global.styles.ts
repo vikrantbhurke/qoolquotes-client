@@ -7,7 +7,7 @@ import {
   twoBg,
 } from "./app.css";
 
-export const mainContentWidth = 600;
+export const mainContentWidth = 750;
 export const subheaderHeight = 60;
 export const headerHeight = 60;
 export const footerHeight = 60;

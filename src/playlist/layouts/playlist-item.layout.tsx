@@ -8,6 +8,8 @@ import {
   Grid,
   Avatar,
   Text,
+  Center,
+  Space,
 } from "@mantine/core";
 import {
   PlaylistLikerUnlikeButtonLayout,
@@ -33,8 +35,12 @@ import { I } from "@/global/components/components";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { setFilterObject } from "@/quote/quote.slice";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import { useIsMobile } from "@/global/hooks";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
+  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -69,7 +75,13 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
   };
 
   return (
-    <Stack h="100%" gap="xl" justify="center" align="center">
+    <Stack h="100%" gap="xl" align="center" justify="space-between">
+      <Center p="md">
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
+
       <Stack maw={500} miw={400} gap="lg">
         <DeletePlaylistModalLayout
           opened={deletePlaylistOpened}
@@ -231,6 +243,8 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
           )}
         </Grid>
       </Stack>
+
+      <Space h={150} />
     </Stack>
   );
 };

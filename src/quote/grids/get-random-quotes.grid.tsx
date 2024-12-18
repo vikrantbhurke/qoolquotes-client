@@ -1,4 +1,4 @@
-import { normalPseudo, oneBg } from "@/global/styles/app.css";
+import { borderBottom, normalPseudo, oneBg } from "@/global/styles/app.css";
 import { getGridBorder } from "@/global/styles/global.styles";
 import { Center, Grid, Stack, Text } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
@@ -6,6 +6,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { QuoteGridItemLayout } from "../layouts";
 import { CustomLoader } from "@/global/components/loaders";
 import { useIsMobile } from "@/global/hooks";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
 
 export const GetRandomQuotesGrid = () => {
   const { randomQuotes, fetchQuotes } = useGetRandomQuotes();
@@ -22,6 +24,12 @@ export const GetRandomQuotesGrid = () => {
 
   return (
     <Stack gap={0} justify="space-between" h="100%">
+      <Center p="md" className={borderBottom}>
+        <Stack h={90}>
+          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        </Stack>
+      </Center>
+
       <InfiniteScroll
         dataLength={randomQuotes.length}
         next={() => fetchQuotes()}

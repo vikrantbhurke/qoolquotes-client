@@ -1,5 +1,5 @@
 import { Clearance } from "@/user/enums";
-import { Button, Stack } from "@mantine/core";
+import { Button, Center, Stack } from "@mantine/core";
 import { CompOrFragmentRoute } from "@/global/routes";
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
@@ -29,10 +29,13 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ContactModal, I } from "../components";
-import { useInstallApp } from "@/global/hooks";
+import { useInstallApp, useIsMobile } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
+import Banner300x250 from "@/ads/Banner300x250";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const Navbar = ({ toggle }: any) => {
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -95,107 +98,115 @@ export const Navbar = ({ toggle }: any) => {
   const buttonClasses = `${oneTxOneBgButtonPseudo} ${borderBottom}`;
 
   return (
-    <Stack gap={0} p={0}>
-      {!isInstalled && installPrompt && (
-        <CompOrFragmentRoute clearance={Clearance.LevelOne}>
-          <Button
-            c={themeGreen}
-            h={listButtonHeight}
-            className={buttonClasses}
-            leftSection={<I I={IconDownload} />}
-            onClick={handleInstallClick}>
-            Install
-          </Button>
-        </CompOrFragmentRoute>
-      )}
+    <Stack justify="space-between" gap={0} p={0} h="100%">
+      <Stack gap={0} p={0}>
+        {!isInstalled && installPrompt && (
+          <CompOrFragmentRoute clearance={Clearance.LevelOne}>
+            <Button
+              c={themeGreen}
+              h={listButtonHeight}
+              className={buttonClasses}
+              leftSection={<I I={IconDownload} />}
+              onClick={handleInstallClick}>
+              Install
+            </Button>
+          </CompOrFragmentRoute>
+        )}
 
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={
-          <I
-            I={
-              location.pathname === "/" ? IconArticleFilledFilled : IconArticle
-            }
-          />
-        }
-        onClick={handleNavigateToFeed}>
-        Feed
-      </Button>
-
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={
-          <I
-            I={
-              location.pathname === "/topics"
-                ? IconCategoryFilled
-                : IconCategory
-            }
-          />
-        }
-        onClick={handleNavigateToTopics}>
-        Topics
-      </Button>
-
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={
-          <I
-            I={
-              location.pathname === "/authors" ? IconBallpenFilled : IconBallpen
-            }
-          />
-        }
-        onClick={handleNavigateToAuthors}>
-        Authors
-      </Button>
-
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={<I I={IconPlaylist} />}
-        onClick={handleNavigateToPlaylists}>
-        Playlists
-      </Button>
-
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={<I I={IconInfoCircle} />}
-        onClick={handleNavigateToAbout}>
-        About
-      </Button>
-
-      <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
         <Button
           h={listButtonHeight}
           className={buttonClasses}
           leftSection={
             <I
               I={
-                location.pathname.startsWith("/users")
-                  ? IconUserFilled
-                  : IconUser
+                location.pathname === "/"
+                  ? IconArticleFilledFilled
+                  : IconArticle
               }
             />
           }
-          onClick={handleNavigateToProfile}>
-          Profile
+          onClick={handleNavigateToFeed}>
+          Feed
         </Button>
-      </CompOrFragmentRoute>
 
-      <Button
-        h={listButtonHeight}
-        className={buttonClasses}
-        leftSection={<I I={IconMail} />}
-        onClick={handleContact}>
-        Contact
-      </Button>
+        <Button
+          h={listButtonHeight}
+          className={buttonClasses}
+          leftSection={
+            <I
+              I={
+                location.pathname === "/topics"
+                  ? IconCategoryFilled
+                  : IconCategory
+              }
+            />
+          }
+          onClick={handleNavigateToTopics}>
+          Topics
+        </Button>
 
-      <ContactModal opened={opened} close={close} />
+        <Button
+          h={listButtonHeight}
+          className={buttonClasses}
+          leftSection={
+            <I
+              I={
+                location.pathname === "/authors"
+                  ? IconBallpenFilled
+                  : IconBallpen
+              }
+            />
+          }
+          onClick={handleNavigateToAuthors}>
+          Authors
+        </Button>
+
+        <Button
+          h={listButtonHeight}
+          className={buttonClasses}
+          leftSection={<I I={IconPlaylist} />}
+          onClick={handleNavigateToPlaylists}>
+          Playlists
+        </Button>
+
+        <Button
+          h={listButtonHeight}
+          className={buttonClasses}
+          leftSection={<I I={IconInfoCircle} />}
+          onClick={handleNavigateToAbout}>
+          About
+        </Button>
+
+        <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+          <Button
+            h={listButtonHeight}
+            className={buttonClasses}
+            leftSection={
+              <I
+                I={
+                  location.pathname.startsWith("/users")
+                    ? IconUserFilled
+                    : IconUser
+                }
+              />
+            }
+            onClick={handleNavigateToProfile}>
+            Profile
+          </Button>
+        </CompOrFragmentRoute>
+
+        <Button
+          h={listButtonHeight}
+          className={buttonClasses}
+          leftSection={<I I={IconMail} />}
+          onClick={handleContact}>
+          Contact
+        </Button>
+
+        <ContactModal opened={opened} close={close} />
+      </Stack>
+
+      <Center p="md">{isMobile ? <Banner320x50 /> : <Banner300x250 />}</Center>
     </Stack>
   );
 };

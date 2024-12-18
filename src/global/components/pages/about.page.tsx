@@ -1,3 +1,7 @@
+import Banner300x250 from "@/ads/Banner300x250";
+import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
+import MobileLeaderboard from "@/ads/MobileLeaderboard";
 import { useIsMobile } from "@/global/hooks";
 import { threeTx } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
@@ -6,8 +10,24 @@ export const AboutPage = () => {
   const isMobile = useIsMobile();
   return (
     <Stack h="100%">
+      {/* <Center>
+        <Banner320x50 />
+      </Center>
+
+      <Center>
+        <Banner300x250 />
+      </Center> */}
+
+      {/* <Center>
+        <MobileLeaderboard />
+      </Center> */}
+
       <ScrollArea scrollbarSize={2}>
         <Stack p={isMobile ? "md" : "xl"} gap="lg">
+          <Center>
+            {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+          </Center>
+
           <Center>
             <Title order={2}>About</Title>
           </Center>
@@ -115,6 +135,10 @@ export const AboutPage = () => {
               updated regularly.
             </Text>
           </Stack> */}
+
+          <Center p="md">
+            {isMobile ? <Banner320x50 /> : <Banner300x250 />}
+          </Center>
 
           <Center>
             <Title order={3}>Why Choose Our App?</Title>
