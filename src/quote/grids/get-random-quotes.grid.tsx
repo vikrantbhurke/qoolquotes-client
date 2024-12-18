@@ -7,7 +7,7 @@ import { QuoteGridItemLayout } from "../layouts";
 import { CustomLoader } from "@/global/components/loaders";
 import { useIsMobile } from "@/global/hooks";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const GetRandomQuotesGrid = () => {
   const { randomQuotes, fetchQuotes } = useGetRandomQuotes();
@@ -25,8 +25,8 @@ export const GetRandomQuotesGrid = () => {
   return (
     <Stack gap={0} justify="space-between" h="100%">
       <Center p="md" className={borderBottom}>
-        <Stack h={90}>
-          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        <Stack h={isMobile ? 50 : 90}>
+          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>
       </Center>
 
@@ -52,7 +52,7 @@ export const GetRandomQuotesGrid = () => {
         </Grid>
       </InfiniteScroll>
 
-      <Space h={150} />
+      <Space h={isMobile ? 110 : 150} />
     </Stack>
   );
 };

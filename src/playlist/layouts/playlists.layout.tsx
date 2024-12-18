@@ -32,7 +32,7 @@ import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const PlaylistsLayout = () => {
   const dispatch = useDispatch();
@@ -173,8 +173,8 @@ export const PlaylistsLayout = () => {
         </Radio.Group>
 
         <Center p="md" className={borderBottom}>
-          <Stack h={90}>
-            {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+          <Stack h={isMobile ? 50 : 90}>
+            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Stack>
         </Center>
 

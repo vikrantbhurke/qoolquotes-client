@@ -1,7 +1,6 @@
 import Banner300x250 from "@/ads/Banner300x250";
 import Banner320x50 from "@/ads/Banner320x50";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
 import { useIsMobile } from "@/global/hooks";
 import { threeTx } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
@@ -25,7 +24,7 @@ export const AboutPage = () => {
       <ScrollArea scrollbarSize={2}>
         <Stack p={isMobile ? "md" : "xl"} gap="lg">
           <Center>
-            {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Center>
 
           <Center>

@@ -36,8 +36,8 @@ import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
 import { useIsMobile } from "@/global/hooks";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
   const isMobile = useIsMobile();
@@ -77,8 +77,8 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
   return (
     <Stack h="100%" gap="xl" align="center" justify="space-between">
       <Center p="md">
-        <Stack h={90}>
-          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        <Stack h={isMobile ? 50 : 90}>
+          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>
       </Center>
 

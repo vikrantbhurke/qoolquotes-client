@@ -30,8 +30,8 @@ import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
 import { useIsMobile } from "@/global/hooks";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const QuoteItemLayout = ({ quote }: any) => {
   const isMobile = useIsMobile();
@@ -90,8 +90,8 @@ export const QuoteItemLayout = ({ quote }: any) => {
       <PlaylistModal opened={modalOpened} close={close} />
 
       <Center p="md">
-        <Stack h={90}>
-          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        <Stack h={isMobile ? 50 : 90}>
+          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>
       </Center>
 

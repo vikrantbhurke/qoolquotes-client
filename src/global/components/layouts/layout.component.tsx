@@ -16,11 +16,11 @@ import {
   oneTxOneBg,
   readexProFont,
 } from "@/global/styles/app.css";
-import { useIsMobile, usePopunderAd, useSocialAd } from "@/global/hooks";
+import { useIsMobile, usePopunderAd } from "@/global/hooks";
 
 export const Layout = () => {
   usePopunderAd();
-  useSocialAd();
+  // useSocialAd();
   const isMobile = useIsMobile();
   const [opened, { toggle }] = useDisclosure();
 

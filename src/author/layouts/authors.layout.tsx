@@ -25,7 +25,7 @@ import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import MobileLeaderboard from "@/ads/MobileLeaderboard";
+import Banner320x50 from "@/ads/Banner320x50";
 
 export const AuthorsLayout = () => {
   const isMobile = useIsMobile();
@@ -81,8 +81,8 @@ export const AuthorsLayout = () => {
       </Group>
 
       <Center p="md" className={borderBottom}>
-        <Stack h={90}>
-          {isMobile ? <MobileLeaderboard /> : <DesktopLeaderboard />}
+        <Stack h={isMobile ? 50 : 90}>
+          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>
       </Center>
 
