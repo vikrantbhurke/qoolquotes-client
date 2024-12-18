@@ -101,10 +101,6 @@ export const QuoteItemLayout = ({ quote }: any) => {
         px="md"
         justify="center"
         align="center">
-        <Stack h={90} p="md" maw={mainContentWidth} miw={mainContentWidth}>
-          <DesktopLeaderboard />
-        </Stack>
-
         <Text ta="center">{quote.content}</Text>
         <Text ta="center" onClick={handleNavigateToQuoteByAuthor}>
           {quote.authorId.name}
