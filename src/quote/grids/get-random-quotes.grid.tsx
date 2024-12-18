@@ -23,7 +23,7 @@ export const GetRandomQuotesGrid = () => {
   );
 
   return (
-    <Stack gap={0} justify="space-between" h="100%">
+    <Stack gap={0} h="100%" justify="flex-start">
       <Center p="md" className={borderBottom}>
         <Stack h={isMobile ? 50 : 90}>
           {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
@@ -51,8 +51,6 @@ export const GetRandomQuotesGrid = () => {
           })}
         </Grid>
       </InfiniteScroll>
-
-      <Space h={isMobile ? 110 : 150} />
     </Stack>
   );
 };
