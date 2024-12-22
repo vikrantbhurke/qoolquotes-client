@@ -26,13 +26,17 @@ export const Footer = ({ opened, toggle }: any) => {
   const [, scrollTo] = useWindowScroll();
   const location = useLocation();
 
-  const { sort: authorSort, order: authorOrder } = useSelector(
-    (state: RootState) => state.author
-  );
+  const {
+    sort: authorSort,
+    order: authorOrder,
+    alpha: authorAlpha,
+  } = useSelector((state: RootState) => state.author);
 
-  const { sort: topicSort, order: topicOrder } = useSelector(
-    (state: RootState) => state.topic
-  );
+  const {
+    sort: topicSort,
+    order: topicOrder,
+    alpha: topicAlpha,
+  } = useSelector((state: RootState) => state.topic);
 
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
@@ -44,14 +48,18 @@ export const Footer = ({ opened, toggle }: any) => {
     scrollTo({ y: 0 });
     dispatch(setTopicPage(1));
     opened && toggle();
-    navigate(`/topics?page=1&sort=${topicSort}&order=${topicOrder}`);
+    navigate(
+      `/topics?page=1&sort=${topicSort}&order=${topicOrder}&alpha=${topicAlpha}`
+    );
   };
 
   const handleNavigateToAuthors = () => {
     scrollTo({ y: 0 });
     dispatch(setAuthorPage(1));
     opened && toggle();
-    navigate(`/authors?page=1&sort=${authorSort}&order=${authorOrder}`);
+    navigate(
+      `/authors?page=1&sort=${authorSort}&order=${authorOrder}&alpha=${authorAlpha}`
+    );
   };
 
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));

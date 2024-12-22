@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 export const useGetPlaylistById = () => {
   let params = useParams();
   let { pid } = params;
-  console.log(params);
+
   const {
     data: playlist,
     isPending,

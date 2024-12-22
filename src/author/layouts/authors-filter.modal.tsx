@@ -70,6 +70,7 @@ export const AuthorsFilterModal = ({ opened, close }: any) => {
           </Group>
 
           <CustomEnumCombobox
+            id="author-order-modal"
             EnumObject={Order}
             label="Order"
             data={Object.values(Order)}
@@ -82,6 +83,7 @@ export const AuthorsFilterModal = ({ opened, close }: any) => {
           <Text>Alphabet</Text>
 
           <CustomEnumScrollableCombobox
+            id="author-alpha-modal"
             EnumObject={Alpha}
             label="Alpha"
             data={Object.values(Alpha)}

@@ -1,10 +1,10 @@
 import {
-  borderHighContrast,
-  borderLowContrast,
   oneBg,
   oneTx,
-  threeBg,
   twoBg,
+  threeBg,
+  borderLowContrast,
+  borderHighContrast,
 } from "./app.css";
 
 export const mainContentWidth = 750;

@@ -114,6 +114,7 @@ export const CreatePlaylistFormLayout = () => {
           <Text>Access</Text>
 
           <CustomEnumCombobox
+            id="playlist-access"
             EnumObject={Access}
             label="Access"
             data={Object.values(Access)}

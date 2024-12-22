@@ -1,22 +1,19 @@
+import { Sort } from "../enums";
+import { Order } from "@/global/enums";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setAlpha, setOrder } from "../topic.slice";
-import { ActionIcon, Group, Modal, Space, Stack, Text } from "@mantine/core";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import {
-  CustomEnumCombobox,
-  CustomEnumScrollableCombobox,
-  I,
-} from "@/global/components/components";
-import { Alpha, Order } from "@/global/enums";
+import { IconRefresh } from "@tabler/icons-react";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
-import { IconRefresh } from "@tabler/icons-react";
+import { setSort, setOrder } from "../playlist.slice";
+import { drawer } from "@/global/styles/global.styles";
+import { CustomEnumCombobox, I } from "@/global/components/components";
+import { ActionIcon, Drawer, Group, Space, Stack, Text } from "@mantine/core";
 
-export const TopicsFilterModal = ({ opened, close }: any) => {
+export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { order, alpha } = useSelector((state: any) => state.topic);
+  const { order, sort } = useSelector((state: any) => state.playlist);
 
   const handleOrder = (order: any) => {
     dispatch(setOrder(order));
@@ -25,38 +22,38 @@ export const TopicsFilterModal = ({ opened, close }: any) => {
     setSearchParams(newSearchParams);
   };
 
-  const handleAlpha = (alpha: any) => {
-    dispatch(setAlpha(alpha));
+  const handleSort = (sort: any) => {
+    dispatch(setSort(sort));
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("alpha", alpha);
+    newSearchParams.set("sort", sort);
     setSearchParams(newSearchParams);
   };
 
   const handleRefresh = () => {
     dispatch(setOrder(Order.Ascending));
-    dispatch(setAlpha(Alpha.All));
+    dispatch(setSort(Sort.Date));
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("order", Order.Ascending);
-    newSearchParams.set("alpha", Alpha.All);
+    newSearchParams.set("sort", Sort.Date);
     setSearchParams(newSearchParams);
   };
 
   return (
-    <Modal
-      styles={modal}
-      overlayProps={modalOverlayProps}
+    <Drawer
+      size="xs"
+      styles={drawer}
       opened={opened}
       onClose={close}
-      centered
-      title={<Text>Topic Filter</Text>}>
+      position="bottom"
+      title={<Text>Playlist Filter</Text>}>
       <Stack>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text>Order</Text>
+            <Text>Sort</Text>
 
-            {order !== Order.Ascending || alpha !== Alpha.All ? (
+            {order !== Order.Descending || sort !== Sort.Date ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
                 <I I={IconRefresh} />
               </ActionIcon>
@@ -70,7 +67,20 @@ export const TopicsFilterModal = ({ opened, close }: any) => {
           </Group>
 
           <CustomEnumCombobox
-            id="topic-order-modal"
+            id="playlist-sort-drawer"
+            EnumObject={Sort}
+            label="Sort"
+            data={Object.values(Sort)}
+            handleValue={handleSort}
+            value={globalUtility.getKeyByValue(Sort, sort)}
+          />
+        </Stack>
+
+        <Stack align="center" gap="xs">
+          <Text>Order</Text>
+
+          <CustomEnumCombobox
+            id="playlist-order-drawer"
             EnumObject={Order}
             label="Order"
             data={Object.values(Order)}
@@ -78,20 +88,7 @@ export const TopicsFilterModal = ({ opened, close }: any) => {
             value={globalUtility.getKeyByValue(Order, order)}
           />
         </Stack>
-
-        <Stack align="center" gap="xs">
-          <Text>Alphabet</Text>
-
-          <CustomEnumScrollableCombobox
-            id="topic-alpha-modal"
-            EnumObject={Alpha}
-            label="Alpha"
-            data={Object.values(Alpha)}
-            handleValue={handleAlpha}
-            value={globalUtility.getKeyByValue(Alpha, alpha)}
-          />
-        </Stack>
       </Stack>
-    </Modal>
+    </Drawer>
   );
 };

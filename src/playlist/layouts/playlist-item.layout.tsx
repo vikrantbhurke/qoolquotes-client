@@ -244,7 +244,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
         </Grid>
       </Stack>
 
-      <Space h={isMobile ? 110 : 150} />
+      <Space h={isMobile ? 50 : 90} />
     </Stack>
   );
 };

@@ -58,6 +58,7 @@ export const CreateMessageFormLayout = () => {
           <Text ta="center">Reason</Text>
 
           <CustomEnumCombobox
+            id="reason"
             EnumObject={Reason}
             label="Reason"
             data={Object.values(Reason)}

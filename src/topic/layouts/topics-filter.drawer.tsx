@@ -70,6 +70,7 @@ export const TopicsFilterDrawer = ({ opened, close }: any) => {
           </Group>
 
           <CustomEnumCombobox
+            id="topic-order-drawer"
             EnumObject={Order}
             label="Order"
             data={Object.values(Order)}
@@ -82,6 +83,7 @@ export const TopicsFilterDrawer = ({ opened, close }: any) => {
           <Text>Alphabet</Text>
 
           <CustomEnumScrollableCombobox
+            id="topic-alpha-drawer"
             EnumObject={Alpha}
             label="Alpha"
             data={Object.values(Alpha)}

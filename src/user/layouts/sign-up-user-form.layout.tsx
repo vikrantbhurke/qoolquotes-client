@@ -215,8 +215,9 @@ export const SignUpUserFormLayout = () => {
                   <Text>Gender</Text>
 
                   <CustomEnumCombobox
+                    id="gender"
                     EnumObject={Gender}
-                    label="Order"
+                    label="Gender"
                     data={Object.values(Gender)}
                     handleValue={handleGender}
                     value={globalUtility.getKeyByValue(Gender, gender)}

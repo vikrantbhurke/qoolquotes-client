@@ -1,4 +1,8 @@
-import { borderBottom } from "@/global/styles/app.css";
+import {
+  borderBottom,
+  oneTx,
+  oneTxOneBgButtonPseudo,
+} from "@/global/styles/app.css";
 import {
   footerHeight,
   getSubheaderButton,
@@ -7,6 +11,7 @@ import {
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import {
+  ActionIcon,
   Button,
   Center,
   Container,
@@ -24,7 +29,12 @@ import { CompOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
 import { useState } from "react";
 import { setPage } from "@/playlist/playlist.slice";
-import { IconFileDescription, IconTrash } from "@tabler/icons-react";
+import {
+  IconFileDescription,
+  IconFilter,
+  IconFilterFilled,
+  IconTrash,
+} from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
 import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
@@ -33,6 +43,10 @@ import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
+import { Order } from "@/global/enums";
+import { Sort } from "../enums";
+import { PlaylistsFilterModal } from "./playlists-filter.modal";
+import { PlaylistsFilterDrawer } from "./playlists-filter.drawer";
 
 export const PlaylistsLayout = () => {
   const dispatch = useDispatch();
@@ -49,7 +63,13 @@ export const PlaylistsLayout = () => {
     { open: openRemovePlaylist, close: closeRemovePlaylist },
   ] = useDisclosure();
 
-  const { tab } = useSelector((state: any) => state.playlist);
+  const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
+    useDisclosure(false);
+
+  const [modalOpened, { open: modalOpen, close: modalClose }] =
+    useDisclosure(false);
+
+  const { tab, sort, order } = useSelector((state: any) => state.playlist);
   const { auth } = useSelector((state: any) => state.auth);
 
   const [data, setData] = useState<any>({
@@ -75,6 +95,8 @@ export const PlaylistsLayout = () => {
     dispatch(setTab("Saved"));
     dispatch(setPage(1));
   };
+
+  const isFilterApplied = order !== Order.Descending || sort !== Sort.Date;
 
   return (
     <Container
@@ -134,45 +156,79 @@ export const PlaylistsLayout = () => {
               </CompOrFragmentRoute>
             </Group>
 
-            {tab === "Saved" && data.totalElements ? (
-              <Group
-                gap={3}
-                justify="center"
-                align="center"
-                onClick={openRemovePlaylist}>
-                <I I={IconTrash} color="crimson" />
+            <Group gap={0} justify="center">
+              {tab === "Saved" && data.totalElements ? (
+                <Group
+                  gap={3}
+                  justify="center"
+                  align="center"
+                  onClick={openRemovePlaylist}>
+                  <I I={IconTrash} color="crimson" />
 
-                {isMobile ? (
-                  <Space />
-                ) : (
-                  <Text pt={3} c="crimson">
-                    Remove All
-                  </Text>
-                )}
-              </Group>
-            ) : tab === "Created" && data.totalElements ? (
-              <Group
-                gap={3}
-                justify="center"
-                align="center"
-                onClick={openDeletePlaylist}>
-                <I I={IconTrash} color="crimson" />
+                  {isMobile ? (
+                    <Space />
+                  ) : (
+                    <Text pt={3} c="crimson">
+                      Remove All
+                    </Text>
+                  )}
+                </Group>
+              ) : tab === "Created" && data.totalElements ? (
+                <Group
+                  gap={3}
+                  justify="center"
+                  align="center"
+                  onClick={openDeletePlaylist}>
+                  <I I={IconTrash} color="crimson" />
 
-                {isMobile ? (
-                  <Space />
-                ) : (
-                  <Text pt={3} c="crimson">
-                    Delete All
-                  </Text>
-                )}
-              </Group>
-            ) : (
-              <Space w="xl" />
-            )}
+                  {isMobile ? (
+                    <Space />
+                  ) : (
+                    <Text pt={3} c="crimson">
+                      Delete All
+                    </Text>
+                  )}
+                </Group>
+              ) : (
+                <Space w="xl" />
+              )}
+
+              {isMobile ? (
+                <ActionIcon
+                  h={subheaderHeight}
+                  c={isFilterApplied ? "green" : oneTx}
+                  className={oneTxOneBgButtonPseudo}
+                  onClick={isMobile ? drawerOpen : modalOpen}>
+                  {isFilterApplied ? (
+                    <I I={IconFilterFilled} />
+                  ) : (
+                    <I I={IconFilter} />
+                  )}
+                </ActionIcon>
+              ) : (
+                <Button
+                  h={subheaderHeight}
+                  c={isFilterApplied ? "green" : oneTx}
+                  className={oneTxOneBgButtonPseudo}
+                  onClick={isMobile ? drawerOpen : modalOpen}
+                  leftSection={
+                    isFilterApplied ? (
+                      <I I={IconFilterFilled} />
+                    ) : (
+                      <I I={IconFilter} />
+                    )
+                  }>
+                  Filter
+                </Button>
+              )}
+            </Group>
           </Group>
+
+          <PlaylistsFilterDrawer opened={drawerOpened} close={drawerClose} />
+          <PlaylistsFilterModal opened={modalOpened} close={modalClose} />
         </Radio.Group>
 
-        <Center p="md" className={borderBottom}>
+        <Center className={borderBottom}>
           <Stack h={isMobile ? 50 : 90}>
             {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Stack>

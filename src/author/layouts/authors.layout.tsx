@@ -80,7 +80,7 @@ export const AuthorsLayout = () => {
         <AuthorsFilterModal opened={modalOpened} close={modalClose} />
       </Group>
 
-      <Center p="md" className={borderBottom}>
+      <Center className={borderBottom}>
         <Stack h={isMobile ? 50 : 90}>
           {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>

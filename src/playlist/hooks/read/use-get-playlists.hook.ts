@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
 export const useGetPlaylists = () => {
-  const { page } = useSelector((state: RootState) => state.playlist);
+  const { page, sort, order } = useSelector(
+    (state: RootState) => state.playlist
+  );
 
   const {
     data: playlists,
@@ -12,8 +14,8 @@ export const useGetPlaylists = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["getPlaylists", page - 1],
-    queryFn: () => getPlaylists({ page: page - 1 }),
+    queryKey: ["getPlaylists", page - 1, sort, order],
+    queryFn: () => getPlaylists({ page: page - 1, sort, order }),
     enabled: !!page,
   });
 
@@ -22,33 +24,39 @@ export const useGetPlaylists = () => {
   const lastPage = playlists?.totalPages;
 
   useQuery({
-    queryKey: ["getPlaylists", prevPage - 1],
+    queryKey: ["getPlaylists", prevPage - 1, sort, order],
 
     queryFn: () =>
       getPlaylists({
         page: prevPage - 1,
+        sort,
+        order,
       }),
 
     enabled: !!prevPage,
   });
 
   useQuery({
-    queryKey: ["getPlaylists", nextPage - 1],
+    queryKey: ["getPlaylists", nextPage - 1, sort, order],
 
     queryFn: () =>
       getPlaylists({
         page: nextPage - 1,
+        sort,
+        order,
       }),
 
     enabled: !!nextPage,
   });
 
   useQuery({
-    queryKey: ["getPlaylists", lastPage - 1],
+    queryKey: ["getPlaylists", lastPage - 1, sort, order],
 
     queryFn: () =>
       getPlaylists({
         page: lastPage - 1,
+        sort,
+        order,
       }),
 
     enabled: !!lastPage,

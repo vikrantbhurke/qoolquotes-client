@@ -25,6 +25,7 @@ export const CustomEnumScrollableCombobox = ({
   data,
   value,
   handleValue,
+  id,
 }: any) => {
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
@@ -55,12 +56,13 @@ export const CustomEnumScrollableCombobox = ({
       }}>
       <Combobox.Target>
         <TextInput
+          id={id}
           miw="100%"
           value={value}
           readOnly
-          styles={getComboboxTextInput(focusedInput === "scrollableCombobox")}
+          styles={getComboboxTextInput(focusedInput === id)}
           wrapperProps={{
-            onFocus: () => handleFocus("scrollableCombobox"),
+            onFocus: () => handleFocus(id),
             onBlur: handleBlur,
           }}
           onClick={() => combobox.openDropdown()}

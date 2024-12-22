@@ -14,6 +14,7 @@ import {
   useMantineColorScheme,
   TextInput,
 } from "@mantine/core";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -24,7 +25,9 @@ export const CustomEnumCombobox = ({
   data,
   value,
   handleValue,
+  id,
 }: any) => {
+  const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
@@ -54,13 +57,15 @@ export const CustomEnumCombobox = ({
       }}>
       <Combobox.Target>
         <TextInput
+          ref={ref}
+          id={id}
           miw="100%"
           value={value}
           readOnly
           classNames={{ input: inputStyles }}
-          styles={getComboboxTextInput(focusedInput === "enumCombobox")}
+          styles={getComboboxTextInput(focusedInput === id)}
           wrapperProps={{
-            onFocus: () => handleFocus("enumCombobox"),
+            onFocus: () => handleFocus(id),
             onBlur: handleBlur,
           }}
           radius="sm"

@@ -40,7 +40,7 @@ export const MantineGrid = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px)`}>
+      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Grid grow justify="center" gutter={0}>
           {dataArray.map((item: any, index: number) => {

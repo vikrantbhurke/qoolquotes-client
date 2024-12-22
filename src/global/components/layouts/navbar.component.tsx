@@ -5,11 +5,7 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
-import {
-  borderBottom,
-  oneTxOneBgButtonPseudo,
-  themeGreen,
-} from "@/global/styles/app.css";
+import { oneTxOneBgButtonPseudo, themeGreen } from "@/global/styles/app.css";
 import { listButtonHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
@@ -44,13 +40,17 @@ export const Navbar = ({ toggle }: any) => {
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const [opened, { open, close }] = useDisclosure();
 
-  const { sort: authorSort, order: authorOrder } = useSelector(
-    (state: RootState) => state.author
-  );
+  const {
+    sort: authorSort,
+    order: authorOrder,
+    alpha: authorAlpha,
+  } = useSelector((state: RootState) => state.author);
 
-  const { sort: topicSort, order: topicOrder } = useSelector(
-    (state: RootState) => state.topic
-  );
+  const {
+    sort: topicSort,
+    order: topicOrder,
+    alpha: topicAlpha,
+  } = useSelector((state: RootState) => state.topic);
 
   const handleNavigateToFeed = () => {
     toggle();
@@ -62,14 +62,18 @@ export const Navbar = ({ toggle }: any) => {
     toggle();
     scrollTo({ y: 0 });
     dispatch(setTopicPage(1));
-    navigate(`/topics?page=1&sort=${topicSort}&order=${topicOrder}`);
+    navigate(
+      `/topics?page=1&sort=${topicSort}&order=${topicOrder}&alpha=${topicAlpha}`
+    );
   };
 
   const handleNavigateToAuthors = () => {
     toggle();
     scrollTo({ y: 0 });
     dispatch(setAuthorPage(1));
-    navigate(`/authors?page=1&sort=${authorSort}&order=${authorOrder}`);
+    navigate(
+      `/authors?page=1&sort=${authorSort}&order=${authorOrder}&alpha=${authorAlpha}`
+    );
   };
 
   const handleNavigateToPlaylists = () => {
@@ -95,7 +99,7 @@ export const Navbar = ({ toggle }: any) => {
     open();
   };
 
-  const buttonClasses = `${oneTxOneBgButtonPseudo} ${borderBottom}`;
+  const buttonClasses = `${oneTxOneBgButtonPseudo}`;
 
   return (
     <Stack justify="space-between" gap={0} p={0} h="100%">

@@ -135,6 +135,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
               <Text>Access</Text>
 
               <CustomEnumCombobox
+                id="playlist-access"
                 EnumObject={Access}
                 label="Access"
                 data={Object.values(Access)}
