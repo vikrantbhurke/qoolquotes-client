@@ -1,4 +1,7 @@
-import { getFormTextInput } from "@/global/styles/global.styles";
+import {
+  getFormTextInput,
+  getRoundBorders,
+} from "@/global/styles/global.styles";
 import {
   Button,
   Group,
@@ -17,7 +20,7 @@ import {
   PlaylistLikerReadonlyButtonLayout,
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
-import { oneBg, oneTx, inputStyles } from "@/global/styles/app.css";
+import { oneBg, oneTx, inputStyles, border } from "@/global/styles/app.css";
 import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -82,7 +85,14 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
         </Stack>
       </Center>
 
-      <Stack maw={500} miw={400} gap="lg">
+      <Stack
+        maw={500}
+        miw={400}
+        gap="lg"
+        bg={oneBg}
+        p={isMobile ? 0 : "xl"}
+        className={isMobile ? "" : `${border}`}
+        style={{ ...getRoundBorders(isMobile) }}>
         <DeletePlaylistModalLayout
           opened={deletePlaylistOpened}
           close={deletePlaylistClose}

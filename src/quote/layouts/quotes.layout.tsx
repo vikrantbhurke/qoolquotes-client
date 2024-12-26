@@ -6,7 +6,7 @@ import {
 import { Center, Group, Space, Stack, Text } from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
-import { borderBottom } from "@/global/styles/app.css";
+import { borderBottom, oneBg } from "@/global/styles/app.css";
 import { useState } from "react";
 import { I } from "@/global/components/components";
 import { useIsMobile } from "@/global/hooks";
@@ -31,7 +31,8 @@ export const QuotesLayout = () => {
   return (
     <Stack
       gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
+      bg={oneBg}>
       <Group
         pl="xs"
         justify="space-between"

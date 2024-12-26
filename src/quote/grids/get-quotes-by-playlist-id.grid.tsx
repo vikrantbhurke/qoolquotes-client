@@ -31,6 +31,7 @@ export const GetQuotesByPlaylistIdGrid = () => {
 
   return (
     <MantineGrid
+      p={8}
       page={page}
       setPage={setPage}
       dataArray={quotes.content}

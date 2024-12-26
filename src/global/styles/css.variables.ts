@@ -1,16 +1,16 @@
 import { CSSVariablesResolver, lighten, darken } from "@mantine/core";
 
 export const DarkOne = "#09090B";
-export const DarkTwo = lighten("#09090B", 0.01);
-export const DarkThree = lighten("#09090B", 0.02);
-export const DarkFour = lighten("#09090B", 0.03);
-export const DarkFive = lighten("#09090B", 0.04);
+export const DarkTwo = lighten("#09090B", 0.02);
+export const DarkThree = lighten("#09090B", 0.05);
+export const DarkFour = lighten("#09090B", 0.08);
+export const DarkFive = lighten("#09090B", 0.11);
 export const DarkBorder = lighten("#09090B", 0.1);
 export const LightOne = "#FFFFFF";
-export const LightTwo = darken("#F8FAFD", 0.03);
-export const LightThree = darken("#F8FAFD", 0.07);
-export const LightFour = darken("#F8FAFD", 0.11);
-export const LightFive = darken("#F8FAFD", 0.15);
+export const LightTwo = darken("#F8FAFD", 0.02);
+export const LightThree = darken("#F8FAFD", 0.05);
+export const LightFour = darken("#F8FAFD", 0.08);
+export const LightFive = darken("#F8FAFD", 0.11);
 export const LightBorder = darken("#F8FAFD", 0.1);
 
 export const resolveCssVariables: CSSVariablesResolver = () => cssVariables();

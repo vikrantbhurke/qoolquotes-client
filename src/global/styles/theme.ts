@@ -19,7 +19,7 @@ export const theme = createTheme({
         color: oneTx,
         className: readexProFont,
         fw: 300,
-        radius: 0,
+        radius: 10,
         h: "3rem",
       },
     }),

@@ -4,7 +4,7 @@ const Banner320x50 = () => {
   const bannerRef = useRef<any>();
 
   const atOptions = {
-    key: "33847d5af8b6a7cc87848faa10acecd0",
+    key: "38be052fd763d67a6037c4953db9c9a6",
     format: "iframe",
     height: 50,
     width: 320,

@@ -1,4 +1,8 @@
-import { getFormTextInput, modal } from "@/global/styles/global.styles";
+import {
+  getFormTextInput,
+  getRoundBorders,
+  modal,
+} from "@/global/styles/global.styles";
 import {
   Button,
   Stack,
@@ -12,7 +16,7 @@ import {
   Space,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { oneTx, inputStyles } from "@/global/styles/app.css";
+import { oneTx, inputStyles, oneBg, border } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 import { useState } from "react";
@@ -43,7 +47,14 @@ export const UserItemLayout = ({ user }: any) => {
         </Stack>
       </Center>
 
-      <Stack maw={500} miw={400} gap="lg">
+      <Stack
+        maw={500}
+        miw={400}
+        gap="lg"
+        bg={oneBg}
+        p={isMobile ? 0 : "xl"}
+        className={isMobile ? "" : `${border}`}
+        style={{ ...getRoundBorders(isMobile) }}>
         <DeleteUserModalLayout opened={opened} close={close} />
 
         <Modal

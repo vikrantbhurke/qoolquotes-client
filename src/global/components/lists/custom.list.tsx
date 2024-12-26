@@ -1,8 +1,13 @@
 import { useIsMobile } from "@/global/hooks";
-import { borderTop } from "@/global/styles/app.css";
-import { subheaderHeight } from "@/global/styles/global.styles";
-import { Center, Pagination, ScrollArea, Stack } from "@mantine/core";
-import { Fragment, useRef } from "react";
+import { oneBg, twoBg } from "@/global/styles/app.css";
+import {
+  getGridItemBorder,
+  getPaginationStyles,
+  getTopRoundBorders,
+  subheaderHeight,
+} from "@/global/styles/global.styles";
+import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -40,18 +45,32 @@ export const CustomList = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}>
+      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      bg={twoBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        {dataArray.map((item: any, index: number) => {
-          return (
-            <Fragment key={index}>
-              <ListItemLayout item={item} />
-            </Fragment>
-          );
-        })}
+        <Box component="div" py={isMobile ? 0 : 4}>
+          {dataArray.map((item: any, index: number) => {
+            return (
+              <Box key={index} py={isMobile ? 0 : 4}>
+                <Box
+                  component="div"
+                  bg={oneBg}
+                  style={getGridItemBorder(isMobile)}
+                  h="100%">
+                  <ListItemLayout item={item} />
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
       </ScrollArea>
 
-      <Center className={borderTop}>
+      <Center
+        style={{
+          ...getPaginationStyles(isMobile),
+          ...getTopRoundBorders(isMobile),
+        }}
+        bg={oneBg}>
         <Pagination
           size="sm"
           m="sm"

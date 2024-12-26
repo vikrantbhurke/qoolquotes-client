@@ -12,6 +12,7 @@ import {
 } from "@tabler/icons-react";
 import {
   borderBottom,
+  oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
 } from "@/global/styles/app.css";
@@ -48,7 +49,8 @@ export const TopicsLayout = () => {
   return (
     <Stack
       gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
+      bg={oneBg}>
       <Group pl="sm" justify="space-between" gap={0} className={borderBottom}>
         <Group gap={3}>
           <I I={IconFileDescription} />

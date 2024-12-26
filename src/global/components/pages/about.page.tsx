@@ -2,13 +2,13 @@ import Banner300x250 from "@/ads/Banner300x250";
 import Banner320x50 from "@/ads/Banner320x50";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import { useIsMobile } from "@/global/hooks";
-import { threeTx } from "@/global/styles/app.css";
+import { oneBg, threeTx } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 
 export const AboutPage = () => {
   const isMobile = useIsMobile();
   return (
-    <Stack h="100%">
+    <Stack h="100%" bg={oneBg}>
       {/* <Center>
         <Banner320x50 />
       </Center>

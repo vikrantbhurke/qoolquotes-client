@@ -14,6 +14,7 @@ import {
   borderRight,
   borderTop,
   oneTxOneBg,
+  oneTxTwoBg,
   readexProFont,
 } from "@/global/styles/app.css";
 import { useIsMobile, usePopunderAd } from "@/global/hooks";
@@ -53,7 +54,9 @@ export const Layout = () => {
         <Aside />
       </AppShell.Aside>
 
-      <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
+      <AppShell.Main
+        className={`${isMobile ? `${oneTxOneBg}` : `${oneTxTwoBg}`}`}
+        h="100vh">
         <Main />
       </AppShell.Main>
 

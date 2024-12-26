@@ -31,6 +31,7 @@ export const GetAuthorsGrid = () => {
 
   return (
     <MantineGrid
+      p={4}
       page={page}
       setPage={setPage}
       dataArray={authors.content}

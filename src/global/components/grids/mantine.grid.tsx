@@ -2,11 +2,22 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useIsMobile } from "@/global/hooks";
 import { useSearchParams } from "react-router-dom";
-import { borderTop } from "@/global/styles/app.css";
-import { Center, Grid, Pagination, ScrollArea, Stack } from "@mantine/core";
-import { getGridBorder, subheaderHeight } from "@/global/styles/global.styles";
+import { borderTop, oneBg, twoBg } from "@/global/styles/app.css";
+import {
+  Box,
+  Center,
+  Grid,
+  Pagination,
+  ScrollArea,
+  Stack,
+} from "@mantine/core";
+import {
+  getGridItemBorder,
+  subheaderHeight,
+} from "@/global/styles/global.styles";
 
 export const MantineGrid = ({
+  p,
   page,
   setPage,
   dataArray,
@@ -40,23 +51,30 @@ export const MantineGrid = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}>
+      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      bg={twoBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        <Grid grow justify="center" gutter={0}>
+        <Grid grow justify="center" gutter={0} p={isMobile ? 0 : p}>
           {dataArray.map((item: any, index: number) => {
             return (
               <Grid.Col
+                p={isMobile ? 0 : p}
                 span={{ base: 12, md: 6 }}
-                key={index}
-                style={getGridBorder(isMobile, index, dataArray.length)}>
-                <GridItemLayout item={item} />
+                key={index}>
+                <Box
+                  component="div"
+                  bg={oneBg}
+                  style={getGridItemBorder(isMobile)}
+                  h="100%">
+                  <GridItemLayout item={item} />
+                </Box>
               </Grid.Col>
             );
           })}
         </Grid>
       </ScrollArea>
 
-      <Center className={borderTop}>
+      <Center className={borderTop} bg={oneBg}>
         <Pagination
           size="sm"
           m="sm"

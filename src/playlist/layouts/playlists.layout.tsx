@@ -1,11 +1,9 @@
-import {
-  borderBottom,
-  oneTx,
-  oneTxOneBgButtonPseudo,
-} from "@/global/styles/app.css";
+import { oneBg, oneTx, oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
 import {
   footerHeight,
+  getBottomRoundBorders,
   getSubheaderButton,
+  getSubheadersStyles,
   headerHeight,
   mainContentWidth,
   subheaderHeight,
@@ -104,7 +102,12 @@ export const PlaylistsLayout = () => {
       p={0}
       h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
       <Stack gap={0} h="100%">
-        <Radio.Group value={tab} className={borderBottom}>
+        <Radio.Group
+          value={tab}
+          bg={oneBg}
+          style={{
+            ...getSubheadersStyles(isMobile),
+          }}>
           <DeletePlaylistsModalLayout
             opened={deletePlaylistOpened}
             close={closeDeletePlaylist}
@@ -228,7 +231,12 @@ export const PlaylistsLayout = () => {
           <PlaylistsFilterModal opened={modalOpened} close={modalClose} />
         </Radio.Group>
 
-        <Center className={borderBottom}>
+        <Center
+          bg={oneBg}
+          style={{
+            ...getSubheadersStyles(isMobile),
+            ...getBottomRoundBorders(isMobile),
+          }}>
           <Stack h={isMobile ? 50 : 90}>
             {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Stack>

@@ -1,9 +1,4 @@
-import {
-  borderBottom,
-  oneBg,
-  oneTx,
-  oneTxOneBgButtonPseudo,
-} from "@/global/styles/app.css";
+import { oneBg, oneTx } from "@/global/styles/app.css";
 import { listItemHeight } from "@/global/styles/global.styles";
 import { Avatar, Button, Group, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
@@ -37,12 +32,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
   };
 
   return (
-    <Stack
-      px="md"
-      gap="xs"
-      justify="center"
-      h={listItemHeight}
-      className={`${oneTxOneBgButtonPseudo} ${borderBottom}`}>
+    <Stack px="md" gap="xs" justify="center" h={listItemHeight}>
       <Group justify="space-between">
         <Text onClick={handleNavigateToPlaylist} fz="sm" fw="500">
           {item.name}

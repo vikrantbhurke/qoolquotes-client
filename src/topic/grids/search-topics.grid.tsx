@@ -31,6 +31,7 @@ export const SearchTopicsGrid = () => {
 
   return (
     <MantineGrid
+      p={4}
       page={page}
       setPage={setPage}
       dataArray={topics.content}

@@ -77,16 +77,20 @@ export const getSearchTextInput = (
 ) => ({
   input: {
     backgroundColor: "transparent",
-    height: headerHeight,
+    height: isMobile ? headerHeight : "100%",
     width: isMobile ? width : width - (navbarAsideWidth + navbarAsideWidth),
-    borderTop: "none",
-    borderLeft: isMobile ? "none" : borderLowContrast,
-    borderRight: isMobile ? "none" : borderLowContrast,
-    borderBottom: borderLowContrast,
-    borderRadius: 0,
+    border: borderHighContrast,
+    borderRadius: isMobile ? 0 : 8,
   },
 });
 
+export const getItemCardStyles = (isMobile: boolean) => ({
+  backgroundColor: oneBg,
+  border: isMobile ? "none" : borderLowContrast,
+  borderRadius: isMobile ? 0 : 10,
+});
+
+// Mantine Grid.Colum Component Styles
 export const getGridBorder = (
   isMobile: boolean,
   index: number,
@@ -101,6 +105,59 @@ export const getGridBorder = (
         ? borderLowContrast
         : "none",
     borderLeft: "none",
+  };
+};
+
+// Mantine Grid.Colum Custome Child Component Styles
+export const getGridItemBorder = (isMobile: boolean) => {
+  if (isMobile) {
+    return {
+      borderTop: "none",
+      borderBottom: borderLowContrast,
+      borderRight: "none",
+      borderLeft: "none",
+    };
+  } else {
+    return {
+      border: borderLowContrast,
+      borderRadius: "10px",
+    };
+  }
+};
+
+export const getSubheadersStyles = (isMobile: boolean) => {
+  return {
+    borderBottom: borderLowContrast,
+    borderLeft: isMobile ? "none" : borderLowContrast,
+    borderRight: isMobile ? "none" : borderLowContrast,
+    borderTop: "none",
+  };
+};
+
+export const getPaginationStyles = (isMobile: boolean) => {
+  return {
+    borderTop: borderLowContrast,
+    borderLeft: isMobile ? "none" : borderLowContrast,
+    borderRight: isMobile ? "none" : borderLowContrast,
+    borderBottom: "none",
+  };
+};
+
+export const getRoundBorders = (isMobile: boolean) => {
+  return {
+    borderRadius: isMobile ? "0" : "10px",
+  };
+};
+
+export const getTopRoundBorders = (isMobile: boolean) => {
+  return {
+    borderRadius: isMobile ? "0" : "10px 10px 0 0",
+  };
+};
+
+export const getBottomRoundBorders = (isMobile: boolean) => {
+  return {
+    borderRadius: isMobile ? "0" : "0 0 10px 10px",
   };
 };
 

@@ -1,7 +1,8 @@
 import { CustomEnumCombobox, I } from "@/global/components/components";
-import { oneBg, oneTx, inputStyles } from "@/global/styles/app.css";
+import { oneBg, oneTx, inputStyles, border } from "@/global/styles/app.css";
 import {
   getFormTextInput,
+  getRoundBorders,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
@@ -27,11 +28,12 @@ import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
 import { setGender } from "../user.slice";
 import { useDispatch } from "react-redux";
-import { useAuthReroute } from "@/global/hooks";
+import { useAuthReroute, useIsMobile } from "@/global/hooks";
 import { setFocusedInput } from "@/global/states/view.slice";
 
 export const SignUpUserFormLayout = () => {
   useAuthReroute();
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignUpUser, isPending } = useSignUpUserForm();
@@ -47,8 +49,8 @@ export const SignUpUserFormLayout = () => {
   };
 
   return (
-    <Container size={mainContentWidth} p={0} h="100%">
-      <Stack px="md" justify="center" align="center" bg={oneBg} h="100%">
+    <Container size={mainContentWidth} p="xl" h="100%">
+      <Stack px="md" justify="center" align="center" h="100%">
         <form onSubmit={form.onSubmit(handleSignUpUser)}>
           <ScrollArea
             scrollbarSize={2}
@@ -60,7 +62,14 @@ export const SignUpUserFormLayout = () => {
                 overflow: "auto", // Ensure the browser scrollbar is used
               },
             }}>
-            <Stack maw={500} miw={400} gap="lg" py="md">
+            <Stack
+              maw={500}
+              miw={400}
+              gap="lg"
+              p={isMobile ? 0 : "xl"}
+              bg={oneBg}
+              className={isMobile ? "" : `${border}`}
+              style={{ ...getRoundBorders(isMobile) }}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />

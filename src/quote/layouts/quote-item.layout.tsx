@@ -2,12 +2,17 @@ import {
   oneTx,
   threeBg,
   borderLowContrastColor,
+  oneBg,
+  twoBg,
 } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PlaylistModal } from "@/playlist/layouts";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
-import { mainContentWidth } from "@/global/styles/global.styles";
+import {
+  getItemCardStyles,
+  mainContentWidth,
+} from "@/global/styles/global.styles";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
 import {
@@ -86,7 +91,11 @@ export const QuoteItemLayout = ({ quote }: any) => {
   };
 
   return (
-    <Stack h="100%" align="center" justify="space-between">
+    <Stack
+      h="100%"
+      align="center"
+      justify="space-between"
+      bg={isMobile ? oneBg : twoBg}>
       <PlaylistModal opened={modalOpened} close={close} />
 
       <Center p="md">
@@ -96,9 +105,11 @@ export const QuoteItemLayout = ({ quote }: any) => {
       </Center>
 
       <Stack
+        style={getItemCardStyles(isMobile)}
+        bg={oneBg}
         maw={mainContentWidth}
         gap="xl"
-        px="md"
+        p="xl"
         justify="center"
         align="center">
         <Text ta="center">{quote.content}</Text>

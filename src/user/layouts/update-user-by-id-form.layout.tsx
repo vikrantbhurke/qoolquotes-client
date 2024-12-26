@@ -1,5 +1,6 @@
 import {
   getFormTextInput,
+  getRoundBorders,
   mainContentWidth,
   modal,
 } from "@/global/styles/global.styles";
@@ -23,7 +24,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh, IconTrash } from "@tabler/icons-react";
-import { oneTx, inputStyles } from "@/global/styles/app.css";
+import { oneTx, inputStyles, border, oneBg } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
@@ -32,8 +33,10 @@ import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
 import { I } from "@/global/components/components";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
+import { useIsMobile } from "@/global/hooks";
 
 export const UpdateUserByIdFormLayout = () => {
+  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -52,7 +55,14 @@ export const UpdateUserByIdFormLayout = () => {
     <Container size={mainContentWidth} p={0} h="100%">
       <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
         <form onSubmit={form.onSubmit(handleUpdateUserById)}>
-          <Stack maw={500} miw={400} gap="lg">
+          <Stack
+            maw={500}
+            miw={400}
+            gap="lg"
+            bg={oneBg}
+            p={isMobile ? 0 : "xl"}
+            className={isMobile ? "" : `${border}`}
+            style={{ ...getRoundBorders(isMobile) }}>
             <Modal
               c={oneTx}
               styles={modal}

@@ -102,8 +102,8 @@ export const Navbar = ({ toggle }: any) => {
   const buttonClasses = `${oneTxOneBgButtonPseudo}`;
 
   return (
-    <Stack justify="space-between" gap={0} p={0} h="100%">
-      <Stack gap={0} p={0}>
+    <Stack justify="space-between" gap={0} h="100%">
+      <Stack gap={0} p="xs">
         {!isInstalled && installPrompt && (
           <CompOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button

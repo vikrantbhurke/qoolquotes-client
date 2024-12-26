@@ -1,4 +1,7 @@
-import { getFormTextInput } from "@/global/styles/global.styles";
+import {
+  getFormTextInput,
+  getRoundBorders,
+} from "@/global/styles/global.styles";
 import {
   ActionIcon,
   Button,
@@ -28,9 +31,11 @@ import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { inputStyles } from "@/global/styles/app.css";
+import { border, inputStyles, oneBg } from "@/global/styles/app.css";
+import { useIsMobile } from "@/global/hooks";
 
 export const UpdatePlaylistByIdFormLayout = () => {
+  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { access } = useSelector((state: any) => state.playlist);
@@ -58,7 +63,14 @@ export const UpdatePlaylistByIdFormLayout = () => {
   return (
     <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
       <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
-        <Stack maw={500} miw={400} gap="lg">
+        <Stack
+          maw={500}
+          miw={400}
+          gap="lg"
+          bg={oneBg}
+          p={isMobile ? 0 : "xl"}
+          className={isMobile ? "" : `${border}`}
+          style={{ ...getRoundBorders(isMobile) }}>
           <Group gap={0} align="center" justify="space-between">
             <Space w="md" />
 
