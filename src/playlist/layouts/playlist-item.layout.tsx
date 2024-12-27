@@ -1,7 +1,4 @@
-import {
-  getFormTextInput,
-  getRoundBorders,
-} from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import {
   Button,
   Group,
@@ -20,7 +17,13 @@ import {
   PlaylistLikerReadonlyButtonLayout,
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
-import { oneBg, oneTx, inputStyles, border } from "@/global/styles/app.css";
+import {
+  oneBg,
+  oneTx,
+  inputStyles,
+  border,
+  roundBorders,
+} from "@/global/styles/app.css";
 import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -39,15 +42,15 @@ import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import { useIsMobile } from "@/global/hooks";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -86,13 +89,12 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
       </Center>
 
       <Stack
-        maw={500}
-        miw={400}
+        maw={isMobile ? 500 : 570}
+        miw={isMobile ? 400 : 470}
         gap="lg"
         bg={oneBg}
         p={isMobile ? 0 : "xl"}
-        className={isMobile ? "" : `${border}`}
-        style={{ ...getRoundBorders(isMobile) }}>
+        className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
         <DeletePlaylistModalLayout
           opened={deletePlaylistOpened}
           close={deletePlaylistClose}

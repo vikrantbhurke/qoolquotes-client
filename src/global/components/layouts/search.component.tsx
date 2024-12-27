@@ -17,17 +17,15 @@ import {
 } from "@/global/styles/global.styles";
 import { useLocation, useNavigate } from "react-router-dom";
 import { inputStyles, oneBg } from "@/global/styles/app.css";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "../components";
 
 export const Search = () => {
-  const isMobile = useIsMobile();
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { search } = useSelector((state: RootState) => state.view);
   const { width } = useViewportSize();
   const inputRef = useRef<any>(null);
+  const { search, isMobile } = useSelector((state: RootState) => state.view);
 
   const { sort: authorSort, order: authorOrder } = useSelector(
     (state: RootState) => state.author

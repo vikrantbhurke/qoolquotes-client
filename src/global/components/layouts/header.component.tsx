@@ -21,7 +21,6 @@ import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
 import { oneTx } from "@/global/styles/app.css";
-import { useIsMobile } from "@/global/hooks";
 import { signOut } from "@/user/auth.slice";
 import {
   headerHeight,
@@ -32,12 +31,12 @@ import logo from "@/assets/pwa-512x512.png";
 import logoDark from "@/assets/pwa-512x512-dark.png";
 
 export const Header = ({ opened, toggle }: any) => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { isMobile } = useSelector((state: any) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
 

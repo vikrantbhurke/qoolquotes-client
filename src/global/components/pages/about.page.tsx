@@ -1,12 +1,13 @@
 import Banner300x250 from "@/ads/Banner300x250";
 import Banner320x50 from "@/ads/Banner320x50";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import { useIsMobile } from "@/global/hooks";
 import { oneBg, threeTx } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
+import { useSelector } from "react-redux";
 
 export const AboutPage = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useSelector((state: any) => state.view);
+
   return (
     <Stack h="100%" bg={oneBg}>
       {/* <Center>

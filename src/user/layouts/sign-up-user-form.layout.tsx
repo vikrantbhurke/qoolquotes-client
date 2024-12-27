@@ -1,8 +1,13 @@
 import { CustomEnumCombobox, I } from "@/global/components/components";
-import { oneBg, oneTx, inputStyles, border } from "@/global/styles/app.css";
+import {
+  oneBg,
+  oneTx,
+  inputStyles,
+  border,
+  roundBorders,
+} from "@/global/styles/app.css";
 import {
   getFormTextInput,
-  getRoundBorders,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
@@ -28,17 +33,19 @@ import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
 import { setGender } from "../user.slice";
 import { useDispatch } from "react-redux";
-import { useAuthReroute, useIsMobile } from "@/global/hooks";
+import { useAuthReroute } from "@/global/hooks";
 import { setFocusedInput } from "@/global/states/view.slice";
 
 export const SignUpUserFormLayout = () => {
   useAuthReroute();
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignUpUser, isPending } = useSignUpUserForm();
   const { gender } = useSelector((state: RootState) => state.user);
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleNavigateToSignIn = () => navigate("/sign-in");
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
@@ -59,17 +66,16 @@ export const SignUpUserFormLayout = () => {
                 display: "none", // Hide Mantine's custom scrollbar
               },
               viewport: {
-                overflow: "auto", // Ensure the browser scrollbar is used
+                overflowY: "auto", // Ensure the browser scrollbar is used
               },
             }}>
             <Stack
-              maw={500}
-              miw={400}
+              maw={isMobile ? 500 : 570}
+              miw={isMobile ? 400 : 470}
               gap="lg"
               p={isMobile ? 0 : "xl"}
               bg={oneBg}
-              className={isMobile ? "" : `${border}`}
-              style={{ ...getRoundBorders(isMobile) }}>
+              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />

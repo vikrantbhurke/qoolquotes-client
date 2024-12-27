@@ -1,6 +1,5 @@
 import {
   getFormTextInput,
-  getRoundBorders,
   mainContentWidth,
   modal,
 } from "@/global/styles/global.styles";
@@ -24,25 +23,32 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh, IconTrash } from "@tabler/icons-react";
-import { oneTx, inputStyles, border, oneBg } from "@/global/styles/app.css";
+import {
+  oneTx,
+  inputStyles,
+  border,
+  oneBg,
+  roundBorders,
+} from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useState } from "react";
-import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
 import { I } from "@/global/components/components";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { useIsMobile } from "@/global/hooks";
+import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
 
 export const UpdateUserByIdFormLayout = () => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { auth } = useSelector((state: RootState) => state.auth);
   const [picViewOpened, setOpened] = useState(false);
   const [picDeleteOpened, { open, close }] = useDisclosure();
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const { user, form, handleUpdateUserById, isPending } =
     useUpdateUserByIdForm();
@@ -56,13 +62,12 @@ export const UpdateUserByIdFormLayout = () => {
       <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
         <form onSubmit={form.onSubmit(handleUpdateUserById)}>
           <Stack
-            maw={500}
-            miw={400}
+            maw={isMobile ? 500 : 570}
+            miw={isMobile ? 400 : 470}
             gap="lg"
             bg={oneBg}
             p={isMobile ? 0 : "xl"}
-            className={isMobile ? "" : `${border}`}
-            style={{ ...getRoundBorders(isMobile) }}>
+            className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
             <Modal
               c={oneTx}
               styles={modal}

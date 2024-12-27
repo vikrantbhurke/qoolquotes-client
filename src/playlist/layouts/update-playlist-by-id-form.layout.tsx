@@ -1,7 +1,4 @@
-import {
-  getFormTextInput,
-  getRoundBorders,
-} from "@/global/styles/global.styles";
+import { getFormTextInput } from "@/global/styles/global.styles";
 import {
   ActionIcon,
   Button,
@@ -31,15 +28,20 @@ import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { border, inputStyles, oneBg } from "@/global/styles/app.css";
-import { useIsMobile } from "@/global/hooks";
+import {
+  border,
+  inputStyles,
+  oneBg,
+  roundBorders,
+} from "@/global/styles/app.css";
 
 export const UpdatePlaylistByIdFormLayout = () => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { access } = useSelector((state: any) => state.playlist);
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -64,13 +66,12 @@ export const UpdatePlaylistByIdFormLayout = () => {
     <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
       <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
         <Stack
-          maw={500}
-          miw={400}
+          maw={isMobile ? 500 : 570}
+          miw={isMobile ? 400 : 470}
           gap="lg"
           bg={oneBg}
           p={isMobile ? 0 : "xl"}
-          className={isMobile ? "" : `${border}`}
-          style={{ ...getRoundBorders(isMobile) }}>
+          className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
           <Group gap={0} align="center" justify="space-between">
             <Space w="md" />
 

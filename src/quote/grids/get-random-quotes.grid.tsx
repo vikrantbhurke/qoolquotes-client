@@ -5,29 +5,33 @@ import {
   twoBg,
 } from "@/global/styles/app.css";
 import {
-  getGridBorder,
   getGridItemBorder,
+  listItemHeight,
 } from "@/global/styles/global.styles";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { QuoteGridItemLayout } from "../layouts";
 import { CustomLoader } from "@/global/components/loaders";
-import { useIsMobile } from "@/global/hooks";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
+import { useSelector } from "react-redux";
 
 export const GetRandomQuotesGrid = () => {
   const { randomQuotes, fetchQuotes } = useGetRandomQuotes();
-  const isMobile = useIsMobile();
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const UtilComponent = ({ message }: any) => (
-    <Center
-      p="xl"
-      className={normalPseudo}
-      style={getGridBorder(isMobile, 1, randomQuotes.length)}>
-      <Text>{message}</Text>
-    </Center>
+    <Box component="div" mx={isMobile ? 0 : 16}>
+      <Center
+        h={listItemHeight}
+        style={getGridItemBorder(isMobile)}
+        className={normalPseudo}
+        // style={getGridBorder(isMobile, 1, randomQuotes.length)}
+      >
+        <Text>{message}</Text>
+      </Center>
+    </Box>
   );
 
   return (

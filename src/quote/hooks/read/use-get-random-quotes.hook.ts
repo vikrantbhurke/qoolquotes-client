@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getRandomQuotes } from "@/quote/quote.network";
-import { useIsMobile } from "@/global/hooks";
+import { useSelector } from "react-redux";
 
 export const useGetRandomQuotes = () => {
-  const isMobile = useIsMobile();
   const [randomQuotes, setRandomQuotes] = useState<any[]>([]);
   const [totalElements, setTotalElements] = useState<number>(0);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const fetchQuotes = async () => {
     const quotes = await getRandomQuotes(isMobile ? 10 : 15);

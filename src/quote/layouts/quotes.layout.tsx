@@ -9,16 +9,15 @@ import { IconFileDescription } from "@tabler/icons-react";
 import { borderBottom, oneBg } from "@/global/styles/app.css";
 import { useState } from "react";
 import { I } from "@/global/components/components";
-import { useIsMobile } from "@/global/hooks";
 import { useSelector } from "react-redux";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const QuotesLayout = () => {
-  const isMobile = useIsMobile();
   const location = useLocation();
   const { search } = useSelector((state: any) => state.view);
   const { filterObject } = useSelector((state: any) => state.quote);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const [data, setData] = useState<any>({
     page: 0,

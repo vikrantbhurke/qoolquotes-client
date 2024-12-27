@@ -38,7 +38,6 @@ import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
 import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
-import { useIsMobile } from "@/global/hooks";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
 import { Order } from "@/global/enums";
@@ -49,7 +48,7 @@ import { PlaylistsFilterDrawer } from "./playlists-filter.drawer";
 export const PlaylistsLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const [
     deletePlaylistOpened,
@@ -210,6 +209,7 @@ export const PlaylistsLayout = () => {
                 </ActionIcon>
               ) : (
                 <Button
+                  radius={0}
                   h={subheaderHeight}
                   c={isFilterApplied ? "green" : oneTx}
                   className={oneTxOneBgButtonPseudo}

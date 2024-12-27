@@ -30,10 +30,10 @@ export const PlaylistsFilterModal = ({ opened, close }: any) => {
   };
 
   const handleRefresh = () => {
-    dispatch(setOrder(Order.Ascending));
+    dispatch(setOrder(Order.Descending));
     dispatch(setSort(Sort.Date));
     const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set("order", Order.Ascending);
+    newSearchParams.set("order", Order.Descending);
     newSearchParams.set("sort", Sort.Date);
     setSearchParams(newSearchParams);
   };

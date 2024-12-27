@@ -35,17 +35,16 @@ import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import { useIsMobile } from "@/global/hooks";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const QuoteItemLayout = ({ quote }: any) => {
-  const isMobile = useIsMobile();
   const { auth } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const pills = quote.topicIds.map((topicId: any) => {
     return (

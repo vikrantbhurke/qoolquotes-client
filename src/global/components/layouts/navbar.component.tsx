@@ -25,17 +25,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ContactModal, I } from "../components";
-import { useInstallApp, useIsMobile } from "@/global/hooks";
+import { useInstallApp } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
 import Banner300x250 from "@/ads/Banner300x250";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const Navbar = ({ toggle }: any) => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const [, scrollTo] = useWindowScroll();
+  const { isMobile } = useSelector((state: any) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const [opened, { open, close }] = useDisclosure();

@@ -21,7 +21,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { TopicsFilterModal } from "./topics-filter.modal";
 import { TopicsFilterDrawer } from "./topics-filter.drawer";
 import { globalUtility } from "@/global/utilities";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
@@ -29,8 +28,8 @@ import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const TopicsLayout = () => {
-  const isMobile = useIsMobile();
   const { order, alpha } = useSelector((state: any) => state.topic);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
     useDisclosure(false);
@@ -68,6 +67,7 @@ export const TopicsLayout = () => {
         </Text>
 
         <Button
+          radius={0}
           h={subheaderHeight}
           c={isFilterApplied ? "green" : oneTx}
           className={oneTxOneBgButtonPseudo}

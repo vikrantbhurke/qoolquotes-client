@@ -1,11 +1,16 @@
 import { I } from "@/global/components/components";
-import { useAuthReroute, useIsMobile } from "@/global/hooks";
+import { useAuthReroute } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { oneBg, oneTx, inputStyles, border } from "@/global/styles/app.css";
+import {
+  oneBg,
+  oneTx,
+  inputStyles,
+  border,
+  roundBorders,
+} from "@/global/styles/app.css";
 import {
   getFormTextInput,
-  getRoundBorders,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignInUserForm } from "@/user/hooks/create";
@@ -29,11 +34,13 @@ import { useNavigate } from "react-router-dom";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignInUser, isPending } = useSignInUserForm();
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleNavigateToSignUp = () => navigate("/sign-up");
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
@@ -44,13 +51,12 @@ export const SignInUserFormLayout = () => {
       <Stack px="md" justify="center" align="center" h="100%">
         <form onSubmit={form.onSubmit(handleSignInUser)}>
           <Stack
-            maw={500}
-            miw={400}
+            maw={isMobile ? 500 : 570}
+            miw={isMobile ? 400 : 470}
             gap="lg"
             bg={oneBg}
             p={isMobile ? 0 : "xl"}
-            className={isMobile ? "" : `${border}`}
-            style={{ ...getRoundBorders(isMobile) }}>
+            className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
             <Stack gap={0}>
               <Group gap={0} align="center" justify="space-between">
                 <Space w="md" />

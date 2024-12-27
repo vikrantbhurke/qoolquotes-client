@@ -21,7 +21,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { AuthorsFilterModal } from "./authors-filter.modal";
 import { AuthorsFilterDrawer } from "./authors-filter.drawer";
 import { globalUtility } from "@/global/utilities";
-import { useIsMobile } from "@/global/hooks";
 import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
@@ -29,7 +28,7 @@ import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
 
 export const AuthorsLayout = () => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useSelector((state: any) => state.view);
   const { order, alpha } = useSelector((state: any) => state.author);
 
   const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
@@ -68,6 +67,7 @@ export const AuthorsLayout = () => {
         </Text>
 
         <Button
+          radius={0}
           h={subheaderHeight}
           c={isFilterApplied ? "green" : oneTx}
           className={oneTxOneBgButtonPseudo}

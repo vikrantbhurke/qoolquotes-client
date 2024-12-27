@@ -108,7 +108,7 @@ export const getGridBorder = (
   };
 };
 
-// Mantine Grid.Colum Custome Child Component Styles
+// Mantine Grid.Column Custom Child Component Styles
 export const getGridItemBorder = (isMobile: boolean) => {
   if (isMobile) {
     return {
@@ -143,12 +143,6 @@ export const getPaginationStyles = (isMobile: boolean) => {
   };
 };
 
-export const getRoundBorders = (isMobile: boolean) => {
-  return {
-    borderRadius: isMobile ? "0" : "10px",
-  };
-};
-
 export const getTopRoundBorders = (isMobile: boolean) => {
   return {
     borderRadius: isMobile ? "0" : "10px 10px 0 0",
@@ -161,8 +155,6 @@ export const getBottomRoundBorders = (isMobile: boolean) => {
   };
 };
 
-export const buttonBorder = { border: borderLowContrast, borderRadius: 5 };
-
 export const modal = {
   title: { fontFamily: "Readex Pro" },
   content: { backgroundColor: `${twoBg}` },
@@ -172,6 +164,15 @@ export const modal = {
 export const modalOverlayProps = {
   backgroundOpacity: 0.55,
   blur: 3,
+};
+
+export const drawer = {
+  title: { fontFamily: "Readex Pro" },
+  header: { backgroundColor: `${twoBg}` },
+  content: {
+    borderRadius: "20px 20px 0 0",
+    backgroundColor: `${twoBg}`,
+  },
 };
 
 export const getFormTextInput = (isFocused: boolean) => ({
@@ -192,15 +193,6 @@ export const getComboboxTextInput = (isFocused: boolean) => ({
     border: isFocused ? borderHighContrast : borderLowContrast,
   },
 });
-
-export const drawer = {
-  title: { fontFamily: "Readex Pro" },
-  header: { backgroundColor: `${twoBg}` },
-  content: {
-    borderRadius: "20px 20px 0 0",
-    backgroundColor: `${twoBg}`,
-  },
-};
 
 export const getSubheaderButton = (isActive: boolean) => {
   return {

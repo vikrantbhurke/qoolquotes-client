@@ -1,4 +1,3 @@
-import { useIsMobile } from "@/global/hooks";
 import { oneBg, twoBg } from "@/global/styles/app.css";
 import {
   getGridItemBorder,
@@ -8,6 +7,7 @@ import {
 } from "@/global/styles/global.styles";
 import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
@@ -18,10 +18,10 @@ export const CustomList = ({
   totalPages,
   ListItemLayout,
 }: any) => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));

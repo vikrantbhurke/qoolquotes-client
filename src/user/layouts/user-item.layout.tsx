@@ -1,8 +1,5 @@
-import {
-  getFormTextInput,
-  getRoundBorders,
-  modal,
-} from "@/global/styles/global.styles";
+import { useDisclosure } from "@mantine/hooks";
+import { getFormTextInput, modal } from "@/global/styles/global.styles";
 import {
   Button,
   Stack,
@@ -15,26 +12,32 @@ import {
   Text,
   Space,
 } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { oneTx, inputStyles, oneBg, border } from "@/global/styles/app.css";
+import {
+  oneTx,
+  inputStyles,
+  oneBg,
+  border,
+  roundBorders,
+} from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
-import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import { useIsMobile } from "@/global/hooks";
 import Banner320x50 from "@/ads/Banner320x50";
+import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 
 export const UserItemLayout = ({ user }: any) => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
-  const { focusedInput } = useSelector((state: RootState) => state.view);
+
+  const { focusedInput, isMobile } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -48,13 +51,12 @@ export const UserItemLayout = ({ user }: any) => {
       </Center>
 
       <Stack
-        maw={500}
-        miw={400}
+        maw={isMobile ? 500 : 570}
+        miw={isMobile ? 400 : 470}
         gap="lg"
         bg={oneBg}
         p={isMobile ? 0 : "xl"}
-        className={isMobile ? "" : `${border}`}
-        style={{ ...getRoundBorders(isMobile) }}>
+        className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
         <DeleteUserModalLayout opened={opened} close={close} />
 
         <Modal

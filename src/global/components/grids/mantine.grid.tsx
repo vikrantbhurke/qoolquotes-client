@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useIsMobile } from "@/global/hooks";
 import { useSearchParams } from "react-router-dom";
 import { borderTop, oneBg, twoBg } from "@/global/styles/app.css";
 import {
@@ -15,6 +14,7 @@ import {
   getGridItemBorder,
   subheaderHeight,
 } from "@/global/styles/global.styles";
+import { useSelector } from "react-redux";
 
 export const MantineGrid = ({
   p,
@@ -24,10 +24,10 @@ export const MantineGrid = ({
   totalPages,
   GridItemLayout,
 }: any) => {
-  const isMobile = useIsMobile();
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useSelector((state: any) => state.view);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));

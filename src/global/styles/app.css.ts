@@ -218,6 +218,10 @@ export const oneTxThreeBgButtonPseudo = style({
   },
 });
 
+export const roundBorders = style({
+  borderRadius: "10px",
+});
+
 export const border = style({
   border: borderLowContrast,
 });

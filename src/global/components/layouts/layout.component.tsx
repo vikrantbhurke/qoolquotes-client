@@ -18,11 +18,13 @@ import {
   readexProFont,
 } from "@/global/styles/app.css";
 import { useIsMobile, usePopunderAd } from "@/global/hooks";
+import { useSelector } from "react-redux";
 
 export const Layout = () => {
   usePopunderAd();
+  useIsMobile();
   // useSocialAd();
-  const isMobile = useIsMobile();
+  const { isMobile } = useSelector((state: any) => state.view);
   const [opened, { toggle }] = useDisclosure();
 
   const { navbar, aside, header, footer } = getAppShell(
