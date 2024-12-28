@@ -50,10 +50,10 @@ export const CustomList = ({
       h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={twoBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        <Box component="div" py={isMobile ? 0 : 4}>
+        <Box component="div" p={isMobile ? 0 : 4}>
           {dataArray.map((item: any, index: number) => {
             return (
-              <Box key={index} py={isMobile ? 0 : 4}>
+              <Box key={index} p={isMobile ? 0 : 4}>
                 <Box
                   h="100%"
                   bg={oneBg}
