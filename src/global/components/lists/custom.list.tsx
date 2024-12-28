@@ -53,10 +53,18 @@ export const CustomList = ({
             return (
               <Box key={index} py={isMobile ? 0 : 4}>
                 <Box
-                  component="div"
+                  h="100%"
                   bg={oneBg}
+                  component="div"
                   style={getGridItemBorder(isMobile)}
-                  h="100%">
+                  onMouseEnter={(e) => {
+                    if (!isMobile)
+                      e.currentTarget.style.boxShadow =
+                        "0px 4px 10px rgba(0, 0, 0, 0.2)"; // Shadow on hover
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isMobile) e.currentTarget.style.boxShadow = "none"; // Remove shadow on mouse leave
+                  }}>
                   <ListItemLayout item={item} />
                 </Box>
               </Box>

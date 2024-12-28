@@ -100,7 +100,7 @@ export const Search = () => {
   };
 
   return (
-    <Group justify="center" p={isMobile ? 0 : "xs"}>
+    <Group justify="center" p={isMobile ? 0 : "xs"} align="center" h="100%">
       <TextInput
         bg={oneBg}
         value={search}

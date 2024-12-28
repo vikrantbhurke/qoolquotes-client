@@ -1,5 +1,5 @@
 import { setPage } from "@/quote/quote.slice";
-import { oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
+import { oneBg, oneTx } from "@/global/styles/app.css";
 import { listButtonHeight } from "@/global/styles/global.styles";
 import { Button } from "@mantine/core";
 import { useDispatch } from "react-redux";
@@ -24,7 +24,8 @@ export const TopicGridItemLayout = ({ item }: any) => {
     <Button
       fullWidth
       h={listButtonHeight}
-      className={oneTxOneBgButtonPseudo}
+      c={oneTx}
+      bg={oneBg}
       onClick={handleNavigateToQuoteByTopic}>
       {item.name} ({globalUtility.formatNumber(topicQuotes?.count || 0)})
     </Button>

@@ -121,6 +121,7 @@ export const getGridItemBorder = (isMobile: boolean) => {
     return {
       border: borderLowContrast,
       borderRadius: "10px",
+      transition: "box-shadow 0.2s ease",
     };
   }
 };
