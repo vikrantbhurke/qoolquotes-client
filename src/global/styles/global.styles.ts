@@ -121,7 +121,7 @@ export const getGridItemBorder = (isMobile: boolean) => {
     return {
       border: borderLowContrast,
       borderRadius: "10px",
-      transition: "box-shadow 0.2s ease",
+      transition: "box-shadow 0.3s ease",
     };
   }
 };
@@ -154,6 +154,14 @@ export const getBottomRoundBorders = (isMobile: boolean) => {
   return {
     borderRadius: isMobile ? "0" : "0 0 10px 10px",
   };
+};
+
+export const addBoxShadow = (e: any) => {
+  e.currentTarget.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.2)";
+};
+
+export const removeBoxShadow = (e: any) => {
+  e.currentTarget.style.boxShadow = "none";
 };
 
 export const modal = {
