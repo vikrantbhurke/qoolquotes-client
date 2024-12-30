@@ -1,4 +1,9 @@
-import { oneBg, oneTx, oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
+import {
+  borderBottomShadow,
+  oneBg,
+  oneTx,
+  oneTxOneBgButtonPseudo,
+} from "@/global/styles/app.css";
 import {
   footerHeight,
   getBottomRoundBorders,
@@ -25,7 +30,7 @@ import { setTab } from "../playlist.slice";
 import { useDispatch } from "react-redux";
 import { CompOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { setPage } from "@/playlist/playlist.slice";
 import {
   IconFileDescription,
@@ -44,8 +49,12 @@ import { Order } from "@/global/enums";
 import { Sort } from "../enums";
 import { PlaylistsFilterModal } from "./playlists-filter.modal";
 import { PlaylistsFilterDrawer } from "./playlists-filter.drawer";
+import { setIsAdHeaderVisible } from "@/global/states/view.slice";
+import { useIsComponentVisible } from "@/global/hooks";
 
 export const PlaylistsLayout = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsAdHeaderVisible);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isMobile } = useSelector((state: any) => state.view);
@@ -233,7 +242,10 @@ export const PlaylistsLayout = () => {
 
         <Center
           bg={oneBg}
+          ref={ref}
+          className={borderBottomShadow}
           style={{
+            zIndex: 1,
             ...getSubheadersStyles(isMobile),
             ...getBottomRoundBorders(isMobile),
           }}>

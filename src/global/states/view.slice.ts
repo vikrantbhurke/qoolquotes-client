@@ -7,6 +7,8 @@ export interface ViewState {
   isSearchbarVisible: boolean;
   focusedInput: string;
   isMobile: boolean;
+  isAdHeaderVisible: boolean;
+  isPaginationVisible: boolean;
 }
 
 const initialState: ViewState = {
@@ -15,6 +17,8 @@ const initialState: ViewState = {
   isSearchbarVisible: false,
   focusedInput: "",
   isMobile: false,
+  isAdHeaderVisible: false,
+  isPaginationVisible: false,
 };
 
 export const viewSlice = createSlice({
@@ -36,6 +40,12 @@ export const viewSlice = createSlice({
     setIsMobile: (state, action: PayloadAction<boolean>) => {
       state.isMobile = action.payload;
     },
+    setIsAdHeaderVisible: (state, action: PayloadAction<boolean>) => {
+      state.isAdHeaderVisible = action.payload;
+    },
+    setIsPaginationVisible: (state, action: PayloadAction<boolean>) => {
+      state.isPaginationVisible = action.payload;
+    },
   },
 });
 
@@ -45,6 +55,8 @@ export const {
   setIsLoadingOverlayVisible,
   setFocusedInput,
   setIsMobile,
+  setIsAdHeaderVisible,
+  setIsPaginationVisible,
 } = viewSlice.actions;
 
 export default viewSlice.reducer;

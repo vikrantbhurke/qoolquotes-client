@@ -245,3 +245,23 @@ export const borderRight = style({
 export const readexProFont = style({
   fontFamily: "Readex Pro",
 });
+
+export const borderTopShadow = style({
+  borderTop: borderLowContrast,
+  boxShadow: `0px -2px 4px rgba(0, 0, 0, 0.1)`,
+});
+
+export const borderBottomShadow = style({
+  borderBottom: borderLowContrast,
+  boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.1)`,
+});
+
+export const borderLeftShadow = style({
+  borderLeft: borderLowContrast,
+  boxShadow: `-2px 0px 4px rgba(0, 0, 0, 0.1)`,
+});
+
+export const borderRightShadow = style({
+  borderRight: borderLowContrast,
+  boxShadow: `2px 0px 4px rgba(0, 0, 0, 0.1)`,
+});

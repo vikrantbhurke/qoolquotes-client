@@ -60,7 +60,6 @@ export const SignUpUserFormLayout = () => {
       <Stack px="md" justify="center" align="center" h="100%">
         <form onSubmit={form.onSubmit(handleSignUpUser)}>
           <ScrollArea
-            scrollbarSize={2}
             styles={{
               scrollbar: {
                 display: "none", // Hide Mantine's custom scrollbar

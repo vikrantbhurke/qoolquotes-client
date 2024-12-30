@@ -22,7 +22,7 @@ export const AboutPage = () => {
         <MobileLeaderboard />
       </Center> */}
 
-      <ScrollArea scrollbarSize={2}>
+      <ScrollArea>
         <Stack p={isMobile ? "md" : "xl"} gap="lg">
           <Center>
             {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}

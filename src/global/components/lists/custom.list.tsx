@@ -1,4 +1,6 @@
-import { oneBg, twoBg } from "@/global/styles/app.css";
+import { useIsComponentVisible } from "@/global/hooks";
+import { setIsPaginationVisible } from "@/global/states/view.slice";
+import { borderTopShadow, oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
   getGridItemBorder,
@@ -21,6 +23,8 @@ export const CustomList = ({
   ListItemLayout,
 }: any) => {
   const dispatch = useDispatch();
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useSelector((state: any) => state.view);
@@ -49,7 +53,7 @@ export const CustomList = ({
       justify="space-between"
       h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={twoBg}>
-      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
+      <ScrollArea ref={scrollAreaRef}>
         <Box component="div" p={isMobile ? 0 : 4}>
           {dataArray.map((item: any, index: number) => {
             return (
@@ -70,7 +74,10 @@ export const CustomList = ({
       </ScrollArea>
 
       <Center
+        ref={ref}
+        className={borderTopShadow}
         style={{
+          zIndex: 1,
           ...getPaginationStyles(isMobile),
           ...getTopRoundBorders(isMobile),
         }}

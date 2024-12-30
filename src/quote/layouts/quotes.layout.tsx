@@ -6,14 +6,22 @@ import {
 import { Center, Group, Space, Stack, Text } from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
-import { borderBottom, oneBg } from "@/global/styles/app.css";
-import { useState } from "react";
+import {
+  borderBottom,
+  borderBottomShadow,
+  oneBg,
+} from "@/global/styles/app.css";
+import { useRef, useState } from "react";
 import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
+import { useIsComponentVisible } from "@/global/hooks";
+import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 
 export const QuotesLayout = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsAdHeaderVisible);
   const location = useLocation();
   const { search } = useSelector((state: any) => state.view);
   const { filterObject } = useSelector((state: any) => state.quote);
@@ -64,7 +72,7 @@ export const QuotesLayout = () => {
         </Group>
       </Group>
 
-      <Center className={borderBottom}>
+      <Center ref={ref} style={{ zIndex: 1 }} className={borderBottomShadow}>
         <Stack h={isMobile ? 50 : 90}>
           {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>

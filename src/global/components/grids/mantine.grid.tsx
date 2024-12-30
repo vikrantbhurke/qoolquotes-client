@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { borderTop, oneBg, twoBg } from "@/global/styles/app.css";
+import { borderTopShadow, oneBg, twoBg } from "@/global/styles/app.css";
 import {
   Box,
   Center,
@@ -17,6 +17,8 @@ import {
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
+import { useIsComponentVisible } from "@/global/hooks";
+import { setIsPaginationVisible } from "@/global/states/view.slice";
 
 export const MantineGrid = ({
   p,
@@ -27,6 +29,8 @@ export const MantineGrid = ({
   GridItemLayout,
 }: any) => {
   const dispatch = useDispatch();
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useSelector((state: any) => state.view);
@@ -55,7 +59,7 @@ export const MantineGrid = ({
       justify="space-between"
       h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={twoBg}>
-      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
+      <ScrollArea ref={scrollAreaRef}>
         <Grid grow justify="center" gutter={0} p={isMobile ? 0 : p}>
           {dataArray.map((item: any, index: number) => {
             return (
@@ -78,7 +82,11 @@ export const MantineGrid = ({
         </Grid>
       </ScrollArea>
 
-      <Center className={borderTop} bg={oneBg}>
+      <Center
+        ref={ref}
+        className={borderTopShadow}
+        bg={oneBg}
+        style={{ zIndex: 1 }}>
         <Pagination
           size="sm"
           m="sm"

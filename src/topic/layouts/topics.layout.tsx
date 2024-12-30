@@ -12,11 +12,12 @@ import {
 } from "@tabler/icons-react";
 import {
   borderBottom,
+  borderBottomShadow,
   oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
 } from "@/global/styles/app.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { TopicsFilterModal } from "./topics-filter.modal";
 import { TopicsFilterDrawer } from "./topics-filter.drawer";
@@ -26,8 +27,12 @@ import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
+import { setIsAdHeaderVisible } from "@/global/states/view.slice";
+import { useIsComponentVisible } from "@/global/hooks";
 
 export const TopicsLayout = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsAdHeaderVisible);
   const { order, alpha } = useSelector((state: any) => state.topic);
   const { isMobile } = useSelector((state: any) => state.view);
 
@@ -82,7 +87,7 @@ export const TopicsLayout = () => {
         <TopicsFilterModal opened={modalOpened} close={modalClose} />
       </Group>
 
-      <Center className={borderBottom}>
+      <Center ref={ref} style={{ zIndex: 1 }} className={borderBottomShadow}>
         <Stack h={isMobile ? 50 : 90}>
           {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>

@@ -12,11 +12,12 @@ import {
 } from "@tabler/icons-react";
 import {
   borderBottom,
+  borderBottomShadow,
   oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
 } from "@/global/styles/app.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { AuthorsFilterModal } from "./authors-filter.modal";
 import { AuthorsFilterDrawer } from "./authors-filter.drawer";
@@ -26,8 +27,12 @@ import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
 import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
 import Banner320x50 from "@/ads/Banner320x50";
+import { useIsComponentVisible } from "@/global/hooks";
+import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 
 export const AuthorsLayout = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  useIsComponentVisible(ref, setIsAdHeaderVisible);
   const { isMobile } = useSelector((state: any) => state.view);
   const { order, alpha } = useSelector((state: any) => state.author);
 
@@ -82,7 +87,7 @@ export const AuthorsLayout = () => {
         <AuthorsFilterModal opened={modalOpened} close={modalClose} />
       </Group>
 
-      <Center className={borderBottom}>
+      <Center ref={ref} style={{ zIndex: 1 }} className={borderBottomShadow}>
         <Stack h={isMobile ? 50 : 90}>
           {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
         </Stack>
