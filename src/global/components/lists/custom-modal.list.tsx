@@ -45,7 +45,7 @@ export const CustomModalList = ({
       bg={dropdownBg}
       className={roundBorder}
       justify="space-between">
-      <ScrollArea ref={scrollAreaRef}>
+      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Stack gap={3}>
           {dataArray.map((item: any, index: number) => (
             <Fragment key={index}>

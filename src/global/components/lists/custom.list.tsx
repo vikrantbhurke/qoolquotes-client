@@ -53,7 +53,7 @@ export const CustomList = ({
       justify="space-between"
       h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={twoBg}>
-      <ScrollArea ref={scrollAreaRef}>
+      <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Box component="div" p={isMobile ? 0 : 4}>
           {dataArray.map((item: any, index: number) => {
             return (

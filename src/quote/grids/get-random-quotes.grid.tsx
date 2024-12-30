@@ -1,4 +1,4 @@
-import { borderBottomShadow, oneBg } from "@/global/styles/app.css";
+import { borderBottomShadow, oneBg, twoBg } from "@/global/styles/app.css";
 import { footerHeight, headerHeight } from "@/global/styles/global.styles";
 import { Center, Stack } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
@@ -23,7 +23,7 @@ export const GetRandomQuotesGrid = () => {
     <Stack
       gap={0}
       h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
-      bg={oneBg}>
+      bg={twoBg}>
       <Center
         bg={oneBg}
         ref={ref}

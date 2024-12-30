@@ -71,7 +71,7 @@ export const CustomEnumScrollableCombobox = ({
 
       <Combobox.Dropdown miw={120} className={noBorder} p={3} bg={dropdownBg}>
         <Combobox.Options>
-          <ScrollArea h={200}>
+          <ScrollArea h={200} scrollbarSize={2}>
             <Stack gap={3}>{options}</Stack>
           </ScrollArea>
         </Combobox.Options>

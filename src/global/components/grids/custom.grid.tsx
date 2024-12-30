@@ -62,6 +62,7 @@ export const CustomGrid = ({
 
   return (
     <Stack
+      bg={twoBg}
       gap={0}
       className="custom-scrollbar"
       ref={containerRef}
