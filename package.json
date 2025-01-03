@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npx tsc && vite build && npm run generate-sitemap",
-    "generate-sitemap": "node ./src/global/utilities/generate-sitemap.ts",
+    "generate-sitemap": "node ./src/global/utilities/generate-sitemap.js",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "npm run lint:eslint && npm run lint:stylelint",

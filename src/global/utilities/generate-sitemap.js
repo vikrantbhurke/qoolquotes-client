@@ -1,5 +1,4 @@
 import { SitemapStream, streamToPromise } from "sitemap";
-import { Alpha, Order } from "@/global/enums";
 import fs from "fs";
 
 const links = [
@@ -7,17 +6,17 @@ const links = [
   { url: "/sign-in", changefreq: "weekly", priority: 0.8 },
   { url: "/sign-up", changefreq: "weekly", priority: 0.8 },
   {
-    url: `/topics?page=1&sort=name&order=${Order.Ascending}&alpha=${Alpha.All}`,
+    url: `/topics?page=1&sort=name&order=Asc&alpha=All`,
     changefreq: "weekly",
     priority: 0.8,
   },
   {
-    url: `/authors?page=1&sort=name&order=${Order.Ascending}&alpha=${Alpha.All}`,
+    url: `/authors?page=1&sort=name&order=Asc&alpha=All`,
     changefreq: "weekly",
     priority: 0.8,
   },
   {
-    url: `/playlists?page=1&sort=createdAt&order=${Order.Descending}`,
+    url: `/playlists?page=1&sort=createdAt&order=Desc`,
     changefreq: "weekly",
     priority: 0.8,
   },
