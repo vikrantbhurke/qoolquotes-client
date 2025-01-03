@@ -7,8 +7,15 @@ import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { setPage } from "../quote.slice";
+import { twoBg } from "@/global/styles/app.css";
+import {
+  addBoxShadow,
+  getGridItemBorderWithBorder,
+  removeBoxShadow,
+} from "@/global/styles/global.styles";
 
 export const SearchQuotesGrid = () => {
+  const { isMobile } = useSelector((state: any) => state.view);
   const { quotes, isPending, isError, error } = useSearchQuotes();
   const { page } = useSelector((state: any) => state.quote);
   const setData = useOutletContext<any>();
@@ -33,10 +40,14 @@ export const SearchQuotesGrid = () => {
     <MantineGrid
       p={8}
       page={page}
+      gridBg={twoBg}
       setPage={setPage}
       dataArray={quotes.content}
       totalPages={quotes.totalPages}
       GridItemLayout={QuoteGridItemLayout}
+      gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+      onMouseEnter={(e: any) => !isMobile && addBoxShadow(e)}
+      onMouseLeave={(e: any) => !isMobile && removeBoxShadow(e)}
     />
   );
 };

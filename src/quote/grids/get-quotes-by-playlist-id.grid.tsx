@@ -7,8 +7,15 @@ import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { setPage } from "../quote.slice";
 import { useSelector } from "react-redux";
+import { twoBg } from "@/global/styles/app.css";
+import {
+  addBoxShadow,
+  getGridItemBorderWithBorder,
+  removeBoxShadow,
+} from "@/global/styles/global.styles";
 
 export const GetQuotesByPlaylistIdGrid = () => {
+  const { isMobile } = useSelector((state: any) => state.view);
   const { quotes, isPending, isError, error } = useGetQuotesByPlaylistId();
   const { page } = useSelector((state: any) => state.quote);
   const setData = useOutletContext<any>();
@@ -33,10 +40,14 @@ export const GetQuotesByPlaylistIdGrid = () => {
     <MantineGrid
       p={8}
       page={page}
+      gridBg={twoBg}
       setPage={setPage}
       dataArray={quotes.content}
       totalPages={quotes.totalPages}
       GridItemLayout={QuoteGridItemLayout}
+      gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+      onMouseEnter={(e: any) => !isMobile && addBoxShadow(e)}
+      onMouseLeave={(e: any) => !isMobile && removeBoxShadow(e)}
     />
   );
 };

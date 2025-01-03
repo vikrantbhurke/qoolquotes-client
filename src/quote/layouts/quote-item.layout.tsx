@@ -91,6 +91,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
 
   return (
     <Stack
+      p="md"
       h="100%"
       align="center"
       justify="space-between"

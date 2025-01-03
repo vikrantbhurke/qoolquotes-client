@@ -7,8 +7,11 @@ import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
+import { getGridItemBorderNoBorder } from "@/global/styles/global.styles";
+import { oneBg } from "@/global/styles/app.css";
 
 export const GetAuthorsGrid = () => {
+  const { isMobile } = useSelector((state: any) => state.view);
   const { authors, isPending, isError, error } = useGetAuthors();
   const { page } = useSelector((state: any) => state.author);
   const setData = useOutletContext<any>();
@@ -33,10 +36,14 @@ export const GetAuthorsGrid = () => {
     <MantineGrid
       p={4}
       page={page}
+      gridBg={oneBg}
       setPage={setPage}
+      onMouseEnter={() => {}}
+      onMouseLeave={() => {}}
       dataArray={authors.content}
       totalPages={authors.totalPages}
       GridItemLayout={AuthorGridItemLayout}
+      gridItemStyle={getGridItemBorderNoBorder(isMobile)}
     />
   );
 };

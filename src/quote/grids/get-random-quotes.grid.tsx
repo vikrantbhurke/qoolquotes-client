@@ -1,5 +1,11 @@
 import { borderBottomShadow, oneBg, twoBg } from "@/global/styles/app.css";
-import { footerHeight, headerHeight } from "@/global/styles/global.styles";
+import {
+  addBoxShadow,
+  footerHeight,
+  getGridItemBorderWithBorder,
+  headerHeight,
+  removeBoxShadow,
+} from "@/global/styles/global.styles";
 import { Center, Stack } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
@@ -41,6 +47,10 @@ export const GetRandomQuotesGrid = () => {
         isError={isError}
         hasMore={hasMore}
         setPage={setPage}
+        gridBg={twoBg}
+        gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+        onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
+        onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}
       />
     </Stack>
   );

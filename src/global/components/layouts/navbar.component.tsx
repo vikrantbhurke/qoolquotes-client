@@ -6,7 +6,7 @@ import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 import { oneTxOneBgButtonPseudo, themeGreen } from "@/global/styles/app.css";
-import { listButtonHeight } from "@/global/styles/global.styles";
+import { largeButtonHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
@@ -52,6 +52,10 @@ export const Navbar = ({ toggle }: any) => {
     alpha: topicAlpha,
   } = useSelector((state: RootState) => state.topic);
 
+  const { sort: playlistSort, order: playlistOrder } = useSelector(
+    (state: RootState) => state.playlist
+  );
+
   const handleNavigateToFeed = () => {
     toggle();
     scrollTo({ y: 0 });
@@ -81,7 +85,7 @@ export const Navbar = ({ toggle }: any) => {
     scrollTo({ y: 0 });
     dispatch(setPlaylistPage(1));
     dispatch(setTab("All"));
-    navigate("/playlists?page=1");
+    navigate(`/playlists?page=1&sort=${playlistSort}&order=${playlistOrder}`);
   };
 
   const handleNavigateToProfile = () => {
@@ -108,7 +112,7 @@ export const Navbar = ({ toggle }: any) => {
           <CompOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
               c={themeGreen}
-              h={listButtonHeight}
+              h={largeButtonHeight}
               className={buttonClasses}
               leftSection={<I I={IconDownload} />}
               onClick={handleInstallClick}>
@@ -118,7 +122,7 @@ export const Navbar = ({ toggle }: any) => {
         )}
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -134,7 +138,7 @@ export const Navbar = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -150,7 +154,7 @@ export const Navbar = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -166,7 +170,7 @@ export const Navbar = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={<I I={IconPlaylist} />}
           onClick={handleNavigateToPlaylists}>
@@ -174,7 +178,7 @@ export const Navbar = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={<I I={IconInfoCircle} />}
           onClick={handleNavigateToAbout}>
@@ -183,7 +187,7 @@ export const Navbar = ({ toggle }: any) => {
 
         <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
           <Button
-            h={listButtonHeight}
+            h={largeButtonHeight}
             className={buttonClasses}
             leftSection={
               <I
@@ -200,7 +204,7 @@ export const Navbar = ({ toggle }: any) => {
         </CompOrFragmentRoute>
 
         <Button
-          h={listButtonHeight}
+          h={largeButtonHeight}
           className={buttonClasses}
           leftSection={<I I={IconMail} />}
           onClick={handleContact}>

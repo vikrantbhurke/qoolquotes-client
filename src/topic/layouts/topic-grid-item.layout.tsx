@@ -1,17 +1,18 @@
 import { setPage } from "@/quote/quote.slice";
-import { oneBg, oneTx } from "@/global/styles/app.css";
-import { listButtonHeight } from "@/global/styles/global.styles";
+import { oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
+import { getListButtonHeight } from "@/global/styles/global.styles";
 import { Button } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCountTopicQuotes } from "../hooks/read";
 import { globalUtility } from "@/global/utilities";
 import { setFilterObject } from "@/quote/quote.slice";
+import { useSelector } from "react-redux";
 
 export const TopicGridItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { isMobile } = useSelector((state: any) => state.view);
   const { topicQuotes } = useCountTopicQuotes(item.id);
 
   const handleNavigateToQuoteByTopic = () => {
@@ -23,9 +24,8 @@ export const TopicGridItemLayout = ({ item }: any) => {
   return (
     <Button
       fullWidth
-      h={listButtonHeight}
-      c={oneTx}
-      bg={oneBg}
+      h={getListButtonHeight(isMobile)}
+      className={`${oneTxOneBgButtonPseudo}`}
       onClick={handleNavigateToQuoteByTopic}>
       {item.name} ({globalUtility.formatNumber(topicQuotes?.count || 0)})
     </Button>

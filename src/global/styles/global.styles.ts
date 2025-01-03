@@ -7,15 +7,19 @@ import {
   borderHighContrast,
 } from "./app.css";
 
-export const mainContentWidth = 750;
+export const mainContentWidth = 1000;
 export const subheaderHeight = 60;
 export const headerHeight = 60;
 export const footerHeight = 60;
-export const listButtonHeight = 60;
+export const smallButtonHeight = 40;
+export const largeButtonHeight = 60;
 export const listItemHeight = 80;
-export const navbarAsideWidth = 400;
+export const navbarAsideWidth = 320;
 export const containerWidth = 1000;
 export const responsiveBreakpoint = "md";
+
+export const getListButtonHeight = (isMobile: boolean) =>
+  isMobile ? largeButtonHeight : smallButtonHeight;
 
 export const getComboboxStyles = (colorScheme: string) => ({
   optionBg: colorScheme === "dark" ? threeBg : oneBg,
@@ -69,16 +73,12 @@ export const getAppShell = (
   },
 });
 
-export const getSearchTextInput = (
-  isMobile: boolean,
-  width: number,
-  headerHeight: number,
-  navbarAsideWidth: number
-) => ({
+export const getSearchTextInput = (isMobile: boolean, width: number) => ({
   input: {
     backgroundColor: "transparent",
     height: isMobile ? headerHeight : "100%",
-    width: isMobile ? width : width - (navbarAsideWidth + navbarAsideWidth),
+    width,
+    maxWidth: isMobile ? "100%" : 800,
     border: borderHighContrast,
     borderRadius: isMobile ? 0 : 8,
   },
@@ -109,7 +109,7 @@ export const getGridBorder = (
 };
 
 // Mantine Grid.Column Custom Child Component Styles
-export const getGridItemBorder = (isMobile: boolean) => {
+export const getGridItemBorderWithBorder = (isMobile: boolean) => {
   if (isMobile) {
     return {
       borderTop: "none",
@@ -124,6 +124,17 @@ export const getGridItemBorder = (isMobile: boolean) => {
       transition: "box-shadow 0.3s ease",
     };
   }
+};
+
+export const getGridItemBorderNoBorder = (isMobile: boolean) => {
+  if (isMobile) {
+    return {
+      borderTop: "none",
+      borderBottom: borderLowContrast,
+      borderRight: "none",
+      borderLeft: "none",
+    };
+  } else return {};
 };
 
 export const getSubheadersStyles = (isMobile: boolean) => {

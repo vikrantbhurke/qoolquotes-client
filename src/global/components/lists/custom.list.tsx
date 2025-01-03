@@ -3,7 +3,7 @@ import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { borderTopShadow, oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
-  getGridItemBorder,
+  getGridItemBorderWithBorder,
   getPaginationStyles,
   getTopRoundBorders,
   removeBoxShadow,
@@ -62,7 +62,7 @@ export const CustomList = ({
                   h="100%"
                   bg={oneBg}
                   component="div"
-                  style={getGridItemBorder(isMobile)}
+                  style={getGridItemBorderWithBorder(isMobile)}
                   onMouseEnter={(e) => !isMobile && addBoxShadow(e)}
                   onMouseLeave={(e) => !isMobile && removeBoxShadow(e)}>
                   <ListItemLayout item={item} />

@@ -31,7 +31,7 @@ export const CustomEnumCombobox = ({
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
-  const { optionBg, dropdownBg } = getComboboxStyles(colorScheme);
+  const { dropdownBg } = getComboboxStyles(colorScheme);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -41,7 +41,7 @@ export const CustomEnumCombobox = ({
   });
 
   const options = data.map((item: any) => (
-    <Combobox.Option value={item} key={item} bg={optionBg} p="xs">
+    <Combobox.Option value={item} key={item} p="xs">
       <Text tt="capitalize" ta="center">
         {globalUtility.getKeyByValue(EnumObject, item)}
       </Text>

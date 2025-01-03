@@ -10,11 +10,7 @@ import { IconX } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import {
-  getSearchTextInput,
-  headerHeight,
-  navbarAsideWidth,
-} from "@/global/styles/global.styles";
+import { getSearchTextInput } from "@/global/styles/global.styles";
 import { useLocation, useNavigate } from "react-router-dom";
 import { inputStyles, oneBg } from "@/global/styles/app.css";
 import { I } from "../components";
@@ -106,12 +102,7 @@ export const Search = () => {
         value={search}
         ref={inputRef}
         classNames={{ input: inputStyles }}
-        styles={getSearchTextInput(
-          isMobile,
-          width,
-          headerHeight,
-          navbarAsideWidth
-        )}
+        styles={getSearchTextInput(isMobile, width)}
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={handleBlur}

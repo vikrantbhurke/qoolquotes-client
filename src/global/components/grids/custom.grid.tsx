@@ -1,10 +1,8 @@
 import { useCustomScrollbar } from "@/global/hooks";
 import { oneBg, oneTxOneBg, twoBg } from "@/global/styles/app.css";
 import {
-  addBoxShadow,
-  getGridItemBorder,
+  getGridItemBorderWithBorder,
   listItemHeight,
-  removeBoxShadow,
 } from "@/global/styles/global.styles";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
@@ -17,6 +15,10 @@ export const CustomGrid = ({
   isError,
   hasMore,
   setPage,
+  gridBg,
+  gridItemStyle,
+  onMountEnter,
+  onMountLeave,
 }: any) => {
   useCustomScrollbar();
   const containerRef = useRef<any>(null);
@@ -53,7 +55,7 @@ export const CustomGrid = ({
     <Box component="div" mx={isMobile ? 0 : 16}>
       <Center
         h={listItemHeight}
-        style={getGridItemBorder(isMobile)}
+        style={getGridItemBorderWithBorder(isMobile)}
         className={oneTxOneBg}>
         <Text>{message}</Text>
       </Center>
@@ -62,7 +64,7 @@ export const CustomGrid = ({
 
   return (
     <Stack
-      bg={twoBg}
+      bg={gridBg}
       gap={0}
       className="custom-scrollbar"
       ref={containerRef}
@@ -77,16 +79,16 @@ export const CustomGrid = ({
         {dataArray.map((item: any, index: number) => {
           return (
             <Grid.Col
-              span={{ base: 12, sm: 6 }}
+              span={{ base: 12, lg: 6, xl: 4 }}
               key={index}
               p={isMobile ? 0 : 8}>
               <Box
                 component="div"
                 bg={oneBg}
-                style={getGridItemBorder(isMobile)}
+                style={gridItemStyle}
                 h="100%"
-                onMouseEnter={(e) => !isMobile && addBoxShadow(e)}
-                onMouseLeave={(e) => !isMobile && removeBoxShadow(e)}>
+                onMouseEnter={onMountEnter}
+                onMouseLeave={onMountLeave}>
                 <GridItemLayout item={item} />
               </Box>
             </Grid.Col>

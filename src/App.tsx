@@ -2,6 +2,7 @@ import "./App.css";
 import "@mantine/dates/styles.css";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,18 +18,20 @@ configureAxios();
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <ColorSchemeScript defaultColorScheme="dark" />
-      <MantineProvider
-        theme={theme}
-        defaultColorScheme="dark"
-        cssVariablesResolver={resolveCssVariables}>
-        <QueryClientProvider client={queryClient}>
-          <Notifications />
-          <Router />
-        </QueryClientProvider>
-      </MantineProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <ColorSchemeScript defaultColorScheme="dark" />
+        <MantineProvider
+          theme={theme}
+          defaultColorScheme="dark"
+          cssVariablesResolver={resolveCssVariables}>
+          <QueryClientProvider client={queryClient}>
+            <Notifications />
+            <Router />
+          </QueryClientProvider>
+        </MantineProvider>
+      </Provider>
+    </HelmetProvider>
   );
 };
 
