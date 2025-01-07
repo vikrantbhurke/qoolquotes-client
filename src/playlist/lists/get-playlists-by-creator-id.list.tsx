@@ -7,8 +7,10 @@ import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
+import { oneBg, twoBg } from "@/global/styles/app.css";
 
 export const GetPlaylistsByCreatorIdList = () => {
+  const { isMobile } = useSelector((state: any) => state.view);
   const { playlists, isPending, isError, error } = useGetPlaylistsByCreatorId();
   const { page } = useSelector((state: any) => state.playlist);
   const setData = useOutletContext<any>();
@@ -33,6 +35,7 @@ export const GetPlaylistsByCreatorIdList = () => {
     <CustomList
       page={page}
       setPage={setPage}
+      listBg={isMobile ? oneBg : twoBg}
       dataArray={playlists.content}
       totalPages={playlists.totalPages}
       ListItemLayout={PlaylistListItemLayout}

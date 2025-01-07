@@ -7,7 +7,7 @@ import { CustomError } from "@/global/components/errors";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setPage } from "../quote.slice";
-import { twoBg } from "@/global/styles/app.css";
+import { oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
   getGridItemBorderWithBorder,
@@ -40,7 +40,7 @@ export const GetQuotesByTopicIdGrid = () => {
     <MantineGrid
       p={8}
       page={page}
-      gridBg={twoBg}
+      gridBg={isMobile ? oneBg : twoBg}
       setPage={setPage}
       dataArray={quotes.content}
       totalPages={quotes.totalPages}

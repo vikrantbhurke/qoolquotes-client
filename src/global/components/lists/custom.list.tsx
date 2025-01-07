@@ -1,6 +1,6 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { borderTopShadow, oneBg, twoBg } from "@/global/styles/app.css";
+import { borderTopShadow, oneBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
   getGridItemBorderWithBorder,
@@ -19,6 +19,7 @@ import { CustomNumberCombobox } from "../components";
 export const CustomList = ({
   dataArray,
   page,
+  listBg,
   setPage,
   totalPages,
   ListItemLayout,
@@ -53,7 +54,7 @@ export const CustomList = ({
       gap={0}
       justify="space-between"
       h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
-      bg={twoBg}>
+      bg={listBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Box component="div" p={isMobile ? 0 : 4}>
           {dataArray.map((item: any, index: number) => {
@@ -88,6 +89,7 @@ export const CustomList = ({
           value={page}
           handleValue={handlePage}
           id="pagination-combobox"
+          totalPages={totalPages}
         />
 
         <Pagination

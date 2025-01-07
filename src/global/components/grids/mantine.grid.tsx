@@ -118,6 +118,7 @@ export const MantineGrid = ({
             value={page}
             handleValue={handlePage}
             id="pagination-combobox"
+            totalPages={totalPages}
           />
 
           <Pagination

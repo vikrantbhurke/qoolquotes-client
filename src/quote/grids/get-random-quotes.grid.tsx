@@ -29,7 +29,7 @@ export const GetRandomQuotesGrid = () => {
     <Stack
       gap={0}
       h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
-      bg={twoBg}>
+      bg={oneBg}>
       <Center
         bg={oneBg}
         ref={ref}
@@ -47,7 +47,7 @@ export const GetRandomQuotesGrid = () => {
         isError={isError}
         hasMore={hasMore}
         setPage={setPage}
-        gridBg={twoBg}
+        gridBg={isMobile ? oneBg : twoBg}
         gridItemStyle={getGridItemBorderWithBorder(isMobile)}
         onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
         onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}

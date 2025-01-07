@@ -8,8 +8,10 @@ import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
 import { SeoComponent } from "@/global/components/components";
+import { oneBg, twoBg } from "@/global/styles/app.css";
 
 export const GetPlaylistsList = () => {
+  const { isMobile } = useSelector((state: any) => state.view);
   const { playlists, isPending, isError, error } = useGetPlaylists();
   const { page } = useSelector((state: any) => state.playlist);
   const setData = useOutletContext<any>();
@@ -38,6 +40,7 @@ export const GetPlaylistsList = () => {
       />
       <CustomList
         page={page}
+        listBg={isMobile ? oneBg : twoBg}
         setPage={setPage}
         dataArray={playlists.content}
         totalPages={playlists.totalPages}

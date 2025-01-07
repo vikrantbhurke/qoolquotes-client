@@ -16,7 +16,13 @@ import {
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
-export const CustomNumberCombobox = ({ data, value, handleValue, id }: any) => {
+export const CustomNumberCombobox = ({
+  data,
+  value,
+  handleValue,
+  id,
+  totalPages,
+}: any) => {
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
@@ -63,7 +69,10 @@ export const CustomNumberCombobox = ({ data, value, handleValue, id }: any) => {
 
       <Combobox.Dropdown miw={60} className={border} p={3} bg={dropdownBg}>
         <Combobox.Options>
-          <ScrollArea h={110} scrollbarSize={2} p={0}>
+          <ScrollArea
+            h={totalPages === 1 ? 45 : totalPages === 2 ? 90 : 110}
+            scrollbarSize={2}
+            p={0}>
             <Stack gap={3}>{options}</Stack>
           </ScrollArea>
         </Combobox.Options>
