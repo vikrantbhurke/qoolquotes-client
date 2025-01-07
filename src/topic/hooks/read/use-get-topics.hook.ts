@@ -1,12 +1,13 @@
-import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { RootState } from "@/global/states/store";
 import { getTopics } from "@/topic/topic.network";
+import { Order } from "@/global/enums";
 
 export const useGetTopics = () => {
-  const { sort, order, page, alpha } = useSelector(
-    (state: RootState) => state.topic
-  );
+  const urlParams = new URLSearchParams(window.location.search);
+  const page = Number(urlParams.get("page") || "1");
+  const sort = urlParams.get("sort") as string;
+  const order = urlParams.get("order") as Order;
+  const alpha = urlParams.get("alpha") as string;
 
   const getTopicsDTO = {
     sort,

@@ -29,6 +29,7 @@ export const TopicsFilterDrawer = ({ opened, close }: any) => {
     dispatch(setAlpha(alpha));
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set("alpha", alpha);
+    newSearchParams.set("page", `1`);
     setSearchParams(newSearchParams);
   };
 

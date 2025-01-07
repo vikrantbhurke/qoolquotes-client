@@ -5,7 +5,8 @@ import { searchPlaylists } from "@/playlist/playlist.network";
 
 export const useSearchPlaylists = () => {
   const { search } = useSelector((state: RootState) => state.view);
-  const { page } = useSelector((state: RootState) => state.playlist);
+  const urlParams = new URLSearchParams(window.location.search);
+  const page = Number(urlParams.get("page") || "1");
 
   const {
     data: playlists,

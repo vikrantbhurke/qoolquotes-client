@@ -11,7 +11,7 @@ import { PlaylistModal } from "@/playlist/layouts";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
 import {
   getItemCardStyles,
-  mainContentWidth,
+  quoteCardMaxWidth,
 } from "@/global/styles/global.styles";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
@@ -107,7 +107,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
       <Stack
         style={getItemCardStyles(isMobile)}
         bg={oneBg}
-        maw={mainContentWidth}
+        maw={quoteCardMaxWidth}
         gap="xl"
         p="xl"
         justify="center"

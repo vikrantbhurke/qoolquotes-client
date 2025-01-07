@@ -1,7 +1,7 @@
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
-import { oneTxOneBgButtonPseudo } from "@/global/styles/app.css";
+import { borderLowContrastColor, roundBorders } from "@/global/styles/app.css";
 import { footerHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -64,6 +64,24 @@ export const Footer = ({ opened, toggle }: any) => {
 
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
+  const feedIconColor =
+    location.pathname === "/" ? borderLowContrastColor : "transparent";
+
+  const feedPath =
+    location.pathname === "/" ? IconArticleFilledFilled : IconArticle;
+
+  const topicsIconColor =
+    location.pathname === "/topics" ? borderLowContrastColor : "transparent";
+
+  const topicsPath =
+    location.pathname === "/topics" ? IconCategoryFilled : IconCategory;
+
+  const authorsIconColor =
+    location.pathname === "/authors" ? borderLowContrastColor : "transparent";
+
+  const authorsPath =
+    location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
+
   return (
     <Group justify="space-evenly" grow gap={0} h={footerHeight}>
       <Stack
@@ -71,11 +89,10 @@ export const Footer = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToFeed}>
-        <I
-          I={location.pathname === "/" ? IconArticleFilledFilled : IconArticle}
-        />
+        <Stack bg={feedIconColor} px="xs" py={4} className={roundBorders}>
+          <I I={feedPath} />
+        </Stack>
         <Text>Feed</Text>
       </Stack>
 
@@ -84,13 +101,10 @@ export const Footer = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToTopics}>
-        <I
-          I={
-            location.pathname === "/topics" ? IconCategoryFilled : IconCategory
-          }
-        />
+        <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorders}>
+          <I I={topicsPath} />
+        </Stack>
         <Text>Topics</Text>
       </Stack>
 
@@ -99,11 +113,10 @@ export const Footer = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        className={oneTxOneBgButtonPseudo}
         onClick={handleNavigateToAuthors}>
-        <I
-          I={location.pathname === "/authors" ? IconBallpenFilled : IconBallpen}
-        />
+        <Stack bg={authorsIconColor} px="xs" py={4} className={roundBorders}>
+          <I I={authorsPath} />
+        </Stack>
         <Text>Authors</Text>
       </Stack>
 
@@ -112,7 +125,6 @@ export const Footer = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        className={oneTxOneBgButtonPseudo}
         onClick={handleReadOnlyClick}>
         <I I={IconSearch} />
         <Text>Search</Text>

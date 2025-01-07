@@ -8,10 +8,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
-import { getGridItemBorderNoBorder } from "@/global/styles/global.styles";
 
 export const SearchTopicsGrid = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
   const { topics, isPending, isError, error } = useSearchTopics();
   const { page } = useSelector((state: any) => state.topic);
   const setData = useOutletContext<any>();
@@ -43,7 +41,6 @@ export const SearchTopicsGrid = () => {
       dataArray={topics.content}
       totalPages={topics.totalPages}
       GridItemLayout={TopicGridItemLayout}
-      gridItemStyle={getGridItemBorderNoBorder(isMobile)}
     />
   );
 };

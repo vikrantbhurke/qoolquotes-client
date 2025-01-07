@@ -8,6 +8,7 @@ import {
 } from "./app.css";
 
 export const mainContentWidth = 1000;
+export const quoteCardMaxWidth = 600;
 export const subheaderHeight = 60;
 export const headerHeight = 60;
 export const footerHeight = 60;

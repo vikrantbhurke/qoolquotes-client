@@ -14,6 +14,8 @@ import { subheaderHeight } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
+import { Breakpoint } from "@/global/enums";
+import { useViewportSize } from "@mantine/hooks";
 
 export const MantineGrid = ({
   p,
@@ -22,7 +24,7 @@ export const MantineGrid = ({
   setPage,
   dataArray,
   totalPages,
-  gridItemStyle,
+  gridItemStyle = {},
   GridItemLayout,
   onMouseEnter,
   onMouseLeave,
@@ -33,6 +35,7 @@ export const MantineGrid = ({
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { isMobile } = useSelector((state: any) => state.view);
+  const { width } = useViewportSize();
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));
@@ -51,6 +54,25 @@ export const MantineGrid = ({
       });
     }
   };
+
+  let totalGhostItems;
+  let dataArrayLength = dataArray.length;
+
+  if (width < Breakpoint.lg) totalGhostItems = 0;
+  else if (width < Breakpoint.xl)
+    totalGhostItems = dataArrayLength % 2 === 0 ? 0 : 1;
+  else
+    totalGhostItems = dataArrayLength % 3 === 0 ? 0 : 3 - (dataArrayLength % 3);
+
+  const extraGridItems: Array<any> = new Array(totalGhostItems)
+    .fill(0)
+    .map((_) => {
+      return (
+        <Grid.Col p={isMobile ? 0 : p} span={{ base: 12, lg: 6, xl: 4 }}>
+          <Box component="div" h="100%"></Box>
+        </Grid.Col>
+      );
+    });
 
   return (
     <Stack
@@ -78,6 +100,8 @@ export const MantineGrid = ({
               </Grid.Col>
             );
           })}
+
+          {extraGridItems}
         </Grid>
       </ScrollArea>
 

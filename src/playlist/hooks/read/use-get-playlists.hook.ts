@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPlaylists } from "@/playlist/playlist.network";
-import { useSelector } from "react-redux";
-import { RootState } from "@/global/states/store";
+import { Sort } from "@/playlist/enums";
+import { Order } from "@/global/enums";
 
 export const useGetPlaylists = () => {
-  const { page, sort, order } = useSelector(
-    (state: RootState) => state.playlist
-  );
+  const urlParams = new URLSearchParams(window.location.search);
+  const page = Number(urlParams.get("page") || "1");
+  const sort = urlParams.get("sort") as Sort;
+  const order = urlParams.get("order") as Order;
 
   const {
     data: playlists,

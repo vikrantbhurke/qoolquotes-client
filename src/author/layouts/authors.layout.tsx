@@ -53,7 +53,7 @@ export const AuthorsLayout = () => {
   return (
     <Stack
       gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}
       bg={oneBg}>
       <Group pl="sm" justify="space-between" gap={0} className={borderBottom}>
         <Group gap={3}>
@@ -71,17 +71,22 @@ export const AuthorsLayout = () => {
             `(${globalUtility.formatNumber(data.totalElements)})`}
         </Text>
 
-        <Button
-          radius={0}
-          h={subheaderHeight}
-          c={isFilterApplied ? "green" : oneTx}
-          className={oneTxOneBgButtonPseudo}
-          onClick={isMobile ? drawerOpen : modalOpen}
-          leftSection={
-            isFilterApplied ? <I I={IconFilterFilled} /> : <I I={IconFilter} />
-          }>
-          Filter
-        </Button>
+        <Stack p="xs" h={subheaderHeight}>
+          <Button
+            radius={10}
+            c={isFilterApplied ? "green" : oneTx}
+            className={oneTxOneBgButtonPseudo}
+            onClick={isMobile ? drawerOpen : modalOpen}
+            leftSection={
+              isFilterApplied ? (
+                <I I={IconFilterFilled} />
+              ) : (
+                <I I={IconFilter} />
+              )
+            }>
+            Filter
+          </Button>
+        </Stack>
 
         <AuthorsFilterDrawer opened={drawerOpened} close={drawerClose} />
         <AuthorsFilterModal opened={modalOpened} close={modalClose} />

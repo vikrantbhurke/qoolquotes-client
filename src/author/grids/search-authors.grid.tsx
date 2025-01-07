@@ -8,10 +8,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
-import { getGridItemBorderNoBorder } from "@/global/styles/global.styles";
 
 export const SearchAuthorsGrid = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
   const { authors, isPending, isError, error } = useSearchAuthors();
   const { page } = useSelector((state: any) => state.author);
   const setData = useOutletContext<any>();
@@ -43,7 +41,6 @@ export const SearchAuthorsGrid = () => {
       dataArray={authors.content}
       totalPages={authors.totalPages}
       GridItemLayout={AuthorGridItemLayout}
-      gridItemStyle={getGridItemBorderNoBorder(isMobile)}
     />
   );
 };

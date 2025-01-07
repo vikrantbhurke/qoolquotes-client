@@ -38,7 +38,7 @@ export const QuotesLayout = () => {
   return (
     <Stack
       gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}
       bg={oneBg}>
       <Group
         pl="xs"

@@ -108,7 +108,7 @@ export const PlaylistsLayout = () => {
     <Container
       size={mainContentWidth}
       p={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}>
+      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}>
       <Stack gap={0} h="100%">
         <Radio.Group
           value={tab}
@@ -217,21 +217,22 @@ export const PlaylistsLayout = () => {
                   )}
                 </ActionIcon>
               ) : (
-                <Button
-                  radius={0}
-                  h={subheaderHeight}
-                  c={isFilterApplied ? "green" : oneTx}
-                  className={oneTxOneBgButtonPseudo}
-                  onClick={isMobile ? drawerOpen : modalOpen}
-                  leftSection={
-                    isFilterApplied ? (
-                      <I I={IconFilterFilled} />
-                    ) : (
-                      <I I={IconFilter} />
-                    )
-                  }>
-                  Filter
-                </Button>
+                <Stack p="xs" h={subheaderHeight}>
+                  <Button
+                    radius={10}
+                    c={isFilterApplied ? "green" : oneTx}
+                    className={oneTxOneBgButtonPseudo}
+                    onClick={isMobile ? drawerOpen : modalOpen}
+                    leftSection={
+                      isFilterApplied ? (
+                        <I I={IconFilterFilled} />
+                      ) : (
+                        <I I={IconFilter} />
+                      )
+                    }>
+                    Filter
+                  </Button>
+                </Stack>
               )}
             </Group>
           </Group>
