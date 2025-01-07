@@ -8,6 +8,7 @@ import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
+import { SeoComponent } from "@/global/components/components";
 
 export const GetAuthorsGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
@@ -31,16 +32,22 @@ export const GetAuthorsGrid = () => {
     return <CustomError message="Authors not found." />;
 
   return (
-    <MantineGrid
-      p={4}
-      page={page}
-      gridBg={oneBg}
-      setPage={setPage}
-      onMouseEnter={() => {}}
-      onMouseLeave={() => {}}
-      dataArray={authors.content}
-      totalPages={authors.totalPages}
-      GridItemLayout={AuthorGridItemLayout}
-    />
+    <>
+      <SeoComponent
+        title={`Authors - Page ${page} | Qool Quotes`}
+        description={`Browse quotes on page ${page} and find inspiration.`}
+      />
+      <MantineGrid
+        p={4}
+        page={page}
+        gridBg={oneBg}
+        setPage={setPage}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        dataArray={authors.content}
+        totalPages={authors.totalPages}
+        GridItemLayout={AuthorGridItemLayout}
+      />
+    </>
   );
 };

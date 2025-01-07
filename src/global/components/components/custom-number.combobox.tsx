@@ -48,7 +48,7 @@ export const CustomNumberCombobox = ({ data, value, handleValue, id }: any) => {
         <TextInput
           ref={ref}
           id={id}
-          w={50}
+          w={60}
           value={value}
           readOnly
           styles={getComboboxTextInputForPagination()}
@@ -61,9 +61,9 @@ export const CustomNumberCombobox = ({ data, value, handleValue, id }: any) => {
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={50} className={border} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown miw={60} className={border} p={3} bg={dropdownBg}>
         <Combobox.Options>
-          <ScrollArea h={100} scrollbarSize={2} p={0}>
+          <ScrollArea h={110} scrollbarSize={2} p={0}>
             <Stack gap={3}>{options}</Stack>
           </ScrollArea>
         </Combobox.Options>

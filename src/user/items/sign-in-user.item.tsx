@@ -1,5 +1,14 @@
+import { SeoComponent } from "@/global/components/components";
 import { SignInUserFormLayout } from "../layouts";
 
 export const SignInUserItem = () => {
-  return <SignInUserFormLayout />;
+  return (
+    <>
+      <SeoComponent
+        title="Sign In"
+        description="Sign in to existing account."
+      />
+      <SignInUserFormLayout />
+    </>
+  );
 };

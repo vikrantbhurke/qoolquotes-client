@@ -7,6 +7,7 @@ import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
+import { SeoComponent } from "@/global/components/components";
 
 export const GetPlaylistsList = () => {
   const { playlists, isPending, isError, error } = useGetPlaylists();
@@ -30,12 +31,18 @@ export const GetPlaylistsList = () => {
     return <CustomError message="Playlists not found." />;
 
   return (
-    <CustomList
-      page={page}
-      setPage={setPage}
-      dataArray={playlists.content}
-      totalPages={playlists.totalPages}
-      ListItemLayout={PlaylistListItemLayout}
-    />
+    <>
+      <SeoComponent
+        title={`Playlists - Page ${page} | Qool Quotes`}
+        description={`Browse quotes on page ${page} and find inspiration.`}
+      />
+      <CustomList
+        page={page}
+        setPage={setPage}
+        dataArray={playlists.content}
+        totalPages={playlists.totalPages}
+        ListItemLayout={PlaylistListItemLayout}
+      />
+    </>
   );
 };

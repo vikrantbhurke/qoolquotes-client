@@ -91,9 +91,8 @@ export const CustomList = ({
         />
 
         <Pagination
-          size="sm"
-          m="sm"
-          gap="xs"
+          size="md"
+          m="xs"
           radius="sm"
           siblings={0}
           value={page}

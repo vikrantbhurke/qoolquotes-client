@@ -8,6 +8,7 @@ import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
+import { SeoComponent } from "@/global/components/components";
 
 export const GetTopicsGrid = () => {
   const { topics, isPending, isError, error } = useGetTopics();
@@ -31,16 +32,22 @@ export const GetTopicsGrid = () => {
     return <CustomError message="Topics not found." />;
 
   return (
-    <MantineGrid
-      p={4}
-      page={page}
-      gridBg={oneBg}
-      setPage={setPage}
-      onMouseEnter={() => {}}
-      onMouseLeave={() => {}}
-      dataArray={topics.content}
-      totalPages={topics.totalPages}
-      GridItemLayout={TopicGridItemLayout}
-    />
+    <>
+      <SeoComponent
+        title={`Topics - Page ${page} | Qool Quotes`}
+        description={`Browse quotes on page ${page} and find inspiration.`}
+      />
+      <MantineGrid
+        p={4}
+        page={page}
+        gridBg={oneBg}
+        setPage={setPage}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        dataArray={topics.content}
+        totalPages={topics.totalPages}
+        GridItemLayout={TopicGridItemLayout}
+      />
+    </>
   );
 };

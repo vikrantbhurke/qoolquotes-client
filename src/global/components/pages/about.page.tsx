@@ -14,7 +14,7 @@ export const AboutPage = () => {
     <Stack h="100%" bg={oneBg}>
       <SeoComponent
         title="About Us - Qool Quotes"
-        description="Learn more about Qool Quotes, your source for amazing quotes."
+        description="Learn more about Qool Quotes."
       />
 
       <ScrollArea scrollbarSize={2}>
