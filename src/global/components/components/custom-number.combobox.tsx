@@ -1,35 +1,24 @@
-import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { noBorder } from "@/global/styles/app.css";
+import { border } from "@/global/styles/app.css";
 import {
-  getComboboxTextInput,
   getComboboxStyles,
+  getComboboxTextInputForPagination,
 } from "@/global/styles/global.styles";
-import { globalUtility } from "@/global/utilities";
 import {
   Combobox,
-  useCombobox,
-  Text,
+  ScrollArea,
   Stack,
-  useMantineColorScheme,
+  Text,
   TextInput,
+  useCombobox,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-// Used for Sort & Order filters, and playlist Access field
-// Sets Enum Value as value and Key as Display Label
-export const CustomEnumCombobox = ({
-  EnumObject,
-  data,
-  value,
-  handleValue,
-  id,
-}: any) => {
+export const CustomNumberCombobox = ({ data, value, handleValue, id }: any) => {
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
-  const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
   const { dropdownBg } = getComboboxStyles(colorScheme);
 
@@ -43,7 +32,7 @@ export const CustomEnumCombobox = ({
   const options = data.map((item: any) => (
     <Combobox.Option value={item} key={item} p="xs">
       <Text tt="capitalize" ta="center">
-        {globalUtility.getKeyByValue(EnumObject, item)}
+        {item}
       </Text>
     </Combobox.Option>
   ));
@@ -59,10 +48,10 @@ export const CustomEnumCombobox = ({
         <TextInput
           ref={ref}
           id={id}
-          miw="100%"
+          w={50}
           value={value}
           readOnly
-          styles={getComboboxTextInput(focusedInput === id)}
+          styles={getComboboxTextInputForPagination()}
           wrapperProps={{
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,
@@ -72,9 +61,11 @@ export const CustomEnumCombobox = ({
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={120} className={noBorder} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown miw={50} className={border} p={3} bg={dropdownBg}>
         <Combobox.Options>
-          <Stack gap={3}>{options}</Stack>
+          <ScrollArea h={100} scrollbarSize={2} p={0}>
+            <Stack gap={3}>{options}</Stack>
+          </ScrollArea>
         </Combobox.Options>
       </Combobox.Dropdown>
     </Combobox>

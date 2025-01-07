@@ -74,10 +74,10 @@ export const theme = createTheme({
     Pagination: Pagination.extend({
       styles: {
         control: {
-          padding: 16,
-          color: `${oneTx}`,
-          backgroundColor: `${threeBg}`,
+          color: oneTx,
+          backgroundColor: threeBg,
           border: "none",
+          fontWeight: 200,
         },
       },
     }),

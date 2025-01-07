@@ -210,8 +210,20 @@ export const getComboboxTextInput = (isFocused: boolean) => ({
     fontWeight: 300,
     textAlign: "center" as const,
     padding: "1.5rem",
+    color: oneTx,
     backgroundColor: oneBg,
     border: isFocused ? borderHighContrast : borderLowContrast,
+  },
+});
+
+export const getComboboxTextInputForPagination = () => ({
+  input: {
+    fontFamily: "Readex Pro",
+    fontWeight: 300,
+    textAlign: "center" as const,
+    color: oneTx,
+    backgroundColor: threeBg,
+    border: borderHighContrast,
   },
 });
 

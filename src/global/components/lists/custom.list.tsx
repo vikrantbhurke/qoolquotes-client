@@ -14,6 +14,7 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { CustomNumberCombobox } from "../components";
 
 export const CustomList = ({
   dataArray,
@@ -82,6 +83,13 @@ export const CustomList = ({
           ...getTopRoundBorders(isMobile),
         }}
         bg={oneBg}>
+        <CustomNumberCombobox
+          data={Array.from({ length: totalPages }, (_, i) => i + 1)}
+          value={page}
+          handleValue={handlePage}
+          id="pagination-combobox"
+        />
+
         <Pagination
           size="sm"
           m="sm"

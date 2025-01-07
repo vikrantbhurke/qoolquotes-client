@@ -6,6 +6,7 @@ import {
   Box,
   Center,
   Grid,
+  Group,
   Pagination,
   ScrollArea,
   Stack,
@@ -16,6 +17,7 @@ import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { Breakpoint } from "@/global/enums";
 import { useViewportSize } from "@mantine/hooks";
+import { CustomNumberCombobox } from "../components";
 
 export const MantineGrid = ({
   p,
@@ -110,16 +112,24 @@ export const MantineGrid = ({
         className={borderTopShadow}
         bg={oneBg}
         style={{ zIndex: 1 }}>
-        <Pagination
-          size="sm"
-          m="sm"
-          gap="xs"
-          radius="sm"
-          siblings={0}
-          value={page}
-          onChange={handlePage}
-          total={totalPages}
-        />
+        <Group gap={0} align="center">
+          <CustomNumberCombobox
+            data={Array.from({ length: totalPages }, (_, i) => i + 1)}
+            value={page}
+            handleValue={handlePage}
+            id="pagination-combobox"
+          />
+
+          <Pagination
+            size="md"
+            m="xs"
+            radius="sm"
+            siblings={0}
+            value={page}
+            onChange={handlePage}
+            total={totalPages}
+          />
+        </Group>
       </Center>
     </Stack>
   );
