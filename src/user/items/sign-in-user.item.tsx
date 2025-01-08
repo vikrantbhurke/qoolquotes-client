@@ -5,7 +5,7 @@ export const SignInUserItem = () => {
   return (
     <>
       <SeoComponent
-        title="Sign In"
+        title="Sign In Page"
         description="Sign in to existing account."
       />
       <SignInUserFormLayout />

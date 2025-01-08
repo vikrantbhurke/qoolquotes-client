@@ -49,6 +49,7 @@ export const UserItemLayout = ({ user }: any) => {
       <Stack h="100%" gap="xl" align="center" justify="space-between">
         <Center p="md">
           <Stack h={isMobile ? 50 : 90}>
+          
             {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Stack>
         </Center>

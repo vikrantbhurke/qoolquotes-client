@@ -35,7 +35,7 @@ export const GetPlaylistsList = () => {
   return (
     <>
       <SeoComponent
-        title={`Playlists - Page ${page} | QoolQuotes`}
+        title={`Playlists Page ${page}`}
         description={`Browse quotes on page ${page} and find inspiration.`}
       />
       <CustomList

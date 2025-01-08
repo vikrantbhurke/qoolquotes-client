@@ -29,7 +29,7 @@ export const GetRandomQuotesGrid = () => {
   return (
     <>
       <SeoComponent
-        title={`Homepage | QoolQuotes`}
+        title={`Homepage`}
         description={`Browse quotes and find inspiration.`}
       />
 

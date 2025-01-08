@@ -13,7 +13,7 @@ export const AboutPage = () => {
   return (
     <Stack h="100%" bg={oneBg}>
       <SeoComponent
-        title="About Us | Qool Quotes"
+        title="About Page"
         description="Learn more about Qool Quotes."
       />
 
