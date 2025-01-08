@@ -24,6 +24,8 @@ export const useDeleteUserById = () => {
     mutationFn: deleteUserById,
 
     onMutate: async () => {
+      navigate("/");
+
       await queryClient.cancelQueries({
         queryKey: ["getUserById", auth.id],
       });
@@ -40,7 +42,7 @@ export const useDeleteUserById = () => {
 
     onSuccess: async () => {
       dispatch(signOut());
-      navigate("/sign-up");
+
       await queryClient.invalidateQueries();
       showNotification("Account deleted!", NotificationColor.Success);
     },

@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { Breakpoint } from "@/global/enums";
-import { useViewportSize } from "@mantine/hooks";
 import { CustomNumberCombobox } from "../components";
 
 export const MantineGrid = ({
@@ -36,8 +35,7 @@ export const MantineGrid = ({
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useSelector((state: any) => state.view);
-  const { width } = useViewportSize();
+  const { isMobile, width } = useSelector((state: any) => state.view);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));

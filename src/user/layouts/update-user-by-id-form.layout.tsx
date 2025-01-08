@@ -19,6 +19,7 @@ import {
   Center,
   Image,
   Text,
+  Box,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
@@ -29,6 +30,7 @@ import {
   border,
   oneBg,
   roundBorders,
+  twoBg,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -58,203 +60,217 @@ export const UpdateUserByIdFormLayout = () => {
   const handleCancel = () => navigate(-1);
 
   return (
-    <Container size={mainContentWidth} p={0} h="100%">
-      <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
-        <form onSubmit={form.onSubmit(handleUpdateUserById)}>
-          <Stack
-            maw={isMobile ? 500 : 570}
-            miw={isMobile ? 400 : 470}
-            gap="lg"
-            bg={oneBg}
-            p={isMobile ? 0 : "xl"}
-            className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
-            <Modal
-              c={oneTx}
-              styles={modal}
-              opened={picViewOpened}
-              onClose={() => setOpened(false)}
-              title="Profile Picture"
-              centered>
-              <Center>
-                <Image src={user.profilepic} alt="Large Profile" radius="md" />
-              </Center>
-            </Modal>
+    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Container size={mainContentWidth} p={0} h="100%">
+        <Stack
+          px="md"
+          h="100%"
+          gap="xl"
+          justify="center"
+          align="center"
+          py="xl">
+          <form onSubmit={form.onSubmit(handleUpdateUserById)}>
+            <Stack
+              maw={isMobile ? 500 : 570}
+              miw={isMobile ? 400 : 470}
+              gap="lg"
+              bg={oneBg}
+              p={isMobile ? "md" : "xl"}
+              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+              <Modal
+                c={oneTx}
+                styles={modal}
+                opened={picViewOpened}
+                onClose={() => setOpened(false)}
+                title="Profile Picture"
+                centered>
+                <Center>
+                  <Image
+                    src={user.profilepic}
+                    alt="Large Profile"
+                    radius="md"
+                  />
+                </Center>
+              </Modal>
 
-            <DeleteProfilePicModalLayout
-              opened={picDeleteOpened}
-              close={close}
-            />
+              <DeleteProfilePicModalLayout
+                opened={picDeleteOpened}
+                close={close}
+              />
 
-            <Group gap={0} align="center" justify="space-between">
-              <Space w="xl" />
+              <Group gap={0} align="center" justify="space-between">
+                <Space w="xl" />
 
-              <Group justify="center" align="center" gap="xs">
-                <Stack align="center">
-                  {user.profilepic ? (
-                    <>
-                      <Avatar
-                        src={user.profilepic}
-                        size="xl"
-                        radius="50%"
-                        onClick={() => setOpened(true)}
-                      />
-                    </>
-                  ) : (
-                    <Avatar size="xl">
-                      {user.firstname[0]}
-                      {user.lastname[0]}
-                    </Avatar>
+                <Group justify="center" align="center" gap="xs">
+                  <Stack align="center">
+                    {user.profilepic ? (
+                      <>
+                        <Avatar
+                          src={user.profilepic}
+                          size="xl"
+                          radius="50%"
+                          onClick={() => setOpened(true)}
+                        />
+                      </>
+                    ) : (
+                      <Avatar size="xl">
+                        {user.firstname[0]}
+                        {user.lastname[0]}
+                      </Avatar>
+                    )}
+                  </Stack>
+
+                  {user.id === auth.id && user.profilepic && (
+                    <ActionIcon c="crimson" onClick={open}>
+                      <I I={IconTrash} />
+                    </ActionIcon>
                   )}
-                </Stack>
+                </Group>
 
-                {user.id === auth.id && user.profilepic && (
-                  <ActionIcon c="crimson" onClick={open}>
-                    <I I={IconTrash} />
+                {form.isDirty() ? (
+                  <ActionIcon aria-label="Refresh" onClick={form.reset}>
+                    <I I={IconRefresh} />
                   </ActionIcon>
+                ) : (
+                  <ActionIcon
+                    disabled
+                    c="transparent"
+                    aria-label="Refresh Disabled"
+                  />
                 )}
               </Group>
 
-              {form.isDirty() ? (
-                <ActionIcon aria-label="Refresh" onClick={form.reset}>
-                  <I I={IconRefresh} />
-                </ActionIcon>
-              ) : (
-                <ActionIcon
-                  disabled
-                  c="transparent"
-                  aria-label="Refresh Disabled"
-                />
-              )}
-            </Group>
+              <Stack gap="sm">
+                <Stack gap={0}>
+                  <Text>Profile Picture</Text>
+                  <FileInput
+                    styles={getFormTextInput(focusedInput === "profilepic")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("profilepic"),
+                      onBlur: handleBlur,
+                    }}
+                    clearable
+                    key={form.key("profilepic")}
+                    {...form.getInputProps("profilepic")}
+                  />
+                </Stack>
 
-            <Stack gap="sm">
-              <Stack gap={0}>
-                <Text>Profile Picture</Text>
-                <FileInput
-                  styles={getFormTextInput(focusedInput === "profilepic")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("profilepic"),
-                    onBlur: handleBlur,
-                  }}
-                  clearable
-                  key={form.key("profilepic")}
-                  {...form.getInputProps("profilepic")}
-                />
+                <Stack gap={0}>
+                  <Text>Firstname</Text>
+                  <TextInput
+                    required
+                    minLength={2}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "firstname")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("firstname"),
+                      onBlur: handleBlur,
+                    }}
+                    key={form.key("firstname")}
+                    {...form.getInputProps("firstname")}
+                  />
+                </Stack>
+
+                <Stack gap={0}>
+                  <Text>Lastname</Text>
+                  <TextInput
+                    required
+                    minLength={2}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "lastname")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("lastname"),
+                      onBlur: handleBlur,
+                    }}
+                    key={form.key("lastname")}
+                    {...form.getInputProps("lastname")}
+                  />
+                </Stack>
+
+                <Stack gap={0}>
+                  <Text>Email</Text>
+                  <TextInput
+                    minLength={5}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "email")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("email"),
+                      onBlur: handleBlur,
+                    }}
+                    placeholder={user.email}
+                    key={form.key("email")}
+                    {...form.getInputProps("email")}
+                  />
+                </Stack>
+
+                <Stack gap={0}>
+                  <Text>New Password</Text>
+                  <PasswordInput
+                    minLength={6}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "password")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("password"),
+                      onBlur: handleBlur,
+                    }}
+                    placeholder=""
+                    key={form.key("password")}
+                    {...form.getInputProps("password")}
+                  />
+                </Stack>
+
+                <Stack gap={0}>
+                  <Text>Confirm Password</Text>
+                  <PasswordInput
+                    minLength={6}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(
+                      focusedInput === "confirmPassword"
+                    )}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("confirmPassword"),
+                      onBlur: handleBlur,
+                    }}
+                    placeholder=""
+                    key={form.key("confirmPassword")}
+                    {...form.getInputProps("confirmPassword")}
+                  />
+                </Stack>
               </Stack>
 
-              <Stack gap={0}>
-                <Text>Firstname</Text>
-                <TextInput
-                  required
-                  minLength={2}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "firstname")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("firstname"),
-                    onBlur: handleBlur,
-                  }}
-                  key={form.key("firstname")}
-                  {...form.getInputProps("firstname")}
-                />
-              </Stack>
+              <Grid>
+                <Grid.Col span={6}>
+                  <Button
+                    disabled={isPending}
+                    type="submit"
+                    fullWidth
+                    radius="sm"
+                    bg="blue"
+                    loading={isPending}
+                    loaderProps={{ type: "dots" }}>
+                    Update Profile
+                  </Button>
+                </Grid.Col>
 
-              <Stack gap={0}>
-                <Text>Lastname</Text>
-                <TextInput
-                  required
-                  minLength={2}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "lastname")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("lastname"),
-                    onBlur: handleBlur,
-                  }}
-                  key={form.key("lastname")}
-                  {...form.getInputProps("lastname")}
-                />
-              </Stack>
-
-              <Stack gap={0}>
-                <Text>Email</Text>
-                <TextInput
-                  minLength={5}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "email")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("email"),
-                    onBlur: handleBlur,
-                  }}
-                  placeholder={user.email}
-                  key={form.key("email")}
-                  {...form.getInputProps("email")}
-                />
-              </Stack>
-
-              <Stack gap={0}>
-                <Text>New Password</Text>
-                <PasswordInput
-                  minLength={6}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "password")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("password"),
-                    onBlur: handleBlur,
-                  }}
-                  placeholder=""
-                  key={form.key("password")}
-                  {...form.getInputProps("password")}
-                />
-              </Stack>
-
-              <Stack gap={0}>
-                <Text>Confirm Password</Text>
-                <PasswordInput
-                  minLength={6}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "confirmPassword")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("confirmPassword"),
-                    onBlur: handleBlur,
-                  }}
-                  placeholder=""
-                  key={form.key("confirmPassword")}
-                  {...form.getInputProps("confirmPassword")}
-                />
-              </Stack>
+                <Grid.Col span={6}>
+                  <Button
+                    fullWidth
+                    radius="sm"
+                    bg="yellow"
+                    onClick={handleCancel}>
+                    Cancel
+                  </Button>
+                </Grid.Col>
+              </Grid>
             </Stack>
-
-            <Grid>
-              <Grid.Col span={6}>
-                <Button
-                  disabled={isPending}
-                  type="submit"
-                  fullWidth
-                  radius="sm"
-                  bg="blue"
-                  loading={isPending}
-                  loaderProps={{ type: "dots" }}>
-                  Update Profile
-                </Button>
-              </Grid.Col>
-
-              <Grid.Col span={6}>
-                <Button
-                  fullWidth
-                  radius="sm"
-                  bg="yellow"
-                  onClick={handleCancel}>
-                  Cancel
-                </Button>
-              </Grid.Col>
-            </Grid>
-          </Stack>
-        </form>
-      </Stack>
-    </Container>
+          </form>
+        </Stack>
+      </Container>
+    </Box>
   );
 };

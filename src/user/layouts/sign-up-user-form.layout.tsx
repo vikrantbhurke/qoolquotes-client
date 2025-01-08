@@ -5,6 +5,7 @@ import {
   inputStyles,
   border,
   roundBorders,
+  twoBg,
 } from "@/global/styles/app.css";
 import {
   getFormTextInput,
@@ -14,6 +15,7 @@ import { useSignUpUserForm } from "@/user/hooks/create";
 import {
   ActionIcon,
   Anchor,
+  Box,
   Button,
   Container,
   Group,
@@ -56,205 +58,207 @@ export const SignUpUserFormLayout = () => {
   };
 
   return (
-    <Container size={mainContentWidth} p="xl" h="100%">
-      <Stack px="md" justify="center" align="center" h="100%">
-        <form onSubmit={form.onSubmit(handleSignUpUser)}>
-          <ScrollArea
-            scrollbarSize={2}
-            styles={{
-              scrollbar: {
-                display: "none", // Hide Mantine's custom scrollbar
-              },
-              viewport: {
-                overflowY: "auto", // Ensure the browser scrollbar is used
-              },
-            }}>
-            <Stack
-              maw={isMobile ? 500 : 570}
-              miw={isMobile ? 400 : 470}
-              gap="lg"
-              p={isMobile ? 0 : "xl"}
-              bg={oneBg}
-              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
-              <Stack gap={0}>
-                <Group gap={0} align="center" justify="space-between">
-                  <Space w="md" />
-
-                  <Title order={3}>Welcome!</Title>
-
-                  {form.isDirty() ? (
-                    <ActionIcon
-                      bg="transparent"
-                      c={oneTx}
-                      aria-label="Refresh"
-                      onClick={form.reset}>
-                      <I I={IconRefresh} />
-                    </ActionIcon>
-                  ) : (
-                    <ActionIcon
-                      disabled
-                      c="transparent"
-                      aria-label="Refresh Disabled"
-                    />
-                  )}
-                </Group>
-                <Text c="dimmed" ta="center" mt={5}>
-                  Already have an account?{" "}
-                  <Anchor
-                    c={oneTx}
-                    underline="never"
-                    onClick={handleNavigateToSignIn}>
-                    Sign in
-                  </Anchor>
-                </Text>
-              </Stack>
-
-              <Stack gap="sm">
+    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Container size={mainContentWidth} p="xl" h="100%">
+        <Stack px="md" justify="center" align="center" h="100%">
+          <form onSubmit={form.onSubmit(handleSignUpUser)}>
+            <ScrollArea
+              scrollbarSize={2}
+              styles={{
+                scrollbar: {
+                  display: "none", // Hide Mantine's custom scrollbar
+                },
+                viewport: {
+                  overflowY: "auto", // Ensure the browser scrollbar is used
+                },
+              }}>
+              <Stack
+                maw={isMobile ? 500 : 570}
+                miw={isMobile ? 400 : 470}
+                gap="lg"
+                p={isMobile ? "md" : "xl"}
+                bg={oneBg}
+                className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
                 <Stack gap={0}>
-                  <Text>Firstname</Text>
+                  <Group gap={0} align="center" justify="space-between">
+                    <Space w="md" />
 
-                  <TextInput
-                    required
-                    minLength={2}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "firstname")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("firstname"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="John"
-                    key={form.key("firstname")}
-                    {...form.getInputProps("firstname")}
-                  />
-                </Stack>
+                    <Title order={3}>Welcome!</Title>
 
-                <Stack gap={0}>
-                  <Text>Lastname</Text>
-
-                  <TextInput
-                    required
-                    minLength={2}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "lastname")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("lastname"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="Doe"
-                    key={form.key("lastname")}
-                    {...form.getInputProps("lastname")}
-                  />
-                </Stack>
-
-                <Stack gap={0}>
-                  <Text>Username</Text>
-
-                  <TextInput
-                    required
-                    minLength={3}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "username")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("username"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="johndoe"
-                    key={form.key("username")}
-                    {...form.getInputProps("username")}
-                  />
-                </Stack>
-
-                <Stack gap={0}>
-                  <Text>Email</Text>
-
-                  <TextInput
-                    required
-                    minLength={5}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "email")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("email"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="johndoe@gmail.com"
-                    key={form.key("email")}
-                    {...form.getInputProps("email")}
-                  />
-                </Stack>
-
-                <Stack gap={0}>
-                  <Text>Password</Text>
-
-                  <PasswordInput
-                    required
-                    minLength={6}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "password")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("password"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="Password123!"
-                    key={form.key("password")}
-                    {...form.getInputProps("password")}
-                  />
-                </Stack>
-
-                <Stack gap={0}>
-                  <Text>Confirm Password</Text>
-
-                  <PasswordInput
-                    required
-                    minLength={6}
-                    maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(
-                      focusedInput === "confirmPassword"
+                    {form.isDirty() ? (
+                      <ActionIcon
+                        bg="transparent"
+                        c={oneTx}
+                        aria-label="Refresh"
+                        onClick={form.reset}>
+                        <I I={IconRefresh} />
+                      </ActionIcon>
+                    ) : (
+                      <ActionIcon
+                        disabled
+                        c="transparent"
+                        aria-label="Refresh Disabled"
+                      />
                     )}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("confirmPassword"),
-                      onBlur: handleBlur,
-                    }}
-                    placeholder="Password123!"
-                    key={form.key("confirmPassword")}
-                    {...form.getInputProps("confirmPassword")}
-                  />
+                  </Group>
+                  <Text c="dimmed" ta="center" mt={5}>
+                    Already have an account?{" "}
+                    <Anchor
+                      c={oneTx}
+                      underline="never"
+                      onClick={handleNavigateToSignIn}>
+                      Sign in
+                    </Anchor>
+                  </Text>
                 </Stack>
 
-                <Stack gap={0}>
-                  <Text>Gender</Text>
+                <Stack gap="sm">
+                  <Stack gap={0}>
+                    <Text>Firstname</Text>
 
-                  <CustomEnumCombobox
-                    id="gender"
-                    EnumObject={Gender}
-                    label="Gender"
-                    data={Object.values(Gender)}
-                    handleValue={handleGender}
-                    value={globalUtility.getKeyByValue(Gender, gender)}
-                  />
+                    <TextInput
+                      required
+                      minLength={2}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(focusedInput === "firstname")}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("firstname"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="John"
+                      key={form.key("firstname")}
+                      {...form.getInputProps("firstname")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Lastname</Text>
+
+                    <TextInput
+                      required
+                      minLength={2}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(focusedInput === "lastname")}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("lastname"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="Doe"
+                      key={form.key("lastname")}
+                      {...form.getInputProps("lastname")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Username</Text>
+
+                    <TextInput
+                      required
+                      minLength={3}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(focusedInput === "username")}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("username"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="johndoe"
+                      key={form.key("username")}
+                      {...form.getInputProps("username")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Email</Text>
+
+                    <TextInput
+                      required
+                      minLength={5}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(focusedInput === "email")}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("email"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="johndoe@gmail.com"
+                      key={form.key("email")}
+                      {...form.getInputProps("email")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Password</Text>
+
+                    <PasswordInput
+                      required
+                      minLength={6}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(focusedInput === "password")}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("password"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="Password123!"
+                      key={form.key("password")}
+                      {...form.getInputProps("password")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Confirm Password</Text>
+
+                    <PasswordInput
+                      required
+                      minLength={6}
+                      maxLength={20}
+                      classNames={{ input: inputStyles }}
+                      styles={getFormTextInput(
+                        focusedInput === "confirmPassword"
+                      )}
+                      wrapperProps={{
+                        onFocus: () => handleFocus("confirmPassword"),
+                        onBlur: handleBlur,
+                      }}
+                      placeholder="Password123!"
+                      key={form.key("confirmPassword")}
+                      {...form.getInputProps("confirmPassword")}
+                    />
+                  </Stack>
+
+                  <Stack gap={0}>
+                    <Text>Gender</Text>
+
+                    <CustomEnumCombobox
+                      id="gender"
+                      EnumObject={Gender}
+                      label="Gender"
+                      data={Object.values(Gender)}
+                      handleValue={handleGender}
+                      value={globalUtility.getKeyByValue(Gender, gender)}
+                    />
+                  </Stack>
                 </Stack>
+
+                <Button
+                  disabled={isPending}
+                  type="submit"
+                  fullWidth
+                  radius="sm"
+                  c={oneBg}
+                  bg={oneTx}
+                  loading={isPending}
+                  loaderProps={{ type: "dots", color: oneBg }}>
+                  Sign Up
+                </Button>
               </Stack>
-
-              <Button
-                disabled={isPending}
-                type="submit"
-                fullWidth
-                radius="sm"
-                c={oneBg}
-                bg={oneTx}
-                loading={isPending}
-                loaderProps={{ type: "dots", color: oneBg }}>
-                Sign Up
-              </Button>
-            </Stack>
-          </ScrollArea>
-        </form>
-      </Stack>
-    </Container>
+            </ScrollArea>
+          </form>
+        </Stack>
+      </Container>
+    </Box>
   );
 };

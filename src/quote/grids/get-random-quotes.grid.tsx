@@ -16,6 +16,7 @@ import { useRef } from "react";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
+import { SeoComponent } from "@/global/components/components";
 
 export const GetRandomQuotesGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,32 +27,39 @@ export const GetRandomQuotesGrid = () => {
     useGetRandomQuotes();
 
   return (
-    <Stack
-      gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
-      bg={oneBg}>
-      <Center
-        bg={oneBg}
-        ref={ref}
-        style={{ zIndex: 1 }}
-        className={borderBottomShadow}>
-        <Stack h={isMobile ? 50 : 90}>
-          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-        </Stack>
-      </Center>
-
-      <CustomGrid
-        dataArray={randomQuotes}
-        GridItemLayout={QuoteGridItemLayout}
-        isLoading={isLoading}
-        isError={isError}
-        hasMore={hasMore}
-        setPage={setPage}
-        gridBg={isMobile ? oneBg : twoBg}
-        gridItemStyle={getGridItemBorderWithBorder(isMobile)}
-        onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
-        onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}
+    <>
+      <SeoComponent
+        title={`Homepage | QoolQuotes`}
+        description={`Browse quotes and find inspiration.`}
       />
-    </Stack>
+
+      <Stack
+        gap={0}
+        h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
+        bg={oneBg}>
+        <Center
+          bg={oneBg}
+          ref={ref}
+          style={{ zIndex: 1 }}
+          className={borderBottomShadow}>
+          <Stack h={isMobile ? 50 : 90}>
+            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+          </Stack>
+        </Center>
+
+        <CustomGrid
+          dataArray={randomQuotes}
+          GridItemLayout={QuoteGridItemLayout}
+          isLoading={isLoading}
+          isError={isError}
+          hasMore={hasMore}
+          setPage={setPage}
+          gridBg={isMobile ? oneBg : twoBg}
+          gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+          onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
+          onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}
+        />
+      </Stack>
+    </>
   );
 };

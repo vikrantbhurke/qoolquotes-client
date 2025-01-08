@@ -3,6 +3,7 @@ import {
   oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
+  twoBg,
 } from "@/global/styles/app.css";
 import {
   footerHeight,
@@ -15,6 +16,7 @@ import {
 } from "@/global/styles/global.styles";
 import {
   ActionIcon,
+  Box,
   Button,
   Center,
   Container,
@@ -105,158 +107,160 @@ export const PlaylistsLayout = () => {
   const isFilterApplied = order !== Order.Descending || sort !== Sort.Date;
 
   return (
-    <Container
-      size={mainContentWidth}
-      p={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}>
-      <Stack gap={0} h="100%">
-        <Radio.Group
-          value={tab}
-          bg={oneBg}
-          style={{
-            ...getSubheadersStyles(isMobile),
-          }}>
-          <DeletePlaylistsModalLayout
-            opened={deletePlaylistOpened}
-            close={closeDeletePlaylist}
-          />
+    <Box component="div" bg={twoBg}>
+      <Container
+        size={mainContentWidth}
+        p={0}
+        h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}>
+        <Stack gap={0} h="100%">
+          <Radio.Group
+            value={tab}
+            bg={oneBg}
+            style={{
+              ...getSubheadersStyles(isMobile),
+            }}>
+            <DeletePlaylistsModalLayout
+              opened={deletePlaylistOpened}
+              close={closeDeletePlaylist}
+            />
 
-          <RemovePlaylistsModalLayout
-            opened={removePlaylistsOpened}
-            close={closeRemovePlaylist}
-          />
+            <RemovePlaylistsModalLayout
+              opened={removePlaylistsOpened}
+              close={closeRemovePlaylist}
+            />
 
-          <Group justify="space-between" px="sm" gap={0}>
-            <Group gap={3}>
-              <I I={IconFileDescription} />
+            <Group justify="space-between" px="sm" gap={0}>
+              <Group gap={3}>
+                <I I={IconFileDescription} />
 
-              <Text pt={3}>
-                {globalUtility.formatNumber(data.page)}/
-                {globalUtility.formatNumber(data.totalPages)} Page
-              </Text>
-            </Group>
+                <Text pt={3}>
+                  {globalUtility.formatNumber(data.page)}/
+                  {globalUtility.formatNumber(data.totalPages)} Page
+                </Text>
+              </Group>
 
-            <Group gap={0} justify="center">
-              <Button
-                h={subheaderHeight}
-                style={getSubheaderButton(tab === "All")}
-                onClick={handleNavigateToPlaylists}>
-                All{" "}
-                {tab === "All" &&
-                  `(${globalUtility.formatNumber(data.totalElements)})`}
-              </Button>
-
-              <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+              <Group gap={0} justify="center">
                 <Button
                   h={subheaderHeight}
-                  style={getSubheaderButton(tab === "Created")}
-                  onClick={handleNavigateToCreatedPlaylists}>
-                  Created{" "}
-                  {tab === "Created" &&
+                  style={getSubheaderButton(tab === "All")}
+                  onClick={handleNavigateToPlaylists}>
+                  All{" "}
+                  {tab === "All" &&
                     `(${globalUtility.formatNumber(data.totalElements)})`}
                 </Button>
 
-                <Button
-                  h={subheaderHeight}
-                  style={getSubheaderButton(tab === "Saved")}
-                  onClick={handleNavigateToSavedPlaylists}>
-                  Saved{" "}
-                  {tab === "Saved" &&
-                    `(${globalUtility.formatNumber(data.totalElements)})`}
-                </Button>
-              </CompOrFragmentRoute>
-            </Group>
-
-            <Group gap={0} justify="center">
-              {tab === "Saved" && data.totalElements ? (
-                <Group
-                  gap={3}
-                  justify="center"
-                  align="center"
-                  onClick={openRemovePlaylist}>
-                  <I I={IconTrash} color="crimson" />
-
-                  {isMobile ? (
-                    <Space />
-                  ) : (
-                    <Text pt={3} c="crimson">
-                      Remove All
-                    </Text>
-                  )}
-                </Group>
-              ) : tab === "Created" && data.totalElements ? (
-                <Group
-                  gap={3}
-                  justify="center"
-                  align="center"
-                  onClick={openDeletePlaylist}>
-                  <I I={IconTrash} color="crimson" />
-
-                  {isMobile ? (
-                    <Space />
-                  ) : (
-                    <Text pt={3} c="crimson">
-                      Delete All
-                    </Text>
-                  )}
-                </Group>
-              ) : (
-                <Space w="xl" />
-              )}
-
-              {isMobile ? (
-                <ActionIcon
-                  h={subheaderHeight}
-                  c={isFilterApplied ? "green" : oneTx}
-                  className={oneTxOneBgButtonPseudo}
-                  onClick={isMobile ? drawerOpen : modalOpen}>
-                  {isFilterApplied ? (
-                    <I I={IconFilterFilled} />
-                  ) : (
-                    <I I={IconFilter} />
-                  )}
-                </ActionIcon>
-              ) : (
-                <Stack p="xs" h={subheaderHeight}>
+                <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
                   <Button
-                    radius={10}
+                    h={subheaderHeight}
+                    style={getSubheaderButton(tab === "Created")}
+                    onClick={handleNavigateToCreatedPlaylists}>
+                    Created{" "}
+                    {tab === "Created" &&
+                      `(${globalUtility.formatNumber(data.totalElements)})`}
+                  </Button>
+
+                  <Button
+                    h={subheaderHeight}
+                    style={getSubheaderButton(tab === "Saved")}
+                    onClick={handleNavigateToSavedPlaylists}>
+                    Saved{" "}
+                    {tab === "Saved" &&
+                      `(${globalUtility.formatNumber(data.totalElements)})`}
+                  </Button>
+                </CompOrFragmentRoute>
+              </Group>
+
+              <Group gap={0} justify="center">
+                {tab === "Saved" && data.totalElements ? (
+                  <Group
+                    gap={3}
+                    justify="center"
+                    align="center"
+                    onClick={openRemovePlaylist}>
+                    <I I={IconTrash} color="crimson" />
+
+                    {isMobile ? (
+                      <Space />
+                    ) : (
+                      <Text pt={3} c="crimson">
+                        Remove All
+                      </Text>
+                    )}
+                  </Group>
+                ) : tab === "Created" && data.totalElements ? (
+                  <Group
+                    gap={3}
+                    justify="center"
+                    align="center"
+                    onClick={openDeletePlaylist}>
+                    <I I={IconTrash} color="crimson" />
+
+                    {isMobile ? (
+                      <Space />
+                    ) : (
+                      <Text pt={3} c="crimson">
+                        Delete All
+                      </Text>
+                    )}
+                  </Group>
+                ) : (
+                  <Space w="xl" />
+                )}
+
+                {isMobile ? (
+                  <ActionIcon
+                    h={subheaderHeight}
                     c={isFilterApplied ? "green" : oneTx}
                     className={oneTxOneBgButtonPseudo}
-                    onClick={isMobile ? drawerOpen : modalOpen}
-                    leftSection={
-                      isFilterApplied ? (
-                        <I I={IconFilterFilled} />
-                      ) : (
-                        <I I={IconFilter} />
-                      )
-                    }>
-                    Filter
-                  </Button>
-                </Stack>
-              )}
+                    onClick={isMobile ? drawerOpen : modalOpen}>
+                    {isFilterApplied ? (
+                      <I I={IconFilterFilled} />
+                    ) : (
+                      <I I={IconFilter} />
+                    )}
+                  </ActionIcon>
+                ) : (
+                  <Stack p="xs" h={subheaderHeight}>
+                    <Button
+                      radius={10}
+                      c={isFilterApplied ? "green" : oneTx}
+                      className={oneTxOneBgButtonPseudo}
+                      onClick={isMobile ? drawerOpen : modalOpen}
+                      leftSection={
+                        isFilterApplied ? (
+                          <I I={IconFilterFilled} />
+                        ) : (
+                          <I I={IconFilter} />
+                        )
+                      }>
+                      Filter
+                    </Button>
+                  </Stack>
+                )}
+              </Group>
             </Group>
-          </Group>
 
-          <PlaylistsFilterDrawer opened={drawerOpened} close={drawerClose} />
-          <PlaylistsFilterModal opened={modalOpened} close={modalClose} />
-        </Radio.Group>
+            <PlaylistsFilterDrawer opened={drawerOpened} close={drawerClose} />
+            <PlaylistsFilterModal opened={modalOpened} close={modalClose} />
+          </Radio.Group>
 
-        <Center
-          bg={oneBg}
-          ref={ref}
-          className={borderBottomShadow}
-          style={{
-            zIndex: 1,
-            ...getSubheadersStyles(isMobile),
-            ...getBottomRoundBorders(isMobile),
-          }}>
-          <Stack h={isMobile ? 50 : 90}>
-            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-          </Stack>
-        </Center>
+          <Center
+            bg={oneBg}
+            ref={ref}
+            className={borderBottomShadow}
+            style={{
+              zIndex: 1,
+              ...getSubheadersStyles(isMobile),
+              ...getBottomRoundBorders(isMobile),
+            }}>
+            <Stack h={isMobile ? 50 : 90}>
+              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+            </Stack>
+          </Center>
 
-        <Outlet context={setData} />
-      </Stack>
-    </Container>
+          <Outlet context={setData} />
+        </Stack>
+      </Container>
+    </Box>
   );
 };

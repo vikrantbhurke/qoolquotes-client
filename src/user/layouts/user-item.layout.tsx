@@ -11,6 +11,7 @@ import {
   Image,
   Text,
   Space,
+  Box,
 } from "@mantine/core";
 import {
   oneTx,
@@ -18,6 +19,7 @@ import {
   oneBg,
   border,
   roundBorders,
+  twoBg,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -43,130 +45,132 @@ export const UserItemLayout = ({ user }: any) => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Stack h="100%" gap="xl" align="center" justify="space-between">
-      <Center p="md">
-        <Stack h={isMobile ? 50 : 90}>
-          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-        </Stack>
-      </Center>
+    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Stack h="100%" gap="xl" align="center" justify="space-between">
+        <Center p="md">
+          <Stack h={isMobile ? 50 : 90}>
+            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+          </Stack>
+        </Center>
 
-      <Stack
-        maw={isMobile ? 500 : 570}
-        miw={isMobile ? 400 : 470}
-        gap="lg"
-        bg={oneBg}
-        p={isMobile ? 0 : "xl"}
-        className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
-        <DeleteUserModalLayout opened={opened} close={close} />
+        <Stack
+          maw={isMobile ? 500 : 570}
+          miw={isMobile ? 400 : 470}
+          gap="lg"
+          bg={oneBg}
+          p={isMobile ? "md" : "xl"}
+          className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+          <DeleteUserModalLayout opened={opened} close={close} />
 
-        <Modal
-          c={oneTx}
-          styles={modal}
-          opened={picOpened}
-          onClose={() => setPicOpened(false)}
-          title="Profile Picture"
-          centered>
-          <Center>
-            <Image src={user.profilepic} alt="Large Profile" radius="md" />
-          </Center>
-        </Modal>
+          <Modal
+            c={oneTx}
+            styles={modal}
+            opened={picOpened}
+            onClose={() => setPicOpened(false)}
+            title="Profile Picture"
+            centered>
+            <Center>
+              <Image src={user.profilepic} alt="Large Profile" radius="md" />
+            </Center>
+          </Modal>
 
-        <Stack align="center">
-          {user.profilepic ? (
-            <>
-              <Avatar
-                src={user.profilepic}
-                size="xl"
-                radius="50%"
-                onClick={() => setPicOpened(true)}
+          <Stack align="center">
+            {user.profilepic ? (
+              <>
+                <Avatar
+                  src={user.profilepic}
+                  size="xl"
+                  radius="50%"
+                  onClick={() => setPicOpened(true)}
+                />
+              </>
+            ) : (
+              <Avatar size="xl">
+                {user.firstname[0]}
+                {user.lastname[0]}
+              </Avatar>
+            )}
+          </Stack>
+
+          <Stack gap="sm">
+            <Stack gap={0}>
+              <Text>Firstname</Text>
+              <TextInput
+                readOnly
+                classNames={{ input: inputStyles }}
+                styles={getFormTextInput(focusedInput === "firstname")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("firstname"),
+                  onBlur: handleBlur,
+                }}
+                value={user.firstname}
               />
-            </>
-          ) : (
-            <Avatar size="xl">
-              {user.firstname[0]}
-              {user.lastname[0]}
-            </Avatar>
-          )}
+            </Stack>
+
+            <Stack gap={0}>
+              <Text>Lastname</Text>
+              <TextInput
+                readOnly
+                classNames={{ input: inputStyles }}
+                styles={getFormTextInput(focusedInput === "lastname")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("lastname"),
+                  onBlur: handleBlur,
+                }}
+                value={user.lastname}
+              />
+            </Stack>
+
+            <Stack gap={0}>
+              <Text>Username</Text>
+              <TextInput
+                readOnly
+                classNames={{ input: inputStyles }}
+                styles={getFormTextInput(focusedInput === "username")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("username"),
+                  onBlur: handleBlur,
+                }}
+                value={user.username}
+              />
+            </Stack>
+
+            <Stack gap={0}>
+              <Text>Email</Text>
+              <TextInput
+                readOnly
+                classNames={{ input: inputStyles }}
+                styles={getFormTextInput(focusedInput === "email")}
+                wrapperProps={{
+                  onFocus: () => handleFocus("email"),
+                  onBlur: handleBlur,
+                }}
+                value={user.email}
+              />
+            </Stack>
+          </Stack>
+
+          <Grid>
+            <Grid.Col span={6}>
+              <Button
+                fullWidth
+                radius="sm"
+                bg="blue"
+                onClick={() => navigate(`/users/${user.id}/edit`)}>
+                Edit Profile
+              </Button>
+            </Grid.Col>
+
+            <Grid.Col span={6}>
+              <Button fullWidth radius="sm" bg="red" onClick={open}>
+                Delete Account
+              </Button>
+            </Grid.Col>
+          </Grid>
         </Stack>
 
-        <Stack gap="sm">
-          <Stack gap={0}>
-            <Text>Firstname</Text>
-            <TextInput
-              readOnly
-              classNames={{ input: inputStyles }}
-              styles={getFormTextInput(focusedInput === "firstname")}
-              wrapperProps={{
-                onFocus: () => handleFocus("firstname"),
-                onBlur: handleBlur,
-              }}
-              value={user.firstname}
-            />
-          </Stack>
-
-          <Stack gap={0}>
-            <Text>Lastname</Text>
-            <TextInput
-              readOnly
-              classNames={{ input: inputStyles }}
-              styles={getFormTextInput(focusedInput === "lastname")}
-              wrapperProps={{
-                onFocus: () => handleFocus("lastname"),
-                onBlur: handleBlur,
-              }}
-              value={user.lastname}
-            />
-          </Stack>
-
-          <Stack gap={0}>
-            <Text>Username</Text>
-            <TextInput
-              readOnly
-              classNames={{ input: inputStyles }}
-              styles={getFormTextInput(focusedInput === "username")}
-              wrapperProps={{
-                onFocus: () => handleFocus("username"),
-                onBlur: handleBlur,
-              }}
-              value={user.username}
-            />
-          </Stack>
-
-          <Stack gap={0}>
-            <Text>Email</Text>
-            <TextInput
-              readOnly
-              classNames={{ input: inputStyles }}
-              styles={getFormTextInput(focusedInput === "email")}
-              wrapperProps={{
-                onFocus: () => handleFocus("email"),
-                onBlur: handleBlur,
-              }}
-              value={user.email}
-            />
-          </Stack>
-        </Stack>
-
-        <Grid>
-          <Grid.Col span={6}>
-            <Button
-              fullWidth
-              radius="sm"
-              bg="blue"
-              onClick={() => navigate(`/users/${user.id}/edit`)}>
-              Edit Profile
-            </Button>
-          </Grid.Col>
-
-          <Grid.Col span={6}>
-            <Button fullWidth radius="sm" bg="red" onClick={open}>
-              Delete Account
-            </Button>
-          </Grid.Col>
-        </Grid>
+        <Space h={isMobile ? 50 : 90} />
       </Stack>
-
-      <Space h={isMobile ? 50 : 90} />
-    </Stack>
+    </Box>
   );
 };

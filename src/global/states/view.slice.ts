@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface ViewState {
   search: string;
+  width: number;
   isLoadingOverlayVisible: boolean;
   isSearchbarVisible: boolean;
   focusedInput: string;
@@ -13,6 +14,7 @@ export interface ViewState {
 
 const initialState: ViewState = {
   search: "",
+  width: 0,
   isLoadingOverlayVisible: false,
   isSearchbarVisible: false,
   focusedInput: "",
@@ -27,6 +29,9 @@ export const viewSlice = createSlice({
   reducers: {
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
+    },
+    setWidth: (state, action: PayloadAction<number>) => {
+      state.width = action.payload;
     },
     setIsSearchbarVisible: (state, action: PayloadAction<boolean>) => {
       state.isSearchbarVisible = action.payload;
@@ -51,6 +56,7 @@ export const viewSlice = createSlice({
 
 export const {
   setSearch,
+  setWidth,
   setIsSearchbarVisible,
   setIsLoadingOverlayVisible,
   setFocusedInput,

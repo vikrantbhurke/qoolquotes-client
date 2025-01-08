@@ -16,16 +16,16 @@ import {
   borderTop,
   borderTopShadow,
   oneTxOneBg,
-  oneTxTwoBg,
   readexProFont,
 } from "@/global/styles/app.css";
-import { useIsMobile, usePopunderAd } from "@/global/hooks";
+import { useViewInfo, usePopunderAd } from "@/global/hooks";
 import { useSelector } from "react-redux";
 
 export const Layout = () => {
   usePopunderAd();
-  useIsMobile();
+  useViewInfo();
   // useSocialAd();
+
   const { isMobile, isPaginationVisible, isAdHeaderVisible } = useSelector(
     (state: any) => state.view
   );
@@ -62,9 +62,7 @@ export const Layout = () => {
         <Aside />
       </AppShell.Aside>
 
-      <AppShell.Main
-        className={`${isMobile ? `${oneTxOneBg}` : `${oneTxTwoBg}`}`}
-        h="100vh">
+      <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
         <Main />
       </AppShell.Main>
 

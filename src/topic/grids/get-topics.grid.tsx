@@ -34,7 +34,7 @@ export const GetTopicsGrid = () => {
   return (
     <>
       <SeoComponent
-        title={`Topics - Page ${page} | Qool Quotes`}
+        title={`Topics - Page ${page} | QoolQuotes`}
         description={`Browse quotes on page ${page} and find inspiration.`}
       />
       <MantineGrid

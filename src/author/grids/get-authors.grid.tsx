@@ -34,7 +34,7 @@ export const GetAuthorsGrid = () => {
   return (
     <>
       <SeoComponent
-        title={`Authors - Page ${page} | Qool Quotes`}
+        title={`Authors - Page ${page} | QoolQuotes`}
         description={`Browse quotes on page ${page} and find inspiration.`}
       />
       <MantineGrid

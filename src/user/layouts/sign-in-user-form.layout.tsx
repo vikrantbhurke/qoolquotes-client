@@ -8,6 +8,7 @@ import {
   inputStyles,
   border,
   roundBorders,
+  twoBg,
 } from "@/global/styles/app.css";
 import {
   getFormTextInput,
@@ -17,6 +18,7 @@ import { useSignInUserForm } from "@/user/hooks/create";
 import {
   ActionIcon,
   Anchor,
+  Box,
   Button,
   Container,
   Group,
@@ -47,100 +49,102 @@ export const SignInUserFormLayout = () => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Container size={mainContentWidth} p="xl" h="100%">
-      <Stack px="md" justify="center" align="center" h="100%">
-        <form onSubmit={form.onSubmit(handleSignInUser)}>
-          <Stack
-            maw={isMobile ? 500 : 570}
-            miw={isMobile ? 400 : 470}
-            gap="lg"
-            bg={oneBg}
-            p={isMobile ? 0 : "xl"}
-            className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
-            <Stack gap={0}>
-              <Group gap={0} align="center" justify="space-between">
-                <Space w="md" />
+    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Container size={mainContentWidth} p="xl" h="100%">
+        <Stack px="md" justify="center" align="center" h="100%">
+          <form onSubmit={form.onSubmit(handleSignInUser)}>
+            <Stack
+              maw={isMobile ? 500 : 570}
+              miw={isMobile ? 400 : 470}
+              gap="lg"
+              bg={oneBg}
+              p={isMobile ? "md" : "xl"}
+              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+              <Stack gap={0}>
+                <Group gap={0} align="center" justify="space-between">
+                  <Space w="md" />
 
-                <Title order={3}>Welcome back!</Title>
+                  <Title order={3}>Welcome back!</Title>
 
-                {form.isDirty() ? (
-                  <ActionIcon aria-label="Refresh" onClick={form.reset}>
-                    <I I={IconRefresh} />
-                  </ActionIcon>
-                ) : (
-                  <ActionIcon
-                    disabled
-                    c="transparent"
-                    aria-label="Refresh Disabled"
+                  {form.isDirty() ? (
+                    <ActionIcon aria-label="Refresh" onClick={form.reset}>
+                      <I I={IconRefresh} />
+                    </ActionIcon>
+                  ) : (
+                    <ActionIcon
+                      disabled
+                      c="transparent"
+                      aria-label="Refresh Disabled"
+                    />
+                  )}
+                </Group>
+
+                <Text c="dimmed" ta="center" mt={5}>
+                  Do not have an account yet?{" "}
+                  <Anchor
+                    c={oneTx}
+                    underline="never"
+                    onClick={handleNavigateToSignUp}>
+                    Create account
+                  </Anchor>
+                </Text>
+              </Stack>
+
+              <Stack gap="sm">
+                <Stack gap={0}>
+                  <Text>Username</Text>
+
+                  <TextInput
+                    required
+                    minLength={3}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "username")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("username"),
+                      onBlur: handleBlur,
+                    }}
+                    placeholder="johndoe"
+                    key={form.key("username")}
+                    {...form.getInputProps("username")}
                   />
-                )}
-              </Group>
+                </Stack>
 
-              <Text c="dimmed" ta="center" mt={5}>
-                Do not have an account yet?{" "}
-                <Anchor
-                  c={oneTx}
-                  underline="never"
-                  onClick={handleNavigateToSignUp}>
-                  Create account
-                </Anchor>
-              </Text>
-            </Stack>
+                <Stack gap={0}>
+                  <Text>Password</Text>
 
-            <Stack gap="sm">
-              <Stack gap={0}>
-                <Text>Username</Text>
-
-                <TextInput
-                  required
-                  minLength={3}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "username")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("username"),
-                    onBlur: handleBlur,
-                  }}
-                  placeholder="johndoe"
-                  key={form.key("username")}
-                  {...form.getInputProps("username")}
-                />
+                  <PasswordInput
+                    required
+                    minLength={6}
+                    maxLength={20}
+                    classNames={{ input: inputStyles }}
+                    styles={getFormTextInput(focusedInput === "password")}
+                    wrapperProps={{
+                      onFocus: () => handleFocus("password"),
+                      onBlur: handleBlur,
+                    }}
+                    placeholder="Password123!"
+                    key={form.key("password")}
+                    {...form.getInputProps("password")}
+                  />
+                </Stack>
               </Stack>
 
-              <Stack gap={0}>
-                <Text>Password</Text>
-
-                <PasswordInput
-                  required
-                  minLength={6}
-                  maxLength={20}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "password")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("password"),
-                    onBlur: handleBlur,
-                  }}
-                  placeholder="Password123!"
-                  key={form.key("password")}
-                  {...form.getInputProps("password")}
-                />
-              </Stack>
+              <Button
+                disabled={isPending}
+                type="submit"
+                fullWidth
+                radius="sm"
+                c={oneBg}
+                bg={oneTx}
+                loading={isPending}
+                loaderProps={{ type: "dots", color: oneBg }}>
+                Sign In
+              </Button>
             </Stack>
-
-            <Button
-              disabled={isPending}
-              type="submit"
-              fullWidth
-              radius="sm"
-              c={oneBg}
-              bg={oneTx}
-              loading={isPending}
-              loaderProps={{ type: "dots", color: oneBg }}>
-              Sign In
-            </Button>
-          </Stack>
-        </form>
-      </Stack>
-    </Container>
+          </form>
+        </Stack>
+      </Container>
+    </Box>
   );
 };
