@@ -9,8 +9,8 @@ import {
 import { Center, Stack } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
-import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
+import Banner320x50 from "@/global/ads/Banner320x50";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
 import { useIsComponentVisible } from "@/global/hooks";

@@ -1,6 +1,6 @@
 import { RootState } from "@/global/states/store";
 import { setIsSearchbarVisible, setSearch } from "@/global/states/view.slice";
-import { setPage as setQuotePage } from "@/topic/topic.slice";
+import { setPage as setQuotePage } from "@/quote/quote.slice";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
@@ -15,7 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { inputStyles, oneBg } from "@/global/styles/app.css";
 import { I } from "../components";
 
-export const Search = () => {
+export const SearchLayout = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();

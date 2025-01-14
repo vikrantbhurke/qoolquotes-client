@@ -20,7 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { I } from "../components";
 
-export const Footer = ({ opened, toggle }: any) => {
+export const FooterLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();

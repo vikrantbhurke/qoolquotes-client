@@ -34,8 +34,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
-import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
+import Banner320x50 from "@/global/ads/Banner320x50";
 
 export const QuoteItemLayout = ({ quote }: any) => {
   const { auth } = useSelector((state: any) => state.auth);

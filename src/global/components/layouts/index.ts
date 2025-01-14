@@ -1,9 +1,17 @@
-import { Layout } from "./layout.component";
-import { Header } from "./header.component";
-import { Main } from "./main.component";
-import { Aside } from "./aside.component";
-import { Footer } from "./footer.component";
-import { Navbar } from "./navbar.component";
-import { Search } from "./search.component";
+import { AppLayout } from "./app.layout";
+import { HeaderLayout } from "./header.layout";
+import { MainLayout } from "./main.layout";
+import { AsideLayout } from "./aside.layout";
+import { FooterLayout } from "./footer.layout";
+import { NavbarLayout } from "./navbar.layout";
+import { SearchLayout } from "./search.layout";
 
-export { Layout, Header, Main, Aside, Footer, Navbar, Search };
+export {
+  AppLayout,
+  HeaderLayout,
+  MainLayout,
+  AsideLayout,
+  FooterLayout,
+  NavbarLayout,
+  SearchLayout,
+};

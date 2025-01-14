@@ -1,9 +1,9 @@
-import Banner300x250 from "@/ads/Banner300x250";
-import Banner320x50 from "@/ads/Banner320x50";
+import Banner300x250 from "@/global/ads/Banner300x250";
+import Banner320x50 from "@/global/ads/Banner320x50";
 import { Center, Space, Stack } from "@mantine/core";
 import { useSelector } from "react-redux";
 
-export const Aside = () => {
+export const AsideLayout = () => {
   const { isMobile } = useSelector((state: any) => state.view);
 
   return (

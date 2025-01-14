@@ -1,6 +1,12 @@
 import { AppShell } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Header, Aside, Main, Footer, Navbar } from "./index";
+import {
+  HeaderLayout,
+  AsideLayout,
+  MainLayout,
+  FooterLayout,
+  NavbarLayout,
+} from "./index";
 import {
   footerHeight,
   getAppShell,
@@ -21,7 +27,7 @@ import {
 import { useViewInfo, usePopunderAd } from "@/global/hooks";
 import { useSelector } from "react-redux";
 
-export const Layout = () => {
+export const AppLayout = () => {
   usePopunderAd();
   useViewInfo();
   // useSocialAd();
@@ -51,26 +57,26 @@ export const Layout = () => {
       <AppShell.Header
         style={{ zIndex: 2 }}
         className={`${oneTxOneBg} ${isAdHeaderVisible ? borderBottom : borderBottomShadow}`}>
-        <Header opened={opened} toggle={toggle} />
+        <HeaderLayout opened={opened} toggle={toggle} />
       </AppShell.Header>
 
       <AppShell.Navbar className={`${oneTxOneBg} ${borderRightShadow}`}>
-        <Navbar toggle={toggle} />
+        <NavbarLayout toggle={toggle} />
       </AppShell.Navbar>
 
       <AppShell.Aside className={`${oneTxOneBg} ${borderLeftShadow}`}>
-        <Aside />
+        <AsideLayout />
       </AppShell.Aside>
 
       <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
-        <Main />
+        <MainLayout />
       </AppShell.Main>
 
       <AppShell.Footer
         style={{ zIndex: 2 }}
         className={`${oneTxOneBg} ${isMobile && isPaginationVisible ? borderTop : borderTopShadow}`}
         hiddenFrom={responsiveBreakpoint}>
-        <Footer opened={opened} toggle={toggle} />
+        <FooterLayout opened={opened} toggle={toggle} />
       </AppShell.Footer>
     </AppShell>
   );

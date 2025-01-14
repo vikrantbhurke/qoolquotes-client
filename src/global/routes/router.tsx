@@ -4,9 +4,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Layout } from "@/global/components/layouts";
+import { AppLayout } from "@/global/components/layouts";
 import {
-  // LogoPage,
   AboutPage,
   VerifyAccountPage,
   VerifyEmailPage,
@@ -41,8 +40,7 @@ import {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    // <Route path="/logo" element={<LogoPage />} />
-    <Route element={<Layout />} path="/" errorElement={<></>}>
+    <Route element={<AppLayout />} path="/" errorElement={<></>}>
       <Route path="/" element={<GetRandomQuotesGrid />} />
       <Route path="sign-up" element={<SignUpUserItem />} />
       <Route path="sign-in" element={<SignInUserItem />} />

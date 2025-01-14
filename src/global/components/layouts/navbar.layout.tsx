@@ -27,10 +27,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ContactModal, I } from "../components";
 import { useInstallApp } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
-import Banner300x250 from "@/ads/Banner300x250";
-import Banner320x50 from "@/ads/Banner320x50";
+import Banner300x250 from "@/global/ads/Banner300x250";
+import Banner320x50 from "@/global/ads/Banner320x50";
 
-export const Navbar = ({ toggle }: any) => {
+export const NavbarLayout = ({ toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -116,7 +116,7 @@ export const Navbar = ({ toggle }: any) => {
               className={buttonClasses}
               leftSection={<I I={IconDownload} />}
               onClick={handleInstallClick}>
-              Install
+              Install App
             </Button>
           </CompOrFragmentRoute>
         )}

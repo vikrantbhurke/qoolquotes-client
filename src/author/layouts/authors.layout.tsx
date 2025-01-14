@@ -25,8 +25,8 @@ import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
-import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
+import Banner320x50 from "@/global/ads/Banner320x50";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 

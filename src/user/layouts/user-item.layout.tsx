@@ -27,8 +27,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
-import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
+import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
 
 export const UserItemLayout = ({ user }: any) => {
@@ -49,7 +49,6 @@ export const UserItemLayout = ({ user }: any) => {
       <Stack h="100%" gap="xl" align="center" justify="space-between">
         <Center p="md">
           <Stack h={isMobile ? 50 : 90}>
-          
             {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
           </Stack>
         </Center>

@@ -16,7 +16,6 @@ export const smallButtonHeight = 40;
 export const largeButtonHeight = 60;
 export const listItemHeight = 80;
 export const navbarAsideWidth = 320;
-export const containerWidth = 1000;
 export const responsiveBreakpoint = "md";
 
 export const getListButtonHeight = (isMobile: boolean) =>
@@ -27,27 +26,27 @@ export const getComboboxStyles = (colorScheme: string) => ({
   dropdownBg: colorScheme === "dark" ? oneBg : threeBg,
 });
 
-export const getMainAndContentGap = (
-  mainWidth: number,
-  navbarAsideWidth: number,
-  mainContentWidth: number
-) => {
-  const mainAndContentGap = mainWidth - 2 * navbarAsideWidth - mainContentWidth;
-  let border = mainAndContentGap > 0 ? borderLowContrast : "none";
+// export const getMainAndContentGap = (
+//   mainWidth: number,
+//   navbarAsideWidth: number,
+//   mainContentWidth: number
+// ) => {
+//   const mainAndContentGap = mainWidth - 2 * navbarAsideWidth - mainContentWidth;
+//   let border = mainAndContentGap > 0 ? borderLowContrast : "none";
 
-  return {
-    borderLeft: border,
-    borderRight: border,
-  };
-};
+//   return {
+//     borderLeft: border,
+//     borderRight: border,
+//   };
+// };
 
-export const getMainContentHeight = (
-  headerHeight: number,
-  footerHeight: number,
-  subheaderHeight: number,
-  isMobile: boolean
-) =>
-  `calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px - ${subheaderHeight}px)`;
+// export const getMainContentHeight = (
+//   headerHeight: number,
+//   footerHeight: number,
+//   subheaderHeight: number,
+//   isMobile: boolean
+// ) =>
+//   `calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px - ${subheaderHeight}px)`;
 
 // Component Styles
 export const getAppShell = (
@@ -92,22 +91,22 @@ export const getItemCardStyles = (isMobile: boolean) => ({
 });
 
 // Mantine Grid.Colum Component Styles
-export const getGridBorder = (
-  isMobile: boolean,
-  index: number,
-  totalItems: number
-) => {
-  return {
-    borderTop: "none",
-    borderBottom: borderLowContrast,
-    borderRight: isMobile
-      ? "none"
-      : index % 2 === 0 && index !== totalItems - 1
-        ? borderLowContrast
-        : "none",
-    borderLeft: "none",
-  };
-};
+// export const getGridBorder = (
+//   isMobile: boolean,
+//   index: number,
+//   totalItems: number
+// ) => {
+//   return {
+//     borderTop: "none",
+//     borderBottom: borderLowContrast,
+//     borderRight: isMobile
+//       ? "none"
+//       : index % 2 === 0 && index !== totalItems - 1
+//         ? borderLowContrast
+//         : "none",
+//     borderLeft: "none",
+//   };
+// };
 
 // Mantine Grid.Column Custom Child Component Styles
 export const getGridItemBorderWithBorder = (isMobile: boolean) => {
@@ -127,16 +126,16 @@ export const getGridItemBorderWithBorder = (isMobile: boolean) => {
   }
 };
 
-export const getGridItemBorderNoBorder = (isMobile: boolean) => {
-  if (isMobile) {
-    return {
-      borderTop: "none",
-      borderBottom: borderLowContrast,
-      borderRight: "none",
-      borderLeft: "none",
-    };
-  } else return {};
-};
+// export const getGridItemBorderNoBorder = (isMobile: boolean) => {
+//   if (isMobile) {
+//     return {
+//       borderTop: "none",
+//       borderBottom: borderLowContrast,
+//       borderRight: "none",
+//       borderLeft: "none",
+//     };
+//   } else return {};
+// };
 
 export const getSubheadersStyles = (isMobile: boolean) => {
   return {

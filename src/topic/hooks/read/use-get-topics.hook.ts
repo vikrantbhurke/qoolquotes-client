@@ -3,7 +3,7 @@ import { getTopics } from "@/topic/topic.network";
 import { Order } from "@/global/enums";
 
 export const useGetTopics = () => {
-  const urlParams = new URLSearchParams(window.location.search);
+  let [searchParams] = useSearchParams();
   const page = Number(urlParams.get("page") || "1");
   const sort = urlParams.get("sort") as string;
   const order = urlParams.get("order") as Order;

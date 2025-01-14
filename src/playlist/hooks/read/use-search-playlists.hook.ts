@@ -2,11 +2,12 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { RootState } from "@/global/states/store";
 import { searchPlaylists } from "@/playlist/playlist.network";
+import { useSearchParams } from "react-router-dom";
 
 export const useSearchPlaylists = () => {
   const { search } = useSelector((state: RootState) => state.view);
-  const urlParams = new URLSearchParams(window.location.search);
-  const page = Number(urlParams.get("page") || "1");
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
 
   const {
     data: playlists,

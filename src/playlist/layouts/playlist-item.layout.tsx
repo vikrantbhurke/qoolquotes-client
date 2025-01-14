@@ -43,8 +43,8 @@ import { I } from "@/global/components/components";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { setFilterObject } from "@/quote/quote.slice";
-import DesktopLeaderboard from "@/ads/DesktopLeaderboard";
-import Banner320x50 from "@/ads/Banner320x50";
+import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
+import Banner320x50 from "@/global/ads/Banner320x50";
 
 export const PlaylistItemLayout = ({ playlist }: any) => {
   const dispatch = useDispatch();

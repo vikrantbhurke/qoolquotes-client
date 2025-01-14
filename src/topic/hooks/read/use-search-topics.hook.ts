@@ -3,14 +3,15 @@ import { useQuery } from "@tanstack/react-query";
 import { RootState } from "@/global/states/store";
 import { searchTopics } from "@/topic/topic.network";
 import { Order } from "@/global/enums";
+import { useSearchParams } from "react-router-dom";
 
 export const useSearchTopics = () => {
   const { search } = useSelector((state: RootState) => state.view);
-  const urlParams = new URLSearchParams(window.location.search);
-  const page = Number(urlParams.get("page") || "1");
-  const sort = urlParams.get("sort") as string;
-  const order = urlParams.get("order") as Order;
-  const alpha = urlParams.get("alpha") as string;
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
+  const sort = searchParams.get("sort") as string;
+  const order = searchParams.get("order") as Order;
+  const alpha = searchParams.get("alpha") as string;
 
   const searchTopicsDTO = {
     search,

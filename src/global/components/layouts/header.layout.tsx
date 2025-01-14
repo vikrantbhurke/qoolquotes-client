@@ -16,7 +16,7 @@ import {
 } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Search } from "./index";
+import { SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
@@ -30,7 +30,7 @@ import { I } from "../components";
 import logo from "@/assets/pwa-512x512.png";
 import logoDark from "@/assets/pwa-512x512-dark.png";
 
-export const Header = ({ opened, toggle }: any) => {
+export const HeaderLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
@@ -64,7 +64,7 @@ export const Header = ({ opened, toggle }: any) => {
   return (
     <>
       {isSearchbarVisible ? (
-        <Search />
+        <SearchLayout />
       ) : (
         <Group h={headerHeight} px="md" justify="space-between" align="center">
           <Group gap={4} onClick={handleNavigateToFeed} align="center">

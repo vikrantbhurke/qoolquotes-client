@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getPlaylists } from "@/playlist/playlist.network";
 import { Sort } from "@/playlist/enums";
 import { Order } from "@/global/enums";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetPlaylists = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const page = Number(urlParams.get("page") || "1");
-  const sort = urlParams.get("sort") as Sort;
-  const order = urlParams.get("order") as Order;
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
+  const sort = searchParams.get("sort") as Sort;
+  const order = searchParams.get("order") as Order;
 
   const {
     data: playlists,
