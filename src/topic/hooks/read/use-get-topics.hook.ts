@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTopics } from "@/topic/topic.network";
 import { Order } from "@/global/enums";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetTopics = () => {
   let [searchParams] = useSearchParams();
-  const page = Number(urlParams.get("page") || "1");
-  const sort = urlParams.get("sort") as string;
-  const order = urlParams.get("order") as Order;
-  const alpha = urlParams.get("alpha") as string;
+  const page = Number(searchParams.get("page") || "1");
+  const sort = searchParams.get("sort") as string;
+  const order = searchParams.get("order") as Order;
+  const alpha = searchParams.get("alpha") as string;
 
   const getTopicsDTO = {
     sort,
