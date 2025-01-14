@@ -27,8 +27,8 @@ import {
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
-import logo from "@/assets/pwa-512x512.png";
-import logoDark from "@/assets/pwa-512x512-dark.png";
+import logo from "@/global/assets/pwa-512x512.png";
+import logoDark from "@/global/assets/pwa-512x512-dark.png";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
