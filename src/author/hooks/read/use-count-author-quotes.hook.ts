@@ -10,6 +10,7 @@ export const useCountAuthorQuotes = (aid: string) => {
   } = useQuery({
     queryKey: ["countAuthorQuotes", aid],
     queryFn: () => countAuthorQuotes(aid),
+    enabled: !!aid,
   });
 
   return { authorQuotes, isPending, isError, error };

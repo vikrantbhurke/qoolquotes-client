@@ -1,4 +1,4 @@
-import { GetTopicsGrid } from "./get-topics.grid";
-import { SearchTopicsGrid } from "./search-topics.grid";
+import { GetTopicsMantineGrid } from "./get-topics.mantine-grid";
+import { SearchTopicsMantineGrid } from "./search-topics.mantine-grid";
 
-export { GetTopicsGrid, SearchTopicsGrid };
+export { GetTopicsMantineGrid, SearchTopicsMantineGrid };

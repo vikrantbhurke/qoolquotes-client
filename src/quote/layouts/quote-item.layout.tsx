@@ -1,7 +1,7 @@
 import {
   oneTx,
   threeBg,
-  borderLowContrastColor,
+  borderLCColor,
   oneBg,
   twoBg,
 } from "@/global/styles/app.css";
@@ -50,7 +50,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={borderLowContrastColor}
+        bg={borderLCColor}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>

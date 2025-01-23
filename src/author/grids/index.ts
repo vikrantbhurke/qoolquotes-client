@@ -1,4 +1,4 @@
-import { GetAuthorsGrid } from "./get-authors.grid";
-import { SearchAuthorsGrid } from "./search-authors.grid";
+import { GetAuthorsMantineGrid } from "./get-authors.mantine-grid";
+import { SearchAuthorsMantineGrid } from "./search-authors.mantine-grid";
 
-export { GetAuthorsGrid, SearchAuthorsGrid };
+export { GetAuthorsMantineGrid, SearchAuthorsMantineGrid };

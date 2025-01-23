@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 
-export const SearchAuthorsGrid = () => {
+export const SearchAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useSearchAuthors();
   const { page } = useSelector((state: any) => state.author);
   const setData = useOutletContext<any>();

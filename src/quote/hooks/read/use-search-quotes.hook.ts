@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { RootState } from "@/global/states/store";
 import { searchQuotes } from "@/quote/quote.network";
+import { useSearchParams } from "react-router-dom";
 
 export const useSearchQuotes = () => {
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
   const { search } = useSelector((state: RootState) => state.view);
-  const { page } = useSelector((state: RootState) => state.quote);
 
   const {
     data: quotes,
@@ -14,9 +16,7 @@ export const useSearchQuotes = () => {
     error,
   } = useQuery({
     queryKey: ["searchQuotes", page - 1, search],
-
     queryFn: () => searchQuotes({ page: page - 1, search }),
-    enabled: !!page,
   });
 
   const prevPage = quotes?.firstPage ? page : page - 1;

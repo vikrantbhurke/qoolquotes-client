@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { savePlaylist } from "@/playlist-saver/playlist-saver.network";
 import { NotificationColor } from "@/global/enums";
-import { AxiosError } from "axios";
 
 export const useSavePlaylist = () => {
   const queryClient = useQueryClient();
@@ -39,10 +38,14 @@ export const useSavePlaylist = () => {
       });
     },
 
-    onError: (error: AxiosError) => {
+    onError: (error: any) => {
       const { message }: any = error?.response?.data;
       if (message) showNotification(message, NotificationColor.Warning);
-      else showNotification(error.message, NotificationColor.Failure);
+      else
+        showNotification(
+          error?.response?.data?.message || error.message,
+          NotificationColor.Failure
+        );
     },
   });
 

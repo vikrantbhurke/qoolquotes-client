@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { useNotification } from "@/global/hooks";
 import { getUserByUsername, signInUser } from "@/user/user.network";
 import { useDispatch } from "react-redux";
@@ -24,8 +23,11 @@ export const useSignInUser = () => {
       showNotification("Welcome to QoolQuotes!", NotificationColor.Info);
     },
 
-    onError: (error: AxiosError) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: (error: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 

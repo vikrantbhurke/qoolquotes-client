@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { useNavigate } from "react-router-dom";
 import { NotificationColor } from "@/global/enums";
-import { AxiosError } from "axios";
 
 export const useUpdatePlaylistById = () => {
   const { showNotification } = useNotification();
@@ -13,7 +12,7 @@ export const useUpdatePlaylistById = () => {
   const { mutate: updatePlaylistByIdMutation, isPending } = useMutation({
     mutationFn: updatePlaylistById,
 
-    onMutate: async ({ pid, ...rest }) => {
+    onMutate: async ({ pid, name, description, access }: any) => {
       await queryClient.cancelQueries({
         queryKey: ["getPlaylistById", pid],
       });
@@ -28,7 +27,9 @@ export const useUpdatePlaylistById = () => {
         (playlist: any) => {
           return {
             ...playlist,
-            rest,
+            name,
+            description,
+            access,
           };
         }
       );
@@ -62,8 +63,11 @@ export const useUpdatePlaylistById = () => {
       });
     },
 
-    onError: async (error: AxiosError, { pid }: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, { pid }: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       await queryClient.setQueryData(
         ["getPlaylistById", pid],

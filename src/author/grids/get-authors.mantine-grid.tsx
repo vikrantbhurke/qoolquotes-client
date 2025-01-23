@@ -10,7 +10,7 @@ import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/components";
 
-export const GetAuthorsGrid = () => {
+export const GetAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
   const { page } = useSelector((state: any) => state.author);
   const setData = useOutletContext<any>();

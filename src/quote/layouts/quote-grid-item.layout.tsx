@@ -1,8 +1,4 @@
-import {
-  oneTx,
-  threeBg,
-  borderLowContrastColor,
-} from "@/global/styles/app.css";
+import { oneTx, threeBg, borderLCColor } from "@/global/styles/app.css";
 import {
   QuoteLikesCountLayout,
   QuoteLikerReadonlyButtonLayout,
@@ -32,7 +28,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={borderLowContrastColor}
+        bg={borderLCColor}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>

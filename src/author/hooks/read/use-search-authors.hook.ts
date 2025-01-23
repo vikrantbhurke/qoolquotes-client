@@ -29,7 +29,7 @@ export const useSearchAuthors = () => {
     queryKey: ["searchAuthors", page - 1, ...Object.values(searchAuthorsDTO)],
 
     queryFn: () => searchAuthors({ page: page - 1, ...searchAuthorsDTO }),
-    enabled: !!page,
+    enabled: !!search,
   });
 
   const prevPage = authors?.firstPage ? page : page - 1;
@@ -49,7 +49,7 @@ export const useSearchAuthors = () => {
         ...searchAuthorsDTO,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!search,
   });
 
   useQuery({
@@ -65,7 +65,7 @@ export const useSearchAuthors = () => {
         ...searchAuthorsDTO,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!search,
   });
 
   useQuery({
@@ -81,7 +81,7 @@ export const useSearchAuthors = () => {
         ...searchAuthorsDTO,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!search,
   });
 
   return { authors, isPending, isError, error };

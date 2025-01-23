@@ -18,7 +18,7 @@ import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
 import { SeoComponent } from "@/global/components/components";
 
-export const GetRandomQuotesGrid = () => {
+export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
   const { isMobile } = useSelector((state: any) => state.view);

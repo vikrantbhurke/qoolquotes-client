@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 
-export const SearchTopicsGrid = () => {
+export const SearchTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useSearchTopics();
   const { page } = useSelector((state: any) => state.topic);
   const setData = useOutletContext<any>();

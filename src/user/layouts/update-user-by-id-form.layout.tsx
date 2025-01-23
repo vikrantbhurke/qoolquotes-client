@@ -71,8 +71,7 @@ export const UpdateUserByIdFormLayout = () => {
           py="xl">
           <form onSubmit={form.onSubmit(handleUpdateUserById)}>
             <Stack
-              maw={isMobile ? 500 : 570}
-              miw={isMobile ? 400 : 470}
+              w={400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}

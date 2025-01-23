@@ -10,6 +10,7 @@ export const useCountPlaylistQuotes = (pid: string) => {
   } = useQuery({
     queryKey: ["countPlaylistQuotes", pid],
     queryFn: () => countPlaylistQuotes(pid),
+    enabled: !!pid,
   });
 
   return { playlistQuotes, isPending, isError, error };

@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getQuotesByPlaylistId } from "@/quote/quote.network";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetQuotesByPlaylistId = () => {
-  const { page, filterObject } = useSelector((state: RootState) => state.quote);
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
+  const { filterObject } = useSelector((state: RootState) => state.quote);
   const { id: pid } = filterObject;
 
   const {
@@ -14,9 +17,8 @@ export const useGetQuotesByPlaylistId = () => {
     error,
   } = useQuery({
     queryKey: ["getQuotesByPlaylistId", page - 1, pid],
-
     queryFn: () => getQuotesByPlaylistId({ page: page - 1, pid }),
-    enabled: !!page,
+    enabled: !!pid,
   });
 
   const prevPage = quotes?.firstPage ? page : page - 1;

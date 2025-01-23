@@ -10,6 +10,7 @@ export const useCountTopicQuotes = (tid: string) => {
   } = useQuery({
     queryKey: ["countTopicQuotes", tid],
     queryFn: () => countTopicQuotes(tid),
+    enabled: !!tid,
   });
 
   return { topicQuotes, isPending, isError, error };

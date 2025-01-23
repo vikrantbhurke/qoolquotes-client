@@ -77,14 +77,17 @@ export const getPlaylistById = async (pid: string | undefined) => {
   return result.data;
 };
 
-export const updatePlaylistById = async ({
-  pid,
-  updatePlaylistDTO,
-}: {
-  pid: string;
-  updatePlaylistDTO: UpdatePlaylistDTO;
-}) => {
-  const result = await axios.patch(`/playlists/${pid}`, updatePlaylistDTO);
+export const updatePlaylistById = async (
+  updatePlaylistDTO: UpdatePlaylistDTO
+) => {
+  const { pid, name, description, access } = updatePlaylistDTO;
+
+  const result = await axios.patch(`/playlists/${pid}`, {
+    name,
+    description,
+    access,
+  });
+
   return result.data;
 };
 

@@ -2,7 +2,6 @@ import { NotificationColor } from "@/global/enums";
 import { useNotification } from "@/global/hooks";
 import { addQuoteToPlaylist } from "@/playlist-quote/playlist-quote.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 
 export const useAddQuoteToPlaylist = () => {
   const queryClient = useQueryClient();
@@ -61,8 +60,11 @@ export const useAddQuoteToPlaylist = () => {
       });
     },
 
-    onError: async (error: AxiosError, { pid, qid }: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, { pid, qid }: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       queryClient.setQueryData(
         ["checkPlaylistQuote", pid, qid],

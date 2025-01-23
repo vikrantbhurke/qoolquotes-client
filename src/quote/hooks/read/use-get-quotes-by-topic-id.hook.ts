@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getQuotesByTopicId } from "@/quote/quote.network";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetQuotesByTopicId = () => {
-  const { page, filterObject } = useSelector((state: RootState) => state.quote);
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
+  const { filterObject } = useSelector((state: RootState) => state.quote);
   const { id: tid } = filterObject;
 
   const {
@@ -14,9 +17,8 @@ export const useGetQuotesByTopicId = () => {
     error,
   } = useQuery({
     queryKey: ["getQuotesByTopicId", page - 1, tid],
-
     queryFn: () => getQuotesByTopicId({ page: page - 1, tid }),
-    enabled: !!page,
+    enabled: !!tid,
   });
 
   const prevPage = quotes?.firstPage ? page : page - 1;

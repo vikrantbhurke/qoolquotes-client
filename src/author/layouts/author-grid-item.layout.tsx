@@ -17,8 +17,8 @@ export const AuthorGridItemLayout = ({ item }: any) => {
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
-    dispatch(setFilterObject({ name: item.name, id: item.id }));
     navigate(`/quotes/authorId/${item.id}?page=1`);
+    dispatch(setFilterObject({ name: item.name, id: item.id }));
   };
 
   return (

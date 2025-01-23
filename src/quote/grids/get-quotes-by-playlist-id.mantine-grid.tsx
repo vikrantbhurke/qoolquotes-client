@@ -14,7 +14,7 @@ import {
   removeBoxShadow,
 } from "@/global/styles/global.styles";
 
-export const GetQuotesByPlaylistIdGrid = () => {
+export const GetQuotesByPlaylistIdMantineGrid = () => {
   const { isMobile } = useSelector((state: any) => state.view);
   const { quotes, isPending, isError, error } = useGetQuotesByPlaylistId();
   const { page } = useSelector((state: any) => state.quote);

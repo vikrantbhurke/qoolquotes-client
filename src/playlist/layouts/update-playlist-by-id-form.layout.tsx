@@ -40,7 +40,9 @@ import {
 export const UpdatePlaylistByIdFormLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { access } = useSelector((state: any) => state.playlist);
+
+  const { access } = useSelector((state: RootState) => state.playlist);
+
   const { focusedInput, isMobile } = useSelector(
     (state: RootState) => state.view
   );
@@ -69,8 +71,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
       <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
         <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
           <Stack
-            maw={isMobile ? 500 : 570}
-            miw={isMobile ? 400 : 470}
+            w={400}
             gap="lg"
             bg={oneBg}
             p={isMobile ? "md" : "xl"}

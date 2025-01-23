@@ -10,7 +10,7 @@ import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/components";
 
-export const GetTopicsGrid = () => {
+export const GetTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useGetTopics();
   const { page } = useSelector((state: any) => state.topic);
   const setData = useOutletContext<any>();

@@ -10,6 +10,7 @@ export const useCountPlaylistLikes = (pid: string) => {
   } = useQuery({
     queryKey: ["countPlaylistLikes", pid],
     queryFn: () => countPlaylistLikes(pid),
+    enabled: !!pid,
   });
 
   return { playlistLikes, isPending, isError, error };

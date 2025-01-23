@@ -1,7 +1,7 @@
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
-import { borderLowContrastColor, roundBorders } from "@/global/styles/app.css";
+import { borderLCColor, roundBorders } from "@/global/styles/app.css";
 import { footerHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -25,6 +25,8 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
   const location = useLocation();
+
+  const { isSearchbarVisible } = useSelector((state: any) => state.view);
 
   const {
     sort: authorSort,
@@ -65,22 +67,24 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
   const feedIconColor =
-    location.pathname === "/" ? borderLowContrastColor : "transparent";
+    location.pathname === "/" ? borderLCColor : "transparent";
 
   const feedPath =
     location.pathname === "/" ? IconArticleFilledFilled : IconArticle;
 
   const topicsIconColor =
-    location.pathname === "/topics" ? borderLowContrastColor : "transparent";
+    location.pathname === "/topics" ? borderLCColor : "transparent";
 
   const topicsPath =
     location.pathname === "/topics" ? IconCategoryFilled : IconCategory;
 
   const authorsIconColor =
-    location.pathname === "/authors" ? borderLowContrastColor : "transparent";
+    location.pathname === "/authors" ? borderLCColor : "transparent";
 
   const authorsPath =
     location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
+
+  const searchIconColor = isSearchbarVisible ? borderLCColor : "transparent";
 
   return (
     <Group justify="space-evenly" grow gap={0} h={footerHeight}>
@@ -126,7 +130,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         gap={0}
         h={footerHeight}
         onClick={handleReadOnlyClick}>
-        <I I={IconSearch} />
+        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorders}>
+          <I I={IconSearch} />
+        </Stack>
         <Text>Search</Text>
       </Stack>
     </Group>

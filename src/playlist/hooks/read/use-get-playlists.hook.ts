@@ -18,7 +18,6 @@ export const useGetPlaylists = () => {
   } = useQuery({
     queryKey: ["getPlaylists", page - 1, sort, order],
     queryFn: () => getPlaylists({ page: page - 1, sort, order }),
-    enabled: !!page,
   });
 
   const prevPage = playlists?.firstPage ? page : page - 1;

@@ -1,6 +1,6 @@
 import { notifications } from "@mantine/notifications";
 import { NotificationColor } from "../enums/notification-color.enum";
-import { borderLowContrast, fiveBg, oneBg } from "../styles/app.css";
+import { borderLCBorder, fiveBg, oneBg } from "../styles/app.css";
 import { useMantineColorScheme } from "@mantine/core";
 
 export const useNotification = () => {
@@ -14,7 +14,7 @@ export const useNotification = () => {
       message: "",
       style: {
         backgroundColor: colorScheme === "dark" ? fiveBg : oneBg,
-        border: borderLowContrast,
+        border: borderLCBorder,
       },
       autoClose: 5000,
     });

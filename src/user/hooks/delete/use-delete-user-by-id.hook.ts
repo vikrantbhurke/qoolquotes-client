@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { signOut } from "@/user/auth.slice";
@@ -47,8 +46,11 @@ export const useDeleteUserById = () => {
       showNotification("Account deleted!", NotificationColor.Success);
     },
 
-    onError: async (error: AxiosError, { uid }: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, { uid }: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       await queryClient.setQueryData(
         ["getUserById", uid],

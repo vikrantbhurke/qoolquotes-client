@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { clonePlaylist } from "@/playlist/playlist.network";
@@ -14,10 +13,14 @@ export const useClonePlaylist = () => {
       showNotification(`Playlist cloned.`, NotificationColor.Success);
     },
 
-    onError: (error: AxiosError) => {
+    onError: (error: any) => {
       const { message }: any = error?.response?.data;
       if (message) showNotification(message, NotificationColor.Warning);
-      else showNotification(error.message, NotificationColor.Failure);
+      else
+        showNotification(
+          error?.response?.data?.message || error.message,
+          NotificationColor.Failure
+        );
     },
   });
 

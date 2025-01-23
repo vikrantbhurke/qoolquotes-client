@@ -10,6 +10,7 @@ export const useCheckPlaylistQuote = ({ pid, qid }: any) => {
   } = useQuery({
     queryKey: ["checkPlaylistQuote", pid, qid],
     queryFn: () => checkPlaylistQuote({ pid, qid }),
+    enabled: !!pid && !!qid,
   });
 
   return { playlistQuote, isPending, isError, error };

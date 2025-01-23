@@ -2,7 +2,6 @@ import { useNotification } from "@/global/hooks";
 import { removePlaylist } from "@/playlist-saver/playlist-saver.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NotificationColor } from "@/global/enums";
-import { AxiosError } from "axios";
 
 export const useRemovePlaylist = () => {
   const queryClient = useQueryClient();
@@ -39,8 +38,11 @@ export const useRemovePlaylist = () => {
       });
     },
 
-    onError: async (error: AxiosError) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 

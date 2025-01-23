@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getPlaylistsBySaverId } from "@/playlist/playlist.network";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetPlaylistsBySaverId = () => {
-  const { page } = useSelector((state: RootState) => state.playlist);
+  let [searchParams] = useSearchParams();
+  const page = Number(searchParams.get("page") || "1");
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const {
@@ -15,7 +17,6 @@ export const useGetPlaylistsBySaverId = () => {
   } = useQuery({
     queryKey: ["getPlaylistsBySaverId", page - 1, auth.id],
     queryFn: () => getPlaylistsBySaverId({ page: page - 1, sid: auth.id }),
-    enabled: !!page,
   });
 
   const prevPage = playlists?.firstPage ? page : page - 1;

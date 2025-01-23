@@ -10,6 +10,7 @@ export const useCheckPlaylistLiker = ({ pid, lid }: any) => {
   } = useQuery({
     queryKey: ["checkPlaylistLiker", pid, lid],
     queryFn: () => checkPlaylistLiker({ pid, lid }),
+    enabled: !!pid && !!lid,
   });
 
   return { playlistLiker, isPending, isError, error };

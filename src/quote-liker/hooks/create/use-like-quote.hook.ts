@@ -2,7 +2,6 @@ import { NotificationColor } from "@/global/enums";
 import { useNotification } from "@/global/hooks";
 import { likeQuote } from "@/quote-liker/quote-liker.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 
 export const useLikeQuote = () => {
   const queryClient = useQueryClient();
@@ -74,8 +73,11 @@ export const useLikeQuote = () => {
       });
     },
 
-    onError: async (error: AxiosError, { qid, lid }: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, { qid, lid }: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       queryClient.setQueryData(
         ["checkQuoteLiker", qid, lid],

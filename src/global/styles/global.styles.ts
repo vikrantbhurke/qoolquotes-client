@@ -3,8 +3,8 @@ import {
   oneTx,
   twoBg,
   threeBg,
-  borderLowContrast,
-  borderHighContrast,
+  borderLCBorder,
+  borderHCBorder,
 } from "./app.css";
 
 export const mainContentWidth = 1000;
@@ -78,15 +78,15 @@ export const getSearchTextInput = (isMobile: boolean, width: number) => ({
     backgroundColor: "transparent",
     height: isMobile ? headerHeight : "100%",
     width,
-    maxWidth: isMobile ? "100%" : 800,
-    border: borderHighContrast,
+    maxWidth: isMobile ? "100%" : 500,
+    border: borderHCBorder,
     borderRadius: isMobile ? 0 : 8,
   },
 });
 
 export const getItemCardStyles = (isMobile: boolean) => ({
   backgroundColor: oneBg,
-  border: isMobile ? "none" : borderLowContrast,
+  border: isMobile ? "none" : borderLCBorder,
   borderRadius: isMobile ? 0 : 10,
 });
 
@@ -113,13 +113,13 @@ export const getGridItemBorderWithBorder = (isMobile: boolean) => {
   if (isMobile) {
     return {
       borderTop: "none",
-      borderBottom: borderLowContrast,
+      borderBottom: borderLCBorder,
       borderRight: "none",
       borderLeft: "none",
     };
   } else {
     return {
-      border: borderLowContrast,
+      border: borderLCBorder,
       borderRadius: "10px",
       transition: "box-shadow 0.3s ease",
     };
@@ -139,18 +139,18 @@ export const getGridItemBorderWithBorder = (isMobile: boolean) => {
 
 export const getSubheadersStyles = (isMobile: boolean) => {
   return {
-    borderBottom: borderLowContrast,
-    borderLeft: isMobile ? "none" : borderLowContrast,
-    borderRight: isMobile ? "none" : borderLowContrast,
+    borderBottom: borderLCBorder,
+    borderLeft: isMobile ? "none" : borderLCBorder,
+    borderRight: isMobile ? "none" : borderLCBorder,
     borderTop: "none",
   };
 };
 
 export const getPaginationStyles = (isMobile: boolean) => {
   return {
-    borderTop: borderLowContrast,
-    borderLeft: isMobile ? "none" : borderLowContrast,
-    borderRight: isMobile ? "none" : borderLowContrast,
+    borderTop: borderLCBorder,
+    borderLeft: isMobile ? "none" : borderLCBorder,
+    borderRight: isMobile ? "none" : borderLCBorder,
     borderBottom: "none",
   };
 };
@@ -176,7 +176,11 @@ export const removeBoxShadow = (e: any) => {
 };
 
 export const modal = {
-  title: { fontFamily: "Readex Pro" },
+  title: {
+    fontFamily: "Readex Pro",
+    textAlign: "center" as const,
+    width: "100%",
+  },
   content: { backgroundColor: `${twoBg}` },
   header: { backgroundColor: `${twoBg}` },
 };
@@ -199,7 +203,7 @@ export const getFormTextInput = (isFocused: boolean) => ({
   input: {
     padding: "1.5rem",
     backgroundColor: oneBg,
-    border: isFocused ? borderHighContrast : borderLowContrast,
+    border: isFocused ? borderHCBorder : borderLCBorder,
   },
 });
 
@@ -211,7 +215,7 @@ export const getComboboxTextInput = (isFocused: boolean) => ({
     padding: "1.5rem",
     color: oneTx,
     backgroundColor: oneBg,
-    border: isFocused ? borderHighContrast : borderLowContrast,
+    border: isFocused ? borderHCBorder : borderLCBorder,
   },
 });
 
@@ -222,7 +226,7 @@ export const getComboboxTextInputForPagination = () => ({
     textAlign: "center" as const,
     color: oneTx,
     backgroundColor: threeBg,
-    border: borderHighContrast,
+    border: borderHCBorder,
   },
 });
 

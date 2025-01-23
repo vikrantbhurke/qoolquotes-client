@@ -23,9 +23,7 @@ export const useGetAuthors = () => {
     error,
   } = useQuery({
     queryKey: ["getAuthors", page - 1, ...Object.values(getAuthorsDTO)],
-
     queryFn: () => getAuthors({ page: page - 1, ...getAuthorsDTO }),
-    enabled: !!page,
   });
 
   const prevPage = authors?.firstPage ? page : page - 1;

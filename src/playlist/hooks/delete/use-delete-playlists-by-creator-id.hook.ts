@@ -2,7 +2,6 @@ import { useNotification } from "@/global/hooks";
 import { deletePlaylistsByCreatorId } from "@/playlist/playlist.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NotificationColor } from "@/global/enums";
-import { AxiosError } from "axios";
 
 export const useDeletePlaylistsByCreatorId = () => {
   const queryClient = useQueryClient();
@@ -50,8 +49,11 @@ export const useDeletePlaylistsByCreatorId = () => {
         });
       },
 
-      onError: async (error: AxiosError, _variables: any, context: any) => {
-        showNotification(error.message, NotificationColor.Failure);
+      onError: async (error: any, _variables: any, context: any) => {
+        showNotification(
+          error?.response?.data?.message || error.message,
+          NotificationColor.Failure
+        );
 
         if (context?.previousPlaylists) {
           queryClient.setQueryData(

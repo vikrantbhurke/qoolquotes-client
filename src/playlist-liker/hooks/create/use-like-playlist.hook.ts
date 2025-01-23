@@ -2,7 +2,6 @@ import { NotificationColor } from "@/global/enums";
 import { useNotification } from "@/global/hooks";
 import { likePlaylist } from "@/playlist-liker/playlist-liker.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 
 export const useLikePlaylist = () => {
   const queryClient = useQueryClient();
@@ -77,8 +76,11 @@ export const useLikePlaylist = () => {
       });
     },
 
-    onError: async (error: AxiosError, { pid, lid }: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, { pid, lid }: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       queryClient.setQueryData(
         ["checkPlaylistLiker", pid, lid],

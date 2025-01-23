@@ -13,6 +13,7 @@ export const useCheckPlaylistSaver = ({ pid }: any) => {
   } = useQuery({
     queryKey: ["checkPlaylistSaver", pid, auth.id],
     queryFn: () => checkPlaylistSaver({ pid, sid: auth.id }),
+    enabled: !!auth.id && !!pid,
   });
 
   return { playlistSaver, isPending, isError, error };

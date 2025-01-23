@@ -14,6 +14,7 @@ export const useGetPlaylistById = () => {
   } = useQuery({
     queryKey: ["getPlaylistById", pid],
     queryFn: () => getPlaylistById(pid),
+    enabled: !!pid,
   });
 
   return { playlist, isPending, isError, error };

@@ -29,7 +29,7 @@ export const useSearchTopics = () => {
     queryKey: ["searchTopics", page - 1, ...Object.values(searchTopicsDTO)],
 
     queryFn: () => searchTopics({ page: page - 1, ...searchTopicsDTO }),
-    enabled: !!page,
+    enabled: !!search,
   });
 
   const prevPage = topics?.firstPage ? page : page - 1;
@@ -45,7 +45,7 @@ export const useSearchTopics = () => {
         ...searchTopicsDTO,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!search,
   });
 
   useQuery({
@@ -57,7 +57,7 @@ export const useSearchTopics = () => {
         ...searchTopicsDTO,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!search,
   });
 
   useQuery({
@@ -69,7 +69,7 @@ export const useSearchTopics = () => {
         ...searchTopicsDTO,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!search,
   });
 
   return { topics, isPending, isError, error };

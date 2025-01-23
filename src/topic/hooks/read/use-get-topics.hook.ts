@@ -23,9 +23,7 @@ export const useGetTopics = () => {
     error,
   } = useQuery({
     queryKey: ["getTopics", page - 1, ...Object.values(getTopicsDTO)],
-
     queryFn: () => getTopics({ page: page - 1, ...getTopicsDTO }),
-    enabled: !!page,
   });
 
   const prevPage = topics?.firstPage ? page : page - 1;

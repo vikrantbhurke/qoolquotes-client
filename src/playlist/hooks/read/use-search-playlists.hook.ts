@@ -17,7 +17,6 @@ export const useSearchPlaylists = () => {
   } = useQuery({
     queryKey: ["searchPlaylists", page - 1, search],
     queryFn: () => searchPlaylists({ page: page - 1, search }),
-    enabled: !!page,
   });
 
   const prevPage = playlists?.firstPage ? page : page - 1;

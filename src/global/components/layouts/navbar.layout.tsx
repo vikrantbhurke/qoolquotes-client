@@ -5,7 +5,10 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
-import { oneTxOneBgButtonPseudo, themeGreen } from "@/global/styles/app.css";
+import {
+  oneTxOneBgButtonPseudo,
+  themeGreenColor,
+} from "@/global/styles/app.css";
 import { getListButtonHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
@@ -111,7 +114,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         {!isInstalled && installPrompt && (
           <CompOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
-              c={themeGreen}
+              c={themeGreenColor}
               h={getListButtonHeight(isMobile)}
               className={buttonClasses}
               leftSection={<I I={IconDownload} />}

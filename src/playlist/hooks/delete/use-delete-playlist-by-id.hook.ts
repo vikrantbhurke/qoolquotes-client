@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { deletePlaylistById } from "@/playlist/playlist.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
@@ -61,8 +60,11 @@ export const useDeletePlaylistById = () => {
       });
     },
 
-    onError: async (error: AxiosError, pid: any, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, pid: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       await queryClient.setQueryData(
         ["getPlaylistById", pid],

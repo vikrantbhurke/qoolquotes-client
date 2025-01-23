@@ -11,12 +11,12 @@ export const fourTx = "var(--quaternary-text)";
 export const fourBg = "var(--quaternary-background)";
 export const fiveTx = "var(--quinary-text)";
 export const fiveBg = "var(--quinary-background)";
-export const borderLowContrastColor = "var(--border-low-contrast)";
-export const borderHighContrastColor = "var(--border-high-contrast)";
-export const themeGreen = "var(--theme-green)";
+export const borderLCColor = "var(--border-low-contrast)";
+export const borderHCColor = "var(--border-high-contrast)";
+export const themeGreenColor = "var(--theme-green)";
 
-export const borderLowContrast = `1px solid ${borderLowContrastColor}`;
-export const borderHighContrast = `2px solid ${borderHighContrastColor}`;
+export const borderLCBorder = `1px solid ${borderLCColor}`;
+export const borderHCBorder = `2px solid ${borderHCColor}`;
 
 export const noBorder = style({
   border: "none",
@@ -223,23 +223,23 @@ export const roundBorders = style({
 });
 
 export const border = style({
-  border: borderLowContrast,
+  border: borderLCBorder,
 });
 
 export const borderBottom = style({
-  borderBottom: borderLowContrast,
+  borderBottom: borderLCBorder,
 });
 
 export const borderTop = style({
-  borderTop: borderLowContrast,
+  borderTop: borderLCBorder,
 });
 
 export const borderLeft = style({
-  borderLeft: borderLowContrast,
+  borderLeft: borderLCBorder,
 });
 
 export const borderRight = style({
-  borderRight: borderLowContrast,
+  borderRight: borderLCBorder,
 });
 
 export const readexProFont = style({
@@ -247,21 +247,21 @@ export const readexProFont = style({
 });
 
 export const borderTopShadow = style({
-  borderTop: borderLowContrast,
+  borderTop: borderLCBorder,
   boxShadow: `0px -2px 4px rgba(0, 0, 0, 0.1)`,
 });
 
 export const borderBottomShadow = style({
-  borderBottom: borderLowContrast,
+  borderBottom: borderLCBorder,
   boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.1)`,
 });
 
 export const borderLeftShadow = style({
-  borderLeft: borderLowContrast,
+  borderLeft: borderLCBorder,
   boxShadow: `-2px 0px 4px rgba(0, 0, 0, 0.1)`,
 });
 
 export const borderRightShadow = style({
-  borderRight: borderLowContrast,
+  borderRight: borderLCBorder,
   boxShadow: `2px 0px 4px rgba(0, 0, 0, 0.1)`,
 });

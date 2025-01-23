@@ -13,6 +13,7 @@ export const useGetUserById = () => {
   } = useQuery({
     queryKey: ["getUserById", uid],
     queryFn: () => getUserById(uid),
+    enabled: !!uid,
   });
 
   return { user, isPending, isError, error };

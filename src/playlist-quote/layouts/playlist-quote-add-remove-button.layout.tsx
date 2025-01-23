@@ -4,7 +4,7 @@ import { useRemoveQuoteFromPlaylist } from "../hooks/delete";
 import { useCheckPlaylistQuote } from "../hooks/read";
 import { useSelector } from "react-redux";
 import { getComboboxStyles } from "@/global/styles/global.styles";
-import { borderHighContrast, oneTx } from "@/global/styles/app.css";
+import { borderHCBorder, oneTx } from "@/global/styles/app.css";
 
 export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
   const { qid } = useSelector((state: any) => state.quote);
@@ -36,7 +36,7 @@ export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
     <Checkbox
       disabled={isAddingPending || isRemovingPending}
       styles={{
-        input: { border: borderHighContrast, backgroundColor: dropdownBg },
+        input: { border: borderHCBorder, backgroundColor: dropdownBg },
       }}
       iconColor={oneTx}
       checked={playlistQuote?.exists || false}

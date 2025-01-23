@@ -5,7 +5,6 @@ import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 import { ActionIcon, Group, TextInput } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
 import { IconX } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -19,9 +18,11 @@ export const SearchLayout = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { width } = useViewportSize();
   const inputRef = useRef<any>(null);
-  const { search, isMobile } = useSelector((state: RootState) => state.view);
+
+  const { search, isMobile, width } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const { sort: authorSort, order: authorOrder } = useSelector(
     (state: RootState) => state.author
@@ -88,7 +89,8 @@ export const SearchLayout = () => {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    dispatch(setSearch(event.target.value));
+    if (!event.target.value) handleClearSearch(event);
+    else dispatch(setSearch(event.target.value));
   };
 
   const handleBlur = () => {

@@ -3,11 +3,12 @@ import { useForm } from "@mantine/form";
 import { useGetPlaylistById } from "../read";
 import { useSelector } from "react-redux";
 import { playlistUtility } from "@/playlist/playlist.utility";
+import { RootState } from "@/global/states/store";
 
 export const useUpdatePlaylistByIdForm = () => {
   const { playlist } = useGetPlaylistById();
   const { updatePlaylistByIdMutation, isPending } = useUpdatePlaylistById();
-  const { access } = useSelector((state: any) => state.playlist);
+  const { access } = useSelector((state: RootState) => state.playlist);
 
   const form = useForm({
     mode: "controlled",
@@ -18,11 +19,9 @@ export const useUpdatePlaylistByIdForm = () => {
 
     validate: {
       name: (value) =>
-        value !== playlist.firstname
-          ? playlistUtility.validateName(value)
-          : null,
+        value !== playlist.name ? playlistUtility.validateName(value) : null,
       description: (value) =>
-        value !== playlist.lastname
+        value !== playlist.description
           ? playlistUtility.validateDescription(value)
           : null,
     },
@@ -33,11 +32,9 @@ export const useUpdatePlaylistByIdForm = () => {
 
     updatePlaylistByIdMutation({
       pid: playlist.id,
-      updatePlaylistDTO: {
-        name: name ? name : playlist.name,
-        description: description,
-        access,
-      },
+      name,
+      description,
+      access,
     });
 
     form.setInitialValues({

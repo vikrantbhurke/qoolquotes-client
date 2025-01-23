@@ -54,8 +54,8 @@ export const UserItemLayout = ({ user }: any) => {
         </Center>
 
         <Stack
-          maw={isMobile ? 500 : 570}
-          miw={isMobile ? 400 : 470}
+          maw={isMobile ? 600 : 670}
+          miw={isMobile ? "100%" : 570}
           gap="lg"
           bg={oneBg}
           p={isMobile ? "md" : "xl"}

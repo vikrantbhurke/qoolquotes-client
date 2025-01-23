@@ -14,7 +14,7 @@ import {
   removeBoxShadow,
 } from "@/global/styles/global.styles";
 
-export const GetQuotesByTopicIdGrid = () => {
+export const GetQuotesByTopicIdMantineGrid = () => {
   const { isMobile } = useSelector((state: any) => state.view);
   const { quotes, isPending, isError, error } = useGetQuotesByTopicId();
   const { page } = useSelector((state: any) => state.quote);

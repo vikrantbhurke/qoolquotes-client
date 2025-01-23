@@ -23,9 +23,8 @@ export const QuotesLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
   const location = useLocation();
-  const { search } = useSelector((state: any) => state.view);
+  const { search, isMobile } = useSelector((state: any) => state.view);
   const { filterObject } = useSelector((state: any) => state.quote);
-  const { isMobile } = useSelector((state: any) => state.view);
 
   const [data, setData] = useState<any>({
     page: 0,
@@ -59,13 +58,6 @@ export const QuotesLayout = () => {
           )
         </Text>
 
-        {/* <Button
-          h={subheaderHeight}
-          className={oneTxOneBgButtonPseudo}
-          onClick={() => console.log("")}
-          leftSection={<I I={IconFilter} />}>
-          Filter
-        </Button> */}
         <Group gap="xl">
           <Space w="xl" />
           <Space w="xl" />

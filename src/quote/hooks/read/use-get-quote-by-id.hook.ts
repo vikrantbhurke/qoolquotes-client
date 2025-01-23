@@ -13,6 +13,7 @@ export const useGetQuoteById = () => {
   } = useQuery({
     queryKey: ["getQuoteById", qid],
     queryFn: () => getQuoteById(qid),
+    enabled: !!qid,
   });
 
   return { quote, isPending, isError, error };
