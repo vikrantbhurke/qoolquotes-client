@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
-  getGridItemBorderWithBorder,
+  getGridListItemBorderWithBorder,
   removeBoxShadow,
 } from "@/global/styles/global.styles";
 
@@ -45,7 +45,7 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
       dataArray={quotes.content}
       totalPages={quotes.totalPages}
       GridItemLayout={QuoteGridItemLayout}
-      gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+      gridItemStyle={getGridListItemBorderWithBorder(isMobile)}
       onMouseEnter={(e: any) => !isMobile && addBoxShadow(e)}
       onMouseLeave={(e: any) => !isMobile && removeBoxShadow(e)}
     />

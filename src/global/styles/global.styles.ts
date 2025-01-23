@@ -90,7 +90,6 @@ export const getItemCardStyles = (isMobile: boolean) => ({
   borderRadius: isMobile ? 0 : 10,
 });
 
-// Mantine Grid.Colum Component Styles
 // export const getGridBorder = (
 //   isMobile: boolean,
 //   index: number,
@@ -108,8 +107,7 @@ export const getItemCardStyles = (isMobile: boolean) => ({
 //   };
 // };
 
-// Mantine Grid.Column Custom Child Component Styles
-export const getGridItemBorderWithBorder = (isMobile: boolean) => {
+export const getGridListItemBorderWithBorder = (isMobile: boolean) => {
   if (isMobile) {
     return {
       borderTop: "none",
@@ -126,11 +124,11 @@ export const getGridItemBorderWithBorder = (isMobile: boolean) => {
   }
 };
 
-// export const getGridItemBorderNoBorder = (isMobile: boolean) => {
+// export const getGridListItemBorderNoBorder = (isMobile: boolean) => {
 //   if (isMobile) {
 //     return {
 //       borderTop: "none",
-//       borderBottom: borderLowContrast,
+//       borderBottom: "none",
 //       borderRight: "none",
 //       borderLeft: "none",
 //     };

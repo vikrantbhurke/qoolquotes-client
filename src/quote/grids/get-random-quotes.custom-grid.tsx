@@ -2,7 +2,7 @@ import { borderBottomShadow, oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
   footerHeight,
-  getGridItemBorderWithBorder,
+  getGridListItemBorderWithBorder,
   headerHeight,
   removeBoxShadow,
 } from "@/global/styles/global.styles";
@@ -55,7 +55,7 @@ export const GetRandomQuotesCustomGrid = () => {
           hasMore={hasMore}
           setPage={setPage}
           gridBg={isMobile ? oneBg : twoBg}
-          gridItemStyle={getGridItemBorderWithBorder(isMobile)}
+          gridItemStyle={getGridListItemBorderWithBorder(isMobile)}
           onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
           onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}
         />
