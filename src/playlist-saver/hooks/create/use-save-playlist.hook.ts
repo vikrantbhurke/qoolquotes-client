@@ -39,13 +39,16 @@ export const useSavePlaylist = () => {
     },
 
     onError: (error: any) => {
-      const { message }: any = error?.response?.data;
-      if (message) showNotification(message, NotificationColor.Warning);
-      else
-        showNotification(
-          error?.response?.data?.message || error.message,
-          NotificationColor.Failure
-        );
+      let cvm = error?.response?.data?.message;
+      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
+      let errorMessage;
+
+      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
+
+      showNotification(
+        errorMessage || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 
