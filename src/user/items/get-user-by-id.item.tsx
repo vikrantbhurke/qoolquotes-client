@@ -4,15 +4,18 @@ import { CustomError } from "@/global/components/errors";
 import { UserItemLayout } from "../layouts/user-item.layout";
 import { SeoComponent } from "@/global/components/components";
 import { twoBg } from "@/global/styles/app.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const GetUserByIdItem = () => {
   const { user, isPending, isError, error } = useGetUserById();
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
-  if (isPending) return <CustomLoader bg={twoBg} />;
+  const bg = isMobile ? "" : twoBg;
 
-  if (isError) return <CustomError message={error?.message} bg={twoBg} />;
-
-  if (!user) return <CustomError message="User not found." bg={twoBg} />;
+  if (isPending) return <CustomLoader bg={bg} />;
+  if (isError) return <CustomError message={error?.message} bg={bg} />;
+  if (!user) return <CustomError message="User not found." bg={bg} />;
 
   return (
     <>
