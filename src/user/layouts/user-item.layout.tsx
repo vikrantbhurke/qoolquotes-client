@@ -1,9 +1,8 @@
 import { useDisclosure } from "@mantine/hooks";
-import { getFormTextInput, modal } from "@/global/styles/global.styles";
+import { modal } from "@/global/styles/global.styles";
 import {
   Button,
   Stack,
-  TextInput,
   Grid,
   Avatar,
   Modal,
@@ -12,165 +11,116 @@ import {
   Text,
   Space,
   Box,
+  Title,
+  Group,
 } from "@mantine/core";
-import {
-  oneTx,
-  inputStyles,
-  oneBg,
-  border,
-  roundBorders,
-  twoBg,
-} from "@/global/styles/app.css";
+import { oneTx, oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { useDispatch } from "react-redux";
-import { setFocusedInput } from "@/global/states/view.slice";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
+import { I } from "@/global/components/components";
+import { IconMailFilled } from "@tabler/icons-react";
 
 export const UserItemLayout = ({ user }: any) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
-
-  const { focusedInput, isMobile } = useSelector(
-    (state: RootState) => state.view
-  );
-
-  const handleFocus = (id: string) => dispatch(setFocusedInput(id));
-  const handleBlur = () => dispatch(setFocusedInput(""));
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
-    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
-      <Stack h="100%" gap="xl" align="center" justify="space-between">
-        <Center p="md">
-          <Stack h={isMobile ? 50 : 90}>
-            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-          </Stack>
+    <>
+      <Modal
+        c={oneTx}
+        styles={modal}
+        opened={picOpened}
+        onClose={() => setPicOpened(false)}
+        title="Profile Picture"
+        centered>
+        <Center>
+          <Image src={user.profilepic} alt="Large Profile" radius="md" />
         </Center>
+      </Modal>
 
+      <DeleteUserModalLayout opened={opened} close={close} />
+
+      <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
         <Stack
-          maw={isMobile ? 600 : 670}
-          miw={isMobile ? "100%" : 570}
-          gap="lg"
-          bg={oneBg}
-          p={isMobile ? "md" : "xl"}
-          className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
-          <DeleteUserModalLayout opened={opened} close={close} />
+          h="100%"
+          gap="xl"
+          align="center"
+          justify={isMobile ? "start" : "center"}>
+          <Center p="md">
+            <Stack h={isMobile ? 50 : 90}>
+              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+            </Stack>
+          </Center>
 
-          <Modal
-            c={oneTx}
-            styles={modal}
-            opened={picOpened}
-            onClose={() => setPicOpened(false)}
-            title="Profile Picture"
-            centered>
-            <Center>
-              <Image src={user.profilepic} alt="Large Profile" radius="md" />
-            </Center>
-          </Modal>
+          <Stack
+            w={isMobile ? "100%" : 400}
+            gap="xl"
+            bg={oneBg}
+            p={isMobile ? "md" : "xl"}
+            className={`${roundBorderStyle}`}>
+            <Stack align="center">
+              <Group align="center" gap="xl">
+                {user.profilepic ? (
+                  <>
+                    <Avatar
+                      src={user.profilepic}
+                      size="xl"
+                      radius="50%"
+                      onClick={() => setPicOpened(true)}
+                    />
+                  </>
+                ) : (
+                  <Avatar size="xl">
+                    {user.firstname[0]}
+                    {user.lastname[0]}
+                  </Avatar>
+                )}
 
-          <Stack align="center">
-            {user.profilepic ? (
-              <>
-                <Avatar
-                  src={user.profilepic}
-                  size="xl"
-                  radius="50%"
-                  onClick={() => setPicOpened(true)}
-                />
-              </>
-            ) : (
-              <Avatar size="xl">
-                {user.firstname[0]}
-                {user.lastname[0]}
-              </Avatar>
-            )}
+                <Stack gap={0} align="center">
+                  <Title order={5}>
+                    {user.firstname} {user.lastname}
+                  </Title>
+
+                  <Text size="sm" c="dimmed">
+                    @{user.username}
+                  </Text>
+
+                  <Group gap="xs">
+                    <I I={IconMailFilled} /> <Text>{user.email}</Text>
+                  </Group>
+                </Stack>
+              </Group>
+            </Stack>
+
+            <Grid>
+              <Grid.Col span={6}>
+                <Button
+                  fullWidth
+                  radius="sm"
+                  bg="blue"
+                  onClick={() => navigate(`/users/${user.id}/edit`)}>
+                  Edit Profile
+                </Button>
+              </Grid.Col>
+
+              <Grid.Col span={6}>
+                <Button fullWidth radius="sm" bg="red" onClick={open}>
+                  Delete Account
+                </Button>
+              </Grid.Col>
+            </Grid>
           </Stack>
 
-          <Stack gap="sm">
-            <Stack gap={0}>
-              <Text>Firstname</Text>
-              <TextInput
-                readOnly
-                classNames={{ input: inputStyles }}
-                styles={getFormTextInput(focusedInput === "firstname")}
-                wrapperProps={{
-                  onFocus: () => handleFocus("firstname"),
-                  onBlur: handleBlur,
-                }}
-                value={user.firstname}
-              />
-            </Stack>
-
-            <Stack gap={0}>
-              <Text>Lastname</Text>
-              <TextInput
-                readOnly
-                classNames={{ input: inputStyles }}
-                styles={getFormTextInput(focusedInput === "lastname")}
-                wrapperProps={{
-                  onFocus: () => handleFocus("lastname"),
-                  onBlur: handleBlur,
-                }}
-                value={user.lastname}
-              />
-            </Stack>
-
-            <Stack gap={0}>
-              <Text>Username</Text>
-              <TextInput
-                readOnly
-                classNames={{ input: inputStyles }}
-                styles={getFormTextInput(focusedInput === "username")}
-                wrapperProps={{
-                  onFocus: () => handleFocus("username"),
-                  onBlur: handleBlur,
-                }}
-                value={user.username}
-              />
-            </Stack>
-
-            <Stack gap={0}>
-              <Text>Email</Text>
-              <TextInput
-                readOnly
-                classNames={{ input: inputStyles }}
-                styles={getFormTextInput(focusedInput === "email")}
-                wrapperProps={{
-                  onFocus: () => handleFocus("email"),
-                  onBlur: handleBlur,
-                }}
-                value={user.email}
-              />
-            </Stack>
-          </Stack>
-
-          <Grid>
-            <Grid.Col span={6}>
-              <Button
-                fullWidth
-                radius="sm"
-                bg="blue"
-                onClick={() => navigate(`/users/${user.id}/edit`)}>
-                Edit Profile
-              </Button>
-            </Grid.Col>
-
-            <Grid.Col span={6}>
-              <Button fullWidth radius="sm" bg="red" onClick={open}>
-                Delete Account
-              </Button>
-            </Grid.Col>
-          </Grid>
+          <Space h={isMobile ? 50 : 90} />
         </Stack>
-
-        <Space h={isMobile ? 50 : 90} />
-      </Stack>
-    </Box>
+      </Box>
+    </>
   );
 };

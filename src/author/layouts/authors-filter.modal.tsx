@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setAlpha, setOrder } from "../author.slice";
 import { ActionIcon, Group, Modal, Space, Stack, Text } from "@mantine/core";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+} from "@/global/styles/global.styles";
 import {
   CustomEnumCombobox,
   CustomEnumScrollableCombobox,
@@ -49,13 +53,13 @@ export const AuthorsFilterModal = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       centered
-      title={<Text>Author Filter</Text>}>
+      title="Author Filter">
       <Stack>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text>Order</Text>
+            <Text fw={textBold}>Order</Text>
 
             {order !== Order.Ascending || alpha !== Alpha.All ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
@@ -81,7 +85,7 @@ export const AuthorsFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text>Alphabet</Text>
+          <Text fw={textBold}>Alphabet</Text>
 
           <CustomEnumScrollableCombobox
             id="author-alpha-modal"

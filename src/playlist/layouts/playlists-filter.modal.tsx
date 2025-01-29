@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setSort, setOrder } from "../playlist.slice";
 import { ActionIcon, Group, Modal, Space, Stack, Text } from "@mantine/core";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+} from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { Order } from "@/global/enums";
 import { Sort } from "../enums";
@@ -45,13 +49,13 @@ export const PlaylistsFilterModal = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       centered
-      title={<Text>Playlist Filter</Text>}>
+      title="Playlist Filter">
       <Stack>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text>Sort</Text>
+            <Text fw={textBold}>Sort</Text>
 
             {order !== Order.Descending || sort !== Sort.Date ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
@@ -77,7 +81,7 @@ export const PlaylistsFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text>Order</Text>
+          <Text fw={textBold}>Order</Text>
 
           <CustomEnumCombobox
             id="playlist-order-modal"

@@ -2,12 +2,15 @@ import { RootState } from "@/global/states/store";
 import {
   ActionIcon,
   Burger,
+  Container,
   Group,
   Image,
-  Title,
+  Text,
   useMantineColorScheme,
+  Avatar,
 } from "@mantine/core";
 import {
+  IconDownload,
   IconLogin,
   IconLogout,
   IconMoon,
@@ -16,19 +19,25 @@ import {
 } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { SearchLayout } from "./index";
+import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx, themeGreenColor, themeTxStyle } from "@/global/styles/app.css";
 import { signOut } from "@/user/auth.slice";
 import {
-  headerHeight,
+  layoutCompHeight,
+  mainContentWidth,
   responsiveBreakpoint,
+  textBold,
+  textBolder,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
+import { useInstallApp } from "@/global/hooks";
 import logo from "@/global/assets/pwa-64x64.png";
-import logoDark from "@/global/assets/pwa-64x64-dark.png";
+import { setPage as setTopicPage } from "@/topic/topic.slice";
+import { setPage as setAuthorPage } from "@/author/author.slice";
+import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
@@ -37,8 +46,24 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const { isMobile } = useSelector((state: any) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-
+  const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
+
+  const {
+    sort: authorSort,
+    order: authorOrder,
+    alpha: authorAlpha,
+  } = useSelector((state: RootState) => state.author);
+
+  const {
+    sort: topicSort,
+    order: topicOrder,
+    alpha: topicAlpha,
+  } = useSelector((state: RootState) => state.topic);
+
+  const { sort: playlistSort, order: playlistOrder } = useSelector(
+    (state: RootState) => state.playlist
+  );
 
   const handleSignOut = () => {
     dispatch(signOut());
@@ -50,6 +75,29 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
     scrollTo({ y: 0 });
     navigate("/");
     opened && toggle();
+  };
+
+  const handleNavigateToTopics = () => {
+    scrollTo({ y: 0 });
+    dispatch(setTopicPage(1));
+    navigate(
+      `/topics?page=1&sort=${topicSort}&order=${topicOrder}&alpha=${topicAlpha}`
+    );
+  };
+
+  const handleNavigateToAuthors = () => {
+    scrollTo({ y: 0 });
+    dispatch(setAuthorPage(1));
+    navigate(
+      `/authors?page=1&sort=${authorSort}&order=${authorOrder}&alpha=${authorAlpha}`
+    );
+  };
+
+  const handleNavigateToPlaylists = () => {
+    scrollTo({ y: 0 });
+    dispatch(setPlaylistPage(1));
+    dispatch(setTab("All"));
+    navigate(`/playlists?page=1&sort=${playlistSort}&order=${playlistOrder}`);
   };
 
   const handleNavigateToSignIn = () => {
@@ -66,52 +114,113 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
       {isSearchbarVisible ? (
         <SearchLayout />
       ) : (
-        <Group h={headerHeight} px="md" justify="space-between" align="center">
-          <Group gap={4} onClick={handleNavigateToFeed} align="center">
-            <Image
-              src={colorScheme === "dark" ? logoDark : logo}
-              alt="logo"
-              w={32}
-            />
-            <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
-          </Group>
+        <Container size={mainContentWidth}>
+          <Group h={layoutCompHeight} justify="space-between" align="center">
+            <Group gap={4} onClick={handleNavigateToFeed} align="center">
+              <Image src={logo} alt="logo" w={32} />
 
-          <Group gap={isMobile ? 6 : "xs"}>
-            <ActionIcon size="sm" onClick={handleOpenSearchbar}>
-              <I I={IconSearch} />
-            </ActionIcon>
+              <Text fw={textBolder} fz="lg" className={themeTxStyle}>
+                {import.meta.env.VITE_APP_NAME}
+              </Text>
+            </Group>
 
-            <ActionIcon size="sm" onClick={handleTheme}>
-              {colorScheme === "dark" ? (
-                <I I={IconSun} color="orange" />
-              ) : (
-                <I I={IconMoon} color="dodgerblue" />
+            <Group gap={isMobile ? 6 : "xs"}>
+              {!isInstalled && installPrompt && (
+                <Group
+                  gap={4}
+                  c={themeGreenColor}
+                  onClick={handleInstallClick}
+                  visibleFrom={responsiveBreakpoint}>
+                  <I I={IconDownload} />
+                  <Text c={themeGreenColor} fw={textBold}>
+                    Install App
+                  </Text>
+                </Group>
               )}
-            </ActionIcon>
 
-            {/* <ActionIcon onClick={normalOpen}>
-            <I I={IconLetterA} />
-            </ActionIcon> */}
+              <Group
+                onClick={handleNavigateToFeed}
+                visibleFrom={responsiveBreakpoint}>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Feed
+                </Text>
+              </Group>
 
-            {auth.id ? (
-              <ActionIcon size="sm" onClick={handleSignOut}>
-                <I I={IconLogout} />
+              <Group
+                onClick={handleNavigateToTopics}
+                visibleFrom={responsiveBreakpoint}>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Topics
+                </Text>
+              </Group>
+
+              <Group
+                onClick={handleNavigateToAuthors}
+                visibleFrom={responsiveBreakpoint}>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Authors
+                </Text>
+              </Group>
+
+              <Group
+                onClick={handleNavigateToPlaylists}
+                visibleFrom={responsiveBreakpoint}>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Playlists
+                </Text>
+              </Group>
+
+              <ActionIcon size="sm" onClick={handleOpenSearchbar}>
+                <I I={IconSearch} />
               </ActionIcon>
-            ) : (
-              <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
-                <I I={IconLogin} />
-              </ActionIcon>
-            )}
 
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              hiddenFrom={responsiveBreakpoint}
-              size="sm"
-              c={oneTx}
-            />
+              <ActionIcon size="sm" onClick={handleTheme}>
+                {colorScheme === "dark" ? (
+                  <I I={IconSun} color="orange" />
+                ) : (
+                  <I I={IconMoon} color="dodgerblue" />
+                )}
+              </ActionIcon>
+
+              {auth.id ? (
+                <ActionIcon size="sm" onClick={handleSignOut}>
+                  <I I={IconLogout} />
+                </ActionIcon>
+              ) : (
+                <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
+                  <I I={IconLogin} />
+                </ActionIcon>
+              )}
+
+              <MenuLayout />
+
+              {auth.id ? (
+                <>
+                  {auth.profilepic ? (
+                    <Avatar
+                      onClick={toggle}
+                      src={auth.profilepic}
+                      hiddenFrom={responsiveBreakpoint}
+                    />
+                  ) : (
+                    <Avatar onClick={toggle} hiddenFrom={responsiveBreakpoint}>
+                      {auth.firstname[0]}
+                      {auth.lastname[0]}
+                    </Avatar>
+                  )}
+                </>
+              ) : (
+                <Burger
+                  opened={opened}
+                  onClick={toggle}
+                  hiddenFrom={responsiveBreakpoint}
+                  size="sm"
+                  c={oneTx}
+                />
+              )}
+            </Group>
           </Group>
-        </Group>
+        </Container>
       )}
     </>
   );

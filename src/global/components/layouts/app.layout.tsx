@@ -5,42 +5,38 @@ import {
   AsideLayout,
   MainLayout,
   FooterLayout,
-  NavbarLayout,
+  NavbarMobileLayout,
+  NavbarDesktopLayout,
 } from "./index";
 import {
-  footerHeight,
-  getAppShell,
-  headerHeight,
+  layoutCompHeight,
+  getAppShellStyles,
   navbarAsideWidth,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import {
-  borderBottom,
-  borderBottomShadow,
-  borderLeftShadow,
-  borderRightShadow,
-  borderTop,
-  borderTopShadow,
-  oneTxOneBg,
-  readexProFont,
+  noBorderStyle,
+  oneTxOneBgStyle,
+  oneTxTwoBgStyle,
 } from "@/global/styles/app.css";
-import { useViewInfo, usePopunderAd } from "@/global/hooks";
+import {
+  useViewInfo,
+  // usePopunderAd
+} from "@/global/hooks";
 import { useSelector } from "react-redux";
 
 export const AppLayout = () => {
-  usePopunderAd();
+  // usePopunderAd();
   useViewInfo();
   // useSocialAd();
 
-  const { isMobile, isPaginationVisible, isAdHeaderVisible } = useSelector(
-    (state: any) => state.view
-  );
+  const { isMobile } = useSelector((state: any) => state.view);
   const [opened, { toggle }] = useDisclosure();
 
-  const { navbar, aside, header, footer } = getAppShell(
+  const { navbar, aside, header, footer } = getAppShellStyles(
     isMobile,
-    footerHeight,
-    headerHeight,
+    layoutCompHeight,
+    layoutCompHeight,
     navbarAsideWidth,
     responsiveBreakpoint,
     opened
@@ -52,29 +48,45 @@ export const AppLayout = () => {
       navbar={navbar}
       aside={aside}
       footer={footer}
-      className={`${oneTxOneBg} ${readexProFont}`}
+      className={`${oneTxOneBgStyle}`}
       p={0}>
       <AppShell.Header
+        visibleFrom={responsiveBreakpoint}
         style={{ zIndex: 2 }}
-        className={`${oneTxOneBg} ${isAdHeaderVisible ? borderBottom : borderBottomShadow}`}>
+        className={`${`${oneTxTwoBgStyle} ${noBorderStyle}`}`}>
         <HeaderLayout opened={opened} toggle={toggle} />
       </AppShell.Header>
 
-      <AppShell.Navbar className={`${oneTxOneBg} ${borderRightShadow}`}>
-        <NavbarLayout toggle={toggle} />
+      <AppShell.Header
+        hiddenFrom={responsiveBreakpoint}
+        style={{ zIndex: 2 }}
+        className={`${oneTxOneBgStyle} ${noBorderStyle}`}>
+        <HeaderLayout opened={opened} toggle={toggle} />
+      </AppShell.Header>
+
+      <AppShell.Navbar
+        hiddenFrom={responsiveBreakpoint}
+        className={`${oneTxOneBgStyle}`}>
+        <NavbarMobileLayout toggle={toggle} />
       </AppShell.Navbar>
 
-      <AppShell.Aside className={`${oneTxOneBg} ${borderLeftShadow}`}>
+      <AppShell.Navbar
+        visibleFrom={responsiveBreakpoint}
+        className={`${oneTxTwoBgStyle} ${noBorderStyle}`}>
+        <NavbarDesktopLayout />
+      </AppShell.Navbar>
+
+      <AppShell.Aside className={`${oneTxTwoBgStyle} ${noBorderStyle}`}>
         <AsideLayout />
       </AppShell.Aside>
 
-      <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
+      <AppShell.Main className={`${oneTxOneBgStyle}`} h="100vh">
         <MainLayout />
       </AppShell.Main>
 
       <AppShell.Footer
         style={{ zIndex: 2 }}
-        className={`${oneTxOneBg} ${isMobile && isPaginationVisible ? borderTop : borderTopShadow}`}
+        className={`${noBorderStyle} ${oneTxOneBgStyle}`}
         hiddenFrom={responsiveBreakpoint}>
         <FooterLayout opened={opened} toggle={toggle} />
       </AppShell.Footer>

@@ -3,8 +3,10 @@ import { HeaderLayout } from "./header.layout";
 import { MainLayout } from "./main.layout";
 import { AsideLayout } from "./aside.layout";
 import { FooterLayout } from "./footer.layout";
-import { NavbarLayout } from "./navbar.layout";
+import { NavbarMobileLayout } from "./navbar-mobile.layout";
+import { NavbarDesktopLayout } from "./navbar-desktop.layout";
 import { SearchLayout } from "./search.layout";
+import { MenuLayout } from "./menu.layout";
 
 export {
   AppLayout,
@@ -12,6 +14,8 @@ export {
   MainLayout,
   AsideLayout,
   FooterLayout,
-  NavbarLayout,
+  NavbarMobileLayout,
+  NavbarDesktopLayout,
   SearchLayout,
+  MenuLayout,
 };

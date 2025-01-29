@@ -1,5 +1,8 @@
-import { oneBg, oneTx } from "@/global/styles/app.css";
-import { listItemHeight } from "@/global/styles/global.styles";
+import {
+  oneTx,
+  oneTxYellowBgPillPseudoStyle,
+  themeTxStyle,
+} from "@/global/styles/app.css";
 import { Avatar, Button, Group, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { IconMessage2 } from "@tabler/icons-react";
@@ -15,6 +18,7 @@ import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/components";
 import { setFilterObject } from "@/quote/quote.slice";
+import { textBold } from "@/global/styles/global.styles";
 
 export const PlaylistListItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -32,13 +36,28 @@ export const PlaylistListItemLayout = ({ item }: any) => {
   };
 
   return (
-    <Stack px="md" gap="xs" justify="center" h={listItemHeight}>
+    <Stack px="md" gap="xs" justify="center" h={50}>
       <Group justify="space-between">
-        <Text onClick={handleNavigateToPlaylist} fz="sm" fw="500">
-          {item.name}
-        </Text>
+        <Group onClick={handleNavigateToPlaylist} gap="xs">
+          <Text fz="sm" fw={textBold} className={`${themeTxStyle}`}>
+            {item.name}
+          </Text>
 
-        <Group>
+          {item.creatorId.profilepic ? (
+            <Avatar size="sm" src={item.creatorId.profilepic} radius="50%" />
+          ) : (
+            <Avatar size="sm">
+              {item.creatorId.firstname[0]}
+              {item.creatorId.lastname[0]}
+            </Avatar>
+          )}
+
+          <Text fz="xs" className={`${themeTxStyle}`}>
+            {item.creatorId.username}
+          </Text>
+        </Group>
+
+        <Group gap="xs">
           <Group gap={4}>
             {auth.role === Role.Public ? (
               <PlaylistLikerReadonlyButtonLayout />
@@ -55,28 +74,15 @@ export const PlaylistListItemLayout = ({ item }: any) => {
           </Group>
 
           <Button
-            px="xs"
+            px={4}
             h="lg"
             radius="sm"
-            c={oneBg}
-            bg={oneTx}
+            c={oneTx}
+            className={oneTxYellowBgPillPseudoStyle}
             onClick={handleNavigateToQuotesByPlaylist}>
             View
           </Button>
         </Group>
-      </Group>
-
-      <Group onClick={handleNavigateToPlaylist} gap="xs">
-        {item.creatorId.profilepic ? (
-          <Avatar size="sm" src={item.creatorId.profilepic} radius="50%" />
-        ) : (
-          <Avatar size="sm">
-            {item.creatorId.firstname[0]}
-            {item.creatorId.lastname[0]}
-          </Avatar>
-        )}
-
-        <Text fz="xs">{item.creatorId.username}</Text>
       </Group>
     </Stack>
   );

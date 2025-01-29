@@ -1,8 +1,12 @@
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import { useDispatch } from "react-redux";
+import { setQid } from "@/quote/quote.slice";
 import { Modal, Stack, Text } from "@mantine/core";
 import { GetPlaylistsByCreatorIdModalList } from "../lists";
-import { setQid } from "@/quote/quote.slice";
-import { useDispatch } from "react-redux";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+} from "@/global/styles/global.styles";
 import { CreatePlaylistFormLayout } from "./create-playlist-form.layout";
 
 export const PlaylistModal = ({ opened, close }: any) => {
@@ -24,7 +28,9 @@ export const PlaylistModal = ({ opened, close }: any) => {
         <CreatePlaylistFormLayout />
 
         <Stack gap="xs">
-          <Text ta="center">Add or remove quote</Text>
+          <Text ta="center" fw={textBold}>
+            Add or remove quote
+          </Text>
           <GetPlaylistsByCreatorIdModalList />
         </Stack>
       </Stack>

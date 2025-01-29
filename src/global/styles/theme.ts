@@ -1,7 +1,6 @@
 import { themeToVars } from "@mantine/vanilla-extract";
-import { oneTx, readexProFont, threeBg } from "./app.css";
+import { interFontStyle, oneTx, threeBg } from "./app.css";
 import {
-  Button,
   Text,
   createTheme,
   Pagination,
@@ -9,6 +8,9 @@ import {
   TextInput,
   Textarea,
   ActionIcon,
+  PasswordInput,
+  Button,
+  Combobox,
   Pill,
 } from "@mantine/core";
 
@@ -17,10 +19,7 @@ export const theme = createTheme({
     Button: Button.extend({
       defaultProps: {
         color: oneTx,
-        className: readexProFont,
-        fw: 300,
-        radius: 10,
-        h: "3rem",
+        className: interFontStyle,
       },
     }),
 
@@ -32,52 +31,71 @@ export const theme = createTheme({
       },
     }),
 
-    Pill: Pill.extend({
-      defaultProps: {
-        fw: 300,
-      },
-    }),
-
     Text: Text.extend({
       defaultProps: {
         color: oneTx,
-        className: readexProFont,
-        fw: 300,
         fz: "sm",
+        className: interFontStyle,
       },
     }),
 
     Textarea: Textarea.extend({
       defaultProps: {
-        className: readexProFont,
         color: oneTx,
-        radius: "sm",
+        radius: "md",
+        className: interFontStyle,
       },
     }),
 
     TextInput: TextInput.extend({
       defaultProps: {
-        className: readexProFont,
         color: oneTx,
-        radius: "sm",
+        radius: "md",
+        className: interFontStyle,
+      },
+    }),
+
+    ComboboxOption: Combobox.Option.extend({
+      defaultProps: {
+        className: interFontStyle,
+      },
+    }),
+
+    PasswordInput: PasswordInput.extend({
+      defaultProps: {
+        color: oneTx,
+        radius: "md",
+        className: interFontStyle,
       },
     }),
 
     Title: Title.extend({
       defaultProps: {
         c: oneTx,
-        className: readexProFont,
-        fw: 600,
+        className: interFontStyle,
+      },
+    }),
+
+    Pill: Pill.extend({
+      defaultProps: {
+        className: interFontStyle,
       },
     }),
 
     Pagination: Pagination.extend({
+      defaultProps: {
+        size: "sm",
+        m: "xs",
+        radius: "sm",
+        siblings: 0,
+      },
+
       styles: {
         control: {
           color: oneTx,
           backgroundColor: threeBg,
           border: "none",
-          fontWeight: 200,
+          className: interFontStyle,
         },
       },
     }),

@@ -1,11 +1,14 @@
 import { Breakpoint } from "@/global/enums";
 import { useCustomScrollbar } from "@/global/hooks";
-import { oneBg, oneTxOneBg, twoBg } from "@/global/styles/app.css";
 import {
-  getGridListItemBorderWithBorder,
-  listItemHeight,
-} from "@/global/styles/global.styles";
-import { Box, Center, Grid, Stack, Text } from "@mantine/core";
+  oneBg,
+  oneTx,
+  oneTxOneBgStyle,
+  roundBorderStyle,
+  twoBg,
+} from "@/global/styles/app.css";
+import { listItemHeight } from "@/global/styles/global.styles";
+import { Box, Center, Grid, Loader, Stack, Text } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -17,7 +20,6 @@ export const CustomGrid = ({
   hasMore,
   setPage,
   gridBg,
-  gridItemStyle,
   onMountEnter,
   onMountLeave,
 }: any) => {
@@ -71,17 +73,6 @@ export const CustomGrid = ({
       );
     });
 
-  const UtilComponent = ({ message }: any) => (
-    <Box component="div" mx={isMobile ? 0 : 16}>
-      <Center
-        h={listItemHeight}
-        style={getGridListItemBorderWithBorder(isMobile)}
-        className={oneTxOneBg}>
-        <Text>{message}</Text>
-      </Center>
-    </Box>
-  );
-
   return (
     <Stack
       h={`calc(100% - ${isMobile ? 50 : 90}px)`}
@@ -96,7 +87,7 @@ export const CustomGrid = ({
               overflow: "auto",
             }
       }>
-      <Grid grow justify="center" gutter={0} bg={twoBg} p={isMobile ? 0 : 8}>
+      <Grid grow justify="center" gutter={0} bg={twoBg} py={isMobile ? 0 : 8}>
         {dataArray.map((item: any, index: number) => {
           return (
             <Grid.Col
@@ -106,7 +97,7 @@ export const CustomGrid = ({
               <Box
                 component="div"
                 bg={oneBg}
-                style={gridItemStyle}
+                className={`${roundBorderStyle}`}
                 h="100%"
                 onMouseEnter={onMountEnter}
                 onMouseLeave={onMountLeave}>
@@ -119,9 +110,23 @@ export const CustomGrid = ({
         {extraGridItems}
       </Grid>
 
-      {isLoading && <UtilComponent message="Loading..." />}
+      {isLoading && (
+        <Center
+          h={listItemHeight}
+          className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
+          <Loader type="dots" color={oneTx} />
+        </Center>
+      )}
 
-      {isError && <UtilComponent message="Error" />}
+      {isError && (
+        <Box component="div" mx={isMobile ? 0 : 16}>
+          <Center
+            h={listItemHeight}
+            className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
+            <Text>An error occured.</Text>
+          </Center>
+        </Box>
+      )}
 
       {!hasMore && (
         <Box component="div" style={{ textAlign: "center", margin: "20px" }}>

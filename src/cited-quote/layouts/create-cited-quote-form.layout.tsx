@@ -9,7 +9,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { getFormTextInput } from "@/global/styles/global.styles";
+import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { IconRefresh } from "@tabler/icons-react";
 import { citedQuoteUtility } from "../cited-quote.utility";
 import { I } from "@/global/components/components";
@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { inputStyles } from "@/global/styles/app.css";
 
 export const CreateCitedQuoteFormLayout = () => {
   const dispatch = useDispatch();
@@ -66,8 +65,7 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={500}
             w="100%"
             placeholder="A Qool Quote..."
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "content")}
+            styles={getFormTextInputStyles(focusedInput === "content")}
             wrapperProps={{
               onFocus: () => handleFocus("content"),
               onBlur: handleBlur,
@@ -92,8 +90,7 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={50}
             w="100%"
             placeholder="A Great Author"
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "author")}
+            styles={getFormTextInputStyles(focusedInput === "author")}
             wrapperProps={{
               onFocus: () => handleFocus("author"),
               onBlur: handleBlur,
@@ -113,8 +110,7 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={200}
             w="100%"
             placeholder="Quote source link URL"
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "citation")}
+            styles={getFormTextInputStyles(focusedInput === "citation")}
             wrapperProps={{
               onFocus: () => handleFocus("citation"),
               onBlur: handleBlur,
@@ -134,8 +130,7 @@ export const CreateCitedQuoteFormLayout = () => {
             maxLength={20}
             w="100%"
             placeholder="johndoe@gmail.com"
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "email")}
+            styles={getFormTextInputStyles(focusedInput === "email")}
             wrapperProps={{
               onFocus: () => handleFocus("email"),
               onBlur: handleBlur,

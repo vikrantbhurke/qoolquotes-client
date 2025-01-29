@@ -17,6 +17,7 @@ export const useSearchQuotes = () => {
   } = useQuery({
     queryKey: ["searchQuotes", page - 1, search],
     queryFn: () => searchQuotes({ page: page - 1, search }),
+    enabled: !!search,
   });
 
   const prevPage = quotes?.firstPage ? page : page - 1;
@@ -32,7 +33,7 @@ export const useSearchQuotes = () => {
         search,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!search,
   });
 
   useQuery({
@@ -44,7 +45,7 @@ export const useSearchQuotes = () => {
         search,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!search,
   });
 
   useQuery({
@@ -56,7 +57,7 @@ export const useSearchQuotes = () => {
         search,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!search,
   });
 
   return { quotes, isPending, isError, error };

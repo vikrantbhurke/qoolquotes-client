@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
+import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const SearchTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useSearchTopics();
@@ -23,12 +24,29 @@ export const SearchTopicsMantineGrid = () => {
     }));
   }, [topics, setData]);
 
-  if (isPending) return <CustomLoader />;
+  if (isPending)
+    return (
+      <>
+        <CustomLoader />
+        <PaginationPlaceholder />
+      </>
+    );
 
-  if (isError) return <CustomError message={error?.message} />;
+  if (isError)
+    return (
+      <>
+        <CustomError message={error?.message} />
+        <PaginationPlaceholder />
+      </>
+    );
 
   if (!topics.content.length)
-    return <CustomError message="Topics not found." />;
+    return (
+      <>
+        <CustomError message="Topics not found." />
+        <PaginationPlaceholder />
+      </>
+    );
 
   return (
     <MantineGrid

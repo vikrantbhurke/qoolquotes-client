@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { borderTopShadow, oneBg } from "@/global/styles/app.css";
+import { oneBg, roundBorderStyle } from "@/global/styles/app.css";
 import {
   Box,
   Center,
@@ -11,7 +11,10 @@ import {
   ScrollArea,
   Stack,
 } from "@mantine/core";
-import { subheaderHeight } from "@/global/styles/global.styles";
+import {
+  getTopRoundBordersStyles,
+  layoutCompHeight,
+} from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
@@ -25,7 +28,6 @@ export const MantineGrid = ({
   setPage,
   dataArray,
   totalPages,
-  gridItemStyle = {},
   GridItemLayout,
   onMouseEnter,
   onMouseLeave,
@@ -78,20 +80,17 @@ export const MantineGrid = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${layoutCompHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={gridBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        <Grid grow justify="center" gutter={0} p={isMobile ? 0 : p}>
+        <Grid grow justify="center" gutter={0} py={isMobile ? 0 : p}>
           {dataArray.map((item: any, index: number) => {
             return (
-              <Grid.Col
-                p={isMobile ? 0 : p}
-                span={{ base: 12, lg: 6, xl: 4 }}
-                key={index}>
+              <Grid.Col p={p} span={{ base: 12, lg: 6, xl: 4 }} key={index}>
                 <Box
                   component="div"
                   bg={oneBg}
-                  style={gridItemStyle}
+                  className={`${roundBorderStyle}`}
                   h="100%"
                   onMouseEnter={onMouseEnter}
                   onMouseLeave={onMouseLeave}>
@@ -107,9 +106,11 @@ export const MantineGrid = ({
 
       <Center
         ref={ref}
-        className={borderTopShadow}
         bg={oneBg}
-        style={{ zIndex: 1 }}>
+        style={{
+          zIndex: 1,
+          ...getTopRoundBordersStyles(isMobile),
+        }}>
         <Group gap={0} align="center">
           <CustomNumberCombobox
             data={Array.from({ length: totalPages }, (_, i) => i + 1)}
@@ -120,7 +121,7 @@ export const MantineGrid = ({
           />
 
           <Pagination
-            size="md"
+            size="sm"
             m="xs"
             radius="sm"
             siblings={0}

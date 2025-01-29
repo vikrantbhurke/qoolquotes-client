@@ -9,10 +9,10 @@ import { setPage } from "../quote.slice";
 import { useSelector } from "react-redux";
 import { oneBg, twoBg } from "@/global/styles/app.css";
 import {
-  addBoxShadow,
-  getGridListItemBorderWithBorder,
-  removeBoxShadow,
+  addBoxShadowStyles,
+  removeBoxShadowStyles,
 } from "@/global/styles/global.styles";
+import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const GetQuotesByPlaylistIdMantineGrid = () => {
   const { isMobile } = useSelector((state: any) => state.view);
@@ -29,12 +29,29 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
     }));
   }, [quotes, setData]);
 
-  if (isPending) return <CustomLoader />;
+  if (isPending)
+    return (
+      <>
+        <CustomLoader />
+        <PaginationPlaceholder />
+      </>
+    );
 
-  if (isError) return <CustomError message={error?.message} />;
+  if (isError)
+    return (
+      <>
+        <CustomError message={error?.message} />
+        <PaginationPlaceholder />
+      </>
+    );
 
   if (!quotes.content.length)
-    return <CustomError message="Quotes not found." />;
+    return (
+      <>
+        <CustomError message="Quotes not found." />
+        <PaginationPlaceholder />
+      </>
+    );
 
   return (
     <MantineGrid
@@ -45,9 +62,8 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
       dataArray={quotes.content}
       totalPages={quotes.totalPages}
       GridItemLayout={QuoteGridItemLayout}
-      gridItemStyle={getGridListItemBorderWithBorder(isMobile)}
-      onMouseEnter={(e: any) => !isMobile && addBoxShadow(e)}
-      onMouseLeave={(e: any) => !isMobile && removeBoxShadow(e)}
+      onMouseEnter={(e: any) => !isMobile && addBoxShadowStyles(e)}
+      onMouseLeave={(e: any) => !isMobile && removeBoxShadowStyles(e)}
     />
   );
 };

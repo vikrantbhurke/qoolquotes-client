@@ -1,4 +1,4 @@
-import { getFormTextInput } from "@/global/styles/global.styles";
+import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import {
   ActionIcon,
   Button,
@@ -30,10 +30,8 @@ import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import {
-  border,
-  inputStyles,
   oneBg,
-  roundBorders,
+  roundBorderStyle,
   twoBg,
 } from "@/global/styles/app.css";
 
@@ -75,7 +73,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
             gap="lg"
             bg={oneBg}
             p={isMobile ? "md" : "xl"}
-            className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+            className={`${roundBorderStyle}`}>
             <Group gap={0} align="center" justify="space-between">
               <Space w="md" />
 
@@ -106,8 +104,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 <TextInput
                   minLength={3}
                   maxLength={30}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "name")}
+                  styles={getFormTextInputStyles(focusedInput === "name")}
                   wrapperProps={{
                     onFocus: () => handleFocus("name"),
                     onBlur: handleBlur,
@@ -136,8 +133,9 @@ export const UpdatePlaylistByIdFormLayout = () => {
                   maxRows={2}
                   minLength={0}
                   maxLength={100}
-                  classNames={{ input: inputStyles }}
-                  styles={getFormTextInput(focusedInput === "description")}
+                  styles={getFormTextInputStyles(
+                    focusedInput === "description"
+                  )}
                   wrapperProps={{
                     onFocus: () => handleFocus("description"),
                     onBlur: handleBlur,
@@ -175,14 +173,13 @@ export const UpdatePlaylistByIdFormLayout = () => {
                   </Avatar>
                 )}
 
-                <Stack gap={0} miw="80%">
+                <Stack gap={0} miw="75%">
                   <Text>Creator</Text>
 
                   <TextInput
                     miw="100%"
                     readOnly
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "creator")}
+                    styles={getFormTextInputStyles(focusedInput === "creator")}
                     wrapperProps={{
                       onFocus: () => handleFocus("creator"),
                       onBlur: handleBlur,

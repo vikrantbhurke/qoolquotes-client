@@ -9,9 +9,8 @@ import { IconX } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import { getSearchTextInput } from "@/global/styles/global.styles";
+import { getSearchTextInputStyles } from "@/global/styles/global.styles";
 import { useLocation, useNavigate } from "react-router-dom";
-import { inputStyles, oneBg } from "@/global/styles/app.css";
 import { I } from "../components";
 
 export const SearchLayout = () => {
@@ -100,11 +99,9 @@ export const SearchLayout = () => {
   return (
     <Group justify="center" p={isMobile ? 0 : "xs"} align="center" h="100%">
       <TextInput
-        bg={oneBg}
         value={search}
         ref={inputRef}
-        classNames={{ input: inputStyles }}
-        styles={getSearchTextInput(isMobile, width)}
+        styles={getSearchTextInputStyles(isMobile, width)}
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={handleBlur}

@@ -1,9 +1,17 @@
 import {
-  footerHeight,
-  headerHeight,
-  subheaderHeight,
+  authorTopicLayoutWidth,
+  layoutCompHeight,
+  textBold,
 } from "@/global/styles/global.styles";
-import { Button, Center, Group, Stack, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Center,
+  Container,
+  Group,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import {
   IconFileDescription,
@@ -11,11 +19,11 @@ import {
   IconFilterFilled,
 } from "@tabler/icons-react";
 import {
-  borderBottom,
-  borderBottomShadow,
   oneBg,
   oneTx,
-  oneTxOneBgButtonPseudo,
+  oneTxOneBgButtonPseudoStyle,
+  roundTopBorderStyle,
+  twoBg,
 } from "@/global/styles/app.css";
 import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
@@ -34,7 +42,7 @@ export const TopicsLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
   const { order, alpha } = useSelector((state: any) => state.topic);
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile, search } = useSelector((state: any) => state.view);
 
   const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
     useDisclosure(false);
@@ -49,56 +57,64 @@ export const TopicsLayout = () => {
   });
 
   const isFilterApplied = order !== Order.Ascending || alpha !== Alpha.All;
+  const isSearching = location.pathname.includes("search");
 
   return (
-    <Stack
-      gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}
-      bg={oneBg}>
-      <Group pl="sm" justify="space-between" gap={0} className={borderBottom}>
-        <Group gap={3}>
-          <I I={IconFileDescription} />
+    <Box component="div" bg={twoBg}>
+      <Container
+        size={authorTopicLayoutWidth}
+        p={0}
+        h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
+        <Stack gap={0} h="100%" bg={oneBg} className={`${roundTopBorderStyle}`}>
+          <Group px="sm" justify="space-between" gap={0}>
+            <Group gap={3}>
+              <I I={IconFileDescription} />
 
-          <Text pt={3}>
-            {globalUtility.formatNumber(data.page)}/
-            {globalUtility.formatNumber(data.totalPages)} Page
-          </Text>
-        </Group>
+              <Text pt={3}>
+                {globalUtility.formatNumber(data.page)}/
+                {globalUtility.formatNumber(data.totalPages)} Page
+              </Text>
+            </Group>
 
-        <Text>
-          Topics{" "}
-          {data.totalElements > 0 &&
-            `(${globalUtility.formatNumber(data.totalElements)})`}
-        </Text>
+            {isSearching ? (
+              <Text fw={textBold}>
+                {search}{" "}
+                {data.totalElements > 0 &&
+                  `(${globalUtility.formatNumber(data.totalElements)})`}
+              </Text>
+            ) : (
+              <Text fw={textBold}>
+                Topics{" "}
+                {data.totalElements > 0 &&
+                  `(${globalUtility.formatNumber(data.totalElements)})`}
+              </Text>
+            )}
 
-        <Stack p="xs" h={subheaderHeight}>
-          <Button
-            radius={10}
-            c={isFilterApplied ? "green" : oneTx}
-            className={oneTxOneBgButtonPseudo}
-            onClick={isMobile ? drawerOpen : modalOpen}
-            leftSection={
-              isFilterApplied ? (
+            <ActionIcon
+              h={layoutCompHeight}
+              c={isFilterApplied ? "green" : oneTx}
+              className={oneTxOneBgButtonPseudoStyle}
+              onClick={isMobile ? drawerOpen : modalOpen}>
+              {isFilterApplied ? (
                 <I I={IconFilterFilled} />
               ) : (
                 <I I={IconFilter} />
-              )
-            }>
-            Filter
-          </Button>
+              )}
+            </ActionIcon>
+
+            <TopicsFilterDrawer opened={drawerOpened} close={drawerClose} />
+            <TopicsFilterModal opened={modalOpened} close={modalClose} />
+          </Group>
+
+          <Center ref={ref} style={{ zIndex: 1 }}>
+            <Stack h={isMobile ? 50 : 90}>
+              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+            </Stack>
+          </Center>
+
+          <Outlet context={setData} />
         </Stack>
-
-        <TopicsFilterDrawer opened={drawerOpened} close={drawerClose} />
-        <TopicsFilterModal opened={modalOpened} close={modalClose} />
-      </Group>
-
-      <Center ref={ref} style={{ zIndex: 1 }} className={borderBottomShadow}>
-        <Stack h={isMobile ? 50 : 90}>
-          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-        </Stack>
-      </Center>
-
-      <Outlet context={setData} />
-    </Stack>
+      </Container>
+    </Box>
   );
 };

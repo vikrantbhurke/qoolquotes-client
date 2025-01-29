@@ -1,14 +1,7 @@
 import { CustomEnumCombobox, I } from "@/global/components/components";
+import { oneBg, oneTx, roundBorderStyle, twoBg } from "@/global/styles/app.css";
 import {
-  oneBg,
-  oneTx,
-  inputStyles,
-  border,
-  roundBorders,
-  twoBg,
-} from "@/global/styles/app.css";
-import {
-  getFormTextInput,
+  getFormTextInputStyles,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
@@ -77,7 +70,7 @@ export const SignUpUserFormLayout = () => {
                 gap="lg"
                 p={isMobile ? "md" : "xl"}
                 bg={oneBg}
-                className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+                className={`${roundBorderStyle}`}>
                 <Stack gap={0}>
                   <Group gap={0} align="center" justify="space-between">
                     <Space w="md" />
@@ -119,8 +112,9 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={2}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(focusedInput === "firstname")}
+                      styles={getFormTextInputStyles(
+                        focusedInput === "firstname"
+                      )}
                       wrapperProps={{
                         onFocus: () => handleFocus("firstname"),
                         onBlur: handleBlur,
@@ -138,8 +132,9 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={2}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(focusedInput === "lastname")}
+                      styles={getFormTextInputStyles(
+                        focusedInput === "lastname"
+                      )}
                       wrapperProps={{
                         onFocus: () => handleFocus("lastname"),
                         onBlur: handleBlur,
@@ -157,8 +152,9 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={3}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(focusedInput === "username")}
+                      styles={getFormTextInputStyles(
+                        focusedInput === "username"
+                      )}
                       wrapperProps={{
                         onFocus: () => handleFocus("username"),
                         onBlur: handleBlur,
@@ -176,8 +172,7 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={5}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(focusedInput === "email")}
+                      styles={getFormTextInputStyles(focusedInput === "email")}
                       wrapperProps={{
                         onFocus: () => handleFocus("email"),
                         onBlur: handleBlur,
@@ -195,8 +190,9 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={6}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(focusedInput === "password")}
+                      styles={getFormTextInputStyles(
+                        focusedInput === "password"
+                      )}
                       wrapperProps={{
                         onFocus: () => handleFocus("password"),
                         onBlur: handleBlur,
@@ -214,8 +210,7 @@ export const SignUpUserFormLayout = () => {
                       required
                       minLength={6}
                       maxLength={20}
-                      classNames={{ input: inputStyles }}
-                      styles={getFormTextInput(
+                      styles={getFormTextInputStyles(
                         focusedInput === "confirmPassword"
                       )}
                       wrapperProps={{

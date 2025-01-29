@@ -1,14 +1,7 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { borderTopShadow, oneBg } from "@/global/styles/app.css";
-import {
-  addBoxShadow,
-  getGridListItemBorderWithBorder,
-  getPaginationStyles,
-  getTopRoundBorders,
-  removeBoxShadow,
-  subheaderHeight,
-} from "@/global/styles/global.styles";
+import { oneBg } from "@/global/styles/app.css";
+import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
@@ -53,20 +46,14 @@ export const CustomList = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${layoutCompHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={listBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        <Box component="div" p={isMobile ? 0 : 4}>
+        <Box component="div">
           {dataArray.map((item: any, index: number) => {
             return (
-              <Box key={index} p={isMobile ? 0 : 4}>
-                <Box
-                  h="100%"
-                  bg={oneBg}
-                  component="div"
-                  style={getGridListItemBorderWithBorder(isMobile)}
-                  onMouseEnter={(e) => !isMobile && addBoxShadow(e)}
-                  onMouseLeave={(e) => !isMobile && removeBoxShadow(e)}>
+              <Box key={index} px="xs">
+                <Box h="100%" bg={oneBg} component="div">
                   <ListItemLayout item={item} />
                 </Box>
               </Box>
@@ -77,11 +64,8 @@ export const CustomList = ({
 
       <Center
         ref={ref}
-        className={borderTopShadow}
         style={{
           zIndex: 1,
-          ...getPaginationStyles(isMobile),
-          ...getTopRoundBorders(isMobile),
         }}
         bg={oneBg}>
         <CustomNumberCombobox
@@ -92,15 +76,7 @@ export const CustomList = ({
           totalPages={totalPages}
         />
 
-        <Pagination
-          size="md"
-          m="xs"
-          radius="sm"
-          siblings={0}
-          value={page}
-          onChange={handlePage}
-          total={totalPages}
-        />
+        <Pagination value={page} onChange={handlePage} total={totalPages} />
       </Center>
     </Stack>
   );

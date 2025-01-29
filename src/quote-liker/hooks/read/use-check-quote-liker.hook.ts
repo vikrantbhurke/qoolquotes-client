@@ -10,6 +10,7 @@ export const useCheckQuoteLiker = ({ qid, lid }: any) => {
   } = useQuery({
     queryKey: ["checkQuoteLiker", qid, lid],
     queryFn: () => checkQuoteLiker({ qid, lid }),
+    enabled: !!qid && !!lid,
   });
 
   return { quoteLiker, isPending, isError, error };

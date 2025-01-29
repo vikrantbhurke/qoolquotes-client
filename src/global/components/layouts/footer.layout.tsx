@@ -1,8 +1,8 @@
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
-import { borderLCColor, roundBorders } from "@/global/styles/app.css";
-import { footerHeight } from "@/global/styles/global.styles";
+import { roundBorderStyle, themeYellowBg } from "@/global/styles/app.css";
+import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
@@ -67,34 +67,34 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
   const feedIconColor =
-    location.pathname === "/" ? borderLCColor : "transparent";
+    location.pathname === "/" ? themeYellowBg : "transparent";
 
   const feedPath =
     location.pathname === "/" ? IconArticleFilledFilled : IconArticle;
 
   const topicsIconColor =
-    location.pathname === "/topics" ? borderLCColor : "transparent";
+    location.pathname === "/topics" ? themeYellowBg : "transparent";
 
   const topicsPath =
     location.pathname === "/topics" ? IconCategoryFilled : IconCategory;
 
   const authorsIconColor =
-    location.pathname === "/authors" ? borderLCColor : "transparent";
+    location.pathname === "/authors" ? themeYellowBg : "transparent";
 
   const authorsPath =
     location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
 
-  const searchIconColor = isSearchbarVisible ? borderLCColor : "transparent";
+  const searchIconColor = isSearchbarVisible ? themeYellowBg : "transparent";
 
   return (
-    <Group justify="space-evenly" grow gap={0} h={footerHeight}>
+    <Group justify="space-evenly" grow gap={0} h={layoutCompHeight}>
       <Stack
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleNavigateToFeed}>
-        <Stack bg={feedIconColor} px="xs" py={4} className={roundBorders}>
+        <Stack bg={feedIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={feedPath} />
         </Stack>
         <Text>Feed</Text>
@@ -104,9 +104,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleNavigateToTopics}>
-        <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorders}>
+        <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={topicsPath} />
         </Stack>
         <Text>Topics</Text>
@@ -116,9 +116,13 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleNavigateToAuthors}>
-        <Stack bg={authorsIconColor} px="xs" py={4} className={roundBorders}>
+        <Stack
+          bg={authorsIconColor}
+          px="xs"
+          py={4}
+          className={roundBorderStyle}>
           <I I={authorsPath} />
         </Stack>
         <Text>Authors</Text>
@@ -128,9 +132,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleReadOnlyClick}>
-        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorders}>
+        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={IconSearch} />
         </Stack>
         <Text>Search</Text>

@@ -1,15 +1,24 @@
 import {
-  footerHeight,
-  headerHeight,
-  subheaderHeight,
+  layoutCompHeight,
+  quoteLayoutWidth,
+  textBold,
 } from "@/global/styles/global.styles";
-import { Center, Group, Space, Stack, Text } from "@mantine/core";
+import {
+  Box,
+  Center,
+  Container,
+  Group,
+  Space,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { Outlet, useLocation } from "react-router-dom";
 import { IconFileDescription } from "@tabler/icons-react";
 import {
-  borderBottom,
-  borderBottomShadow,
   oneBg,
+  roundBottomBorderStyle,
+  roundTopBorderStyle,
+  twoBg,
 } from "@/global/styles/app.css";
 import { useRef, useState } from "react";
 import { I } from "@/global/components/components";
@@ -18,6 +27,7 @@ import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
+import { globalUtility } from "@/global/utilities";
 
 export const QuotesLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,45 +42,63 @@ export const QuotesLayout = () => {
     totalElements: 0,
   });
 
-  const isSearchingQuotes = location.pathname.includes("search");
+  const isSearching = location.pathname.includes("search");
 
   return (
-    <Stack
-      gap={0}
-      h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}
-      bg={oneBg}>
-      <Group
-        pl="xs"
-        justify="space-between"
-        gap={0}
-        mih={subheaderHeight}
-        className={borderBottom}>
-        <Group gap={3}>
-          <I I={IconFileDescription} />
+    <Box component="div" bg={twoBg}>
+      <Container
+        size={quoteLayoutWidth}
+        p={0}
+        h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
+        <Stack gap={0} h="100%">
+          <Group
+            px="xs"
+            justify="space-between"
+            gap={0}
+            mih={layoutCompHeight}
+            className={`${roundTopBorderStyle}`}
+            bg={oneBg}>
+            <Group gap={3}>
+              <I I={IconFileDescription} />
 
-          <Text pt={3}>
-            {data.page}/{data.totalPages} Page
-          </Text>
-        </Group>
+              <Text pt={3}>
+                {data.page}/{data.totalPages} Page
+              </Text>
+            </Group>
 
-        <Text>
-          {isSearchingQuotes ? search : filterObject.name} ({data.totalElements}
-          )
-        </Text>
+            {isSearching ? (
+              <Text fw={textBold}>
+                {search}{" "}
+                {data.totalElements > 0 &&
+                  `(${globalUtility.formatNumber(data.totalElements)})`}
+              </Text>
+            ) : (
+              <Text fw={textBold}>
+                {filterObject.name}{" "}
+                {data.totalElements > 0 &&
+                  `(${globalUtility.formatNumber(data.totalElements)})`}
+              </Text>
+            )}
 
-        <Group gap="xl">
-          <Space w="xl" />
-          <Space w="xl" />
-        </Group>
-      </Group>
+            <Group gap="xl">
+              <Space w="xl" />
+              <Space w="xl" />
+            </Group>
+          </Group>
 
-      <Center ref={ref} style={{ zIndex: 1 }} className={borderBottomShadow}>
-        <Stack h={isMobile ? 50 : 90}>
-          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+          <Center
+            ref={ref}
+            bg={oneBg}
+            style={{ zIndex: 1 }}
+            className={`${roundBottomBorderStyle}`}>
+            <Stack h={isMobile ? 50 : 90}>
+              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+            </Stack>
+          </Center>
+
+          <Outlet context={setData} />
         </Stack>
-      </Center>
-
-      <Outlet context={setData} />
-    </Stack>
+      </Container>
+    </Box>
   );
 };

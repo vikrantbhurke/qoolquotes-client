@@ -1,8 +1,9 @@
+import { oneBg } from "@/global/styles/app.css";
 import { Stack, Text } from "@mantine/core";
 
-export const CustomError = ({ message }: any) => {
+export const CustomError = ({ message, bg = oneBg }: any) => {
   return (
-    <Stack justify="center" align="center" h="100%">
+    <Stack justify="center" align="center" h="100%" bg={bg}>
       <Text>{message}</Text>
     </Stack>
   );

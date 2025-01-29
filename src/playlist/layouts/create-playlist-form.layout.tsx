@@ -16,7 +16,10 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
-import { getFormTextInput } from "@/global/styles/global.styles";
+import {
+  getFormTextInputStyles,
+  textBold,
+} from "@/global/styles/global.styles";
 import { playlistUtility } from "../playlist.utility";
 import { IconRefresh } from "@tabler/icons-react";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -40,7 +43,9 @@ export const CreatePlaylistFormLayout = () => {
         <Group gap={0} align="center" justify="space-between">
           <Space w="md" />
 
-          <Text ta="center">Create new playlist</Text>
+          <Text ta="center" fw={textBold}>
+            Create new playlist
+          </Text>
 
           {form.isDirty() ? (
             <ActionIcon size="xs" aria-label="Refresh" onClick={form.reset}>
@@ -71,7 +76,7 @@ export const CreatePlaylistFormLayout = () => {
             maxLength={30}
             w="100%"
             placeholder="Name"
-            styles={getFormTextInput(focusedInput === "name")}
+            styles={getFormTextInputStyles(focusedInput === "name")}
             wrapperProps={{
               onFocus: () => handleFocus("name"),
               onBlur: handleBlur,
@@ -100,7 +105,7 @@ export const CreatePlaylistFormLayout = () => {
             maxLength={100}
             w="100%"
             placeholder="Description"
-            styles={getFormTextInput(focusedInput === "description")}
+            styles={getFormTextInputStyles(focusedInput === "description")}
             wrapperProps={{
               onFocus: () => handleFocus("description"),
               onBlur: handleBlur,

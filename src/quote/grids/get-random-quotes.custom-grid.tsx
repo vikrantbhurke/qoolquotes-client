@@ -1,12 +1,11 @@
-import { borderBottomShadow, oneBg, twoBg } from "@/global/styles/app.css";
+import { oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
 import {
-  addBoxShadow,
-  footerHeight,
-  getGridListItemBorderWithBorder,
-  headerHeight,
-  removeBoxShadow,
+  addBoxShadowStyles,
+  layoutCompHeight,
+  quoteLayoutWidth,
+  removeBoxShadowStyles,
 } from "@/global/styles/global.styles";
-import { Center, Stack } from "@mantine/core";
+import { Box, Center, Container, Stack } from "@mantine/core";
 import { useGetRandomQuotes } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
@@ -33,33 +32,36 @@ export const GetRandomQuotesCustomGrid = () => {
         description={`Browse quotes and find inspiration.`}
       />
 
-      <Stack
-        gap={0}
-        h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px)`}
-        bg={oneBg}>
-        <Center
-          bg={oneBg}
-          ref={ref}
-          style={{ zIndex: 1 }}
-          className={borderBottomShadow}>
-          <Stack h={isMobile ? 50 : 90}>
-            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-          </Stack>
-        </Center>
+      <Box component="div" bg={twoBg}>
+        <Container
+          size={quoteLayoutWidth}
+          p={0}
+          h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 0}px)`}>
+          <Stack gap={0} h="100%">
+            <Center
+              bg={oneBg}
+              ref={ref}
+              style={{ zIndex: 1 }}
+              className={`${roundBorderStyle}`}>
+              <Stack h={isMobile ? 50 : 90}>
+                {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+              </Stack>
+            </Center>
 
-        <CustomGrid
-          dataArray={randomQuotes}
-          GridItemLayout={QuoteGridItemLayout}
-          isLoading={isLoading}
-          isError={isError}
-          hasMore={hasMore}
-          setPage={setPage}
-          gridBg={isMobile ? oneBg : twoBg}
-          gridItemStyle={getGridListItemBorderWithBorder(isMobile)}
-          onMountEnter={(e: any) => !isMobile && addBoxShadow(e)}
-          onMountLeave={(e: any) => !isMobile && removeBoxShadow(e)}
-        />
-      </Stack>
+            <CustomGrid
+              dataArray={randomQuotes}
+              GridItemLayout={QuoteGridItemLayout}
+              isLoading={isLoading}
+              isError={isError}
+              hasMore={hasMore}
+              setPage={setPage}
+              gridBg={isMobile ? oneBg : twoBg}
+              onMountEnter={(e: any) => !isMobile && addBoxShadowStyles(e)}
+              onMountLeave={(e: any) => !isMobile && removeBoxShadowStyles(e)}
+            />
+          </Stack>
+        </Container>
+      </Box>
     </>
   );
 };

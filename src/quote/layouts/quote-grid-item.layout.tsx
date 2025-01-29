@@ -1,4 +1,9 @@
-import { oneTx, threeBg, borderLCColor } from "@/global/styles/app.css";
+import {
+  oneTx,
+  threeBg,
+  themeTxStyle,
+  oneTxYellowBgPillPseudoStyle,
+} from "@/global/styles/app.css";
 import {
   QuoteLikesCountLayout,
   QuoteLikerReadonlyButtonLayout,
@@ -28,7 +33,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={borderLCColor}
+        className={oneTxYellowBgPillPseudoStyle}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>
@@ -76,10 +81,16 @@ export const QuoteGridItemLayout = ({ item }: any) => {
       <PlaylistModal opened={modalOpened} close={close} />
 
       <Stack p="xl" justify="center" align="center" px="md">
-        <Text ta="center" onClick={handleNavigateToQuote}>
+        <Text
+          ta="center"
+          onClick={handleNavigateToQuote}
+          className={themeTxStyle}>
           {item.content}
         </Text>
-        <Text ta="center" onClick={handleNavigateToQuoteByAuthor}>
+        <Text
+          ta="center"
+          onClick={handleNavigateToQuoteByAuthor}
+          className={themeTxStyle}>
           {item.authorId.name}
         </Text>
 

@@ -1,18 +1,17 @@
+import { quoteCardMaxWidth } from "@/global/styles/global.styles";
 import {
   oneTx,
-  threeBg,
-  borderLCColor,
   oneBg,
   twoBg,
+  threeBg,
+  roundBorderStyle,
+  oneTxYellowBgPillPseudoStyle,
+  themeTxStyle,
 } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PlaylistModal } from "@/playlist/layouts";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
-import {
-  getItemCardStyles,
-  quoteCardMaxWidth,
-} from "@/global/styles/global.styles";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
 import {
@@ -50,7 +49,7 @@ export const QuoteItemLayout = ({ quote }: any) => {
     return (
       <Pill
         key={topicId._id}
-        bg={borderLCColor}
+        className={oneTxYellowBgPillPseudoStyle}
         onClick={() => handleNavigateToQuoteByTopic(topicId)}>
         {topicId.name}
       </Pill>
@@ -90,74 +89,79 @@ export const QuoteItemLayout = ({ quote }: any) => {
   };
 
   return (
-    <Stack
-      p="md"
-      h="100%"
-      align="center"
-      justify="space-between"
-      bg={isMobile ? oneBg : twoBg}>
+    <>
       <PlaylistModal opened={modalOpened} close={close} />
 
-      <Center p="md">
-        <Stack h={isMobile ? 50 : 90}>
-          {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-        </Stack>
-      </Center>
-
       <Stack
-        style={getItemCardStyles(isMobile)}
-        bg={oneBg}
-        maw={quoteCardMaxWidth}
-        gap="xl"
-        p="xl"
-        justify="center"
-        align="center">
-        <Text ta="center">{quote.content}</Text>
-        <Text ta="center" onClick={handleNavigateToQuoteByAuthor}>
-          {quote.authorId.name}
-        </Text>
+        p="md"
+        h="100%"
+        align="center"
+        justify="space-between"
+        bg={isMobile ? oneBg : twoBg}>
+        <Space h={isMobile ? 50 : 90} />
 
-        {quote.topicIds && quote.topicIds.length > 0 && (
-          <Group ta="center" justify="center">
-            {pills}
+        <Stack
+          bg={oneBg}
+          className={`${roundBorderStyle}`}
+          maw={quoteCardMaxWidth}
+          gap="xl"
+          p="xl"
+          justify="center"
+          align="center">
+          <Text ta="center">{quote.content}</Text>
+          <Text
+            ta="center"
+            onClick={handleNavigateToQuoteByAuthor}
+            className={themeTxStyle}>
+            {quote.authorId.name}
+          </Text>
+
+          {quote.topicIds && quote.topicIds.length > 0 && (
+            <Group ta="center" justify="center">
+              {pills}
+            </Group>
+          )}
+
+          <Group>
+            <Group gap={4}>
+              {auth.role === Role.Public ? (
+                <QuoteLikerReadonlyButtonLayout />
+              ) : (
+                <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
+              )}
+
+              <QuoteLikesCountLayout qid={quote.id} />
+            </Group>
+
+            <ActionIcon size="sm" onClick={handleModalOpen}>
+              <I I={IconPlaylistAdd} />
+            </ActionIcon>
+
+            <Tooltip
+              label="Copied!"
+              position="bottom"
+              opened={opened}
+              bg={threeBg}
+              c={oneTx}>
+              {opened ? (
+                <ActionIcon c="green" aria-label="Copy to clipboard">
+                  <I I={IconCheck} color="green" />
+                </ActionIcon>
+              ) : (
+                <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>
+                  <I I={IconCopy} />
+                </ActionIcon>
+              )}
+            </Tooltip>
           </Group>
-        )}
+        </Stack>
 
-        <Group>
-          <Group gap={4}>
-            {auth.role === Role.Public ? (
-              <QuoteLikerReadonlyButtonLayout />
-            ) : (
-              <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
-            )}
-
-            <QuoteLikesCountLayout qid={quote.id} />
-          </Group>
-
-          <ActionIcon size="sm" onClick={handleModalOpen}>
-            <I I={IconPlaylistAdd} />
-          </ActionIcon>
-
-          <Tooltip
-            label="Copied!"
-            position="bottom"
-            opened={opened}
-            bg={threeBg}
-            c={oneTx}>
-            {opened ? (
-              <ActionIcon c="green" aria-label="Copy to clipboard">
-                <I I={IconCheck} color="green" />
-              </ActionIcon>
-            ) : (
-              <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>
-                <I I={IconCopy} />
-              </ActionIcon>
-            )}
-          </Tooltip>
-        </Group>
+        <Center p="md">
+          <Stack h={isMobile ? 50 : 90}>
+            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+          </Stack>
+        </Center>
       </Stack>
-
-      <Space h={isMobile ? 50 : 90} />
-    </Stack>
+    </>
   );
 };

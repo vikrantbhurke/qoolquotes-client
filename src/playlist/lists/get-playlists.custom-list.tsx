@@ -8,10 +8,10 @@ import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
 import { SeoComponent } from "@/global/components/components";
-import { oneBg, twoBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/app.css";
+import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const GetPlaylistsCustomList = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
   const { playlists, isPending, isError, error } = useGetPlaylists();
   const { page } = useSelector((state: any) => state.playlist);
   const setData = useOutletContext<any>();
@@ -25,12 +25,29 @@ export const GetPlaylistsCustomList = () => {
     }));
   }, [playlists, setData]);
 
-  if (isPending) return <CustomLoader />;
+  if (isPending)
+    return (
+      <>
+        <CustomLoader />
+        <PaginationPlaceholder />
+      </>
+    );
 
-  if (isError) return <CustomError message={error?.message} />;
+  if (isError)
+    return (
+      <>
+        <CustomError message={error?.message} />
+        <PaginationPlaceholder />
+      </>
+    );
 
   if (!playlists.content.length)
-    return <CustomError message="Playlists not found." />;
+    return (
+      <>
+        <CustomError message="Playlists not found." />
+        <PaginationPlaceholder />
+      </>
+    );
 
   return (
     <>
@@ -40,7 +57,7 @@ export const GetPlaylistsCustomList = () => {
       />
       <CustomList
         page={page}
-        listBg={isMobile ? oneBg : twoBg}
+        listBg={oneBg}
         setPage={setPage}
         dataArray={playlists.content}
         totalPages={playlists.totalPages}

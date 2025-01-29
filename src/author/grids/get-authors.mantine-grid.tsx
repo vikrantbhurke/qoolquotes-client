@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/components";
+import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const GetAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
@@ -24,12 +25,29 @@ export const GetAuthorsMantineGrid = () => {
     }));
   }, [authors, setData]);
 
-  if (isPending) return <CustomLoader />;
+  if (isPending)
+    return (
+      <>
+        <CustomLoader />
+        <PaginationPlaceholder />
+      </>
+    );
 
-  if (isError) return <CustomError message={error?.message} />;
+  if (isError)
+    return (
+      <>
+        <CustomError message={error?.message} />
+        <PaginationPlaceholder />
+      </>
+    );
 
   if (!authors.content.length)
-    return <CustomError message="Authors not found." />;
+    return (
+      <>
+        <CustomError message="Authors not found." />
+        <PaginationPlaceholder />
+      </>
+    );
 
   return (
     <>

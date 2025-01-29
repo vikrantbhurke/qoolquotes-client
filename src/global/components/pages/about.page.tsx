@@ -1,17 +1,17 @@
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
-import { oneBg, threeTx } from "@/global/styles/app.css";
+import { oneBg, threeTx, twoBg } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { SeoComponent } from "../components";
-import { mainContentWidth } from "@/global/styles/global.styles";
+import { aboutContentWidth } from "@/global/styles/global.styles";
 
 export const AboutPage = () => {
   const { isMobile } = useSelector((state: any) => state.view);
 
   return (
-    <Stack h="100%" bg={oneBg}>
+    <Stack h="100%" bg={isMobile ? oneBg : twoBg}>
       <SeoComponent
         title="About Page"
         description="Learn more about Qool Quotes."
@@ -19,7 +19,11 @@ export const AboutPage = () => {
 
       <ScrollArea scrollbarSize={2}>
         <Center>
-          <Stack p={isMobile ? "md" : "xl"} gap="lg" maw={mainContentWidth}>
+          <Stack
+            bg={oneBg}
+            p={isMobile ? "md" : "xl"}
+            gap="lg"
+            maw={aboutContentWidth}>
             <Center>
               {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
             </Center>
@@ -116,22 +120,22 @@ export const AboutPage = () => {
             </Stack>
 
             {/* <Stack gap={0}>
-            <Title order={5}>9. Change Fonts and Theme Colors</Title>
-            <Text>
-              Personalize your reading experience by selecting fonts and theme
-              colors that suit your style.
-            </Text>
-          </Stack>
+                  <Title order={5}>9. Change Fonts and Theme Colors</Title>
+                   <Text>
+                    Personalize your reading experience by selecting fonts and theme
+                    colors that suit your style.
+                  </Text>
+                </Stack>
 
-          <Title order={4}>Stay Motivated</Title>
+                <Title order={4}>Stay Motivated</Title>
 
-          <Stack gap={0}>
-            <Title order={5}>10. Daily Inspiration</Title>
-            <Text>
-              Get a dose of inspiration with featured quotes and playlists
-              updated regularly.
-            </Text>
-          </Stack> */}
+                <Stack gap={0}>
+                  <Title order={5}>10. Daily Inspiration</Title>
+                  <Text>
+                    Get a dose of inspiration with featured quotes and playlists
+                    updated regularly.
+                  </Text>
+                </Stack> */}
 
             <Center p="md">
               {isMobile ? <Banner320x50 /> : <Banner300x250 />}
@@ -177,16 +181,16 @@ export const AboutPage = () => {
             </Center>
 
             {/* <Center>
-            <Title order={3}>Get Started</Title>
-          </Center>
+              <Title order={3}>Get Started</Title>
+            </Center>
 
-          <Text>
-            Experience the joy of collecting, organizing, and sharing
-            inspiration. Begin your journey today by exploring our extensive
-            quote library, creating your first playlist, or customizing the look
-            and feel of your app. We’re thrilled to have you as part of our
-            community and can’t wait to see how you make it uniquely yours!
-          </Text> */}
+            <Text>
+              Experience the joy of collecting, organizing, and sharing
+              inspiration. Begin your journey today by exploring our extensive
+              quote library, creating your first playlist, or customizing the look
+              and feel of your app. We’re thrilled to have you as part of our
+              community and can’t wait to see how you make it uniquely yours!
+            </Text> */}
           </Stack>
         </Center>
       </ScrollArea>

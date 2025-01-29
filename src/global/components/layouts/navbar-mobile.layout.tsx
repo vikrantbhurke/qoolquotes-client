@@ -6,10 +6,11 @@ import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 import {
-  oneTxOneBgButtonPseudo,
+  oneTxGreenBgNavbarButtonPseudoStyle,
+  oneTxYellowBgNavbarButtonPseudoStyle,
   themeGreenColor,
 } from "@/global/styles/app.css";
-import { getListButtonHeight } from "@/global/styles/global.styles";
+import { layoutCompHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
@@ -33,7 +34,7 @@ import { IconCategoryFilled } from "@tabler/icons-react";
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
 
-export const NavbarLayout = ({ toggle }: any) => {
+export const NavbarMobileLayout = ({ toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -106,7 +107,7 @@ export const NavbarLayout = ({ toggle }: any) => {
     open();
   };
 
-  const buttonClasses = `${oneTxOneBgButtonPseudo}`;
+  const buttonClasses = `${oneTxYellowBgNavbarButtonPseudoStyle}`;
 
   return (
     <Stack justify="space-between" gap={0} h="100%">
@@ -115,8 +116,8 @@ export const NavbarLayout = ({ toggle }: any) => {
           <CompOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
               c={themeGreenColor}
-              h={getListButtonHeight(isMobile)}
-              className={buttonClasses}
+              h={layoutCompHeight}
+              className={oneTxGreenBgNavbarButtonPseudoStyle}
               leftSection={<I I={IconDownload} />}
               onClick={handleInstallClick}>
               Install App
@@ -125,7 +126,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         )}
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -141,7 +142,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -157,7 +158,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={
             <I
@@ -173,7 +174,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={<I I={IconPlaylist} />}
           onClick={handleNavigateToPlaylists}>
@@ -181,7 +182,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         </Button>
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={<I I={IconInfoCircle} />}
           onClick={handleNavigateToAbout}>
@@ -190,7 +191,7 @@ export const NavbarLayout = ({ toggle }: any) => {
 
         <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
           <Button
-            h={getListButtonHeight(isMobile)}
+            h={layoutCompHeight}
             className={buttonClasses}
             leftSection={
               <I
@@ -207,7 +208,7 @@ export const NavbarLayout = ({ toggle }: any) => {
         </CompOrFragmentRoute>
 
         <Button
-          h={getListButtonHeight(isMobile)}
+          h={layoutCompHeight}
           className={buttonClasses}
           leftSection={<I I={IconMail} />}
           onClick={handleContact}>

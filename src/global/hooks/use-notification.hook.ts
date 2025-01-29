@@ -1,20 +1,23 @@
 import { notifications } from "@mantine/notifications";
 import { NotificationColor } from "../enums/notification-color.enum";
-import { borderLCBorder, fiveBg, oneBg } from "../styles/app.css";
-import { useMantineColorScheme } from "@mantine/core";
+import { noBorderStyle } from "../styles/app.css";
 
 export const useNotification = () => {
-  const { colorScheme } = useMantineColorScheme();
-
   const showNotification = (title: string, color: NotificationColor) => {
     notifications.show({
       title,
-      color,
+      withCloseButton: false,
+      color: "white",
       position: "bottom-center",
       message: "",
+      styles: {
+        title: {
+          color: "white",
+        },
+      },
       style: {
-        backgroundColor: colorScheme === "dark" ? fiveBg : oneBg,
-        border: borderLCBorder,
+        backgroundColor: color,
+        border: noBorderStyle,
       },
       autoClose: 5000,
     });

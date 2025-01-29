@@ -17,6 +17,7 @@ export const useSearchPlaylists = () => {
   } = useQuery({
     queryKey: ["searchPlaylists", page - 1, search],
     queryFn: () => searchPlaylists({ page: page - 1, search }),
+    enabled: !!search,
   });
 
   const prevPage = playlists?.firstPage ? page : page - 1;
@@ -32,7 +33,7 @@ export const useSearchPlaylists = () => {
         search,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!search,
   });
 
   useQuery({
@@ -44,7 +45,7 @@ export const useSearchPlaylists = () => {
         search,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!search,
   });
 
   useQuery({
@@ -56,7 +57,7 @@ export const useSearchPlaylists = () => {
         search,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!search,
   });
 
   return { playlists, isPending, isError, error };

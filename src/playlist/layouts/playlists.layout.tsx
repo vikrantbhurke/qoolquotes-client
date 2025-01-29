@@ -1,18 +1,15 @@
 import {
-  borderBottomShadow,
   oneBg,
   oneTx,
-  oneTxOneBgButtonPseudo,
+  oneTxOneBgButtonPseudoStyle,
   twoBg,
+  roundTopBorderStyle,
+  themeTxStyle,
 } from "@/global/styles/app.css";
 import {
-  footerHeight,
-  getBottomRoundBorders,
-  getSubheaderButton,
-  getSubheadersStyles,
-  headerHeight,
-  mainContentWidth,
-  subheaderHeight,
+  layoutCompHeight,
+  getPlaylistTabStyles,
+  playlistLayoutWidth,
 } from "@/global/styles/global.styles";
 import {
   ActionIcon,
@@ -45,7 +42,6 @@ import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
 import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/components";
-import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { Order } from "@/global/enums";
 import { Sort } from "../enums";
@@ -53,6 +49,7 @@ import { PlaylistsFilterModal } from "./playlists-filter.modal";
 import { PlaylistsFilterDrawer } from "./playlists-filter.drawer";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { useIsComponentVisible } from "@/global/hooks";
+import MobileLeaderboard from "@/global/ads/MobileLeaderboard";
 
 export const PlaylistsLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -109,16 +106,14 @@ export const PlaylistsLayout = () => {
   return (
     <Box component="div" bg={twoBg}>
       <Container
-        size={mainContentWidth}
+        size={playlistLayoutWidth}
         p={0}
-        h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}>
+        h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
         <Stack gap={0} h="100%">
           <Radio.Group
             value={tab}
             bg={oneBg}
-            style={{
-              ...getSubheadersStyles(isMobile),
-            }}>
+            className={`${roundTopBorderStyle}`}>
             <DeletePlaylistsModalLayout
               opened={deletePlaylistOpened}
               close={closeDeletePlaylist}
@@ -141,8 +136,9 @@ export const PlaylistsLayout = () => {
 
               <Group gap={0} justify="center">
                 <Button
-                  h={subheaderHeight}
-                  style={getSubheaderButton(tab === "All")}
+                  h={layoutCompHeight}
+                  className={`${themeTxStyle}`}
+                  style={getPlaylistTabStyles(tab === "All")}
                   onClick={handleNavigateToPlaylists}>
                   All{" "}
                   {tab === "All" &&
@@ -151,8 +147,9 @@ export const PlaylistsLayout = () => {
 
                 <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
                   <Button
-                    h={subheaderHeight}
-                    style={getSubheaderButton(tab === "Created")}
+                    h={layoutCompHeight}
+                    className={`${themeTxStyle}`}
+                    style={getPlaylistTabStyles(tab === "Created")}
                     onClick={handleNavigateToCreatedPlaylists}>
                     Created{" "}
                     {tab === "Created" &&
@@ -160,8 +157,9 @@ export const PlaylistsLayout = () => {
                   </Button>
 
                   <Button
-                    h={subheaderHeight}
-                    style={getSubheaderButton(tab === "Saved")}
+                    h={layoutCompHeight}
+                    className={`${themeTxStyle}`}
+                    style={getPlaylistTabStyles(tab === "Saved")}
                     onClick={handleNavigateToSavedPlaylists}>
                     Saved{" "}
                     {tab === "Saved" &&
@@ -170,73 +168,30 @@ export const PlaylistsLayout = () => {
                 </CompOrFragmentRoute>
               </Group>
 
-              <Group gap={0} justify="center">
+              <Group gap="xs" justify="center">
                 {tab === "Saved" && data.totalElements ? (
-                  <Group
-                    gap={3}
-                    justify="center"
-                    align="center"
-                    onClick={openRemovePlaylist}>
+                  <ActionIcon onClick={openRemovePlaylist}>
                     <I I={IconTrash} color="crimson" />
-
-                    {isMobile ? (
-                      <Space />
-                    ) : (
-                      <Text pt={3} c="crimson">
-                        Remove All
-                      </Text>
-                    )}
-                  </Group>
+                  </ActionIcon>
                 ) : tab === "Created" && data.totalElements ? (
-                  <Group
-                    gap={3}
-                    justify="center"
-                    align="center"
-                    onClick={openDeletePlaylist}>
+                  <ActionIcon onClick={openDeletePlaylist}>
                     <I I={IconTrash} color="crimson" />
-
-                    {isMobile ? (
-                      <Space />
-                    ) : (
-                      <Text pt={3} c="crimson">
-                        Delete All
-                      </Text>
-                    )}
-                  </Group>
+                  </ActionIcon>
                 ) : (
                   <Space w="xl" />
                 )}
 
-                {isMobile ? (
-                  <ActionIcon
-                    h={subheaderHeight}
-                    c={isFilterApplied ? "green" : oneTx}
-                    className={oneTxOneBgButtonPseudo}
-                    onClick={isMobile ? drawerOpen : modalOpen}>
-                    {isFilterApplied ? (
-                      <I I={IconFilterFilled} />
-                    ) : (
-                      <I I={IconFilter} />
-                    )}
-                  </ActionIcon>
-                ) : (
-                  <Stack p="xs" h={subheaderHeight}>
-                    <Button
-                      radius={10}
-                      c={isFilterApplied ? "green" : oneTx}
-                      className={oneTxOneBgButtonPseudo}
-                      onClick={isMobile ? drawerOpen : modalOpen}
-                      leftSection={
-                        isFilterApplied ? (
-                          <I I={IconFilterFilled} />
-                        ) : (
-                          <I I={IconFilter} />
-                        )
-                      }>
-                      Filter
-                    </Button>
-                  </Stack>
-                )}
+                <ActionIcon
+                  h={layoutCompHeight}
+                  c={isFilterApplied ? "green" : oneTx}
+                  className={oneTxOneBgButtonPseudoStyle}
+                  onClick={isMobile ? drawerOpen : modalOpen}>
+                  {isFilterApplied ? (
+                    <I I={IconFilterFilled} />
+                  ) : (
+                    <I I={IconFilter} />
+                  )}
+                </ActionIcon>
               </Group>
             </Group>
 
@@ -247,14 +202,11 @@ export const PlaylistsLayout = () => {
           <Center
             bg={oneBg}
             ref={ref}
-            className={borderBottomShadow}
             style={{
               zIndex: 1,
-              ...getSubheadersStyles(isMobile),
-              ...getBottomRoundBorders(isMobile),
             }}>
             <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+              {isMobile ? <Banner320x50 /> : <MobileLeaderboard />}
             </Stack>
           </Center>
 

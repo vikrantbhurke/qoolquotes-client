@@ -6,7 +6,7 @@ import { IconRefresh } from "@tabler/icons-react";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { setSort, setOrder } from "../playlist.slice";
-import { drawer } from "@/global/styles/global.styles";
+import { drawer, textBold } from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { ActionIcon, Drawer, Group, Space, Stack, Text } from "@mantine/core";
 
@@ -45,13 +45,13 @@ export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       position="bottom"
-      title={<Text>Playlist Filter</Text>}>
+      title="Playlist Filter">
       <Stack>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text>Sort</Text>
+            <Text fw={textBold}>Sort</Text>
 
             {order !== Order.Descending || sort !== Sort.Date ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
@@ -77,7 +77,7 @@ export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text>Order</Text>
+          <Text fw={textBold}>Order</Text>
 
           <CustomEnumCombobox
             id="playlist-order-drawer"

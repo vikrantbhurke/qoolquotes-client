@@ -10,6 +10,7 @@ export const useCountQuoteLikes = (qid: string) => {
   } = useQuery({
     queryKey: ["countQuoteLikes", qid],
     queryFn: () => countQuoteLikes(qid),
+    enabled: !!qid,
   });
 
   return { quoteLikes, isPending, isError, error };

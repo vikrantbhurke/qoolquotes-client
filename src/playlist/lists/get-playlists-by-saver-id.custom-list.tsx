@@ -7,10 +7,10 @@ import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
-import { oneBg, twoBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/app.css";
+import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const GetPlaylistsBySaverIdCustomList = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
   const { playlists, isPending, isError, error } = useGetPlaylistsBySaverId();
   const { page } = useSelector((state: any) => state.playlist);
   const setData = useOutletContext<any>();
@@ -24,17 +24,34 @@ export const GetPlaylistsBySaverIdCustomList = () => {
     }));
   }, [playlists, setData]);
 
-  if (isPending) return <CustomLoader />;
+  if (isPending)
+    return (
+      <>
+        <CustomLoader />
+        <PaginationPlaceholder />
+      </>
+    );
 
-  if (isError) return <CustomError message={error?.message} />;
+  if (isError)
+    return (
+      <>
+        <CustomError message={error?.message} />
+        <PaginationPlaceholder />
+      </>
+    );
 
   if (!playlists.content.length)
-    return <CustomError message="You have saved 0 playlists." />;
+    return (
+      <>
+        <CustomError message="You have saved 0 playlists." />
+        <PaginationPlaceholder />
+      </>
+    );
 
   return (
     <CustomList
       page={page}
-      listBg={isMobile ? oneBg : twoBg}
+      listBg={oneBg}
       setPage={setPage}
       dataArray={playlists.content}
       totalPages={playlists.totalPages}
