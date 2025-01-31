@@ -16,11 +16,12 @@ import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
 import { SeoComponent } from "@/global/components/reusables";
+import { RootState } from "@/global/states/store";
 
 export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   const { randomQuotes, isLoading, isError, hasMore, setPage } =
     useGetRandomQuotes();

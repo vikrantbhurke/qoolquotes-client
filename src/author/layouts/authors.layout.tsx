@@ -37,12 +37,13 @@ import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
+import { RootState } from "@/global/states/store";
 
 export const AuthorsLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
-  const { isMobile, search } = useSelector((state: any) => state.view);
-  const { order, alpha } = useSelector((state: any) => state.author);
+  const { isMobile, search } = useSelector((state: RootState) => state.view);
+  const { order, alpha } = useSelector((state: RootState) => state.author);
 
   const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
     useDisclosure(false);

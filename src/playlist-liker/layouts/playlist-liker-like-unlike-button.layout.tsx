@@ -7,10 +7,11 @@ import { ActionIcon } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/reusables";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistLikerUnlikeButtonLayout = ({ pid }: any) => {
   const navigate = useNavigate();
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const { playlistLiker } = useCheckPlaylistLiker({
     pid,

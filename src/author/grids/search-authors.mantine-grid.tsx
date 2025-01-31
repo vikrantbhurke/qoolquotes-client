@@ -9,10 +9,11 @@ import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const SearchAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useSearchAuthors();
-  const { page } = useSelector((state: any) => state.author);
+  const { page } = useSelector((state: RootState) => state.author);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

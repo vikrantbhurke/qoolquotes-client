@@ -10,10 +10,11 @@ import { setPage } from "../playlist.slice";
 import { SeoComponent } from "@/global/components/reusables";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const GetPlaylistsCustomList = () => {
   const { playlists, isPending, isError, error } = useGetPlaylists();
-  const { page } = useSelector((state: any) => state.playlist);
+  const { page } = useSelector((state: RootState) => state.playlist);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

@@ -35,16 +35,16 @@ import { Role } from "@/user/enums";
 import { I } from "@/global/components/reusables";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
-import { globalUtility } from "@/global/utilities";
+import { RootState } from "@/global/states/store";
 
 export const QuoteItemLayout = ({ quote }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-  const { isMobile, font } = useSelector((state: any) => state.view);
+  const { isMobile, font } = useSelector((state: RootState) => state.view);
   console.log("Font", font);
   const pills = quote.topicIds.map((topicId: any) => {
     return (
@@ -109,7 +109,10 @@ export const QuoteItemLayout = ({ quote }: any) => {
           p="xl"
           justify="center"
           align="center">
-          <Text ta="center" className={globalUtility.getFont(font)}>
+          <Text
+            ta="center"
+            // className={globalUtility.getFont(font)}
+          >
             {quote.content}
           </Text>
           <Text

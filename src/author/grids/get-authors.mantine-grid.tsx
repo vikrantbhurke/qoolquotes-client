@@ -10,10 +10,11 @@ import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const GetAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
-  const { page } = useSelector((state: any) => state.author);
+  const { page } = useSelector((state: RootState) => state.author);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

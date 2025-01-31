@@ -1,9 +1,10 @@
+import { RootState } from "@/global/states/store";
 import { checkPlaylistSaver } from "@/playlist-saver/playlist-saver.network";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 
 export const useCheckPlaylistSaver = ({ pid }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const {
     data: playlistSaver,

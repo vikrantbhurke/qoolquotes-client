@@ -13,11 +13,12 @@ import { Sort } from "../enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistsFilterModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { order, sort } = useSelector((state: any) => state.playlist);
+  const { order, sort } = useSelector((state: RootState) => state.playlist);
 
   const handleOrder = (order: any) => {
     dispatch(setOrder(order));

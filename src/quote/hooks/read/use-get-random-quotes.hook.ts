@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getRandomQuotes } from "@/quote/quote.network";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const useGetRandomQuotes = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const [randomQuotes, setRandomQuotes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<any>(false);
   const [isError, setIsError] = useState<any>(null);

@@ -13,11 +13,12 @@ import {
   removeBoxShadowStyles,
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const SearchQuotesMantineGrid = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const { quotes, isPending, isError, error } = useSearchQuotes();
-  const { page } = useSelector((state: any) => state.quote);
+  const { page } = useSelector((state: RootState) => state.quote);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

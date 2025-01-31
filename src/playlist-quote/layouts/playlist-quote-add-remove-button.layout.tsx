@@ -5,9 +5,10 @@ import { useCheckPlaylistQuote } from "../hooks/read";
 import { useSelector } from "react-redux";
 import { getDropdownStyles } from "@/global/styles/global.styles";
 import { HCBorder, oneTx } from "@/global/styles/app.css";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
-  const { qid } = useSelector((state: any) => state.quote);
+  const { qid } = useSelector((state: RootState) => state.quote);
   const { playlistQuote } = useCheckPlaylistQuote({ pid, qid });
   const { colorScheme } = useMantineColorScheme();
   const { dropdownBg } = getDropdownStyles(colorScheme);

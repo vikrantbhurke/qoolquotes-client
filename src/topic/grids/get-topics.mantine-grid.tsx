@@ -10,10 +10,11 @@ import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const GetTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useGetTopics();
-  const { page } = useSelector((state: any) => state.topic);
+  const { page } = useSelector((state: RootState) => state.topic);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

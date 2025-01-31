@@ -5,9 +5,10 @@ import { useCheckQuoteLiker } from "../hooks/read";
 import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
 import { I } from "@/global/components/reusables";
+import { RootState } from "@/global/states/store";
 
 export const QuoteLikerLikeUnlikeButtonLayout = ({ qid }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const { quoteLiker } = useCheckQuoteLiker({
     qid,

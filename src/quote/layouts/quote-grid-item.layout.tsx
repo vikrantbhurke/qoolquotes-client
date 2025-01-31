@@ -20,9 +20,10 @@ import { useClipboard, useDisclosure } from "@mantine/hooks";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
+import { RootState } from "@/global/states/store";
 
 export const QuoteGridItemLayout = ({ item }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, setOpened] = useState(false);

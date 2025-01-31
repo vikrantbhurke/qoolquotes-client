@@ -40,7 +40,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [, scrollTo] = useWindowScroll();
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const [opened, { open, close }] = useDisclosure();

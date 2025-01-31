@@ -28,13 +28,14 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { globalUtility } from "@/global/utilities";
+import { RootState } from "@/global/states/store";
 
 export const QuotesLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
   const location = useLocation();
-  const { search, isMobile } = useSelector((state: any) => state.view);
-  const { filterObject } = useSelector((state: any) => state.quote);
+  const { search, isMobile } = useSelector((state: RootState) => state.view);
+  const { filterObject } = useSelector((state: RootState) => state.quote);
 
   const [data, setData] = useState<any>({
     page: 0,

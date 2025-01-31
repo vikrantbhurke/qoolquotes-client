@@ -9,10 +9,11 @@ import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const GetPlaylistsBySaverIdCustomList = () => {
   const { playlists, isPending, isError, error } = useGetPlaylistsBySaverId();
-  const { page } = useSelector((state: any) => state.playlist);
+  const { page } = useSelector((state: RootState) => state.playlist);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

@@ -19,9 +19,10 @@ import { Role } from "@/user/enums";
 import { I } from "@/global/components/reusables";
 import { setFilterObject } from "@/quote/quote.slice";
 import { textBold } from "@/global/styles/global.styles";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistListItemLayout = ({ item }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

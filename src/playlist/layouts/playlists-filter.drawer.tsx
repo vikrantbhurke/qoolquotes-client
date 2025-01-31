@@ -9,11 +9,12 @@ import { setSort, setOrder } from "../playlist.slice";
 import { drawer, textBold } from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { ActionIcon, Drawer, Group, Space, Stack, Text } from "@mantine/core";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { order, sort } = useSelector((state: any) => state.playlist);
+  const { order, sort } = useSelector((state: RootState) => state.playlist);
 
   const handleOrder = (order: any) => {
     dispatch(setOrder(order));

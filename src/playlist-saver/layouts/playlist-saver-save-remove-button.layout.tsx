@@ -4,9 +4,10 @@ import { useDisclosure } from "@mantine/hooks";
 import { useCheckPlaylistSaver } from "../hooks/read";
 import { useSavePlaylist } from "../hooks/create";
 import { RemovePlaylistModalLayout } from "./remove-playlist-modal.layout";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const [
     removePlaylistOpened,

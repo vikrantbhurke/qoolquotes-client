@@ -26,7 +26,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const [, scrollTo] = useWindowScroll();
   const location = useLocation();
 
-  const { isSearchbarVisible } = useSelector((state: any) => state.view);
+  const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
 
   const {
     sort: authorSort,

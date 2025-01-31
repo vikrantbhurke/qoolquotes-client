@@ -5,9 +5,10 @@ import { useGetPlaylistsByCreatorId } from "../hooks/read";
 import { CustomModalList } from "@/global/components/lists";
 import { CustomModalLoader } from "@/global/components/loaders";
 import { CustomModalError } from "@/global/components/errors";
+import { RootState } from "@/global/states/store";
 
 export const GetPlaylistsByCreatorIdModalList = () => {
-  const { page } = useSelector((state: any) => state.playlist);
+  const { page } = useSelector((state: RootState) => state.playlist);
   const { playlists, isPending, isError, error } = useGetPlaylistsByCreatorId();
 
   if (isPending) return <CustomModalLoader />;

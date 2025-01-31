@@ -12,11 +12,12 @@ import { Alpha, Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
+import { RootState } from "@/global/states/store";
 
 export const TopicsFilterDrawer = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { order, alpha } = useSelector((state: any) => state.topic);
+  const { order, alpha } = useSelector((state: RootState) => state.topic);
 
   const handleOrder = (order: any) => {
     dispatch(setOrder(order));

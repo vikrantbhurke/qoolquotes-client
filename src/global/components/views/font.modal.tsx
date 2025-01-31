@@ -7,10 +7,11 @@ import { Font } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { IconRefresh } from "@tabler/icons-react";
 import { setFont } from "@/global/states/view.slice";
+import { RootState } from "@/global/states/store";
 
 export const FontModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
-  const { font } = useSelector((state: any) => state.view);
+  const { font } = useSelector((state: RootState) => state.view);
 
   const handleFont = (font: Font) => {
     dispatch(setFont(font));

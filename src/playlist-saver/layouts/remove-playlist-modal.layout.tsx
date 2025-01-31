@@ -2,9 +2,10 @@ import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useRemovePlaylist } from "@/playlist-saver/hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const RemovePlaylistModalLayout = ({ pid, opened, close }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
   const { removePlaylistMutation, isPending } = useRemovePlaylist();
 
   const handleRemovePlaylist = () => {

@@ -50,13 +50,14 @@ import { PlaylistsFilterDrawer } from "./playlists-filter.drawer";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { useIsComponentVisible } from "@/global/hooks";
 import MobileLeaderboard from "@/global/ads/MobileLeaderboard";
+import { RootState } from "@/global/states/store";
 
 export const PlaylistsLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   const [
     deletePlaylistOpened,
@@ -74,8 +75,10 @@ export const PlaylistsLayout = () => {
   const [modalOpened, { open: modalOpen, close: modalClose }] =
     useDisclosure(false);
 
-  const { tab, sort, order } = useSelector((state: any) => state.playlist);
-  const { auth } = useSelector((state: any) => state.auth);
+  const { tab, sort, order } = useSelector(
+    (state: RootState) => state.playlist
+  );
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const [data, setData] = useState<any>({
     page: 0,

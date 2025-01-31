@@ -44,7 +44,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();

@@ -24,13 +24,14 @@ import {
   // usePopunderAd
 } from "@/global/hooks";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const AppLayout = () => {
   // usePopunderAd();
   useViewInfo();
   // useSocialAd();
 
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const [opened, { toggle }] = useDisclosure();
 
   const { navbar, aside, header, footer } = getAppShellStyles(

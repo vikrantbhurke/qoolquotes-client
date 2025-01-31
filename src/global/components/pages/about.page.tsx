@@ -6,9 +6,10 @@ import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { SeoComponent } from "../reusables";
 import { aboutContentWidth } from "@/global/styles/global.styles";
+import { RootState } from "@/global/states/store";
 
 export const AboutPage = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
     <Stack h="100%" bg={isMobile ? oneBg : twoBg}>

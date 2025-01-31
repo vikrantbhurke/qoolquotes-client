@@ -9,10 +9,11 @@ import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const SearchTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useSearchTopics();
-  const { page } = useSelector((state: any) => state.topic);
+  const { page } = useSelector((state: RootState) => state.topic);
   const setData = useOutletContext<any>();
 
   useEffect(() => {

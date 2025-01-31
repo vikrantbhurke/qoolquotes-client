@@ -16,11 +16,12 @@ import { Alpha, Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
+import { RootState } from "@/global/states/store";
 
 export const AuthorsFilterModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
-  const { order, alpha } = useSelector((state: any) => state.author);
+  const { order, alpha } = useSelector((state: RootState) => state.author);
 
   const handleOrder = (order: any) => {
     dispatch(setOrder(order));
