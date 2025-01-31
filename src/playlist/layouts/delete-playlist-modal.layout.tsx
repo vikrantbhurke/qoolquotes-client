@@ -22,7 +22,6 @@ export const DeletePlaylistModalLayout = ({ pid, opened, close }: any) => {
         <Button
           onClick={handleDeletePlaylistById}
           fullWidth
-          radius="sm"
           bg="red"
           loading={isPending}
           loaderProps={{ type: "dots" }}>

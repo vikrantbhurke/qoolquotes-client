@@ -6,7 +6,7 @@ import { IconHeart, IconHeartFilled } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 
 export const PlaylistLikerUnlikeButtonLayout = ({ pid }: any) => {
   const navigate = useNavigate();

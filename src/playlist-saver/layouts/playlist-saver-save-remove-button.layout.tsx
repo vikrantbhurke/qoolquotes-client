@@ -35,7 +35,6 @@ export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
       <Button
         fullWidth
         disabled={isPending}
-        radius="sm"
         bg={playlistSaver?.exists ? "red" : "green"}
         onClick={() => {
           if (playlistSaver?.exists) removePlaylistOpen();

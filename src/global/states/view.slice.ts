@@ -10,6 +10,7 @@ export interface ViewState {
   isMobile: boolean;
   isAdHeaderVisible: boolean;
   isPaginationVisible: boolean;
+  font: string;
 }
 
 const initialState: ViewState = {
@@ -21,6 +22,7 @@ const initialState: ViewState = {
   isMobile: false,
   isAdHeaderVisible: false,
   isPaginationVisible: false,
+  font: "Inter",
 };
 
 export const viewSlice = createSlice({
@@ -51,6 +53,9 @@ export const viewSlice = createSlice({
     setIsPaginationVisible: (state, action: PayloadAction<boolean>) => {
       state.isPaginationVisible = action.payload;
     },
+    setFont: (state, action: PayloadAction<string>) => {
+      state.font = action.payload;
+    },
   },
 });
 
@@ -63,6 +68,7 @@ export const {
   setIsMobile,
   setIsAdHeaderVisible,
   setIsPaginationVisible,
+  setFont,
 } = viewSlice.actions;
 
 export default viewSlice.reducer;

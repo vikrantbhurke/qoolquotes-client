@@ -17,7 +17,7 @@ import { useUpdatePlaylistByIdForm } from "../hooks/update";
 import { IconMessage2, IconRefresh } from "@tabler/icons-react";
 import { setAccess } from "../playlist.slice";
 import { useDispatch } from "react-redux";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { Access } from "../enums";
 import { globalUtility } from "@/global/utilities";
 import { useNavigate } from "react-router-dom";
@@ -29,11 +29,7 @@ import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import {
-  oneBg,
-  roundBorderStyle,
-  twoBg,
-} from "@/global/styles/app.css";
+import { oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
 
 export const UpdatePlaylistByIdFormLayout = () => {
   const dispatch = useDispatch();
@@ -208,7 +204,6 @@ export const UpdatePlaylistByIdFormLayout = () => {
                   fullWidth
                   disabled={isPending}
                   type="submit"
-                  radius="sm"
                   bg="blue"
                   loading={isPending}
                   loaderProps={{ type: "dots" }}>
@@ -217,11 +212,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
               </Grid.Col>
 
               <Grid.Col span={6}>
-                <Button
-                  fullWidth
-                  radius="sm"
-                  bg="yellow"
-                  onClick={handleCancel}>
+                <Button fullWidth bg="yellow" onClick={handleCancel}>
                   Cancel
                 </Button>
               </Grid.Col>

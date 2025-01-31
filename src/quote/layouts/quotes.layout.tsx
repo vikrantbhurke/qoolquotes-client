@@ -21,7 +21,7 @@ import {
   twoBg,
 } from "@/global/styles/app.css";
 import { useRef, useState } from "react";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useSelector } from "react-redux";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";

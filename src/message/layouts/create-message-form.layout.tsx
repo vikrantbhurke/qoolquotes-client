@@ -10,7 +10,7 @@ import {
   TextInput,
 } from "@mantine/core";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { globalUtility } from "@/global/utilities";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -144,7 +144,6 @@ export const CreateMessageFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
-          radius="sm"
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Send Message

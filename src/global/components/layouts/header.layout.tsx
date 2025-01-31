@@ -32,12 +32,13 @@ import {
   textBold,
   textBolder,
 } from "@/global/styles/global.styles";
-import { I } from "../components";
+import { I } from "../reusables";
 import { useInstallApp } from "@/global/hooks";
 import logo from "@/global/assets/pwa-64x64.png";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
+// import { FontModal } from "../views";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
@@ -48,6 +49,12 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
+
+  // const [fontOpened, { open: fontOpen, close: fontClose }] =
+  //   useDisclosure(false);
+
+  // const [colorOpened, { open: colorOpen, close: colorClose }] =
+  //   useDisclosure(false);
 
   const {
     sort: authorSort,
@@ -191,6 +198,17 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                   <I I={IconLogin} />
                 </ActionIcon>
               )}
+
+              {/* <ActionIcon size="sm" onClick={fontOpen}>
+                <I I={IconLetterA} />
+              </ActionIcon>
+
+              <ActionIcon size="sm" onClick={handleSignOut}>
+                <I I={IconBrush} />
+              </ActionIcon>
+
+              <FontModal opened={fontOpened} close={fontClose} />
+              <ColorModal opened={colorOpened} close={colorClose} /> */}
 
               <MenuLayout />
 

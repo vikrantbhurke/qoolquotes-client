@@ -324,14 +324,6 @@ export const oneTxOneBgButtonPseudoStyle = style({
   },
 });
 
-export const readexProFontStyle = style({
-  fontFamily: "Readex Pro",
-});
-
-export const interFontStyle = style({
-  fontFamily: "Inter",
-});
-
 export const borderShadowStyle = style({
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
 });
@@ -354,4 +346,12 @@ export const borderLeftShadowStyle = style({
 export const borderRightShadowStyle = style({
   borderRight: LCBorder,
   boxShadow: `2px 0px 4px rgba(0, 0, 0, 0.1)`,
+});
+
+export const interFontStyle = style({
+  fontFamily: "Inter",
+});
+
+export const readexProFontStyle = style({
+  fontFamily: "Readex Pro",
 });

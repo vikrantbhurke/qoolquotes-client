@@ -28,7 +28,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ContactModal, I } from "../components";
+import { I } from "../reusables";
+import { ContactModal } from "../views";
 import { useInstallApp } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
 import Banner300x250 from "@/global/ads/Banner300x250";

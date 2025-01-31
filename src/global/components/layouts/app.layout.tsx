@@ -38,7 +38,6 @@ export const AppLayout = () => {
     layoutCompHeight,
     layoutCompHeight,
     navbarAsideWidth,
-    responsiveBreakpoint,
     opened
   );
 

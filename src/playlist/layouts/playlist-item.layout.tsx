@@ -31,7 +31,7 @@ import {
   PlaylistSaverSaveRemoveButtonLayout,
 } from "@/playlist-saver/layouts";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
@@ -146,7 +146,6 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
               <Grid.Col span={4}>
                 <Button
                   fullWidth
-                  radius="sm"
                   c={oneBg}
                   bg={oneTx}
                   onClick={handleNavigateToQuotesByPlaylist}>
@@ -160,7 +159,6 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
                     <Button
                       fullWidth
                       type="submit"
-                      radius="sm"
                       bg="blue"
                       onClick={() =>
                         navigate(`/playlists/${playlist.id}/edit`)
@@ -170,11 +168,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
                   </Grid.Col>
 
                   <Grid.Col span={4}>
-                    <Button
-                      fullWidth
-                      radius="sm"
-                      bg="red"
-                      onClick={deletePlaylistOpen}>
+                    <Button fullWidth bg="red" onClick={deletePlaylistOpen}>
                       Delete
                     </Button>
                   </Grid.Col>
@@ -192,7 +186,6 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
                   <Grid.Col span={4}>
                     <Button
                       fullWidth
-                      radius="sm"
                       bg="blue"
                       onClick={handleClonePlaylist}
                       loading={isPending}

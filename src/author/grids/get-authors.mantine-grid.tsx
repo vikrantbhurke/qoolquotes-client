@@ -8,7 +8,7 @@ import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const GetAuthorsMantineGrid = () => {

@@ -4,7 +4,7 @@ import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import { oneBg, threeTx, twoBg } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useSelector } from "react-redux";
-import { SeoComponent } from "../components";
+import { SeoComponent } from "../reusables";
 import { aboutContentWidth } from "@/global/styles/global.styles";
 
 export const AboutPage = () => {

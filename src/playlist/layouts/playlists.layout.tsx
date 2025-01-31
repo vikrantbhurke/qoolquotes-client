@@ -41,7 +41,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
 import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { Order } from "@/global/enums";
 import { Sort } from "../enums";

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
 import { useSelector } from "react-redux";
 import { PlaylistModal } from "@/playlist/layouts";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";

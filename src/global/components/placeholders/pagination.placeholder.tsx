@@ -1,7 +1,7 @@
 import { oneBg } from "@/global/styles/app.css";
 import { getTopRoundBordersStyles } from "@/global/styles/global.styles";
 import { Center, Pagination } from "@mantine/core";
-import { CustomNumberCombobox } from "../components";
+import { CustomNumberCombobox } from "../reusables";
 import { useSelector } from "react-redux";
 
 export const PaginationPlaceholder = () => {

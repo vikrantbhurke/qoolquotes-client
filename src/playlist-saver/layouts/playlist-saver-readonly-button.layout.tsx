@@ -9,7 +9,7 @@ export const PlaylistSaverReadonlyButtonLayout = () => {
   };
 
   return (
-    <Button fullWidth radius="sm" bg="green" onClick={handleNavigateToSignIn}>
+    <Button fullWidth bg="green" onClick={handleNavigateToSignIn}>
       Save
     </Button>
   );

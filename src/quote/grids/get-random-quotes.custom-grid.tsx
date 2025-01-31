@@ -15,7 +15,7 @@ import { useRef } from "react";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 
 export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);

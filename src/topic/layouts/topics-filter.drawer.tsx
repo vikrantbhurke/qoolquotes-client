@@ -7,7 +7,7 @@ import {
   CustomEnumCombobox,
   CustomEnumScrollableCombobox,
   I,
-} from "@/global/components/components";
+} from "@/global/components/reusables";
 import { Alpha, Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";

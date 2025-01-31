@@ -30,7 +30,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { AuthorsFilterModal } from "./authors-filter.modal";
 import { AuthorsFilterDrawer } from "./authors-filter.drawer";
 import { globalUtility } from "@/global/utilities";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useSelector } from "react-redux";
 import { Alpha, Order } from "@/global/enums";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";

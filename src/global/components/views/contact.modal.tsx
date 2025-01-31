@@ -4,7 +4,7 @@ import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { CreateMessageFormLayout } from "@/message/layouts";
 import { Modal, Tabs, Text } from "@mantine/core";
 import { IconMail, IconMessage2 } from "@tabler/icons-react";
-import { I } from "./icon";
+import { I } from "../reusables/icon";
 
 export const ContactModal = ({ opened, close }: any) => {
   return (

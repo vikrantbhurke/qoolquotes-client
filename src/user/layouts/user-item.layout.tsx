@@ -22,7 +22,7 @@ import { RootState } from "@/global/states/store";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 
 export const UserItemLayout = ({ user }: any) => {
@@ -103,7 +103,6 @@ export const UserItemLayout = ({ user }: any) => {
               <Grid.Col span={6}>
                 <Button
                   fullWidth
-                  radius="sm"
                   bg="blue"
                   onClick={() => navigate(`/users/${user.id}/edit`)}>
                   Edit Profile
@@ -111,7 +110,7 @@ export const UserItemLayout = ({ user }: any) => {
               </Grid.Col>
 
               <Grid.Col span={6}>
-                <Button fullWidth radius="sm" bg="red" onClick={open}>
+                <Button fullWidth bg="red" onClick={open}>
                   Delete Account
                 </Button>
               </Grid.Col>

@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
-import { I } from "../components";
+import { I } from "../reusables";
 
 export const FooterLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();

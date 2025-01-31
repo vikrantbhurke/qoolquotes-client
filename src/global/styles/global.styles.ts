@@ -1,3 +1,4 @@
+import { Breakpoint } from "../enums";
 import { twoBg, oneBg, oneTx, threeBg, HCBorder } from "./app.css";
 
 export const textBold = 500;
@@ -6,13 +7,13 @@ export const buttonHeight = 40;
 export const listItemHeight = 80;
 export const layoutCompHeight = 60;
 export const navbarAsideWidth = 320;
-export const mainContentWidth = 1200;
-export const aboutContentWidth = 800;
-export const quoteCardMaxWidth = 600;
-export const quoteLayoutWidth = 1000;
-export const playlistLayoutWidth = 600;
-export const authorTopicLayoutWidth = 800;
-export const responsiveBreakpoint = "md";
+export const mainContentWidth = Breakpoint.md;
+export const aboutContentWidth = Breakpoint.sm;
+export const quoteCardMaxWidth = Breakpoint.xs;
+export const quoteLayoutWidth = Breakpoint.md;
+export const playlistLayoutWidth = Breakpoint.xs;
+export const authorTopicLayoutWidth = Breakpoint.sm;
+export const responsiveBreakpoint = "sm";
 
 export const modal = {
   title: {
@@ -63,18 +64,17 @@ export const getAppShellStyles = (
   footerHeight: number,
   headerHeight: number,
   navbarAsideWidth: number,
-  responsiveBreakpoint: string,
   opened: boolean
 ) => ({
   header: { height: headerHeight },
   navbar: {
     width: navbarAsideWidth,
-    breakpoint: responsiveBreakpoint,
+    breakpoint: Breakpoint.md,
     collapsed: { mobile: !opened },
   },
   aside: {
     width: navbarAsideWidth,
-    breakpoint: responsiveBreakpoint,
+    breakpoint: Breakpoint.md,
     collapsed: { mobile: true },
   },
   footer: {

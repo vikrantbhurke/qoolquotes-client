@@ -27,7 +27,8 @@ import {
   IconMessage,
   IconUser,
 } from "@tabler/icons-react";
-import { ContactModal, I } from "../components";
+import { I } from "../reusables";
+import { ContactModal } from "../views";
 import { CompOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
 

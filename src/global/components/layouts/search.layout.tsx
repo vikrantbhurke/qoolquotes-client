@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { getSearchTextInputStyles } from "@/global/styles/global.styles";
 import { useLocation, useNavigate } from "react-router-dom";
-import { I } from "../components";
+import { I } from "../reusables";
 
 export const SearchLayout = () => {
   const location = useLocation();

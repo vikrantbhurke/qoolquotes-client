@@ -1,5 +1,5 @@
 import { useCreatePlaylistForm } from "../hooks/create";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { Access } from "../enums";
 import { globalUtility } from "@/global/utilities";
 import { setAccess } from "../playlist.slice";
@@ -132,7 +132,6 @@ export const CreatePlaylistFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
-          radius="sm"
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Create Playlist

@@ -7,7 +7,7 @@ import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { setSort, setOrder } from "../playlist.slice";
 import { drawer, textBold } from "@/global/styles/global.styles";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { ActionIcon, Drawer, Group, Space, Stack, Text } from "@mantine/core";
 
 export const PlaylistsFilterDrawer = ({ opened, close }: any) => {

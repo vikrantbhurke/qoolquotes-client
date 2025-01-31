@@ -32,9 +32,10 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
+import { globalUtility } from "@/global/utilities";
 
 export const QuoteItemLayout = ({ quote }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -43,8 +44,8 @@ export const QuoteItemLayout = ({ quote }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-  const { isMobile } = useSelector((state: any) => state.view);
-
+  const { isMobile, font } = useSelector((state: any) => state.view);
+  console.log("Font", font);
   const pills = quote.topicIds.map((topicId: any) => {
     return (
       <Pill
@@ -108,7 +109,9 @@ export const QuoteItemLayout = ({ quote }: any) => {
           p="xl"
           justify="center"
           align="center">
-          <Text ta="center">{quote.content}</Text>
+          <Text ta="center" className={globalUtility.getFont(font)}>
+            {quote.content}
+          </Text>
           <Text
             ta="center"
             onClick={handleNavigateToQuoteByAuthor}

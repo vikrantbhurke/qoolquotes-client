@@ -16,7 +16,7 @@ import {
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { setFilterObject } from "@/quote/quote.slice";
 import { textBold } from "@/global/styles/global.styles";
 
@@ -76,7 +76,6 @@ export const PlaylistListItemLayout = ({ item }: any) => {
           <Button
             px={4}
             h="lg"
-            radius="sm"
             c={oneTx}
             className={oneTxYellowBgPillPseudoStyle}
             onClick={handleNavigateToQuotesByPlaylist}>

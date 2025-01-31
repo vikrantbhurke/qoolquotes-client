@@ -12,7 +12,7 @@ import {
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { IconRefresh } from "@tabler/icons-react";
 import { citedQuoteUtility } from "../cited-quote.utility";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
@@ -144,7 +144,6 @@ export const CreateCitedQuoteFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
-          radius="sm"
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Cite Quote
