@@ -4,6 +4,7 @@ import { twoBg, oneBg, oneTx, threeBg, HCBorder } from "./app.css";
 export const textBold = 500;
 export const textBolder = 700;
 export const buttonHeight = 40;
+export const buttonNormal = 400;
 export const listItemHeight = 80;
 export const layoutCompHeight = 60;
 export const navbarAsideWidth = 320;

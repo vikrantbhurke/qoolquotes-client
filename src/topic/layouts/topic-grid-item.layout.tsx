@@ -1,6 +1,6 @@
 import { setPage } from "@/quote/quote.slice";
 import { oneBg, themeTxStyle } from "@/global/styles/app.css";
-import { buttonHeight } from "@/global/styles/global.styles";
+import { buttonHeight, buttonNormal } from "@/global/styles/global.styles";
 import { Button } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ export const TopicGridItemLayout = ({ item }: any) => {
       h={buttonHeight}
       bg={oneBg}
       className={`${themeTxStyle}`}
+      fw={buttonNormal}
       onClick={handleNavigateToQuoteByTopic}>
       {item.name} ({globalUtility.formatNumber(topicQuotes?.count || 0)})
     </Button>
