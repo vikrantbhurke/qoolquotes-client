@@ -68,6 +68,11 @@ export const getQuotesByPlaylistId = async (
   return result.data;
 };
 
+export const getTodaysQuote = async () => {
+  const result = await axios.get(`/quotes/todays`);
+  return result.data;
+};
+
 export const getQuoteById = async (qid: string | undefined) => {
   const result = await axios.get(`/quotes/${qid}`);
   return result.data;

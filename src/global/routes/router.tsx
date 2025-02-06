@@ -32,7 +32,7 @@ import {
   GetRandomQuotesCustomGrid,
   SearchQuotesMantineGrid,
 } from "@/quote/grids";
-import { GetQuoteByIdItem } from "@/quote/items";
+import { GetQuoteByIdItem, GetTodaysQuoteItem } from "@/quote/items";
 import { GetPlaylistByIdItem, UpdatePlaylistByIdItem } from "@/playlist/items";
 import {
   GetUserByIdItem,
@@ -65,6 +65,7 @@ const router = createBrowserRouter(
         <Route path="search/:search" element={<SearchQuotesMantineGrid />} />
       </Route>
 
+      <Route path="quotes/todays" element={<GetTodaysQuoteItem />} />
       <Route path="quotes/:qid" element={<GetQuoteByIdItem />} />
 
       <Route

@@ -3,7 +3,7 @@ import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { roundBorderStyle, themeYellowBg } from "@/global/styles/app.css";
 import { layoutCompHeight } from "@/global/styles/global.styles";
-import { Group, Stack, Text } from "@mantine/core";
+import { Group, Stack, Text, Image } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
   IconArticle,
@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { I } from "../reusables";
+import logo from "@/global/assets/pwa-64x64.png";
 
 export const FooterLayout = ({ opened, toggle }: any) => {
   const navigate = useNavigate();
@@ -39,6 +40,12 @@ export const FooterLayout = ({ opened, toggle }: any) => {
     order: topicOrder,
     alpha: topicAlpha,
   } = useSelector((state: RootState) => state.topic);
+
+  const handleNavigateToTodaysQuote = () => {
+    scrollTo({ y: 0 });
+    navigate("/quotes/todays");
+    opened && toggle();
+  };
 
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
@@ -66,6 +73,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
 
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
+  const todaysIconColor =
+    location.pathname === "/quotes/todays" ? themeYellowBg : "transparent";
+
   const feedIconColor =
     location.pathname === "/" ? themeYellowBg : "transparent";
 
@@ -88,6 +98,18 @@ export const FooterLayout = ({ opened, toggle }: any) => {
 
   return (
     <Group justify="space-evenly" grow gap={0} h={layoutCompHeight}>
+      <Stack
+        justify="center"
+        align="center"
+        gap={0}
+        h={layoutCompHeight}
+        onClick={handleNavigateToTodaysQuote}>
+        <Stack bg={todaysIconColor} px={8} py={2} className={roundBorderStyle}>
+          <Image src={logo} alt="logo" w={24} p={0} m={0} />
+        </Stack>
+        <Text>Today's</Text>
+      </Stack>
+
       <Stack
         justify="center"
         align="center"

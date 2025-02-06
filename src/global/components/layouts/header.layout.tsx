@@ -78,6 +78,12 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
     opened && toggle();
   };
 
+  const handleNavigateToTodaysQuote = () => {
+    scrollTo({ y: 0 });
+    navigate("/quotes/todays");
+    opened && toggle();
+  };
+
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
     navigate("/");
@@ -144,6 +150,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                   </Text>
                 </Group>
               )}
+
+              <Group
+                onClick={handleNavigateToTodaysQuote}
+                visibleFrom={responsiveBreakpoint}>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Today's
+                </Text>
+              </Group>
 
               <Group
                 onClick={handleNavigateToFeed}
