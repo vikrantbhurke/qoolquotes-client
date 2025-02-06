@@ -1,6 +1,7 @@
 import {
   authorTopicLayoutWidth,
   layoutCompHeight,
+  marginLeft,
   textBold,
 } from "@/global/styles/global.styles";
 import {
@@ -92,6 +93,7 @@ export const AuthorsLayout = () => {
             )}
 
             <ActionIcon
+              ml={marginLeft}
               h={layoutCompHeight}
               c={isFilterApplied ? "green" : oneTx}
               className={oneTxOneBgButtonPseudoStyle}

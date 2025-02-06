@@ -129,7 +129,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
       ) : (
         <Container size={mainContentWidth}>
           <Group h={layoutCompHeight} justify="space-between" align="center">
-            <Group gap={4} onClick={handleNavigateToFeed} align="center">
+            <Group gap={4} onClick={handleNavigateToTodaysQuote} align="center">
               <Image src={logo} alt="logo" w={32} />
 
               <Text fw={textBolder} fz="lg" className={themeTxStyle}>
