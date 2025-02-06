@@ -24,8 +24,7 @@ import { IconRefresh } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import logo from "@/global/assets/pwa-64x64.png";
-import logoLarge from "@/global/assets/pwa-192x192.png";
+import logo from "@/global/assets/pwa-192x192.png";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
@@ -52,11 +51,7 @@ export const SignInUserFormLayout = () => {
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Center>
-              <Image src={logo} alt="logo" w={64} />
-            </Center>
-
-            <Center>
-              <Image src={logoLarge} alt="logo" w={128} />
+              <Image src={logo} alt="logo" w={128} />
             </Center>
 
             <Stack gap={0}>
