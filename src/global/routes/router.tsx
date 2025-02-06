@@ -44,7 +44,7 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AppLayout />} path="/" errorElement={<></>}>
-      <Route path="/" element={<GetRandomQuotesCustomGrid />} />
+      <Route path="feed" element={<GetRandomQuotesCustomGrid />} />
       <Route path="sign-up" element={<SignUpUserItem />} />
       <Route path="sign-in" element={<SignInUserItem />} />
       <Route path="about" element={<AboutPage />} />
@@ -65,7 +65,7 @@ const router = createBrowserRouter(
         <Route path="search/:search" element={<SearchQuotesMantineGrid />} />
       </Route>
 
-      <Route path="quotes/todays" element={<GetTodaysQuoteItem />} />
+      <Route path="/" element={<GetTodaysQuoteItem />} />
       <Route path="quotes/:qid" element={<GetQuoteByIdItem />} />
 
       <Route

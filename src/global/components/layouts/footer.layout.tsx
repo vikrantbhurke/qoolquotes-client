@@ -43,13 +43,13 @@ export const FooterLayout = ({ opened, toggle }: any) => {
 
   const handleNavigateToTodaysQuote = () => {
     scrollTo({ y: 0 });
-    navigate("/quotes/todays");
+    navigate("/");
     opened && toggle();
   };
 
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
-    navigate("/");
+    navigate("/feed");
     opened && toggle();
   };
 
@@ -74,13 +74,13 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
   const todaysIconColor =
-    location.pathname === "/quotes/todays" ? themeYellowBg : "transparent";
-
-  const feedIconColor =
     location.pathname === "/" ? themeYellowBg : "transparent";
 
+  const feedIconColor =
+    location.pathname === "/feed" ? themeYellowBg : "transparent";
+
   const feedPath =
-    location.pathname === "/" ? IconArticleFilledFilled : IconArticle;
+    location.pathname === "/feed" ? IconArticleFilledFilled : IconArticle;
 
   const topicsIconColor =
     location.pathname === "/topics" ? themeYellowBg : "transparent";

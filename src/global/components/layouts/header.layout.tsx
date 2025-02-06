@@ -80,13 +80,13 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
   const handleNavigateToTodaysQuote = () => {
     scrollTo({ y: 0 });
-    navigate("/quotes/todays");
+    navigate("/");
     opened && toggle();
   };
 
   const handleNavigateToFeed = () => {
     scrollTo({ y: 0 });
-    navigate("/");
+    navigate("/feed");
     opened && toggle();
   };
 
