@@ -150,8 +150,8 @@ export const QuoteItemLayout = ({ quote }: any) => {
               bg={threeBg}
               c={oneTx}>
               {opened ? (
-                <ActionIcon c="green" aria-label="Copy to clipboard">
-                  <I I={IconCheck} color="green" />
+                <ActionIcon c="teal" aria-label="Copy to clipboard">
+                  <I I={IconCheck} color="teal" />
                 </ActionIcon>
               ) : (
                 <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>

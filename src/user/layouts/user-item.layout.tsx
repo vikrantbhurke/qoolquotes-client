@@ -52,7 +52,7 @@ export const UserItemLayout = ({ user }: any) => {
           h="100%"
           gap="xl"
           align="center"
-          justify={isMobile ? "start" : "center"}>
+          justify={isMobile ? "start" : "space-between"}>
           <Center p="md">
             <Stack h={isMobile ? 50 : 90}>
               {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
