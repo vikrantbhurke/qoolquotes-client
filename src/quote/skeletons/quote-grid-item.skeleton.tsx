@@ -25,6 +25,14 @@ export const QuoteGridItemSkeleton = () => {
           <Skeleton height={20} radius="xl" width="25%" />
         </Group>
       </Center>
+
+      <Center>
+        <Group miw={200} gap="md" justify="center">
+          <Skeleton height={20} circle />
+          <Skeleton height={20} circle />
+          <Skeleton height={20} circle />
+        </Group>
+      </Center>
     </Stack>
   );
 };

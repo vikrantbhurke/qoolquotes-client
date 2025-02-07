@@ -27,9 +27,9 @@ export const UserItemSkeleton = () => {
                 <Skeleton height={80} circle />
 
                 <Stack miw={200} gap="xs" align="center">
-                  <Skeleton height={8} radius="xl" width="80%" />
-                  <Skeleton height={8} radius="xl" width="80%" />
-                  <Skeleton height={8} radius="xl" width="80%" />
+                  <Skeleton height={10} radius="sm" width="80%" />
+                  <Skeleton height={10} radius="sm" width="80%" />
+                  <Skeleton height={10} radius="sm" width="80%" />
                 </Stack>
               </Group>
             </Stack>
