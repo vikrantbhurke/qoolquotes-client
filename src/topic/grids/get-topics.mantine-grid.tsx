@@ -28,19 +28,17 @@ export const GetTopicsMantineGrid = () => {
 
   if (isPending)
     return (
-      <>
-        <MantineGrid
-          p={4}
-          page={page}
-          gridBg={oneBg}
-          setPage={setPage}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-          dataArray={Array(40).fill({})}
-          totalPages={1}
-          GridItemLayout={TopicGridItemSkeleton}
-        />
-      </>
+      <MantineGrid
+        p={4}
+        page={page}
+        gridBg={oneBg}
+        setPage={setPage}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        dataArray={Array(40).fill({})}
+        totalPages={1}
+        GridItemLayout={TopicGridItemSkeleton}
+      />
     );
 
   if (isError)

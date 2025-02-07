@@ -28,17 +28,14 @@ export const GetPlaylistsCustomList = () => {
 
   if (isPending)
     return (
-      <>
-        <PlaylistListItemSkeleton />
-        <CustomList
-          page={1}
-          listBg={oneBg}
-          setPage={setPage}
-          dataArray={Array(10).fill({})}
-          totalPages={1}
-          ListItemLayout={PlaylistListItemSkeleton}
-        />
-      </>
+      <CustomList
+        page={1}
+        listBg={oneBg}
+        setPage={setPage}
+        dataArray={Array(10).fill({})}
+        totalPages={1}
+        ListItemLayout={PlaylistListItemSkeleton}
+      />
     );
 
   if (isError)

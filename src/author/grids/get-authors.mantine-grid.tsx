@@ -28,19 +28,17 @@ export const GetAuthorsMantineGrid = () => {
 
   if (isPending)
     return (
-      <>
-        <MantineGrid
-          p={4}
-          page={page}
-          gridBg={oneBg}
-          setPage={setPage}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-          dataArray={Array(40).fill({})}
-          totalPages={1}
-          GridItemLayout={AuthorGridItemSkeleton}
-        />
-      </>
+      <MantineGrid
+        p={4}
+        page={page}
+        gridBg={oneBg}
+        setPage={setPage}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        dataArray={Array(40).fill({})}
+        totalPages={1}
+        GridItemLayout={AuthorGridItemSkeleton}
+      />
     );
 
   if (isError)
