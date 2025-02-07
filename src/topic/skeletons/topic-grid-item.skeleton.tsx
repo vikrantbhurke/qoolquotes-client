@@ -6,7 +6,7 @@ export const TopicGridItemSkeleton = () => {
   return (
     <>
       <Center h={buttonHeight}>
-        <Skeleton bg={oneBg} height={8} radius="xl" width="25%" />
+        <Skeleton bg={oneBg} height={12} radius="sm" width="25%" />
       </Center>
     </>
   );

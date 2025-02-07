@@ -21,28 +21,28 @@ export const PlaylistItemSkeleton = () => {
             className={`${roundBorderStyle}`}>
             <Stack gap="lg">
               <Group gap={8}>
-                <Skeleton height={8} radius="xl" width="20%" />
-                <Skeleton height={8} radius="xl" width="30%" />
+                <Skeleton height={10} radius="sm" width="20%" />
+                <Skeleton height={10} radius="sm" width="30%" />
               </Group>
 
               <Group gap={8}>
-                <Skeleton height={8} radius="xl" width="25%" mb="xs" />
-                <Skeleton height={8} radius="xl" width="100%" />
-                <Skeleton height={8} radius="xl" width="100%" />
-                <Skeleton height={8} radius="xl" width="80%" />
+                <Skeleton height={10} radius="sm" width="25%" mb="xs" />
+                <Skeleton height={10} radius="sm" width="100%" />
+                <Skeleton height={10} radius="sm" width="100%" />
+                <Skeleton height={10} radius="sm" width="80%" />
               </Group>
 
               <Group gap={8}>
-                <Skeleton height={8} radius="xl" width="20%" />
-                <Skeleton height={8} radius="xl" width="20%" />
+                <Skeleton height={10} radius="sm" width="20%" />
+                <Skeleton height={10} radius="sm" width="20%" />
               </Group>
 
               <Group>
                 <Skeleton height={50} circle />
 
                 <Group gap={8} w="50%">
-                  <Skeleton height={8} radius="xl" width="20%" />
-                  <Skeleton height={8} radius="xl" width="40%" />
+                  <Skeleton height={10} radius="sm" width="20%" />
+                  <Skeleton height={10} radius="sm" width="40%" />
                 </Group>
               </Group>
             </Stack>

@@ -25,15 +25,15 @@ export const QuoteItemSkeleton = () => {
           gap="xl"
           p="xl">
           <Stack align="center">
-            <Skeleton height={8} radius="xl" width="80%" />
-            <Skeleton height={8} radius="xl" width="100%" />
-            <Skeleton height={8} radius="xl" width="70%" />
+            <Skeleton height={10} radius="sm" width="80%" />
+            <Skeleton height={10} radius="sm" width="100%" />
+            <Skeleton height={10} radius="sm" width="70%" />
           </Stack>
 
           <Center>
             <Group miw={100} gap="xs">
-              <Skeleton height={8} radius="xl" width="40%" />
-              <Skeleton height={8} radius="xl" width="40%" />
+              <Skeleton height={10} radius="sm" width="40%" />
+              <Skeleton height={10} radius="sm" width="40%" />
             </Group>
           </Center>
 
