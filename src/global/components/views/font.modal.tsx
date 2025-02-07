@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { ActionIcon, Group, Modal, Space, Stack } from "@mantine/core";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import { CustomEnumCombobox, I } from "@/global/components/reusables";
+import { CustomEnumScrollableCombobox, I } from "@/global/components/reusables";
 import { Font } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { IconRefresh } from "@tabler/icons-react";
@@ -47,7 +47,7 @@ export const FontModal = ({ opened, close }: any) => {
             )}
           </Group>
 
-          <CustomEnumCombobox
+          <CustomEnumScrollableCombobox
             id="font-modal"
             EnumObject={Font}
             label="Font"

@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import {
   IconDownload,
+  IconLetterA,
   IconLogin,
   IconLogout,
   IconMoon,
@@ -22,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
-import { useWindowScroll } from "@mantine/hooks";
+import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { oneTx, themeGreenColor, themeTxStyle } from "@/global/styles/app.css";
 import { signOut } from "@/user/auth.slice";
 import {
@@ -38,6 +39,7 @@ import logo from "@/global/assets/pwa-64x64.png";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
+import { FontModal } from "../views";
 // import { FontModal } from "../views";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
@@ -50,8 +52,8 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
 
-  // const [fontOpened, { open: fontOpen, close: fontClose }] =
-  //   useDisclosure(false);
+  const [fontOpened, { open: fontOpen, close: fontClose }] =
+    useDisclosure(false);
 
   // const [colorOpened, { open: colorOpen, close: colorClose }] =
   //   useDisclosure(false);
@@ -213,16 +215,16 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                 </ActionIcon>
               )}
 
-              {/* <ActionIcon size="sm" onClick={fontOpen}>
+              <ActionIcon size="sm" onClick={fontOpen}>
                 <I I={IconLetterA} />
               </ActionIcon>
 
-              <ActionIcon size="sm" onClick={handleSignOut}>
+              {/*   <ActionIcon size="sm" onClick={handleSignOut}>
                 <I I={IconBrush} />
-              </ActionIcon>
+              </ActionIcon> */}
 
               <FontModal opened={fontOpened} close={fontClose} />
-              <ColorModal opened={colorOpened} close={colorClose} /> */}
+              {/*   <ColorModal opened={colorOpened} close={colorClose} /> */}
 
               <MenuLayout />
 

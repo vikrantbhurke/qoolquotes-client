@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { Font } from "../enums";
 
 export interface ViewState {
   search: string;
@@ -10,7 +11,7 @@ export interface ViewState {
   isMobile: boolean;
   isAdHeaderVisible: boolean;
   isPaginationVisible: boolean;
-  font: string;
+  font: Font;
 }
 
 const initialState: ViewState = {
@@ -22,7 +23,7 @@ const initialState: ViewState = {
   isMobile: false,
   isAdHeaderVisible: false,
   isPaginationVisible: false,
-  font: "Inter",
+  font: Font.Inter,
 };
 
 export const viewSlice = createSlice({
@@ -53,7 +54,7 @@ export const viewSlice = createSlice({
     setIsPaginationVisible: (state, action: PayloadAction<boolean>) => {
       state.isPaginationVisible = action.payload;
     },
-    setFont: (state, action: PayloadAction<string>) => {
+    setFont: (state, action: PayloadAction<Font>) => {
       state.font = action.payload;
     },
   },

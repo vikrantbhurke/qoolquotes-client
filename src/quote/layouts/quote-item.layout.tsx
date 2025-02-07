@@ -37,6 +37,7 @@ import { I } from "@/global/components/reusables";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const QuoteItemLayout = ({ quote }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -45,14 +46,13 @@ export const QuoteItemLayout = ({ quote }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, font } = useSelector((state: RootState) => state.view);
   const [mounted, setMounted] = useState<boolean>(false);
-
+  console.log("Font", font);
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // console.log("Font", font);
   const pills = quote.topicIds.map((topicId: any) => {
     return (
       <Pill
@@ -126,15 +126,15 @@ export const QuoteItemLayout = ({ quote }: any) => {
                 <Text
                   style={styles}
                   ta="center"
-                  // className={globalUtility.getFont(font)}
-                >
+                  className={globalUtility.getFont(font)}>
                   {quote.content}
                 </Text>
+
                 <Text
                   style={styles}
                   ta="center"
-                  onClick={handleNavigateToQuoteByAuthor}
-                  className={themeTxStyle}>
+                  className={`${globalUtility.getFont(font)} ${themeTxStyle}`}
+                  onClick={handleNavigateToQuoteByAuthor}>
                   {quote.authorId.name}
                 </Text>
 

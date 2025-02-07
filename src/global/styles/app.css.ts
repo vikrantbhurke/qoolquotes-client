@@ -357,10 +357,274 @@ export const borderRightShadowStyle = style({
   boxShadow: `2px 0px 4px rgba(0, 0, 0, 0.1)`,
 });
 
+// Fonts
+
+// Sans Serif
+
 export const interFontStyle = style({
   fontFamily: "Inter",
 });
 
 export const readexProFontStyle = style({
   fontFamily: "Readex Pro",
+});
+
+export const silkScreenFontStyle = style({
+  fontFamily: "Silk Screen",
+});
+
+export const icebergFontStyle = style({
+  fontFamily: "Iceberg",
+});
+
+export const amaticScFontStyle = style({
+  fontFamily: "Amatic SC",
+});
+
+export const quicksandFontStyle = style({
+  fontFamily: "Quicksand",
+});
+
+export const protestRiotFontStyle = style({
+  fontFamily: "Protest Riot",
+});
+
+export const protestRevolutionFontStyle = style({
+  fontFamily: "Protest Revolution",
+});
+
+export const juliusSansOneFontStyle = style({
+  fontFamily: "Julius Sans One",
+});
+
+export const mansalvaFontStyle = style({
+  fontFamily: "Mansalva",
+});
+
+export const ysabeauScFontStyle = style({
+  fontFamily: "Ysabeau SC",
+});
+
+export const fingerPaintFontStyle = style({
+  fontFamily: "Finger Paint",
+});
+
+export const dongleFontStyle = style({
+  fontFamily: "Dongle",
+});
+
+export const gaeguFontStyle = style({
+  fontFamily: "Gaegu",
+});
+
+export const carroisGothicScFontStyle = style({
+  fontFamily: "Carrois Gothic SC",
+});
+
+export const nosiferFontStyle = style({
+  fontFamily: "Nosifer",
+});
+
+export const bungeeHairlineFontStyle = style({
+  fontFamily: "Bungee Hairline",
+});
+
+export const icelandFontStyle = style({
+  fontFamily: "Iceland",
+});
+
+export const tourneyFontStyle = style({
+  fontFamily: "Tourney",
+});
+
+// Serif
+
+export const cinzelFontStyle = style({
+  fontFamily: "Cinzel",
+});
+
+export const alegreyaFontStyle = style({
+  fontFamily: "Alegreya",
+});
+
+export const josefinSlabFontStyle = style({
+  fontFamily: "Josefin Slab",
+});
+
+export const crimsonProFontStyle = style({
+  fontFamily: "Crimson Pro",
+});
+
+export const quintessentialFontStyle = style({
+  fontFamily: "Quintessential",
+});
+
+export const marcellusScFontStyle = style({
+  fontFamily: "Marcellus SC",
+});
+
+export const ryeFontStyle = style({
+  fontFamily: "Rye",
+});
+
+export const zillaSlabHighlightFontStyle = style({
+  fontFamily: "Zilla Slab Highlight",
+});
+
+export const imFellDwPicaFontStyle = style({
+  fontFamily: "IM Fell DW Pica",
+});
+
+export const jacquesFrancoisShadowFontStyle = style({
+  fontFamily: "Jacques Francois Shadow",
+});
+
+export const yujiBokuFontStyle = style({
+  fontFamily: "Yuji Boku",
+});
+
+/// Cursive
+
+export const dancingScriptFontStyle = style({
+  fontFamily: "Dancing Script",
+});
+
+export const caveatFontStyle = style({
+  fontFamily: "Caveat",
+});
+
+export const satisfyFontStyle = style({
+  fontFamily: "Satisfy",
+});
+
+export const permanentMarkerFontStyle = style({
+  fontFamily: "Permanent Marker",
+});
+
+export const kaushanScriptFontStyle = style({
+  fontFamily: "Kaushan Script",
+});
+
+export const meriendaFontStyle = style({
+  fontFamily: "Merienda",
+});
+
+export const parisienneFontStyle = style({
+  fontFamily: "Parisienne",
+});
+
+export const badScriptFontStyle = style({
+  fontFamily: "Bad Script",
+});
+
+export const nanumPenScriptFontStyle = style({
+  fontFamily: "Nanum Pen Script",
+});
+
+export const reenieBeanieFontStyle = style({
+  fontFamily: "Reenie Beanie",
+});
+
+export const marckScriptFontStyle = style({
+  fontFamily: "Marck Script",
+});
+
+export const nothingYouCouldDoFontStyle = style({
+  fontFamily: "Nothing You Could Do",
+});
+
+export const shortStackFontStyle = style({
+  fontFamily: "Short Stack",
+});
+
+export const caveatBrushFontStyle = style({
+  fontFamily: "Caveat Brush",
+});
+
+export const nanumBrushScriptFontStyle = style({
+  fontFamily: "Nanum Brush Script",
+});
+
+export const loveYaLikeASisterFontStyle = style({
+  fontFamily: "Love Ya Like A Sister",
+});
+
+export const fondamentoFontStyle = style({
+  fontFamily: "Fondamento",
+});
+
+export const rougeScriptFontStyle = style({
+  fontFamily: "Rouge Script",
+});
+
+export const montezFontStyle = style({
+  fontFamily: "Montez",
+});
+
+export const clickerScriptFontStyle = style({
+  fontFamily: "Clicker Script",
+});
+
+export const shantellSansFontStyle = style({
+  fontFamily: "Shantell Sans",
+});
+
+export const squarePegFontStyle = style({
+  fontFamily: "Square Peg",
+});
+
+// System UI
+
+export const bangersFontStyle = style({
+  fontFamily: "Bangers",
+});
+
+export const specialEliteFontStyle = style({
+  fontFamily: "Special Elite",
+});
+
+export const alkatraFontStyle = style({
+  fontFamily: "Alkatra",
+});
+
+export const barrioFontStyle = style({
+  fontFamily: "Barrio",
+});
+
+export const jollyLodgerFontStyle = style({
+  fontFamily: "Jolly Lodger",
+});
+
+export const trainOneFontStyle = style({
+  fontFamily: "Train One",
+});
+
+export const newRockerFontStyle = style({
+  fontFamily: "New Rocker",
+});
+
+export const lacquerFontStyle = style({
+  fontFamily: "Lacquer",
+});
+
+export const rubikWetPaintFontStyle = style({
+  fontFamily: "Rubik Wet Paint",
+});
+
+export const rubikVinylFontStyle = style({
+  fontFamily: "Rubik Vinyl",
+});
+
+// Monospace
+
+export const sourceCodeProFontStyle = style({
+  fontFamily: "Source Code Pro",
+});
+
+export const cutiveMonoFontStyle = style({
+  fontFamily: "Cutive Mono",
+});
+
+export const shareTechMonoFontStyle = style({
+  fontFamily: "Share Tech Mono",
 });

@@ -1,5 +1,68 @@
-@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap"); /* Readex Pro */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"); /* Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"); /* Inter, sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap"); /* "Readex Pro", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap"); /* "Silkscreen", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap"); /* "Iceberg", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"); /* "Amatic SC",  sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"); /* "Quicksand", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap"); /* "Protest Riot", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap"); /* "Protest Revolution", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap"); /* "Julius Sans One", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Mansalva&display=swap"); /* "Mansalva", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@1..1000&display=swap"); /* "Ysabeau SC", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap"); /* "Finger Paint", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap"); /* "Dongle", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Gaegu&display=swap"); /* "Gaegu", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&display=swap"); /* "Carrois Gothic SC", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Nosifer&display=swap"); /* "Nosifer", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap"); /* "Bungee Hairline", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Iceland&display=swap"); /* "Iceland", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap"); /* "Tourney", sans-serif */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap"); /* "Cinzel", serif */
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap"); /* "Alegreya", serif */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap"); /* "Josefin Slab", serif */
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap"); /* "Crimson Pro", serif */
+@import url("https://fonts.googleapis.com/css2?family=Quintessential&display=swap"); /* "Quintessential", serif */
+@import url("https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap"); /* "Marcellus SC", serif */
+@import url("https://fonts.googleapis.com/css2?family=Rye&display=swap"); /* "Rye", serif */
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap"); /* "Zilla Slab Highlight", serif */
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap"); /* "IM Fell DW Pica", serif */
+@import url("https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap"); /* "Jacques Francois Shadow", serif */
+@import url("https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap"); /* "Yuji Boku", serif */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"); /* "Dancing Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"); /* "Caveat", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap"); /* "Satisfy", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"); /* "Permanent Marker", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"); /* "Kaushan Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap"); /* "Merienda", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap"); /* "Parisienne", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&display=swap"); /* "Bad Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"); /* "Nanum Pen Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap"); /* "Reenie Beanie", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap"); /* "Marck Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap"); /* "Nothing You Could Do", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Short+Stack&display=swap"); /* "Short Stack", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap"); /* "Caveat Brush", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap"); /* "Nanum Brush Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap"); /* "Love Ya Like A Sister", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap"); /* "Fondamento", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap"); /* "Rouge Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Montez&display=swap"); /* "Montez", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap"); /* "Clicker Script", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap"); /* "Shantell Sans", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Square+Peg&display=swap"); /* "Square Peg", cursive */
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap"); /* "Bangers", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"); /* "Special Elite", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&display=swap"); /* "Alkatra", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Barrio&display=swap"); /* "Barrio", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap"); /* "Jolly Lodger", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Train+One&display=swap"); /* "Train One", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=New+Rocker&display=swap"); /* "New Rocker", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Lacquer&display=swap"); /* "Lacquer", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap"); /* "Rubik Wet Paint", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap"); /* "Rubik Vinyl", system-ui */
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"); /* "Source Code Pro", monospace */
+@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"); /* "Cutive Mono", monospace */
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"); /* "Share Tech Mono", monospace */
 
 * {
   box-sizing: border-box;
