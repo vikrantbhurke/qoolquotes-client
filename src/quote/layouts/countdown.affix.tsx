@@ -17,7 +17,7 @@ export const CountdownAffix = (refetch: any) => {
   return (
     <Affix
       position={{ top: 60, left: "50%" }}
-      style={{ transform: "translateX(-50%)" }}>
+      style={{ transform: "translateX(-50%)", zIndex: 1 }}>
       <Transition
         mounted={mounted}
         transition="slide-down"

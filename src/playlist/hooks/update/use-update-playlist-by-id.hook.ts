@@ -64,14 +64,8 @@ export const useUpdatePlaylistById = () => {
     },
 
     onError: async (error: any, { pid }: any, context: any) => {
-      let cvm = error?.response?.data?.message;
-      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
-      let errorMessage;
-
-      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
-
       showNotification(
-        errorMessage || error.message,
+        error?.response?.data?.message || error.message || "An error occurred",
         NotificationColor.Failure
       );
 

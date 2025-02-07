@@ -65,6 +65,7 @@ export const AppLayout = () => {
       </AppShell.Header>
 
       <AppShell.Navbar
+        style={{ zIndex: 2 }}
         hiddenFrom={responsiveBreakpoint}
         className={`${oneTxOneBgStyle}`}>
         <NavbarMobileLayout toggle={toggle} />

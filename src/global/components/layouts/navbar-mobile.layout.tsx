@@ -147,7 +147,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
           leftSection={
             <I
               I={
-                location.pathname === "/"
+                location.pathname === "/feed"
                   ? IconArticleFilledFilled
                   : IconArticle
               }
