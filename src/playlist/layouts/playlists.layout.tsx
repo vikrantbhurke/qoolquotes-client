@@ -116,7 +116,7 @@ export const PlaylistsLayout = () => {
           <Radio.Group
             value={tab}
             bg={oneBg}
-            className={`${roundTopBorderStyle}`}>
+            className={`${!isMobile && roundTopBorderStyle}`}>
             <DeletePlaylistsModalLayout
               opened={deletePlaylistOpened}
               close={closeDeletePlaylist}

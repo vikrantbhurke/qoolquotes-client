@@ -3,7 +3,6 @@ import { useGetAuthors } from "../hooks/read";
 import { AuthorGridItemLayout } from "../layouts";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
@@ -11,6 +10,7 @@ import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { AuthorGridItemSkeleton } from "../skeletons";
 
 export const GetAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
@@ -29,8 +29,17 @@ export const GetAuthorsMantineGrid = () => {
   if (isPending)
     return (
       <>
-        <CustomLoader />
-        <PaginationPlaceholder />
+        <MantineGrid
+          p={4}
+          page={page}
+          gridBg={oneBg}
+          setPage={setPage}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          dataArray={Array(40).fill({})}
+          totalPages={1}
+          GridItemLayout={AuthorGridItemSkeleton}
+        />
       </>
     );
 

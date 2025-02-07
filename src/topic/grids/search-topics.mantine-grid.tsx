@@ -1,5 +1,4 @@
 import { useSearchTopics } from "../hooks/read";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { MantineGrid } from "@/global/components/grids";
 import { TopicGridItemLayout } from "../layouts";
@@ -10,6 +9,7 @@ import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { TopicGridItemSkeleton } from "../skeletons";
 
 export const SearchTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useSearchTopics();
@@ -28,8 +28,17 @@ export const SearchTopicsMantineGrid = () => {
   if (isPending)
     return (
       <>
-        <CustomLoader />
-        <PaginationPlaceholder />
+        <MantineGrid
+          p={4}
+          page={page}
+          gridBg={oneBg}
+          setPage={setPage}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          dataArray={Array(40).fill({})}
+          totalPages={1}
+          GridItemLayout={TopicGridItemSkeleton}
+        />
       </>
     );
 

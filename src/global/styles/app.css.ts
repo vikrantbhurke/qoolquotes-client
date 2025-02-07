@@ -49,6 +49,15 @@ export const roundRightBorderStyle = style({
   borderBottomRightRadius: vars.radius.md,
 });
 
+// export const skeletonStyle = style({
+//   backgroundColor: fiveBg, // Main skeleton color
+//   selectors: {
+//     ":before": {
+//       backgroundColor: fiveBg, // Shimmer effect
+//     },
+//   },
+// });
+
 export const oneTxOneBgStyle = style({
   color: oneTx,
   backgroundColor: oneBg,

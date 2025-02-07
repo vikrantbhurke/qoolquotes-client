@@ -3,15 +3,25 @@ import { setPage } from "../playlist.slice";
 import { PlaylistModalListItemLayout } from "../layouts";
 import { useGetPlaylistsByCreatorId } from "../hooks/read";
 import { CustomModalList } from "@/global/components/lists";
-import { CustomModalLoader } from "@/global/components/loaders";
 import { CustomModalError } from "@/global/components/errors";
 import { RootState } from "@/global/states/store";
+import { PlaylistModalListItemSkeleton } from "../skeletons";
 
 export const GetPlaylistsByCreatorIdModalList = () => {
   const { page } = useSelector((state: RootState) => state.playlist);
   const { playlists, isPending, isError, error } = useGetPlaylistsByCreatorId();
 
-  if (isPending) return <CustomModalLoader />;
+  if (isPending)
+    return (
+      <CustomModalList
+        page={1}
+        setPage={setPage}
+        dataArray={Array(3).fill({})}
+        totalPages={1}
+        ModalListItemLayout={PlaylistModalListItemSkeleton}
+      />
+    );
+
   if (isError) return <CustomModalError message={error?.message} />;
   if (!playlists.content.length)
     return <CustomModalError message="You have created 0 playlists." />;

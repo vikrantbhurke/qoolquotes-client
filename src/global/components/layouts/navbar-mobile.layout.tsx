@@ -1,5 +1,5 @@
 import { Clearance } from "@/user/enums";
-import { Button, Center, Stack } from "@mantine/core";
+import { Button, Center, Image, Stack } from "@mantine/core";
 import { CompOrFragmentRoute } from "@/global/routes";
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
@@ -34,6 +34,7 @@ import { useInstallApp } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
+import logo from "@/global/assets/pwa-64x64.png";
 
 export const NavbarMobileLayout = ({ toggle }: any) => {
   const navigate = useNavigate();
@@ -61,10 +62,16 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
     (state: RootState) => state.playlist
   );
 
-  const handleNavigateToFeed = () => {
+  const handleNavigateToTodaysQuote = () => {
     toggle();
     scrollTo({ y: 0 });
     navigate("/");
+  };
+
+  const handleNavigateToFeed = () => {
+    toggle();
+    scrollTo({ y: 0 });
+    navigate("/feed");
   };
 
   const handleNavigateToTopics = () => {
@@ -113,6 +120,14 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
   return (
     <Stack justify="space-between" gap={0} h="100%">
       <Stack gap={isMobile ? 0 : "xs"} p="xs">
+        <Button
+          h={layoutCompHeight}
+          className={buttonClasses}
+          leftSection={<Image src={logo} alt="logo" w={32} />}
+          onClick={handleNavigateToTodaysQuote}>
+          Today's
+        </Button>
+
         {!isInstalled && installPrompt && (
           <CompOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button

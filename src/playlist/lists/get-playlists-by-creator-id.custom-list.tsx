@@ -3,13 +3,13 @@ import { useGetPlaylistsByCreatorId } from "../hooks/read";
 import { PlaylistListItemLayout } from "../layouts";
 import { CustomList } from "@/global/components/lists";
 import { useOutletContext } from "react-router-dom";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { PlaylistListItemSkeleton } from "../skeletons";
 
 export const GetPlaylistsByCreatorIdCustomList = () => {
   const { playlists, isPending, isError, error } = useGetPlaylistsByCreatorId();
@@ -28,8 +28,15 @@ export const GetPlaylistsByCreatorIdCustomList = () => {
   if (isPending)
     return (
       <>
-        <CustomLoader />
-        <PaginationPlaceholder />
+        <PlaylistListItemSkeleton />
+        <CustomList
+          page={1}
+          listBg={oneBg}
+          setPage={setPage}
+          dataArray={Array(10).fill({})}
+          totalPages={1}
+          ListItemLayout={PlaylistListItemSkeleton}
+        />
       </>
     );
 

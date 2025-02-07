@@ -2,7 +2,6 @@ import { MantineGrid } from "@/global/components/grids";
 import { useGetQuotesByTopicId } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
 import { useOutletContext } from "react-router-dom";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -14,6 +13,7 @@ import {
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { QuoteGridItemSkeleton } from "../skeletons";
 
 export const GetQuotesByTopicIdMantineGrid = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -32,10 +32,17 @@ export const GetQuotesByTopicIdMantineGrid = () => {
 
   if (isPending)
     return (
-      <>
-        <CustomLoader />
-        <PaginationPlaceholder />
-      </>
+      <MantineGrid
+        p={8}
+        page={page}
+        gridBg={isMobile ? oneBg : twoBg}
+        setPage={setPage}
+        dataArray={Array(12).fill({})}
+        totalPages={1}
+        GridItemLayout={QuoteGridItemSkeleton}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
     );
 
   if (isError)

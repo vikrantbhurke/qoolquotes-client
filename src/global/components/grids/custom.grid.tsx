@@ -3,19 +3,18 @@ import { useCustomScrollbar } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import {
   oneBg,
-  oneTx,
   oneTxOneBgStyle,
   roundBorderStyle,
-  twoBg,
 } from "@/global/styles/app.css";
 import { listItemHeight } from "@/global/styles/global.styles";
-import { Box, Center, Grid, Loader, Stack, Text } from "@mantine/core";
+import { Box, Center, Grid, Stack, Text } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 export const CustomGrid = ({
   dataArray,
   GridItemLayout,
+  GridItemSkeleton,
   isLoading,
   isError,
   hasMore,
@@ -88,7 +87,7 @@ export const CustomGrid = ({
               overflow: "auto",
             }
       }>
-      <Grid grow justify="center" gutter={0} bg={twoBg} py={isMobile ? 0 : 8}>
+      <Grid grow justify="center" gutter={0} bg={gridBg} py={isMobile ? 0 : 8}>
         {dataArray.map((item: any, index: number) => {
           return (
             <Grid.Col
@@ -112,11 +111,35 @@ export const CustomGrid = ({
       </Grid>
 
       {isLoading && (
-        <Center
-          h={listItemHeight}
-          className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
-          <Loader type="dots" color={oneTx} />
-        </Center>
+        <Grid
+          grow
+          justify="center"
+          gutter={0}
+          bg={gridBg}
+          py={isMobile ? 0 : 8}>
+          {Array.from({ length: 12 }, (_, index) => (
+            <Grid.Col
+              key={index}
+              span={{ base: 12, lg: 6, xl: 4 }}
+              p={isMobile ? 0 : 8}>
+              <Box
+                component="div"
+                bg={oneBg}
+                className={roundBorderStyle}
+                h="100%"
+                onMouseEnter={onMountEnter}
+                onMouseLeave={onMountLeave}>
+                <GridItemSkeleton />
+              </Box>
+            </Grid.Col>
+          ))}
+        </Grid>
+
+        // <Center
+        //   h={listItemHeight}
+        //   className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
+        //   <Loader type="dots" color={oneTx} />
+        // </Center>
       )}
 
       {isError && (

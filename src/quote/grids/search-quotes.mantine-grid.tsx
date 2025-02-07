@@ -1,4 +1,3 @@
-import { CustomLoader } from "@/global/components/loaders";
 import { useSearchQuotes } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
 import { CustomError } from "@/global/components/errors";
@@ -14,6 +13,7 @@ import {
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { QuoteGridItemSkeleton } from "../skeletons";
 
 export const SearchQuotesMantineGrid = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -32,10 +32,17 @@ export const SearchQuotesMantineGrid = () => {
 
   if (isPending)
     return (
-      <>
-        <CustomLoader />
-        <PaginationPlaceholder />
-      </>
+      <MantineGrid
+        p={8}
+        page={page}
+        gridBg={isMobile ? oneBg : twoBg}
+        setPage={setPage}
+        dataArray={Array(12).fill({})}
+        totalPages={1}
+        GridItemLayout={QuoteGridItemSkeleton}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
     );
 
   if (isError)

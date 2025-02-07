@@ -3,7 +3,6 @@ import { useGetQuotesByAuthorId } from "../hooks/read";
 import { QuoteGridItemLayout } from "../layouts";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../quote.slice";
@@ -14,6 +13,7 @@ import {
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { QuoteGridItemSkeleton } from "../skeletons";
 
 export const GetQuotesByAuthorIdMantineGrid = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -32,10 +32,17 @@ export const GetQuotesByAuthorIdMantineGrid = () => {
 
   if (isPending)
     return (
-      <>
-        <CustomLoader />
-        <PaginationPlaceholder />
-      </>
+      <MantineGrid
+        p={8}
+        page={page}
+        gridBg={isMobile ? oneBg : twoBg}
+        setPage={setPage}
+        dataArray={Array(12).fill({})}
+        totalPages={1}
+        GridItemLayout={QuoteGridItemSkeleton}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+      />
     );
 
   if (isError)

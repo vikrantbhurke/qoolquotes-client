@@ -3,7 +3,6 @@ import { useGetTopics } from "../hooks/read";
 import { TopicGridItemLayout } from "../layouts";
 import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../topic.slice";
@@ -11,6 +10,7 @@ import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { TopicGridItemSkeleton } from "../skeletons";
 
 export const GetTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useGetTopics();
@@ -29,8 +29,17 @@ export const GetTopicsMantineGrid = () => {
   if (isPending)
     return (
       <>
-        <CustomLoader />
-        <PaginationPlaceholder />
+        <MantineGrid
+          p={4}
+          page={page}
+          gridBg={oneBg}
+          setPage={setPage}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          dataArray={Array(40).fill({})}
+          totalPages={1}
+          GridItemLayout={TopicGridItemSkeleton}
+        />
       </>
     );
 

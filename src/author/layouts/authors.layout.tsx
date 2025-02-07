@@ -67,7 +67,11 @@ export const AuthorsLayout = () => {
         size={authorTopicLayoutWidth}
         p={0}
         h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
-        <Stack gap={0} h="100%" bg={oneBg} className={`${roundTopBorderStyle}`}>
+        <Stack
+          gap={0}
+          h="100%"
+          bg={oneBg}
+          className={`${!isMobile && roundTopBorderStyle}`}>
           <Group px="sm" justify="space-between" gap={0}>
             <Group gap={3}>
               <I I={IconFileDescription} />

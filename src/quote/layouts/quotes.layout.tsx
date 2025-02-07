@@ -51,14 +51,14 @@ export const QuotesLayout = () => {
         size={quoteLayoutWidth}
         p={0}
         h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
-        <Stack gap={0} h="100%">
+        <Stack gap={0} h="100%" bg={isMobile ? oneBg : twoBg}>
           <Group
             px="xs"
+            bg={oneBg}
+            className={`${!isMobile && roundTopBorderStyle}`}
             justify="space-between"
             gap={0}
-            mih={layoutCompHeight}
-            className={`${roundTopBorderStyle}`}
-            bg={oneBg}>
+            mih={layoutCompHeight}>
             <Group gap={3}>
               <I I={IconFileDescription} />
 

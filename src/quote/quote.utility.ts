@@ -1,10 +1,10 @@
 class QuoteUtility {
-  getTimeOfDay = () => {
+  getNextTimeOfDay = () => {
     const hours = new Date().getHours();
-    if (hours >= 0 && hours < 6) return "Night";
-    if (hours >= 6 && hours < 12) return "Morning";
-    if (hours >= 12 && hours < 18) return "Afternoon";
-    return "Evening";
+    if (hours >= 0 && hours < 6) return "Morning";
+    if (hours >= 6 && hours < 12) return "Afternoon";
+    if (hours >= 12 && hours < 18) return "Evening";
+    return "Night";
   };
 
   // Calculate milliseconds until the next update (6 AM, 12 PM, 6 PM, 12 AM local time)
@@ -22,6 +22,16 @@ class QuoteUtility {
     if (nextUpdate === 24) targetTime.setDate(targetTime.getDate() + 1);
 
     return targetTime.getTime() - now.getTime(); // Milliseconds until next update
+  };
+
+  // Convert milliseconds to hh:mm:ss format
+  formatCountdown = (ms: number) => {
+    const hours = Math.floor(ms / 3600000);
+    const minutes = Math.floor((ms % 3600000) / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 }
 

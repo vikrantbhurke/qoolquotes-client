@@ -23,13 +23,14 @@ import {
   Stack,
   Text,
   Tooltip,
+  Transition,
 } from "@mantine/core";
 import {
   QuoteLikerLikeUnlikeButtonLayout,
   QuoteLikesCountLayout,
   QuoteLikerReadonlyButtonLayout,
 } from "@/quote-liker/layouts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
 import { I } from "@/global/components/reusables";
@@ -44,8 +45,14 @@ export const QuoteItemLayout = ({ quote }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-  const { isMobile, font } = useSelector((state: RootState) => state.view);
-  console.log("Font", font);
+  const { isMobile } = useSelector((state: RootState) => state.view);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // console.log("Font", font);
   const pills = quote.topicIds.map((topicId: any) => {
     return (
       <Pill
@@ -109,57 +116,71 @@ export const QuoteItemLayout = ({ quote }: any) => {
           p="xl"
           justify="center"
           align="center">
-          <Text
-            ta="center"
-            // className={globalUtility.getFont(font)}
-          >
-            {quote.content}
-          </Text>
-          <Text
-            ta="center"
-            onClick={handleNavigateToQuoteByAuthor}
-            className={themeTxStyle}>
-            {quote.authorId.name}
-          </Text>
+          <Transition
+            mounted={mounted}
+            transition="fade"
+            duration={1500}
+            timingFunction="ease">
+            {(styles: any) => (
+              <>
+                <Text
+                  style={styles}
+                  ta="center"
+                  // className={globalUtility.getFont(font)}
+                >
+                  {quote.content}
+                </Text>
+                <Text
+                  style={styles}
+                  ta="center"
+                  onClick={handleNavigateToQuoteByAuthor}
+                  className={themeTxStyle}>
+                  {quote.authorId.name}
+                </Text>
 
-          {quote.topicIds && quote.topicIds.length > 0 && (
-            <Group ta="center" justify="center">
-              {pills}
-            </Group>
-          )}
+                {quote.topicIds && quote.topicIds.length > 0 && (
+                  <Group style={styles} ta="center" justify="center">
+                    {pills}
+                  </Group>
+                )}
 
-          <Group>
-            <Group gap={4}>
-              {auth.role === Role.Public ? (
-                <QuoteLikerReadonlyButtonLayout />
-              ) : (
-                <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
-              )}
+                <Group style={styles}>
+                  <Group gap={4}>
+                    {auth.role === Role.Public ? (
+                      <QuoteLikerReadonlyButtonLayout />
+                    ) : (
+                      <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
+                    )}
 
-              <QuoteLikesCountLayout qid={quote.id} />
-            </Group>
+                    <QuoteLikesCountLayout qid={quote.id} />
+                  </Group>
 
-            <ActionIcon size="sm" onClick={handleModalOpen}>
-              <I I={IconPlaylistAdd} />
-            </ActionIcon>
+                  <ActionIcon size="sm" onClick={handleModalOpen}>
+                    <I I={IconPlaylistAdd} />
+                  </ActionIcon>
 
-            <Tooltip
-              label="Copied!"
-              position="bottom"
-              opened={opened}
-              bg={threeBg}
-              c={oneTx}>
-              {opened ? (
-                <ActionIcon c="teal" aria-label="Copy to clipboard">
-                  <I I={IconCheck} color="teal" />
-                </ActionIcon>
-              ) : (
-                <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>
-                  <I I={IconCopy} />
-                </ActionIcon>
-              )}
-            </Tooltip>
-          </Group>
+                  <Tooltip
+                    label="Copied!"
+                    position="bottom"
+                    opened={opened}
+                    bg={threeBg}
+                    c={oneTx}>
+                    {opened ? (
+                      <ActionIcon c="teal" aria-label="Copy to clipboard">
+                        <I I={IconCheck} color="teal" />
+                      </ActionIcon>
+                    ) : (
+                      <ActionIcon
+                        aria-label="Copy to clipboard"
+                        onClick={handleCopy}>
+                        <I I={IconCopy} />
+                      </ActionIcon>
+                    )}
+                  </Tooltip>
+                </Group>
+              </>
+            )}
+          </Transition>
         </Stack>
 
         <Center p="md">

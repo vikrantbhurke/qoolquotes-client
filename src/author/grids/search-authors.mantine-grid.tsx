@@ -1,7 +1,6 @@
 import { MantineGrid } from "@/global/components/grids";
 import { useSearchAuthors } from "../hooks/read";
 import { AuthorGridItemLayout } from "../layouts";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
@@ -10,6 +9,7 @@ import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { AuthorGridItemSkeleton } from "../skeletons";
 
 export const SearchAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useSearchAuthors();
@@ -28,8 +28,17 @@ export const SearchAuthorsMantineGrid = () => {
   if (isPending)
     return (
       <>
-        <CustomLoader />
-        <PaginationPlaceholder />
+        <MantineGrid
+          p={4}
+          page={page}
+          gridBg={oneBg}
+          setPage={setPage}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          dataArray={Array(40).fill({})}
+          totalPages={1}
+          GridItemLayout={AuthorGridItemSkeleton}
+        />
       </>
     );
 
