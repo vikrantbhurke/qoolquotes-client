@@ -111,11 +111,13 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                   )}
 
                   <Group gap="xs">
-                    <I I={IconMailFilled} />
                     {isPending ? (
                       <CustomSkeleton h={20} w={130} />
                     ) : (
-                      <Text>{user.email}</Text>
+                      <>
+                        <I I={IconMailFilled} />
+                        <Text>{user.email}</Text>
+                      </>
                     )}
                   </Group>
                 </Stack>
