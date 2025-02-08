@@ -91,7 +91,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
         {isPending ? (
           <Stack gap={0} w="100%" align="center">
             <CustomSkeleton w="100%" />
-            <CustomSkeleton w="90%" />
+            <CustomSkeleton w="100%" />
             <CustomSkeleton w="100%" />
           </Stack>
         ) : (
