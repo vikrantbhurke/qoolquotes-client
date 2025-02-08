@@ -14,7 +14,6 @@ import { useSelector } from "react-redux";
 export const CustomGrid = ({
   dataArray,
   GridItemLayout,
-  GridItemSkeleton,
   isLoading,
   isError,
   hasMore,
@@ -117,7 +116,7 @@ export const CustomGrid = ({
           gutter={0}
           bg={gridBg}
           py={isMobile ? 0 : 8}>
-          {Array.from({ length: 12 }, (_, index) => (
+          {Array.from({ length: 9 }, (_, index) => (
             <Grid.Col
               key={index}
               span={{ base: 12, lg: 6, xl: 4 }}
@@ -129,17 +128,11 @@ export const CustomGrid = ({
                 h="100%"
                 onMouseEnter={onMountEnter}
                 onMouseLeave={onMountLeave}>
-                <GridItemSkeleton />
+                <GridItemLayout item={{ isPending: isLoading }} />
               </Box>
             </Grid.Col>
           ))}
         </Grid>
-
-        // <Center
-        //   h={listItemHeight}
-        //   className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
-        //   <Loader type="dots" color={oneTx} />
-        // </Center>
       )}
 
       {isError && (

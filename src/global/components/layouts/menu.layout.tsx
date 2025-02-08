@@ -29,7 +29,7 @@ import {
 } from "@tabler/icons-react";
 import { I } from "../reusables";
 import { ContactModal } from "../views";
-import { CompOrFragmentRoute } from "@/global/routes";
+import { ComponentOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
 
 export const MenuLayout = () => {
@@ -94,7 +94,7 @@ export const MenuLayout = () => {
             </Menu.Item>
           )}
 
-          <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+          <ComponentOrFragmentRoute clearance={Clearance.LevelTwo}>
             <Menu.Item
               onClick={handleNavigateToUser}
               p="xs"
@@ -102,7 +102,7 @@ export const MenuLayout = () => {
               leftSection={<I I={IconUser} />}>
               <Text size="sm">Profile</Text>
             </Menu.Item>
-          </CompOrFragmentRoute>
+          </ComponentOrFragmentRoute>
 
           <Menu.Item
             onClick={handleNavigateToAbout}

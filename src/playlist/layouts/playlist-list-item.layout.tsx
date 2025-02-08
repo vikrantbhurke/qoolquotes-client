@@ -16,7 +16,7 @@ import {
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import { setFilterObject } from "@/quote/quote.slice";
 import { textBold } from "@/global/styles/global.styles";
 import { RootState } from "@/global/states/store";
@@ -36,52 +36,84 @@ export const PlaylistListItemLayout = ({ item }: any) => {
     navigate(`/quotes/playlistId/${item.id}?page=1`);
   };
 
+  const isPending = item.isPending;
+
   return (
     <Stack px="md" gap="xs" justify="center" h={50}>
       <Group justify="space-between">
         <Group onClick={handleNavigateToPlaylist} gap="xs">
-          <Text fz="sm" fw={textBold} className={`${themeTxStyle}`}>
-            {item.name}
-          </Text>
-
-          {item.creatorId.profilepic ? (
-            <Avatar size="sm" src={item.creatorId.profilepic} radius="50%" />
+          {isPending ? (
+            <CustomSkeleton w={80} h={20} />
           ) : (
-            <Avatar size="sm">
-              {item.creatorId.firstname[0]}
-              {item.creatorId.lastname[0]}
-            </Avatar>
+            <Text fz="sm" fw={textBold} className={`${themeTxStyle}`}>
+              {item.name}
+            </Text>
           )}
 
-          <Text fz="xs" className={`${themeTxStyle}`}>
-            {item.creatorId.username}
-          </Text>
+          {isPending ? (
+            <CustomSkeleton v="circular" w={20} h={20} />
+          ) : (
+            <>
+              {item.creatorId.profilepic ? (
+                <Avatar
+                  size="sm"
+                  src={item.creatorId.profilepic}
+                  radius="50%"
+                />
+              ) : (
+                <Avatar size="sm">
+                  {item.creatorId.firstname[0]}
+                  {item.creatorId.lastname[0]}
+                </Avatar>
+              )}
+            </>
+          )}
+
+          {isPending ? (
+            <CustomSkeleton w={60} h={15} />
+          ) : (
+            <Text fz="xs" className={`${themeTxStyle}`}>
+              {item.creatorId.username}
+            </Text>
+          )}
         </Group>
 
         <Group gap="xs">
           <Group gap={4}>
-            {auth.role === Role.Public ? (
+            {isPending ? (
+              <CustomSkeleton v="circular" w={20} h={20} />
+            ) : auth.role === Role.Public ? (
               <PlaylistLikerReadonlyButtonLayout />
             ) : (
               <PlaylistLikerUnlikeButtonLayout pid={item.id} />
             )}
 
-            <PlaylistLikesCountLayout pid={item.id} />
+            {isPending ? <></> : <PlaylistLikesCountLayout pid={item.id} />}
           </Group>
 
           <Group gap={4}>
-            <I I={IconMessage2} />
-            <PlaylistQuotesCountLayout pid={item.id} />
+            {isPending ? (
+              <CustomSkeleton v="circular" w={20} h={20} />
+            ) : (
+              <>
+                <I I={IconMessage2} />
+                <PlaylistQuotesCountLayout pid={item.id} />
+              </>
+            )}
           </Group>
 
-          <Button
-            px={4}
-            h="lg"
-            c={oneTx}
-            className={oneTxYellowBgPillPseudoStyle}
-            onClick={handleNavigateToQuotesByPlaylist}>
-            View
-          </Button>
+          {isPending ? (
+            <CustomSkeleton w={40} />
+          ) : (
+            <Button
+              px={4}
+              h="lg"
+              c={oneTx}
+              className={oneTxYellowBgPillPseudoStyle}
+              onClick={handleNavigateToQuotesByPlaylist}>
+              View
+            </Button>
+          )}
         </Group>
       </Group>
     </Stack>

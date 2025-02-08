@@ -9,7 +9,6 @@ import { setPage } from "../playlist.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { PlaylistListItemSkeleton } from "../skeletons";
 
 export const SearchPlaylistsCustomList = () => {
   const { playlists, isPending, isError, error } = useSearchPlaylists();
@@ -31,9 +30,9 @@ export const SearchPlaylistsCustomList = () => {
         page={1}
         listBg={oneBg}
         setPage={setPage}
-        dataArray={Array(10).fill({})}
+        dataArray={Array(10).fill({ isPending })}
         totalPages={1}
-        ListItemLayout={PlaylistListItemSkeleton}
+        ListItemLayout={PlaylistListItemLayout}
       />
     );
 

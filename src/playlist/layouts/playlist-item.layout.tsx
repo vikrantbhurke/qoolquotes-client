@@ -31,13 +31,13 @@ import {
   PlaylistSaverSaveRemoveButtonLayout,
 } from "@/playlist-saver/layouts";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 
-export const PlaylistItemLayout = ({ playlist }: any) => {
+export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -48,7 +48,8 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
     { open: deletePlaylistOpen, close: deletePlaylistClose },
   ] = useDisclosure();
 
-  const { clonePlaylistMutation, isPending } = useClonePlaylist();
+  const { clonePlaylistMutation, isPending: isClonePending } =
+    useClonePlaylist();
 
   const handleClonePlaylist = () => {
     if (auth.role === Role.Public) {
@@ -70,11 +71,15 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
 
   return (
     <>
-      <DeletePlaylistModalLayout
-        opened={deletePlaylistOpened}
-        close={deletePlaylistClose}
-        pid={playlist.id}
-      />
+      {isPending ? (
+        <></>
+      ) : (
+        <DeletePlaylistModalLayout
+          opened={deletePlaylistOpened}
+          close={deletePlaylistClose}
+          pid={playlist.id}
+        />
+      )}
 
       <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
         <Stack h="100%" gap="xl" align="center" justify="space-between">
@@ -88,72 +93,136 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
             className={`${roundBorderStyle}`}>
             <Stack gap="sm">
               <Group gap={8}>
-                <Title order={6}>Name:</Title>
-                <Text>{playlist.name}</Text>
+                {isPending ? (
+                  <>
+                    <CustomSkeleton w={50} />
+                    <CustomSkeleton />
+                  </>
+                ) : (
+                  <>
+                    <Title order={6}>Name:</Title>
+                    <Text>{playlist.name}</Text>
+                  </>
+                )}
               </Group>
 
-              {playlist.description && (
-                <Group gap={8}>
-                  <Title order={6}>Description:</Title>
-                  <Text>{playlist.description}</Text>
-                </Group>
+              {isPending ? (
+                <>
+                  <CustomSkeleton />
+                  <CustomSkeleton w="100%" />
+                </>
+              ) : (
+                <>
+                  {playlist.description && (
+                    <Group gap={8}>
+                      <Title order={6}>Description:</Title>
+                      <Text>{playlist.description}</Text>
+                    </Group>
+                  )}
+                </>
               )}
 
               <Group gap={8}>
-                <Title order={6}>Access:</Title>
-                <Text>{playlist.access}</Text>
+                {isPending ? (
+                  <>
+                    <CustomSkeleton w={50} />
+                    <CustomSkeleton w={50} />
+                  </>
+                ) : (
+                  <>
+                    <Title order={6}>Access:</Title>
+                    <Text>{playlist.access}</Text>
+                  </>
+                )}
               </Group>
 
               <Group>
-                {playlist.creatorId.profilepic ? (
-                  <Avatar
-                    size="md"
-                    src={playlist.creatorId.profilepic}
-                    radius="50%"
-                  />
+                {isPending ? (
+                  <>
+                    <CustomSkeleton v="circular" w={35} h={35} />
+                  </>
                 ) : (
-                  <Avatar size="md">
-                    {playlist.creatorId.firstname[0]}
-                    {playlist.creatorId.lastname[0]}
-                  </Avatar>
+                  <>
+                    {playlist.creatorId.profilepic ? (
+                      <Avatar
+                        size="md"
+                        src={playlist.creatorId.profilepic}
+                        radius="50%"
+                      />
+                    ) : (
+                      <Avatar size="md">
+                        {playlist.creatorId.firstname[0]}
+                        {playlist.creatorId.lastname[0]}
+                      </Avatar>
+                    )}
+                  </>
                 )}
 
                 <Group gap={8}>
-                  <Title order={6}>Creator:</Title>
-                  <Text>{playlist.creatorId.username}</Text>
+                  {isPending ? (
+                    <>
+                      <CustomSkeleton w={50} />
+                      <CustomSkeleton />
+                    </>
+                  ) : (
+                    <>
+                      <Title order={6}>Creator:</Title>
+                      <Text>{playlist.creatorId.username}</Text>
+                    </>
+                  )}
                 </Group>
               </Group>
 
               <Group>
                 <Group gap={4}>
-                  {auth.role === Role.Public ? (
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : auth.role === Role.Public ? (
                     <PlaylistLikerReadonlyButtonLayout />
                   ) : (
                     <PlaylistLikerUnlikeButtonLayout pid={playlist.id} />
                   )}
 
-                  <PlaylistLikesCountLayout pid={playlist.id} />
+                  {isPending ? (
+                    <></>
+                  ) : (
+                    <PlaylistLikesCountLayout pid={playlist.id} />
+                  )}
                 </Group>
 
                 <Group gap={4}>
-                  <I I={IconMessage2} />
-                  <PlaylistQuotesCountLayout pid={playlist.id} />
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : (
+                    <>
+                      <I I={IconMessage2} />
+                      <PlaylistQuotesCountLayout pid={playlist.id} />
+                    </>
+                  )}
                 </Group>
               </Group>
             </Stack>
 
             <Grid>
               <Grid.Col span={4}>
-                <Button
-                  fullWidth
-                  c={oneBg}
-                  bg={oneTx}
-                  onClick={handleNavigateToQuotesByPlaylist}>
-                  View
-                </Button>
+                {isPending ? (
+                  <Button fullWidth c={oneBg} bg={oneTx}>
+                    View
+                  </Button>
+                ) : (
+                  <Button
+                    fullWidth
+                    c={oneBg}
+                    bg={oneTx}
+                    onClick={handleNavigateToQuotesByPlaylist}>
+                    View
+                  </Button>
+                )}
               </Grid.Col>
 
-              {auth.id === playlist.creatorId._id ? (
+              {isPending ? (
+                <></>
+              ) : auth.id === playlist.creatorId._id ? (
                 <>
                   <Grid.Col span={4}>
                     <Button
@@ -176,7 +245,9 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
               ) : (
                 <>
                   <Grid.Col span={4}>
-                    {auth.role === Role.Public ? (
+                    {isPending ? (
+                      <CustomSkeleton v="circular" w={20} h={20} />
+                    ) : auth.role === Role.Public ? (
                       <PlaylistSaverReadonlyButtonLayout />
                     ) : (
                       <PlaylistSaverSaveRemoveButtonLayout pid={playlist.id} />
@@ -188,7 +259,7 @@ export const PlaylistItemLayout = ({ playlist }: any) => {
                       fullWidth
                       bg="blue"
                       onClick={handleClonePlaylist}
-                      loading={isPending}
+                      loading={isClonePending}
                       loaderProps={{ type: "dots" }}>
                       Clone
                     </Button>

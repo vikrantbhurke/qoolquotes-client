@@ -33,13 +33,13 @@ import {
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Role } from "@/user/enums";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 
-export const QuoteItemLayout = ({ quote }: any) => {
+export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -53,16 +53,20 @@ export const QuoteItemLayout = ({ quote }: any) => {
     setMounted(true);
   }, []);
 
-  const pills = quote.topicIds.map((topicId: any) => {
-    return (
-      <Pill
-        key={topicId._id}
-        className={oneTxYellowBgPillPseudoStyle}
-        onClick={() => handleNavigateToQuoteByTopic(topicId)}>
-        {topicId.name}
-      </Pill>
-    );
-  });
+  const pills = isPending ? (
+    <></>
+  ) : (
+    quote.topicIds.map((topicId: any) => {
+      return (
+        <Pill
+          key={topicId._id}
+          className={oneTxYellowBgPillPseudoStyle}
+          onClick={() => handleNavigateToQuoteByTopic(topicId)}>
+          {topicId.name}
+        </Pill>
+      );
+    })
+  );
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
@@ -123,60 +127,96 @@ export const QuoteItemLayout = ({ quote }: any) => {
             timingFunction="ease">
             {(styles: any) => (
               <>
-                <Text
-                  style={styles}
-                  ta="center"
-                  className={globalUtility.getFont(font)}>
-                  {quote.content}
-                </Text>
+                {isPending ? (
+                  <Stack gap={0} miw={400} align="center">
+                    <CustomSkeleton w="90%" />
+                    <CustomSkeleton w="80%" />
+                    <CustomSkeleton w="90%" />
+                  </Stack>
+                ) : (
+                  <Text
+                    style={styles}
+                    ta="center"
+                    className={globalUtility.getFont(font)}>
+                    {quote.content}
+                  </Text>
+                )}
 
-                <Text
-                  style={styles}
-                  ta="center"
-                  className={`${globalUtility.getFont(font)} ${themeTxStyle}`}
-                  onClick={handleNavigateToQuoteByAuthor}>
-                  {quote.authorId.name}
-                </Text>
+                {isPending ? (
+                  <CustomSkeleton />
+                ) : (
+                  <Text
+                    style={styles}
+                    ta="center"
+                    className={`${globalUtility.getFont(font)} ${themeTxStyle}`}
+                    onClick={handleNavigateToQuoteByAuthor}>
+                    {quote.authorId.name}
+                  </Text>
+                )}
 
-                {quote.topicIds && quote.topicIds.length > 0 && (
-                  <Group style={styles} ta="center" justify="center">
-                    {pills}
+                {isPending ? (
+                  <Group ta="center" justify="center">
+                    <CustomSkeleton w={40} h={35} />
+                    <CustomSkeleton w={40} h={35} />
+                    <CustomSkeleton w={40} h={35} />
                   </Group>
+                ) : (
+                  <>
+                    {quote.topicIds && quote.topicIds.length > 0 && (
+                      <Group style={styles} ta="center" justify="center">
+                        {pills}
+                      </Group>
+                    )}
+                  </>
                 )}
 
                 <Group style={styles}>
                   <Group gap={4}>
-                    {auth.role === Role.Public ? (
+                    {isPending ? (
+                      <CustomSkeleton v="circular" w={20} h={20} />
+                    ) : auth.role === Role.Public ? (
                       <QuoteLikerReadonlyButtonLayout />
                     ) : (
                       <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
                     )}
 
-                    <QuoteLikesCountLayout qid={quote.id} />
+                    {isPending ? (
+                      <></>
+                    ) : (
+                      <QuoteLikesCountLayout qid={quote.id} />
+                    )}
                   </Group>
 
-                  <ActionIcon size="sm" onClick={handleModalOpen}>
-                    <I I={IconPlaylistAdd} />
-                  </ActionIcon>
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : (
+                    <ActionIcon size="sm" onClick={handleModalOpen}>
+                      <I I={IconPlaylistAdd} />
+                    </ActionIcon>
+                  )}
 
-                  <Tooltip
-                    label="Copied!"
-                    position="bottom"
-                    opened={opened}
-                    bg={threeBg}
-                    c={oneTx}>
-                    {opened ? (
-                      <ActionIcon c="teal" aria-label="Copy to clipboard">
-                        <I I={IconCheck} color="teal" />
-                      </ActionIcon>
-                    ) : (
-                      <ActionIcon
-                        aria-label="Copy to clipboard"
-                        onClick={handleCopy}>
-                        <I I={IconCopy} />
-                      </ActionIcon>
-                    )}
-                  </Tooltip>
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : (
+                    <Tooltip
+                      label="Copied!"
+                      position="bottom"
+                      opened={opened}
+                      bg={threeBg}
+                      c={oneTx}>
+                      {opened ? (
+                        <ActionIcon c="teal" aria-label="Copy to clipboard">
+                          <I I={IconCheck} color="teal" />
+                        </ActionIcon>
+                      ) : (
+                        <ActionIcon
+                          aria-label="Copy to clipboard"
+                          onClick={handleCopy}>
+                          <I I={IconCopy} />
+                        </ActionIcon>
+                      )}
+                    </Tooltip>
+                  )}
                 </Group>
               </>
             )}

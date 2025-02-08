@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { setTab } from "../playlist.slice";
 import { useDispatch } from "react-redux";
-import { CompOrFragmentRoute } from "@/global/routes";
+import { ComponentOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
 import { useRef, useState } from "react";
 import { setPage } from "@/playlist/playlist.slice";
@@ -148,7 +148,7 @@ export const PlaylistsLayout = () => {
                     `(${globalUtility.formatNumber(data.totalElements)})`}
                 </Button>
 
-                <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+                <ComponentOrFragmentRoute clearance={Clearance.LevelTwo}>
                   <Button
                     h={layoutCompHeight}
                     className={`${themeTxStyle}`}
@@ -168,7 +168,7 @@ export const PlaylistsLayout = () => {
                     {tab === "Saved" &&
                       `(${globalUtility.formatNumber(data.totalElements)})`}
                   </Button>
-                </CompOrFragmentRoute>
+                </ComponentOrFragmentRoute>
               </Group>
 
               <Group gap="xs" justify="center">

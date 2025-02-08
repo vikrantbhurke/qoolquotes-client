@@ -4,7 +4,6 @@ import { PlaylistItemLayout } from "../layouts";
 import { twoBg } from "@/global/styles/app.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { PlaylistItemSkeleton } from "../skeletons";
 
 export const GetPlaylistByIdItem = () => {
   const { playlist, isPending, isError, error } = useGetPlaylistById();
@@ -12,9 +11,9 @@ export const GetPlaylistByIdItem = () => {
 
   const bg = isMobile ? "" : twoBg;
 
-  if (isPending) return <PlaylistItemSkeleton />;
   if (isError) return <CustomError message={error?.message} bg={bg} />;
-  if (!playlist) return <CustomError message="Playlist not found." bg={bg} />;
+  if (!playlist && !isPending)
+    return <CustomError message="Playlist not found." bg={bg} />;
 
-  return <PlaylistItemLayout playlist={playlist} />;
+  return <PlaylistItemLayout playlist={playlist} isPending={isPending} />;
 };

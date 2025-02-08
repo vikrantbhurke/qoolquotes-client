@@ -1,12 +1,13 @@
 import { setPage } from "@/quote/quote.slice";
 import { oneBg, themeTxStyle } from "@/global/styles/app.css";
 import { buttonHeight, buttonNormal } from "@/global/styles/global.styles";
-import { Button } from "@mantine/core";
+import { Button, Center } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCountAuthorQuotes } from "../hooks/read";
 import { globalUtility } from "@/global/utilities";
 import { setFilterObject } from "@/quote/quote.slice";
+import { CustomSkeleton } from "@/global/components/reusables";
 
 export const AuthorGridItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -19,15 +20,25 @@ export const AuthorGridItemLayout = ({ item }: any) => {
     dispatch(setFilterObject({ name: item.name, id: item.id }));
   };
 
+  const isPending = item.isPending;
+
   return (
-    <Button
-      fullWidth
-      h={buttonHeight}
-      bg={oneBg}
-      className={`${themeTxStyle}`}
-      fw={buttonNormal}
-      onClick={handleNavigateToQuoteByAuthor}>
-      {item.name} ({globalUtility.formatNumber(authorQuotes?.count || 0)})
-    </Button>
+    <>
+      {isPending ? (
+        <Center h={buttonHeight}>
+          <CustomSkeleton />
+        </Center>
+      ) : (
+        <Button
+          fullWidth
+          h={buttonHeight}
+          bg={oneBg}
+          className={`${themeTxStyle}`}
+          fw={buttonNormal}
+          onClick={handleNavigateToQuoteByAuthor}>
+          {item.name} ({globalUtility.formatNumber(authorQuotes?.count || 0)})
+        </Button>
+      )}
+    </>
   );
 };

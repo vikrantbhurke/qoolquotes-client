@@ -30,8 +30,8 @@ export const MantineGrid = ({
   dataArray,
   totalPages,
   GridItemLayout,
-  onMouseEnter,
-  onMouseLeave,
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
 }: any) => {
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);

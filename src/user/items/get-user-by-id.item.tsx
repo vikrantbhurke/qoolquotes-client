@@ -5,7 +5,6 @@ import { SeoComponent } from "@/global/components/reusables";
 import { twoBg } from "@/global/styles/app.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { UserItemSkeleton } from "../skeletons";
 
 export const GetUserByIdItem = () => {
   const { user, isPending, isError, error } = useGetUserById();
@@ -13,9 +12,10 @@ export const GetUserByIdItem = () => {
 
   const bg = isMobile ? "" : twoBg;
 
-  if (isPending) return <UserItemSkeleton />;
   if (isError) return <CustomError message={error?.message} bg={bg} />;
-  if (!user) return <CustomError message="User not found." bg={bg} />;
+
+  if (!user && !isPending)
+    return <CustomError message="User not found." bg={bg} />;
 
   return (
     <>
@@ -23,7 +23,7 @@ export const GetUserByIdItem = () => {
         title={`Profile Page`}
         description="Learn more about Qool Quotes."
       />
-      <UserItemLayout user={user} />
+      <UserItemLayout user={user} isPending={isPending} />
     </>
   );
 };

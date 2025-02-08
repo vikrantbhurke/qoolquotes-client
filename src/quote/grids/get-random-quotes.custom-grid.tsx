@@ -17,7 +17,6 @@ import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
 import { SeoComponent } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
-import { QuoteGridItemSkeleton } from "../skeletons";
 
 export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,7 +52,6 @@ export const GetRandomQuotesCustomGrid = () => {
             <CustomGrid
               dataArray={randomQuotes}
               GridItemLayout={QuoteGridItemLayout}
-              GridItemSkeleton={QuoteGridItemSkeleton}
               isLoading={isLoading}
               isError={isError}
               hasMore={hasMore}

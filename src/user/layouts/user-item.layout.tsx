@@ -22,10 +22,10 @@ import { RootState } from "@/global/states/store";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 
-export const UserItemLayout = ({ user }: any) => {
+export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
@@ -41,7 +41,11 @@ export const UserItemLayout = ({ user }: any) => {
         title="Profile Picture"
         centered>
         <Center>
-          <Image src={user.profilepic} alt="Large Profile" radius="md" />
+          {isPending ? (
+            <CustomSkeleton />
+          ) : (
+            <Image src={user.profilepic} alt="Large Profile" radius="md" />
+          )}
         </Center>
       </Modal>
 
@@ -67,33 +71,52 @@ export const UserItemLayout = ({ user }: any) => {
             className={`${roundBorderStyle}`}>
             <Stack align="center">
               <Group align="center" gap="xl">
-                {user.profilepic ? (
-                  <>
-                    <Avatar
-                      src={user.profilepic}
-                      size="xl"
-                      radius="50%"
-                      onClick={() => setPicOpened(true)}
-                    />
-                  </>
+                {isPending ? (
+                  <CustomSkeleton v="circular" h={84} w={84} />
                 ) : (
-                  <Avatar size="xl">
-                    {user.firstname[0]}
-                    {user.lastname[0]}
-                  </Avatar>
+                  <>
+                    {user.profilepic ? (
+                      <>
+                        <Avatar
+                          src={user.profilepic}
+                          size="xl"
+                          radius="50%"
+                          onClick={() => setPicOpened(true)}
+                        />
+                      </>
+                    ) : (
+                      <Avatar size="xl">
+                        {user.firstname[0]}
+                        {user.lastname[0]}
+                      </Avatar>
+                    )}
+                  </>
                 )}
 
                 <Stack gap={0} align="center">
-                  <Title order={5}>
-                    {user.firstname} {user.lastname}
-                  </Title>
+                  {isPending ? (
+                    <CustomSkeleton w={130} />
+                  ) : (
+                    <Title order={5}>
+                      {user.firstname} {user.lastname}
+                    </Title>
+                  )}
 
-                  <Text size="sm" c="dimmed">
-                    @{user.username}
-                  </Text>
+                  {isPending ? (
+                    <CustomSkeleton h={20} />
+                  ) : (
+                    <Text size="sm" c="dimmed">
+                      @{user.username}
+                    </Text>
+                  )}
 
                   <Group gap="xs">
-                    <I I={IconMailFilled} /> <Text>{user.email}</Text>
+                    <I I={IconMailFilled} />
+                    {isPending ? (
+                      <CustomSkeleton h={20} w={130} />
+                    ) : (
+                      <Text>{user.email}</Text>
+                    )}
                   </Group>
                 </Stack>
               </Group>
@@ -101,18 +124,30 @@ export const UserItemLayout = ({ user }: any) => {
 
             <Grid>
               <Grid.Col span={6}>
-                <Button
-                  fullWidth
-                  bg="blue"
-                  onClick={() => navigate(`/users/${user.id}/edit`)}>
-                  Edit Profile
-                </Button>
+                {isPending ? (
+                  <Button fullWidth bg="blue">
+                    Edit Profile
+                  </Button>
+                ) : (
+                  <Button
+                    fullWidth
+                    bg="blue"
+                    onClick={() => navigate(`/users/${user.id}/edit`)}>
+                    Edit Profile
+                  </Button>
+                )}
               </Grid.Col>
 
               <Grid.Col span={6}>
-                <Button fullWidth bg="red" onClick={open}>
-                  Delete Account
-                </Button>
+                {isPending ? (
+                  <Button fullWidth bg="red">
+                    Delete Account
+                  </Button>
+                ) : (
+                  <Button fullWidth bg="red" onClick={open}>
+                    Delete Account
+                  </Button>
+                )}
               </Grid.Col>
             </Grid>
           </Stack>

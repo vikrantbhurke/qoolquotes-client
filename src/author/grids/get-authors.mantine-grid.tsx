@@ -10,7 +10,6 @@ import { oneBg } from "@/global/styles/app.css";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { AuthorGridItemSkeleton } from "../skeletons";
 
 export const GetAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useGetAuthors();
@@ -33,11 +32,9 @@ export const GetAuthorsMantineGrid = () => {
         page={page}
         gridBg={oneBg}
         setPage={setPage}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        dataArray={Array(40).fill({})}
+        dataArray={Array(42).fill({ isPending })}
         totalPages={1}
-        GridItemLayout={AuthorGridItemSkeleton}
+        GridItemLayout={AuthorGridItemLayout}
       />
     );
 
@@ -68,8 +65,6 @@ export const GetAuthorsMantineGrid = () => {
         page={page}
         gridBg={oneBg}
         setPage={setPage}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
         dataArray={authors.content}
         totalPages={authors.totalPages}
         GridItemLayout={AuthorGridItemLayout}

@@ -1,8 +1,13 @@
 import { Router } from "./router";
 import { permissions, Permissions } from "./permissions";
-import { CompOrFragmentRoute } from "./comp-or-fragment.route";
-import { CompOneOrTwoRoute } from "./comp-one-or-two.route";
+import { ComponentOrFragmentRoute } from "./component-or-fragment.route";
+import { ComponentOneOrTwoRoute } from "./component-one-or-two.route";
 
-export { permissions, Router, CompOrFragmentRoute, CompOneOrTwoRoute };
+export {
+  permissions,
+  Router,
+  ComponentOrFragmentRoute,
+  ComponentOneOrTwoRoute,
+};
 
 export type { Permissions };

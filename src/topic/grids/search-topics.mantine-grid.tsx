@@ -9,7 +9,6 @@ import { setPage } from "../topic.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { TopicGridItemSkeleton } from "../skeletons";
 
 export const SearchTopicsMantineGrid = () => {
   const { topics, isPending, isError, error } = useSearchTopics();
@@ -32,11 +31,9 @@ export const SearchTopicsMantineGrid = () => {
         page={page}
         gridBg={oneBg}
         setPage={setPage}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        dataArray={Array(40).fill({})}
+        dataArray={Array(42).fill({ isPending })}
         totalPages={1}
-        GridItemLayout={TopicGridItemSkeleton}
+        GridItemLayout={TopicGridItemLayout}
       />
     );
 

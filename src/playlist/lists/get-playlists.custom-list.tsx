@@ -10,7 +10,6 @@ import { SeoComponent } from "@/global/components/reusables";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { PlaylistListItemSkeleton } from "../skeletons";
 
 export const GetPlaylistsCustomList = () => {
   const { playlists, isPending, isError, error } = useGetPlaylists();
@@ -32,9 +31,9 @@ export const GetPlaylistsCustomList = () => {
         page={1}
         listBg={oneBg}
         setPage={setPage}
-        dataArray={Array(10).fill({})}
+        dataArray={Array(10).fill({ isPending })}
         totalPages={1}
-        ListItemLayout={PlaylistListItemSkeleton}
+        ListItemLayout={PlaylistListItemLayout}
       />
     );
 

@@ -13,7 +13,6 @@ import {
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { QuoteGridItemSkeleton } from "../skeletons";
 
 export const SearchQuotesMantineGrid = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -37,11 +36,9 @@ export const SearchQuotesMantineGrid = () => {
         page={page}
         gridBg={isMobile ? oneBg : twoBg}
         setPage={setPage}
-        dataArray={Array(12).fill({})}
+        dataArray={Array(6).fill({ isPending })}
         totalPages={1}
-        GridItemLayout={QuoteGridItemSkeleton}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
+        GridItemLayout={QuoteGridItemLayout}
       />
     );
 

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
 import { useSelector } from "react-redux";
 import { PlaylistModal } from "@/playlist/layouts";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
@@ -29,17 +29,6 @@ export const QuoteGridItemLayout = ({ item }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-
-  const pills = item.topicIds.map((topicId: any) => {
-    return (
-      <Pill
-        key={topicId._id}
-        className={oneTxYellowBgPillPseudoStyle}
-        onClick={() => handleNavigateToQuoteByTopic(topicId)}>
-        {topicId.name}
-      </Pill>
-    );
-  });
 
   const handleNavigateToQuote = () => {
     navigate(`/quotes/${item.id}`);
@@ -77,61 +66,111 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     setTimeout(() => setOpened(false), 1500);
   };
 
+  const isPending = item.isPending;
+
+  const pills = isPending ? (
+    <></>
+  ) : (
+    item.topicIds.map((topicId: any) => {
+      return (
+        <Pill
+          key={topicId._id}
+          className={oneTxYellowBgPillPseudoStyle}
+          onClick={() => handleNavigateToQuoteByTopic(topicId)}>
+          {topicId.name}
+        </Pill>
+      );
+    })
+  );
+
   return (
     <>
       <PlaylistModal opened={modalOpened} close={close} />
 
       <Stack p="xl" justify="center" align="center" px="md">
-        <Text
-          ta="center"
-          onClick={handleNavigateToQuote}
-          className={themeTxStyle}>
-          {item.content}
-        </Text>
-        <Text
-          ta="center"
-          onClick={handleNavigateToQuoteByAuthor}
-          className={themeTxStyle}>
-          {item.authorId.name}
-        </Text>
+        {isPending ? (
+          <Stack gap={0} w="100%" align="center">
+            <CustomSkeleton w="100%" />
+            <CustomSkeleton w="90%" />
+            <CustomSkeleton w="100%" />
+          </Stack>
+        ) : (
+          <Text
+            ta="center"
+            onClick={handleNavigateToQuote}
+            className={themeTxStyle}>
+            {item.content}
+          </Text>
+        )}
 
-        {item.topicIds && item.topicIds.length > 0 && (
+        {isPending ? (
+          <CustomSkeleton />
+        ) : (
+          <Text
+            ta="center"
+            onClick={handleNavigateToQuoteByAuthor}
+            className={themeTxStyle}>
+            {item.authorId.name}
+          </Text>
+        )}
+
+        {isPending ? (
           <Group ta="center" justify="center">
-            {pills}
+            <CustomSkeleton w={40} h={35} />
+            <CustomSkeleton w={40} h={35} />
+            <CustomSkeleton w={40} h={35} />
           </Group>
+        ) : (
+          <>
+            {item.topicIds && item.topicIds.length > 0 && (
+              <Group ta="center" justify="center">
+                {pills}
+              </Group>
+            )}
+          </>
         )}
 
         <Group>
           <Group gap={4}>
-            {auth.role === Role.Public ? (
+            {isPending ? (
+              <CustomSkeleton v="circular" w={20} h={20} />
+            ) : auth.role === Role.Public ? (
               <QuoteLikerReadonlyButtonLayout />
             ) : (
               <QuoteLikerLikeUnlikeButtonLayout qid={item.id} />
             )}
 
-            <QuoteLikesCountLayout qid={item.id} />
+            {isPending ? <></> : <QuoteLikesCountLayout qid={item.id} />}
           </Group>
 
-          <ActionIcon size="sm" onClick={handleModalOpen}>
-            <I I={IconPlaylistAdd} />
-          </ActionIcon>
+          {isPending ? (
+            <CustomSkeleton v="circular" w={20} h={20} />
+          ) : (
+            <ActionIcon size="sm" onClick={handleModalOpen}>
+              <I I={IconPlaylistAdd} />
+            </ActionIcon>
+          )}
 
-          <Tooltip
-            label="Copied!"
-            position="bottom"
-            opened={opened}
-            bg={threeBg}
-            c={oneTx}>
-            {opened ? (
-              <ActionIcon c="teal" aria-label="Copy to clipboard">
-                <I I={IconCheck} color="teal" />
-              </ActionIcon>
-            ) : (
-              <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>
-                <I I={IconCopy} />
-              </ActionIcon>
-            )}
-          </Tooltip>
+          {isPending ? (
+            <CustomSkeleton v="circular" w={20} h={20} />
+          ) : (
+            <Tooltip
+              label="Copied!"
+              position="bottom"
+              opened={opened}
+              bg={threeBg}
+              c={oneTx}>
+              {opened ? (
+                <ActionIcon c="teal" aria-label="Copy to clipboard">
+                  <I I={IconCheck} color="teal" />
+                </ActionIcon>
+              ) : (
+                <ActionIcon aria-label="Copy to clipboard" onClick={handleCopy}>
+                  <I I={IconCopy} />
+                </ActionIcon>
+              )}
+            </Tooltip>
+          )}
         </Group>
       </Stack>
     </>

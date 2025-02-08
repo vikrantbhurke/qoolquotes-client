@@ -5,7 +5,6 @@ import { useGetPlaylistsByCreatorId } from "../hooks/read";
 import { CustomModalList } from "@/global/components/lists";
 import { CustomModalError } from "@/global/components/errors";
 import { RootState } from "@/global/states/store";
-import { PlaylistModalListItemSkeleton } from "../skeletons";
 
 export const GetPlaylistsByCreatorIdModalList = () => {
   const { page } = useSelector((state: RootState) => state.playlist);
@@ -16,9 +15,9 @@ export const GetPlaylistsByCreatorIdModalList = () => {
       <CustomModalList
         page={1}
         setPage={setPage}
-        dataArray={Array(3).fill({})}
+        dataArray={Array(10).fill({ isPending })}
         totalPages={1}
-        ModalListItemLayout={PlaylistModalListItemSkeleton}
+        ModalListItemLayout={PlaylistModalListItemLayout}
       />
     );
 

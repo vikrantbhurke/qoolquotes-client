@@ -1,6 +1,6 @@
 import { Clearance } from "@/user/enums";
 import { Button, Center, Image, Stack } from "@mantine/core";
-import { CompOrFragmentRoute } from "@/global/routes";
+import { ComponentOrFragmentRoute } from "@/global/routes";
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
@@ -129,7 +129,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
         </Button>
 
         {!isInstalled && installPrompt && (
-          <CompOrFragmentRoute clearance={Clearance.LevelOne}>
+          <ComponentOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
               c={themeGreenColor}
               h={layoutCompHeight}
@@ -138,7 +138,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
               onClick={handleInstallClick}>
               Install App
             </Button>
-          </CompOrFragmentRoute>
+          </ComponentOrFragmentRoute>
         )}
 
         <Button
@@ -205,7 +205,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
           About
         </Button>
 
-        <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+        <ComponentOrFragmentRoute clearance={Clearance.LevelTwo}>
           <Button
             h={layoutCompHeight}
             className={buttonClasses}
@@ -221,7 +221,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
             onClick={handleNavigateToProfile}>
             Profile
           </Button>
-        </CompOrFragmentRoute>
+        </ComponentOrFragmentRoute>
 
         <Button
           h={layoutCompHeight}

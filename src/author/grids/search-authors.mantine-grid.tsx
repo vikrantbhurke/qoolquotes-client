@@ -9,7 +9,6 @@ import { setPage } from "../author.slice";
 import { oneBg } from "@/global/styles/app.css";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { AuthorGridItemSkeleton } from "../skeletons";
 
 export const SearchAuthorsMantineGrid = () => {
   const { authors, isPending, isError, error } = useSearchAuthors();
@@ -32,11 +31,9 @@ export const SearchAuthorsMantineGrid = () => {
         page={page}
         gridBg={oneBg}
         setPage={setPage}
-        onMouseEnter={() => {}}
-        onMouseLeave={() => {}}
-        dataArray={Array(40).fill({})}
+        dataArray={Array(42).fill({ isPending })}
         totalPages={1}
-        GridItemLayout={AuthorGridItemSkeleton}
+        GridItemLayout={AuthorGridItemLayout}
       />
     );
 
