@@ -34,7 +34,7 @@ export const useGetQuotesByAuthorId = () => {
         aid,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!aid,
   });
 
   useQuery({
@@ -46,7 +46,7 @@ export const useGetQuotesByAuthorId = () => {
         aid,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!aid,
   });
 
   useQuery({
@@ -58,7 +58,7 @@ export const useGetQuotesByAuthorId = () => {
         aid,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!aid,
   });
 
   return { quotes, isPending, isError, error };

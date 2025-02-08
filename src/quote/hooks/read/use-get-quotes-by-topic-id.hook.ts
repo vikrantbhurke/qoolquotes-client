@@ -34,7 +34,7 @@ export const useGetQuotesByTopicId = () => {
         tid,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!tid,
   });
 
   useQuery({
@@ -46,7 +46,7 @@ export const useGetQuotesByTopicId = () => {
         tid,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!tid,
   });
 
   useQuery({
@@ -58,7 +58,7 @@ export const useGetQuotesByTopicId = () => {
         tid,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!tid,
   });
 
   return { quotes, isPending, isError, error };

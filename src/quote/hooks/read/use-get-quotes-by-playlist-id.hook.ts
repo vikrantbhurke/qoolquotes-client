@@ -34,7 +34,7 @@ export const useGetQuotesByPlaylistId = () => {
         pid,
       }),
 
-    enabled: !!prevPage,
+    enabled: !!prevPage && !!pid,
   });
 
   useQuery({
@@ -46,7 +46,7 @@ export const useGetQuotesByPlaylistId = () => {
         pid,
       }),
 
-    enabled: !!nextPage,
+    enabled: !!nextPage && !!pid,
   });
 
   useQuery({
@@ -58,7 +58,7 @@ export const useGetQuotesByPlaylistId = () => {
         pid,
       }),
 
-    enabled: !!lastPage,
+    enabled: !!lastPage && !!pid,
   });
 
   return { quotes, isPending, isError, error };
