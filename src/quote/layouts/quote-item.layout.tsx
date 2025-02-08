@@ -128,10 +128,10 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
             {(styles: any) => (
               <>
                 {isPending ? (
-                  <Stack gap={0} miw={400} align="center">
-                    <CustomSkeleton w="90%" />
-                    <CustomSkeleton w="80%" />
-                    <CustomSkeleton w="90%" />
+                  <Stack gap={0} miw={350} align="center">
+                    <CustomSkeleton w="100%" />
+                    <CustomSkeleton w="100%" />
+                    <CustomSkeleton w="100%" />
                   </Stack>
                 ) : (
                   <Text
