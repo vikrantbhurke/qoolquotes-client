@@ -14,7 +14,6 @@ import {
   getGaeguFontStyle,
   getCarroisGothicScFontStyle,
   getNosiferFontStyle,
-  getBungeeHairlineFontStyle,
   getIcelandFontStyle,
   getTourneyFontStyle,
   getCinzelFontStyle,
@@ -105,8 +104,6 @@ export class GlobalUtility {
         return getCarroisGothicScFontStyle(isMobile);
       case Font["Nosifer"]:
         return getNosiferFontStyle(isMobile);
-      case Font["Bungee Hairline"]:
-        return getBungeeHairlineFontStyle(isMobile);
       case Font["Iceland"]:
         return getIcelandFontStyle(isMobile);
       case Font["Tourney"]:

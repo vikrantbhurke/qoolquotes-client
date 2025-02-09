@@ -22,12 +22,12 @@ export const getQuicksandFontStyle = (_isMobile: boolean) => ({
 
 export const getProtestRiotFontStyle = (isMobile: boolean) => ({
   fontFamily: "Protest Riot",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 export const getProtestRevolutionFontStyle = (isMobile: boolean) => ({
   fontFamily: "Protest Revolution",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 export const getJuliusSansOneFontStyle = (isMobile: boolean) => ({
@@ -70,19 +70,14 @@ export const getNosiferFontStyle = (isMobile: boolean) => ({
   fontSize: isMobile ? "0.875rem" : "1rem",
 });
 
-export const getBungeeHairlineFontStyle = (_isMobile: boolean) => ({
-  fontFamily: "Bungee Hairline",
-  fontSize: "0.875rem",
-});
-
 export const getIcelandFontStyle = (isMobile: boolean) => ({
   fontFamily: "Iceland",
-  fontSize: isMobile ? "1rem" : "1.125rem",
+  fontSize: isMobile ? "1.125rem" : "1.25rem",
 });
 
 export const getTourneyFontStyle = (isMobile: boolean) => ({
   fontFamily: "Tourney",
-  fontSize: isMobile ? "0.875rem" : "1.125rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 // Serif
@@ -129,7 +124,7 @@ export const getIMFellDwPicaFontStyle = (isMobile: boolean) => ({
 
 export const getYujiBokuFontStyle = (isMobile: boolean) => ({
   fontFamily: "Yuji Boku",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 // Cursive
@@ -141,7 +136,7 @@ export const getDancingScriptFontStyle = (isMobile: boolean) => ({
 
 export const getCaveatFontStyle = (isMobile: boolean) => ({
   fontFamily: "Caveat",
-  fontSize: isMobile ? "1.125rem" : "1.25rem",
+  fontSize: isMobile ? "1.25rem" : "1.375rem",
 });
 
 export const getSatisfyFontStyle = (isMobile: boolean) => ({
@@ -181,7 +176,7 @@ export const getNanumPenScriptFontStyle = (isMobile: boolean) => ({
 
 export const getReenieBeanieFontStyle = (isMobile: boolean) => ({
   fontFamily: "Reenie Beanie",
-  fontSize: isMobile ? "1.25rem" : "1.375rem",
+  fontSize: isMobile ? "1.375rem" : "1.5rem",
 });
 
 export const getMarckScriptFontStyle = (isMobile: boolean) => ({
@@ -211,12 +206,12 @@ export const getNanumBrushScriptFontStyle = (isMobile: boolean) => ({
 
 export const getLoveYaLikeASisterFontStyle = (isMobile: boolean) => ({
   fontFamily: "Love Ya Like A Sister",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 export const getFondamentoFontStyle = (isMobile: boolean) => ({
   fontFamily: "Fondamento",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 export const getRougeScriptFontStyle = (isMobile: boolean) => ({

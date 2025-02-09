@@ -13,7 +13,6 @@ export enum Font {
   "Gaegu" = "Gaegu",
   "Carrois Gothic SC" = "Carrois Gothic SC",
   "Nosifer" = "Nosifer",
-  "Bungee Hairline" = "Bungee Hairline",
   "Iceland" = "Iceland",
   "Tourney" = "Tourney",
   "Cinzel" = "Cinzel",
