@@ -33,7 +33,7 @@ export const AboutPage = () => {
               <Title order={2}>About</Title>
             </Center>
 
-            <Text>
+            <Text fz="sm">
               Welcome to QoolQuotes, a creative platform designed for quote
               enthusiasts and aspiring curators of inspiration. Our app allows
               users to explore, organize, and share their favorite quotes with a
@@ -51,7 +51,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>1. Browse Quotes by Author or Topic</Title>
-              <Text>
+              <Text fz="sm">
                 Easily find quotes by your favorite authors or dive into
                 specific topics that resonate with your current mood or
                 interests.
@@ -60,7 +60,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>2. Search and Filter</Title>
-              <Text>
+              <Text fz="sm">
                 Use our intuitive search and filter options to quickly locate
                 quotes that speak to you.
               </Text>
@@ -70,7 +70,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>3. Build Your Playlists</Title>
-              <Text>
+              <Text fz="sm">
                 Create themed playlists by adding your favorite quotes, giving
                 each collection a unique name and identity.
               </Text>
@@ -78,7 +78,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>4. Clone and Customize</Title>
-              <Text>
+              <Text fz="sm">
                 Found a playlist you adore? Clone it and make it your own by
                 adding or removing quotes.
               </Text>
@@ -86,7 +86,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>5. Save and Organize</Title>
-              <Text>
+              <Text fz="sm">
                 Save playlists for future inspiration or easy access to your
                 favorite collections.
               </Text>
@@ -96,7 +96,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>6. Like and Appreciate</Title>
-              <Text>
+              <Text fz="sm">
                 Show your support by liking quotes and playlists, helping great
                 content rise to prominence.
               </Text>
@@ -104,7 +104,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>7. Share with the World</Title>
-              <Text>
+              <Text fz="sm">
                 Share your curated playlists with friends, family, or a wider
                 audience through social media or direct links.
               </Text>
@@ -114,7 +114,7 @@ export const AboutPage = () => {
 
             <Stack gap={0}>
               <Title order={5}>8. Switch Between Light and Dark Modes</Title>
-              <Text>
+              <Text fz="sm">
                 Optimize for comfort with a simple toggle between light and dark
                 themes.
               </Text>
@@ -122,7 +122,7 @@ export const AboutPage = () => {
 
             {/* <Stack gap={0}>
                   <Title order={5}>9. Change Fonts and Theme Colors</Title>
-                   <Text>
+                   <Text  fz="sm">
                     Personalize your reading experience by selecting fonts and theme
                     colors that suit your style.
                   </Text>
@@ -132,7 +132,7 @@ export const AboutPage = () => {
 
                 <Stack gap={0}>
                   <Title order={5}>10. Daily Inspiration</Title>
-                  <Text>
+                  <Text  fz="sm">
                     Get a dose of inspiration with featured quotes and playlists
                     updated regularly.
                   </Text>
@@ -148,7 +148,7 @@ export const AboutPage = () => {
 
             <Title order={4}>Seamless User Experience</Title>
 
-            <Text>
+            <Text fz="sm">
               Our app is designed with you in mind, offering a sleek,
               user-friendly interface that works flawlessly across devices. As a
               Progressive Web App (PWA), it provides the convenience of
@@ -158,7 +158,7 @@ export const AboutPage = () => {
 
             <Title order={4}>Community-Centered</Title>
 
-            <Text>
+            <Text fz="sm">
               Join a community of quote lovers! Share your curated playlists,
               discover hidden gems from others, and connect through shared
               inspiration.
@@ -166,7 +166,7 @@ export const AboutPage = () => {
 
             <Title order={4}>Built for Flexibility</Title>
 
-            <Text>
+            <Text fz="sm">
               Whether you’re creating a personal archive of favorite quotes or
               sharing playlists to inspire others, our app gives you the tools
               to express yourself and spread positivity.
@@ -175,7 +175,7 @@ export const AboutPage = () => {
             <Divider my="xs" />
 
             <Center>
-              <Text fs="italic" c={threeTx} size="xs">
+              <Text fs="italic" c={threeTx} fz="xs">
                 Emoji artwork provided by OpenMoji – the open-source emoji
                 project. License: CC BY-SA 4.0
               </Text>
@@ -185,7 +185,7 @@ export const AboutPage = () => {
               <Title order={3}>Get Started</Title>
             </Center>
 
-            <Text>
+            <Text  fz="sm">
               Experience the joy of collecting, organizing, and sharing
               inspiration. Begin your journey today by exploring our extensive
               quote library, creating your first playlist, or customizing the look

@@ -37,7 +37,9 @@ export const CreateMessageFormLayout = () => {
         <Group gap={0} align="center" justify="space-between">
           <Space w="md" />
 
-          <Text ta="center">Tell us what's on your mind.</Text>
+          <Text fz="sm" ta="center">
+            Tell us what's on your mind.
+          </Text>
 
           {form.isDirty() ? (
             <ActionIcon size="xs" aria-label="Refresh" onClick={form.reset}>
@@ -54,7 +56,9 @@ export const CreateMessageFormLayout = () => {
         </Group>
 
         <Stack gap={0} align="flex-start">
-          <Text ta="center">Reason</Text>
+          <Text fz="sm" ta="center">
+            Reason
+          </Text>
 
           <CustomEnumCombobox
             id="reason"
@@ -68,7 +72,7 @@ export const CreateMessageFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Title</Text>
+            <Text fz="sm">Title</Text>
             <Text
               fz="xs"
               c={messageUtility.getTitleColor(form.values.title.length)}>
@@ -93,7 +97,7 @@ export const CreateMessageFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Description</Text>
+            <Text fz="sm">Description</Text>
             <Text
               fz="xs"
               c={messageUtility.getDescriptionColor(
@@ -122,7 +126,7 @@ export const CreateMessageFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Email</Text>
+            <Text fz="sm">Email</Text>
           </Group>
 
           <TextInput

@@ -51,7 +51,7 @@ export const drawer = {
 
 export const stringTruncate = {
   display: "inline-block",
-  maxWidth: "20ch",
+  maxWidth: "15ch",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",

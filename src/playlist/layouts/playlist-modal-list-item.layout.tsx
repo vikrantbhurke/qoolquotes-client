@@ -22,7 +22,7 @@ export const PlaylistModalListItemLayout = ({ item }: any) => {
       ) : (
         <>
           <PlaylistQuotesAddRemoveButtonLayout pid={item.id} />
-          <Text>{item.name}</Text>
+          <Text fz="sm">{item.name}</Text>
         </>
       )}
     </Group>

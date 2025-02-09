@@ -2,6 +2,7 @@ import {
   authorTopicLayoutWidth,
   layoutCompHeight,
   marginLeft,
+  stringTruncate,
   textBold,
 } from "@/global/styles/global.styles";
 import {
@@ -76,20 +77,24 @@ export const AuthorsLayout = () => {
             <Group gap={3}>
               <I I={IconFileDescription} />
 
-              <Text>
+              <Text fz="sm">
                 {globalUtility.formatNumber(data.page)}/
                 {globalUtility.formatNumber(data.totalPages)} Page
               </Text>
             </Group>
 
             {isSearching ? (
-              <Text fw={textBold}>
-                {search}{" "}
-                {data.totalElements > 0 &&
-                  `(${globalUtility.formatNumber(data.totalElements)})`}
-              </Text>
+              <Group gap={3}>
+                <Text fz="sm" fw={textBold} style={stringTruncate}>
+                  {search}{" "}
+                </Text>
+                <Text fz="sm" fw={textBold}>
+                  {data.totalElements > 0 &&
+                    `(${globalUtility.formatNumber(data.totalElements)})`}
+                </Text>
+              </Group>
             ) : (
-              <Text fw={textBold}>
+              <Text fz="sm" fw={textBold}>
                 Authors{" "}
                 {data.totalElements > 0 &&
                   `(${globalUtility.formatNumber(data.totalElements)})`}

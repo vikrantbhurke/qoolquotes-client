@@ -131,7 +131,7 @@ export const PlaylistsLayout = () => {
               <Group gap={3}>
                 <I I={IconFileDescription} />
 
-                <Text pt={3}>
+                <Text fz="sm" pt={3}>
                   {globalUtility.formatNumber(data.page)}/
                   {globalUtility.formatNumber(data.totalPages)} Page
                 </Text>

@@ -169,7 +169,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>Firstname</Text>
+                <Text fz="sm">Firstname</Text>
                 <TextInput
                   required
                   minLength={2}
@@ -185,7 +185,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>Lastname</Text>
+                <Text fz="sm">Lastname</Text>
                 <TextInput
                   required
                   minLength={2}
@@ -201,7 +201,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>Email</Text>
+                <Text fz="sm">Email</Text>
                 <TextInput
                   minLength={5}
                   maxLength={20}
@@ -217,7 +217,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>New Password</Text>
+                <Text fz="sm">New Password</Text>
                 <PasswordInput
                   minLength={6}
                   maxLength={20}
@@ -233,7 +233,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>Confirm Password</Text>
+                <Text fz="sm">Confirm Password</Text>
                 <PasswordInput
                   minLength={6}
                   maxLength={20}

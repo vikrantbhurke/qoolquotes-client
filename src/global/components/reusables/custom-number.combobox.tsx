@@ -45,7 +45,7 @@ export const CustomNumberCombobox = ({
       key={item}
       value={item}
       className={oneTxYellowBgMenuButtonPseudoStyle}>
-      <Text tt="capitalize" ta="center">
+      <Text fz="sm" tt="capitalize" ta="center">
         {item}
       </Text>
     </Combobox.Option>

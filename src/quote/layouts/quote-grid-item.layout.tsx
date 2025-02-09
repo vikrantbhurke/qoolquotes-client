@@ -21,6 +21,7 @@ import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
 import { IconCheck, IconCopy, IconPlaylistAdd } from "@tabler/icons-react";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const QuoteGridItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -29,6 +30,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
+  const { isMobile, font } = useSelector((state: RootState) => state.view);
 
   const handleNavigateToQuote = () => {
     navigate(`/quotes/${item.id}`);
@@ -96,6 +98,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
           </Stack>
         ) : (
           <Text
+            style={globalUtility.getFont(font, isMobile)}
             ta="center"
             onClick={handleNavigateToQuote}
             className={themeTxStyle}>
@@ -107,6 +110,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
           <CustomSkeleton />
         ) : (
           <Text
+            style={globalUtility.getFont(font, isMobile)}
             ta="center"
             onClick={handleNavigateToQuoteByAuthor}
             className={themeTxStyle}>

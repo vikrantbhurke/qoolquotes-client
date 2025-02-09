@@ -1,71 +1,67 @@
 import { Font } from "../enums";
 import {
-  interFontStyle,
-  readexProFontStyle,
-  silkScreenFontStyle,
-  icebergFontStyle,
-  amaticScFontStyle,
-  quicksandFontStyle,
-  protestRiotFontStyle,
-  protestRevolutionFontStyle,
-  juliusSansOneFontStyle,
-  mansalvaFontStyle,
-  ysabeauScFontStyle,
-  fingerPaintFontStyle,
-  dongleFontStyle,
-  gaeguFontStyle,
-  carroisGothicScFontStyle,
-  nosiferFontStyle,
-  bungeeHairlineFontStyle,
-  icelandFontStyle,
-  tourneyFontStyle,
-  cinzelFontStyle,
-  alegreyaFontStyle,
-  josefinSlabFontStyle,
-  crimsonProFontStyle,
-  quintessentialFontStyle,
-  marcellusScFontStyle,
-  ryeFontStyle,
-  zillaSlabHighlightFontStyle,
-  imFellDwPicaFontStyle,
-  jacquesFrancoisShadowFontStyle,
-  yujiBokuFontStyle,
-  dancingScriptFontStyle,
-  caveatFontStyle,
-  satisfyFontStyle,
-  permanentMarkerFontStyle,
-  kaushanScriptFontStyle,
-  meriendaFontStyle,
-  parisienneFontStyle,
-  badScriptFontStyle,
-  nanumPenScriptFontStyle,
-  reenieBeanieFontStyle,
-  marckScriptFontStyle,
-  nothingYouCouldDoFontStyle,
-  shortStackFontStyle,
-  caveatBrushFontStyle,
-  nanumBrushScriptFontStyle,
-  loveYaLikeASisterFontStyle,
-  fondamentoFontStyle,
-  rougeScriptFontStyle,
-  montezFontStyle,
-  clickerScriptFontStyle,
-  shantellSansFontStyle,
-  squarePegFontStyle,
-  bangersFontStyle,
-  specialEliteFontStyle,
-  alkatraFontStyle,
-  barrioFontStyle,
-  jollyLodgerFontStyle,
-  trainOneFontStyle,
-  newRockerFontStyle,
-  lacquerFontStyle,
-  rubikWetPaintFontStyle,
-  rubikVinylFontStyle,
-  sourceCodeProFontStyle,
-  cutiveMonoFontStyle,
-  shareTechMonoFontStyle,
-} from "../styles/app.css";
+  getInterFontStyle,
+  getReadexProFontStyle,
+  getIcebergFontStyle,
+  getQuicksandFontStyle,
+  getProtestRiotFontStyle,
+  getProtestRevolutionFontStyle,
+  getJuliusSansOneFontStyle,
+  getMansalvaFontStyle,
+  getYsabeauScFontStyle,
+  getFingerPaintFontStyle,
+  getDongleFontStyle,
+  getGaeguFontStyle,
+  getCarroisGothicScFontStyle,
+  getNosiferFontStyle,
+  getBungeeHairlineFontStyle,
+  getIcelandFontStyle,
+  getTourneyFontStyle,
+  getCinzelFontStyle,
+  getAlegreyaFontStyle,
+  getJosefinSlabFontStyle,
+  getCrimsonProFontStyle,
+  getQuintessentialFontStyle,
+  getMarcellusScFontStyle,
+  getZillaSlabHighlightFontStyle,
+  getIMFellDwPicaFontStyle,
+  getYujiBokuFontStyle,
+  getDancingScriptFontStyle,
+  getCaveatFontStyle,
+  getSatisfyFontStyle,
+  getPermanentMarkerFontStyle,
+  getKaushanScriptFontStyle,
+  getMeriendaFontStyle,
+  getParisienneFontStyle,
+  getBadScriptFontStyle,
+  getNanumPenScriptFontStyle,
+  getReenieBeanieFontStyle,
+  getMarckScriptFontStyle,
+  getNothingYouCouldDoFontStyle,
+  getShortStackFontStyle,
+  getCaveatBrushFontStyle,
+  getNanumBrushScriptFontStyle,
+  getLoveYaLikeASisterFontStyle,
+  getFondamentoFontStyle,
+  getRougeScriptFontStyle,
+  getMontezFontStyle,
+  getClickerScriptFontStyle,
+  getShantellSansFontStyle,
+  getSquarePegFontStyle,
+  getBangersFontStyle,
+  getSpecialEliteFontStyle,
+  getAlkatraFontStyle,
+  getBarrioFontStyle,
+  getJollyLodgerFontStyle,
+  getTrainOneFontStyle,
+  getNewRockerFontStyle,
+  getLacquerFontStyle,
+  getRubikWetPaintFontStyle,
+  getRubikVinylFontStyle,
+  getSourceCodeProFontStyle,
+  getCutiveMonoFontStyle,
+  getShareTechMonoFontStyle,
+} from "../styles/font.styles";
 
 export class GlobalUtility {
   getKeyByValue = (enumObj: any, value: string) => {
@@ -79,140 +75,132 @@ export class GlobalUtility {
     else return number.toLocaleString();
   };
 
-  getFont = (font: Font) => {
+  getFont = (font: Font, isMobile: boolean) => {
     switch (font) {
       case Font["Inter"]:
-        return interFontStyle;
+        return getInterFontStyle(isMobile);
       case Font["Readex Pro"]:
-        return readexProFontStyle;
-      case Font["Silk Screen"]:
-        return silkScreenFontStyle;
+        return getReadexProFontStyle(isMobile);
       case Font["Iceberg"]:
-        return icebergFontStyle;
-      case Font["Amatic SC"]:
-        return amaticScFontStyle;
+        return getIcebergFontStyle(isMobile);
       case Font["Quicksand"]:
-        return quicksandFontStyle;
+        return getQuicksandFontStyle(isMobile);
       case Font["Protest Riot"]:
-        return protestRiotFontStyle;
+        return getProtestRiotFontStyle(isMobile);
       case Font["Protest Revolution"]:
-        return protestRevolutionFontStyle;
+        return getProtestRevolutionFontStyle(isMobile);
       case Font["Julius Sans One"]:
-        return juliusSansOneFontStyle;
+        return getJuliusSansOneFontStyle(isMobile);
       case Font["Mansalva"]:
-        return mansalvaFontStyle;
+        return getMansalvaFontStyle(isMobile);
       case Font["Ysabeau SC"]:
-        return ysabeauScFontStyle;
+        return getYsabeauScFontStyle(isMobile);
       case Font["Finger Paint"]:
-        return fingerPaintFontStyle;
+        return getFingerPaintFontStyle(isMobile);
       case Font["Dongle"]:
-        return dongleFontStyle;
+        return getDongleFontStyle(isMobile);
       case Font["Gaegu"]:
-        return gaeguFontStyle;
+        return getGaeguFontStyle(isMobile);
       case Font["Carrois Gothic SC"]:
-        return carroisGothicScFontStyle;
+        return getCarroisGothicScFontStyle(isMobile);
       case Font["Nosifer"]:
-        return nosiferFontStyle;
+        return getNosiferFontStyle(isMobile);
       case Font["Bungee Hairline"]:
-        return bungeeHairlineFontStyle;
+        return getBungeeHairlineFontStyle(isMobile);
       case Font["Iceland"]:
-        return icelandFontStyle;
+        return getIcelandFontStyle(isMobile);
       case Font["Tourney"]:
-        return tourneyFontStyle;
+        return getTourneyFontStyle(isMobile);
       case Font["Cinzel"]:
-        return cinzelFontStyle;
+        return getCinzelFontStyle(isMobile);
       case Font["Alegreya"]:
-        return alegreyaFontStyle;
+        return getAlegreyaFontStyle(isMobile);
       case Font["Josefin Slab"]:
-        return josefinSlabFontStyle;
+        return getJosefinSlabFontStyle(isMobile);
       case Font["Crimson Pro"]:
-        return crimsonProFontStyle;
+        return getCrimsonProFontStyle(isMobile);
       case Font["Quintessential"]:
-        return quintessentialFontStyle;
+        return getQuintessentialFontStyle(isMobile);
       case Font["Marcellus SC"]:
-        return marcellusScFontStyle;
-      case Font["Rye"]:
-        return ryeFontStyle;
+        return getMarcellusScFontStyle(isMobile);
       case Font["Zilla Slab Highlight"]:
-        return zillaSlabHighlightFontStyle;
+        return getZillaSlabHighlightFontStyle(isMobile);
       case Font["IM Fell DW Pica"]:
-        return imFellDwPicaFontStyle;
-      case Font["Jacques Francois Shadow"]:
-        return jacquesFrancoisShadowFontStyle;
+        return getIMFellDwPicaFontStyle(isMobile);
       case Font["Yuji Boku"]:
-        return yujiBokuFontStyle;
+        return getYujiBokuFontStyle(isMobile);
       case Font["Dancing Script"]:
-        return dancingScriptFontStyle;
+        return getDancingScriptFontStyle(isMobile);
       case Font["Caveat"]:
-        return caveatFontStyle;
+        return getCaveatFontStyle(isMobile);
       case Font["Satisfy"]:
-        return satisfyFontStyle;
+        return getSatisfyFontStyle(isMobile);
       case Font["Permanent Marker"]:
-        return permanentMarkerFontStyle;
+        return getPermanentMarkerFontStyle(isMobile);
       case Font["Kaushan Script"]:
-        return kaushanScriptFontStyle;
+        return getKaushanScriptFontStyle(isMobile);
       case Font["Merienda"]:
-        return meriendaFontStyle;
+        return getMeriendaFontStyle(isMobile);
       case Font["Parisienne"]:
-        return parisienneFontStyle;
+        return getParisienneFontStyle(isMobile);
       case Font["Bad Script"]:
-        return badScriptFontStyle;
+        return getBadScriptFontStyle(isMobile);
       case Font["Nanum Pen Script"]:
-        return nanumPenScriptFontStyle;
+        return getNanumPenScriptFontStyle(isMobile);
       case Font["Reenie Beanie"]:
-        return reenieBeanieFontStyle;
+        return getReenieBeanieFontStyle(isMobile);
       case Font["Marck Script"]:
-        return marckScriptFontStyle;
+        return getMarckScriptFontStyle(isMobile);
       case Font["Nothing You Could Do"]:
-        return nothingYouCouldDoFontStyle;
+        return getNothingYouCouldDoFontStyle(isMobile);
       case Font["Short Stack"]:
-        return shortStackFontStyle;
+        return getShortStackFontStyle(isMobile);
       case Font["Caveat Brush"]:
-        return caveatBrushFontStyle;
+        return getCaveatBrushFontStyle(isMobile);
       case Font["Nanum Brush Script"]:
-        return nanumBrushScriptFontStyle;
+        return getNanumBrushScriptFontStyle(isMobile);
       case Font["Love Ya Like A Sister"]:
-        return loveYaLikeASisterFontStyle;
+        return getLoveYaLikeASisterFontStyle(isMobile);
       case Font["Fondamento"]:
-        return fondamentoFontStyle;
+        return getFondamentoFontStyle(isMobile);
       case Font["Rouge Script"]:
-        return rougeScriptFontStyle;
+        return getRougeScriptFontStyle(isMobile);
       case Font["Montez"]:
-        return montezFontStyle;
+        return getMontezFontStyle(isMobile);
       case Font["Clicker Script"]:
-        return clickerScriptFontStyle;
+        return getClickerScriptFontStyle(isMobile);
       case Font["Shantell Sans"]:
-        return shantellSansFontStyle;
+        return getShantellSansFontStyle(isMobile);
       case Font["Square Peg"]:
-        return squarePegFontStyle;
+        return getSquarePegFontStyle(isMobile);
       case Font["Bangers"]:
-        return bangersFontStyle;
+        return getBangersFontStyle(isMobile);
       case Font["Special Elite"]:
-        return specialEliteFontStyle;
+        return getSpecialEliteFontStyle(isMobile);
       case Font["Alkatra"]:
-        return alkatraFontStyle;
+        return getAlkatraFontStyle(isMobile);
       case Font["Barrio"]:
-        return barrioFontStyle;
+        return getBarrioFontStyle(isMobile);
       case Font["Jolly Lodger"]:
-        return jollyLodgerFontStyle;
+        return getJollyLodgerFontStyle(isMobile);
       case Font["Train One"]:
-        return trainOneFontStyle;
+        return getTrainOneFontStyle(isMobile);
       case Font["New Rocker"]:
-        return newRockerFontStyle;
+        return getNewRockerFontStyle(isMobile);
       case Font["Lacquer"]:
-        return lacquerFontStyle;
+        return getLacquerFontStyle(isMobile);
       case Font["Rubik Wet Paint"]:
-        return rubikWetPaintFontStyle;
+        return getRubikWetPaintFontStyle(isMobile);
       case Font["Rubik Vinyl"]:
-        return rubikVinylFontStyle;
+        return getRubikVinylFontStyle(isMobile);
       case Font["Source Code Pro"]:
-        return sourceCodeProFontStyle;
+        return getSourceCodeProFontStyle(isMobile);
       case Font["Cutive Mono"]:
-        return cutiveMonoFontStyle;
+        return getCutiveMonoFontStyle(isMobile);
       case Font["Share Tech Mono"]:
-        return shareTechMonoFontStyle;
+        return getShareTechMonoFontStyle(isMobile);
       default:
-        return interFontStyle;
+        return getInterFontStyle(isMobile);
     }
   };
 }

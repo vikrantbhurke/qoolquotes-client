@@ -89,7 +89,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
             <Stack gap="sm">
               <Stack gap={0}>
                 <Group justify="space-between" w="100%">
-                  <Text>Name</Text>
+                  <Text fz="sm">Name</Text>
                   <Text
                     fz="xs"
                     c={playlistUtility.getNameColor(form.values.name.length)}>
@@ -113,7 +113,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
 
               <Stack gap={0}>
                 <Group justify="space-between" w="100%">
-                  <Text>Description</Text>
+                  <Text fz="sm">Description</Text>
                   <Text
                     fz="xs"
                     c={playlistUtility.getDescriptionColor(
@@ -143,7 +143,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
               </Stack>
 
               <Stack gap={0} align="stretch">
-                <Text>Access</Text>
+                <Text fz="sm">Access</Text>
 
                 <CustomEnumCombobox
                   id="playlist-access"
@@ -170,7 +170,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
                 )}
 
                 <Stack gap={0} miw="75%">
-                  <Text>Creator</Text>
+                  <Text fz="sm">Creator</Text>
 
                   <TextInput
                     miw="100%"

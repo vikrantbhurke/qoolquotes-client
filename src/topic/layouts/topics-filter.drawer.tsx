@@ -56,7 +56,9 @@ export const TopicsFilterDrawer = ({ opened, close }: any) => {
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text fw={textBold}>Order</Text>
+            <Text fz="sm" fw={textBold}>
+              Order
+            </Text>
 
             {order !== Order.Ascending || alpha !== Alpha.All ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
@@ -82,7 +84,9 @@ export const TopicsFilterDrawer = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={textBold}>Alphabet</Text>
+          <Text fz="sm" fw={textBold}>
+            Alphabet
+          </Text>
 
           <CustomEnumScrollableCombobox
             id="topic-alpha-drawer"

@@ -101,7 +101,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                 ) : (
                   <>
                     <Title order={6}>Name:</Title>
-                    <Text>{playlist.name}</Text>
+                    <Text fz="sm">{playlist.name}</Text>
                   </>
                 )}
               </Group>
@@ -116,7 +116,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                   {playlist.description && (
                     <Group gap={8}>
                       <Title order={6}>Description:</Title>
-                      <Text>{playlist.description}</Text>
+                      <Text fz="sm">{playlist.description}</Text>
                     </Group>
                   )}
                 </>
@@ -131,7 +131,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                 ) : (
                   <>
                     <Title order={6}>Access:</Title>
-                    <Text>{playlist.access}</Text>
+                    <Text fz="sm">{playlist.access}</Text>
                   </>
                 )}
               </Group>
@@ -167,7 +167,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                   ) : (
                     <>
                       <Title order={6}>Creator:</Title>
-                      <Text>{playlist.creatorId.username}</Text>
+                      <Text fz="sm">{playlist.creatorId.username}</Text>
                     </>
                   )}
                 </Group>

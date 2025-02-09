@@ -52,7 +52,9 @@ export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text fw={textBold}>Sort</Text>
+            <Text fz="sm" fw={textBold}>
+              Sort
+            </Text>
 
             {order !== Order.Descending || sort !== Sort.Date ? (
               <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
@@ -78,7 +80,9 @@ export const PlaylistsFilterDrawer = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={textBold}>Order</Text>
+          <Text fz="sm" fw={textBold}>
+            Order
+          </Text>
 
           <CustomEnumCombobox
             id="playlist-order-drawer"

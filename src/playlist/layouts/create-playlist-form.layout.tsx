@@ -43,7 +43,7 @@ export const CreatePlaylistFormLayout = () => {
         <Group gap={0} align="center" justify="space-between">
           <Space w="md" />
 
-          <Text ta="center" fw={textBold}>
+          <Text fz="sm" ta="center" fw={textBold}>
             Create new playlist
           </Text>
 
@@ -63,7 +63,7 @@ export const CreatePlaylistFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Name</Text>
+            <Text fz="sm">Name</Text>
             <Text
               fz="xs"
               c={playlistUtility.getNameColor(form.values.name.length)}>
@@ -88,7 +88,7 @@ export const CreatePlaylistFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Description</Text>
+            <Text fz="sm">Description</Text>
             <Text
               fz="xs"
               c={playlistUtility.getDescriptionColor(
@@ -116,7 +116,7 @@ export const CreatePlaylistFormLayout = () => {
         </Stack>
 
         <Stack gap={0} align="flex-start">
-          <Text>Access</Text>
+          <Text fz="sm">Access</Text>
 
           <CustomEnumCombobox
             id="playlist-access"

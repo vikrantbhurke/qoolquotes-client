@@ -140,7 +140,7 @@ export const CustomGrid = ({
           <Center
             h={listItemHeight}
             className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
-            <Text>An error occured.</Text>
+            <Text fz="sm">An error occured.</Text>
           </Center>
         </Box>
       )}

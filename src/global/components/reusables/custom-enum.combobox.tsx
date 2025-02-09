@@ -50,7 +50,7 @@ export const CustomEnumCombobox = ({
       key={item}
       value={item}
       className={oneTxYellowBgMenuButtonPseudoStyle}>
-      <Text tt="capitalize" ta="center">
+      <Text fz="sm" tt="capitalize" ta="center">
         {globalUtility.getKeyByValue(EnumObject, item)}
       </Text>
     </Combobox.Option>

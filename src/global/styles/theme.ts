@@ -41,7 +41,6 @@ export const theme = createTheme({
     Text: Text.extend({
       defaultProps: {
         color: oneTx,
-        fz: "sm",
         className: interFontStyle,
       },
     }),

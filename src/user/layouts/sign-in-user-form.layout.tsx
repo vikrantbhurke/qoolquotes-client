@@ -88,7 +88,7 @@ export const SignInUserFormLayout = () => {
                 )}
               </Group>
 
-              <Text c="dimmed" ta="center" mt={5}>
+              <Text fz="sm" c="dimmed" ta="center" mt={5}>
                 Do not have an account yet?{" "}
                 <Anchor
                   c={oneTx}
@@ -101,7 +101,7 @@ export const SignInUserFormLayout = () => {
 
             <Stack gap="sm">
               <Stack gap={0}>
-                <Text>Username</Text>
+                <Text fz="sm">Username</Text>
 
                 <TextInput
                   required
@@ -119,7 +119,7 @@ export const SignInUserFormLayout = () => {
               </Stack>
 
               <Stack gap={0}>
-                <Text>Password</Text>
+                <Text fz="sm">Password</Text>
 
                 <PasswordInput
                   required

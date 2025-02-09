@@ -23,7 +23,7 @@ export const RemovePlaylistsModalLayout = ({ opened, close }: any) => {
       onClose={close}
       centered>
       <Stack gap="lg" align="center">
-        <Text ta="center">
+        <Text fz="sm" ta="center">
           Are you sure you want to remove all your saved playlists?
         </Text>
 

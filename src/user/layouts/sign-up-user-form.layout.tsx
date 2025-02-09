@@ -88,7 +88,7 @@ export const SignUpUserFormLayout = () => {
                     />
                   )}
                 </Group>
-                <Text c="dimmed" ta="center" mt={5}>
+                <Text fz="sm" c="dimmed" ta="center" mt={5}>
                   Already have an account?{" "}
                   <Anchor
                     c={oneTx}
@@ -101,7 +101,7 @@ export const SignUpUserFormLayout = () => {
 
               <Stack gap="sm">
                 <Stack gap={0}>
-                  <Text>Firstname</Text>
+                  <Text fz="sm">Firstname</Text>
 
                   <TextInput
                     required
@@ -121,7 +121,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Lastname</Text>
+                  <Text fz="sm">Lastname</Text>
 
                   <TextInput
                     required
@@ -139,7 +139,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Username</Text>
+                  <Text fz="sm">Username</Text>
 
                   <TextInput
                     required
@@ -157,7 +157,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Email</Text>
+                  <Text fz="sm">Email</Text>
 
                   <TextInput
                     required
@@ -175,7 +175,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Password</Text>
+                  <Text fz="sm">Password</Text>
 
                   <PasswordInput
                     required
@@ -193,7 +193,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Confirm Password</Text>
+                  <Text fz="sm">Confirm Password</Text>
 
                   <PasswordInput
                     required
@@ -213,7 +213,7 @@ export const SignUpUserFormLayout = () => {
                 </Stack>
 
                 <Stack gap={0}>
-                  <Text>Gender</Text>
+                  <Text fz="sm">Gender</Text>
 
                   <CustomEnumCombobox
                     id="gender"

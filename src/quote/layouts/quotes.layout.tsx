@@ -1,6 +1,7 @@
 import {
   layoutCompHeight,
   quoteLayoutWidth,
+  stringTruncate,
   textBold,
 } from "@/global/styles/global.styles";
 import {
@@ -62,23 +63,31 @@ export const QuotesLayout = () => {
             <Group gap={3}>
               <I I={IconFileDescription} />
 
-              <Text pt={3}>
+              <Text fz="sm" pt={3}>
                 {data.page}/{data.totalPages} Page
               </Text>
             </Group>
 
             {isSearching ? (
-              <Text fw={textBold}>
-                {search}{" "}
-                {data.totalElements > 0 &&
-                  `(${globalUtility.formatNumber(data.totalElements)})`}
-              </Text>
+              <Group gap={3}>
+                <Text fz="sm" fw={textBold} style={stringTruncate}>
+                  {search}{" "}
+                </Text>
+                <Text fz="sm" fw={textBold}>
+                  {data.totalElements > 0 &&
+                    `(${globalUtility.formatNumber(data.totalElements)})`}
+                </Text>
+              </Group>
             ) : (
-              <Text fw={textBold}>
-                {filterObject.name}{" "}
-                {data.totalElements > 0 &&
-                  `(${globalUtility.formatNumber(data.totalElements)})`}
-              </Text>
+              <Group gap={3}>
+                <Text fz="sm" fw={textBold} style={stringTruncate}>
+                  {filterObject.name}{" "}
+                </Text>
+                <Text fz="sm" fw={textBold}>
+                  {data.totalElements > 0 &&
+                    `(${globalUtility.formatNumber(data.totalElements)})`}
+                </Text>
+              </Group>
             )}
 
             <Group gap="xl">

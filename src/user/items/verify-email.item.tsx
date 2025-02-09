@@ -33,7 +33,7 @@ export const VerifyEmailItem = () => {
   return (
     <Stack justify="center" align="center" h="100%">
       <Loader type="dots" color={oneTx} />
-      <Text>{text}</Text>
+      <Text fz="sm">{text}</Text>
     </Stack>
   );
 };

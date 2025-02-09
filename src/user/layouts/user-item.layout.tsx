@@ -105,7 +105,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                   {isPending ? (
                     <CustomSkeleton h={20} />
                   ) : (
-                    <Text size="sm" c="dimmed">
+                    <Text fz="sm" c="dimmed">
                       @{user.username}
                     </Text>
                   )}
@@ -116,7 +116,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                     ) : (
                       <>
                         <I I={IconMailFilled} />
-                        <Text>{user.email}</Text>
+                        <Text fz="sm">{user.email}</Text>
                       </>
                     )}
                   </Group>

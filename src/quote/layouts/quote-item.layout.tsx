@@ -48,7 +48,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const [modalOpened, { open, close }] = useDisclosure(false);
   const { isMobile, font } = useSelector((state: RootState) => state.view);
   const [mounted, setMounted] = useState<boolean>(false);
-  console.log("Font", font);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -135,9 +135,11 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                   </Stack>
                 ) : (
                   <Text
-                    style={styles}
-                    ta="center"
-                    className={globalUtility.getFont(font)}>
+                    style={{
+                      ...styles,
+                      ...globalUtility.getFont(font, isMobile),
+                    }}
+                    ta="center">
                     {quote.content}
                   </Text>
                 )}
@@ -146,9 +148,12 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                   <CustomSkeleton />
                 ) : (
                   <Text
-                    style={styles}
+                    style={{
+                      ...styles,
+                      ...globalUtility.getFont(font, isMobile),
+                    }}
                     ta="center"
-                    className={`${globalUtility.getFont(font)} ${themeTxStyle}`}
+                    className={themeTxStyle}
                     onClick={handleNavigateToQuoteByAuthor}>
                     {quote.authorId.name}
                   </Text>

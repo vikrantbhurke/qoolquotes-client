@@ -17,10 +17,10 @@ export const ContactModal = ({ opened, close }: any) => {
       <Tabs defaultValue="message" color={oneTx}>
         <Tabs.List justify="center">
           <Tabs.Tab value="message" leftSection={<I I={IconMail} />}>
-            <Text>Send A Message</Text>
+            <Text fz="sm">Send A Message</Text>
           </Tabs.Tab>
           <Tabs.Tab value="cited-quote" leftSection={<I I={IconMessage2} />}>
-            <Text>Cite A Quote</Text>
+            <Text fz="sm">Cite A Quote</Text>
           </Tabs.Tab>
         </Tabs.List>
 

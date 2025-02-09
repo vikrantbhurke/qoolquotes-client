@@ -13,7 +13,7 @@ export const CustomModalError = ({ message }: any) => {
       <Space />
 
       <Center>
-        <Text>{message}</Text>
+        <Text fz="sm">{message}</Text>
       </Center>
 
       <Pagination.Root value={0} onChange={() => {}} total={0}>

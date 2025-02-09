@@ -107,7 +107,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={todaysIconColor} px={8} py={2} className={roundBorderStyle}>
           <Image src={logo} alt="logo" w={24} p={0} m={0} />
         </Stack>
-        <Text>Today's</Text>
+        <Text fz="sm">Today's</Text>
       </Stack>
 
       <Stack
@@ -119,7 +119,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={feedIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={feedPath} />
         </Stack>
-        <Text>Feed</Text>
+        <Text fz="sm">Feed</Text>
       </Stack>
 
       <Stack
@@ -131,7 +131,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={topicsPath} />
         </Stack>
-        <Text>Topics</Text>
+        <Text fz="sm">Topics</Text>
       </Stack>
 
       <Stack
@@ -147,7 +147,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
           className={roundBorderStyle}>
           <I I={authorsPath} />
         </Stack>
-        <Text>Authors</Text>
+        <Text fz="sm">Authors</Text>
       </Stack>
 
       <Stack
@@ -159,7 +159,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={searchIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={IconSearch} />
         </Stack>
-        <Text>Search</Text>
+        <Text fz="sm">Search</Text>
       </Stack>
     </Group>
   );

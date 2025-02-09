@@ -88,7 +88,7 @@ export const MenuLayout = () => {
               className={oneTxGreenBgMenuButtonPseudoStyle}
               leftSection={<I I={IconDownload} />}
               hiddenFrom={responsiveBreakpoint}>
-              <Text size="sm" c={themeGreenColor}>
+              <Text fz="sm" c={themeGreenColor}>
                 Install App
               </Text>
             </Menu.Item>
@@ -100,7 +100,7 @@ export const MenuLayout = () => {
               p="xs"
               className={oneTxYellowBgMenuButtonPseudoStyle}
               leftSection={<I I={IconUser} />}>
-              <Text size="sm">Profile</Text>
+              <Text fz="sm">Profile</Text>
             </Menu.Item>
           </ComponentOrFragmentRoute>
 
@@ -109,7 +109,7 @@ export const MenuLayout = () => {
             p="xs"
             className={oneTxYellowBgMenuButtonPseudoStyle}
             leftSection={<I I={IconInfoCircle} />}>
-            <Text size="sm">About</Text>
+            <Text fz="sm">About</Text>
           </Menu.Item>
 
           <Menu.Item
@@ -117,7 +117,7 @@ export const MenuLayout = () => {
             p="xs"
             className={oneTxYellowBgMenuButtonPseudoStyle}
             leftSection={<I I={IconMessage} />}>
-            <Text size="sm">Contact</Text>
+            <Text fz="sm">Contact</Text>
           </Menu.Item>
         </Menu.Dropdown>
       </Menu>

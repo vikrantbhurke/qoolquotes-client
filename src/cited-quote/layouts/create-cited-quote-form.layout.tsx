@@ -32,7 +32,9 @@ export const CreateCitedQuoteFormLayout = () => {
         <Group gap={0} align="center" justify="space-between">
           <Space w="md" />
 
-          <Text ta="center">Share with us a qool quote you found.</Text>
+          <Text fz="sm" ta="center">
+            Share with us a qool quote you found.
+          </Text>
 
           {form.isDirty() ? (
             <ActionIcon size="xs" aria-label="Refresh" onClick={form.reset}>
@@ -50,7 +52,7 @@ export const CreateCitedQuoteFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Quote</Text>
+            <Text fz="sm">Quote</Text>
             <Text
               fz="xs"
               c={citedQuoteUtility.getContentColor(form.values.content.length)}>
@@ -77,7 +79,7 @@ export const CreateCitedQuoteFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Author</Text>
+            <Text fz="sm">Author</Text>
             <Text
               fz="xs"
               c={citedQuoteUtility.getAuthorColor(form.values.author.length)}>
@@ -102,7 +104,7 @@ export const CreateCitedQuoteFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Citation</Text>
+            <Text fz="sm">Citation</Text>
           </Group>
 
           <TextInput
@@ -122,7 +124,7 @@ export const CreateCitedQuoteFormLayout = () => {
 
         <Stack gap={0} align="flex-start">
           <Group justify="space-between" w="100%">
-            <Text>Email</Text>
+            <Text fz="sm">Email</Text>
           </Group>
 
           <TextInput

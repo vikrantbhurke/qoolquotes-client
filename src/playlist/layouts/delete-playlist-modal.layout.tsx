@@ -17,7 +17,9 @@ export const DeletePlaylistModalLayout = ({ pid, opened, close }: any) => {
       onClose={close}
       centered>
       <Stack gap="lg">
-        <Text ta="center">Are you sure you want to delete playlist?</Text>
+        <Text fz="sm" ta="center">
+          Are you sure you want to delete playlist?
+        </Text>
 
         <Button
           onClick={handleDeletePlaylistById}

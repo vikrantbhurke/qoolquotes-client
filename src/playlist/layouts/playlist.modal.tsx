@@ -28,7 +28,7 @@ export const PlaylistModal = ({ opened, close }: any) => {
         <CreatePlaylistFormLayout />
 
         <Stack gap="xs">
-          <Text ta="center" fw={textBold}>
+          <Text fz="sm" ta="center" fw={textBold}>
             Add or remove quote
           </Text>
           <GetPlaylistsByCreatorIdModalList />

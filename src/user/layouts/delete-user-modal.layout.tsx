@@ -25,7 +25,9 @@ export const DeleteUserModalLayout = ({ opened, close }: any) => {
       onClose={close}
       centered>
       <Stack gap="lg">
-        <Text ta="center">Are you sure you want to delete account?</Text>
+        <Text fz="sm" ta="center">
+          Are you sure you want to delete account?
+        </Text>
 
         <Button
           onClick={handleDeleteUserById}

@@ -147,7 +147,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                   onClick={handleInstallClick}
                   visibleFrom={responsiveBreakpoint}>
                   <I I={IconDownload} />
-                  <Text c={themeGreenColor} fw={textBold}>
+                  <Text fz="sm" c={themeGreenColor} fw={textBold}>
                     Install App
                   </Text>
                 </Group>
@@ -156,7 +156,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTodaysQuote}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={textBold} className={themeTxStyle}>
+                <Text fz="sm" fw={textBold} className={themeTxStyle}>
                   Today's
                 </Text>
               </Group>
@@ -164,7 +164,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToFeed}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={textBold} className={themeTxStyle}>
+                <Text fz="sm" fw={textBold} className={themeTxStyle}>
                   Feed
                 </Text>
               </Group>
@@ -172,7 +172,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTopics}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={textBold} className={themeTxStyle}>
+                <Text fz="sm" fw={textBold} className={themeTxStyle}>
                   Topics
                 </Text>
               </Group>
@@ -180,7 +180,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToAuthors}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={textBold} className={themeTxStyle}>
+                <Text fz="sm" fw={textBold} className={themeTxStyle}>
                   Authors
                 </Text>
               </Group>
@@ -188,7 +188,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToPlaylists}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={textBold} className={themeTxStyle}>
+                <Text fz="sm" fw={textBold} className={themeTxStyle}>
                   Playlists
                 </Text>
               </Group>
