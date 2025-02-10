@@ -3,7 +3,6 @@ import {
   oneBg,
   threeBg,
   themeDefaultBg,
-  themeGrayBg,
   themeRedBg,
   themePinkBg,
   themeGrapeBg,
@@ -55,45 +54,6 @@ export const oneTxThemeBgMenuButtonPseudoStyle = style({
     [`${vars.darkSelector}:focus`]: {
       color: oneTx,
       backgroundColor: themeDefaultBg,
-    },
-  },
-});
-
-export const oneTxThemeGrayBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
-  transition: "background-color 0.2s ease-in-out",
-  fontFamily: "Inter",
-
-  ":hover": {
-    color: oneTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":active": {
-    color: oneTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":focus": {
-    color: oneTx,
-    backgroundColor: themeGrayBg,
-  },
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: oneTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
-      backgroundColor: themeGrayBg,
     },
   },
 });

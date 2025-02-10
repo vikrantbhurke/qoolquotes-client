@@ -1,15 +1,5 @@
 import { CSSVariablesResolver, lighten, darken } from "@mantine/core";
 import {
-  GrayDarkOne,
-  GrayDarkTwo,
-  GrayDarkThree,
-  GrayDarkFour,
-  GrayDarkFive,
-  GrayLightOne,
-  GrayLightTwo,
-  GrayLightThree,
-  GrayLightFour,
-  GrayLightFive,
   RedDarkOne,
   RedDarkTwo,
   RedDarkThree,
@@ -146,43 +136,12 @@ export const LightFour = darken("#F8FAFD", 0.11);
 export const LightFive = darken("#F8FAFD", 0.14);
 export const LightBorder = darken("#F8FAFD", 0.2);
 
-export const LightDefault = lighten("#424242", 0.6);
-export const LightGray = lighten("#343A40", 0.6);
-export const LightRed = lighten("#c92a2a", 0.6);
-export const LightPink = lighten("#A61E4D", 0.6);
-export const LightGrape = lighten("#862E9C", 0.6);
-export const LightViolet = lighten("#5F3DC4", 0.6);
-export const LightIndigo = lighten("#364FC7", 0.6);
-export const LightBlue = lighten("#1864AB", 0.6);
-export const LightCyan = lighten("#0b7285", 0.6);
-export const LightTeal = lighten("#087f5b", 0.6);
-export const LightGreen = lighten("#2b8a3e", 0.6);
-export const LightLime = lighten("#5c940d", 0.6);
-export const LightYellow = lighten("#DAA520", 0.6);
-export const LightOrange = lighten("#d9480f", 0.6);
-
-export const DarkDefault = darken("#424242", 0.6);
-export const DarkGray = darken("#343A40", 0.6);
-export const DarkRed = darken("#c92a2a", 0.6);
-export const DarkPink = darken("#A61E4D", 0.6);
-export const DarkGrape = darken("#862E9C", 0.6);
-export const DarkViolet = darken("#5F3DC4", 0.6);
-export const DarkIndigo = darken("#364FC7", 0.6);
-export const DarkBlue = darken("#1864AB", 0.6);
-export const DarkCyan = darken("#0b7285", 0.6);
-export const DarkTeal = darken("#087f5b", 0.6);
-export const DarkGreen = darken("#2FBAAA", 0.6);
-export const DarkLime = darken("#5c940d", 0.6);
-export const DarkYellow = darken("#DAA520", 0.6);
-export const DarkOrange = darken("#d9480f", 0.6);
-
 export const resolveCssVariables: CSSVariablesResolver = () => cssVariables();
 
 export const cssVariables = () => {
   return {
     variables: {
-      "--theme-default": "#424242",
-      "--theme-gray": "#343A40",
+      "--theme-default": "#696969",
       "--theme-red": "#c92a2a",
       "--theme-pink": "#a61e4d",
       "--theme-grape": "#862e9c",
@@ -209,16 +168,6 @@ export const cssVariables = () => {
       "--quinary-background": LightFive,
       "--border-low-contrast": LightBorder,
       "--border-high-contrast": DarkBorder,
-      "--primary-gray-text": GrayDarkOne,
-      "--primary-gray-background": GrayLightOne,
-      "--secondary-gray-text": GrayDarkTwo,
-      "--secondary-gray-background": GrayLightTwo,
-      "--tertiary-gray-text": GrayDarkThree,
-      "--tertiary-gray-background": GrayLightThree,
-      "--quaternary-gray-text": GrayDarkFour,
-      "--quaternary-gray-background": GrayLightFour,
-      "--quinary-gray-text": GrayDarkFive,
-      "--quinary-gray-background": GrayLightFive,
       "--primary-red-text": RedDarkOne,
       "--primary-red-background": RedLightOne,
       "--secondary-red-text": RedDarkTwo,
@@ -339,20 +288,19 @@ export const cssVariables = () => {
       "--quaternary-orange-background": OrangeLightFour,
       "--quinary-orange-text": OrangeDarkFive,
       "--quinary-orange-background": OrangeLightFive,
-      "--theme-default-bg": LightDefault,
-      "--theme-gray-bg": LightGray,
-      "--theme-red-bg": LightRed,
-      "--theme-pink-bg": LightPink,
-      "--theme-grape-bg": LightGrape,
-      "--theme-violet-bg": LightViolet,
-      "--theme-indigo-bg": LightIndigo,
-      "--theme-blue-bg": LightBlue,
-      "--theme-cyan-bg": LightCyan,
-      "--theme-teal-bg": LightTeal,
-      "--theme-green-bg": LightGreen,
-      "--theme-lime-bg": LightLime,
-      "--theme-yellow-bg": LightYellow,
-      "--theme-orange-bg": LightOrange,
+      "--theme-default-bg": LightFive,
+      "--theme-red-bg": RedLightFive,
+      "--theme-pink-bg": PinkLightFive,
+      "--theme-grape-bg": GrapeLightFive,
+      "--theme-violet-bg": VioletLightFive,
+      "--theme-indigo-bg": IndigoLightFive,
+      "--theme-blue-bg": BlueLightFive,
+      "--theme-cyan-bg": CyanLightFive,
+      "--theme-teal-bg": TealLightFive,
+      "--theme-green-bg": GreenLightFive,
+      "--theme-lime-bg": LimeLightFive,
+      "--theme-yellow-bg": YellowLightFive,
+      "--theme-orange-bg": OrangeLightFive,
     },
     dark: {
       "--primary-text": LightOne,
@@ -367,16 +315,6 @@ export const cssVariables = () => {
       "--quinary-background": DarkFive,
       "--border-low-contrast": DarkBorder,
       "--border-high-contrast": LightBorder,
-      "--primary-gray-text": GrayLightOne,
-      "--primary-gray-background": GrayDarkOne,
-      "--secondary-gray-text": GrayLightTwo,
-      "--secondary-gray-background": GrayDarkTwo,
-      "--tertiary-gray-text": GrayLightThree,
-      "--tertiary-gray-background": GrayDarkThree,
-      "--quaternary-gray-text": GrayLightFour,
-      "--quaternary-gray-background": GrayDarkFour,
-      "--quinary-gray-text": GrayLightFive,
-      "--quinary-gray-background": GrayDarkFive,
       "--primary-red-text": RedLightOne,
       "--primary-red-background": RedDarkOne,
       "--secondary-red-text": RedLightTwo,
@@ -497,20 +435,19 @@ export const cssVariables = () => {
       "--quaternary-orange-background": OrangeDarkFour,
       "--quinary-orange-text": OrangeLightFive,
       "--quinary-orange-background": OrangeDarkFive,
-      "--theme-default-bg": DarkDefault,
-      "--theme-gray-bg": DarkGray,
-      "--theme-red-bg": DarkRed,
-      "--theme-pink-bg": DarkPink,
-      "--theme-grape-bg": DarkGrape,
-      "--theme-violet-bg": DarkViolet,
-      "--theme-indigo-bg": DarkIndigo,
-      "--theme-blue-bg": DarkBlue,
-      "--theme-cyan-bg": DarkCyan,
-      "--theme-teal-bg": DarkTeal,
-      "--theme-green-bg": DarkGreen,
-      "--theme-lime-bg": DarkLime,
-      "--theme-yellow-bg": DarkYellow,
-      "--theme-orange-bg": DarkOrange,
+      "--theme-default-bg": DarkFive,
+      "--theme-red-bg": RedDarkFive,
+      "--theme-pink-bg": PinkDarkFive,
+      "--theme-grape-bg": GrapeDarkFive,
+      "--theme-violet-bg": VioletDarkFive,
+      "--theme-indigo-bg": IndigoDarkFive,
+      "--theme-blue-bg": BlueDarkFive,
+      "--theme-cyan-bg": CyanDarkFive,
+      "--theme-teal-bg": TealDarkFive,
+      "--theme-green-bg": GreenDarkFive,
+      "--theme-lime-bg": LimeDarkFive,
+      "--theme-yellow-bg": YellowDarkFive,
+      "--theme-orange-bg": OrangeDarkFive,
     },
   };
 };

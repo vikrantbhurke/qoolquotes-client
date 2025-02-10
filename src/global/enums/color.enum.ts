@@ -1,6 +1,5 @@
 export enum Color {
   "Default" = "Default",
-  "Gray" = "Gray",
   "Red" = "Red",
   "Pink" = "Pink",
   "Grape" = "Grape",

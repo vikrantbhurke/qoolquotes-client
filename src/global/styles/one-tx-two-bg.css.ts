@@ -2,7 +2,6 @@ import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 import {
   oneTx,
-  oneGrayTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -16,7 +15,6 @@ import {
   oneYellowTx,
   oneOrangeTx,
   twoBg,
-  twoGrayBg,
   twoRedBg,
   twoPinkBg,
   twoGrapeBg,
@@ -40,19 +38,6 @@ export const oneTxTwoBgStyle = style({
     [vars.darkSelector]: {
       color: oneTx,
       backgroundColor: twoBg,
-    },
-  },
-});
-
-export const oneGrayTxTwoGrayBgStyle = style({
-  color: oneGrayTx,
-  backgroundColor: twoGrayBg,
-  fontFamily: "Inter",
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneGrayTx,
-      backgroundColor: twoGrayBg,
     },
   },
 });

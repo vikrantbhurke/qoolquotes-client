@@ -10,16 +10,6 @@ import {
   fourBg,
   fiveTx,
   fiveBg,
-  oneGrayTx,
-  oneGrayBg,
-  twoGrayTx,
-  twoGrayBg,
-  threeGrayTx,
-  threeGrayBg,
-  fourGrayTx,
-  fourGrayBg,
-  fiveGrayTx,
-  fiveGrayBg,
   oneRedTx,
   oneRedBg,
   twoRedTx,
@@ -141,7 +131,6 @@ import {
   fiveOrangeTx,
   fiveOrangeBg,
   themeDefaultBg,
-  themeGrayBg,
   themeRedBg,
   themePinkBg,
   themeGrapeBg,
@@ -157,7 +146,6 @@ import {
 } from "../styles/renamed.variables";
 import {
   themeTxPseudoStyle,
-  themeGrayTxPseudoStyle,
   themeRedTxPseudoStyle,
   themePinkTxPseudoStyle,
   themeGrapeTxPseudoStyle,
@@ -173,7 +161,6 @@ import {
 } from "../styles/theme-tx-pseudo.css";
 import {
   oneTxOneBgStyle,
-  oneGrayTxOneGrayBgStyle,
   oneRedTxOneRedBgStyle,
   onePinkTxOnePinkBgStyle,
   oneGrapeTxOneGrapeBgStyle,
@@ -189,7 +176,6 @@ import {
 } from "../styles/one-tx-one-bg.css";
 import {
   oneTxTwoBgStyle,
-  oneGrayTxTwoGrayBgStyle,
   oneRedTxTwoRedBgStyle,
   onePinkTxTwoPinkBgStyle,
   oneGrapeTxTwoGrapeBgStyle,
@@ -205,7 +191,6 @@ import {
 } from "../styles/one-tx-two-bg.css";
 import {
   oneTxThemeDefaultBgNavbarButtonPseudoStyle,
-  oneTxThemeGrayBgNavbarButtonPseudoStyle,
   oneTxThemeRedBgNavbarButtonPseudoStyle,
   oneTxThemePinkBgNavbarButtonPseudoStyle,
   oneTxThemeGrapeBgNavbarButtonPseudoStyle,
@@ -221,7 +206,6 @@ import {
 } from "../styles/one-tx-theme-bg-navbar-button-pseudo.css";
 import {
   oneTxThemeBgPillPseudoStyle,
-  oneTxThemeGrayBgPillPseudoStyle,
   oneTxThemeRedBgPillPseudoStyle,
   oneTxThemePinkBgPillPseudoStyle,
   oneTxThemeGrapeBgPillPseudoStyle,
@@ -237,7 +221,6 @@ import {
 } from "../styles/one-tx-theme-bg-pill-pseudo.css";
 import {
   oneTxThemeBgMenuButtonPseudoStyle,
-  oneTxThemeGrayBgMenuButtonPseudoStyle,
   oneTxThemeRedBgMenuButtonPseudoStyle,
   oneTxThemePinkBgMenuButtonPseudoStyle,
   oneTxThemeGrapeBgMenuButtonPseudoStyle,
@@ -330,8 +313,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTx;
-      case Color.Gray:
-        return oneGrayTx;
       case Color.Red:
         return oneRedTx;
       case Color.Pink:
@@ -365,8 +346,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneBg;
-      case Color.Gray:
-        return oneGrayBg;
       case Color.Red:
         return oneRedBg;
       case Color.Pink:
@@ -400,8 +379,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return twoTx;
-      case Color.Gray:
-        return twoGrayTx;
       case Color.Red:
         return twoRedTx;
       case Color.Pink:
@@ -435,8 +412,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return twoBg;
-      case Color.Gray:
-        return twoGrayBg;
       case Color.Red:
         return twoRedBg;
       case Color.Pink:
@@ -470,8 +445,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return threeTx;
-      case Color.Gray:
-        return threeGrayTx;
       case Color.Red:
         return threeRedTx;
       case Color.Pink:
@@ -505,8 +478,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return threeBg;
-      case Color.Gray:
-        return threeGrayBg;
       case Color.Red:
         return threeRedBg;
       case Color.Pink:
@@ -540,8 +511,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return fourTx;
-      case Color.Gray:
-        return fourGrayTx;
       case Color.Red:
         return fourRedTx;
       case Color.Pink:
@@ -575,8 +544,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return fourBg;
-      case Color.Gray:
-        return fourGrayBg;
       case Color.Red:
         return fourRedBg;
       case Color.Pink:
@@ -610,8 +577,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return fiveTx;
-      case Color.Gray:
-        return fiveGrayTx;
       case Color.Red:
         return fiveRedTx;
       case Color.Pink:
@@ -645,8 +610,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return fiveBg;
-      case Color.Gray:
-        return fiveGrayBg;
       case Color.Red:
         return fiveRedBg;
       case Color.Pink:
@@ -680,8 +643,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTxOneBgStyle;
-      case Color.Gray:
-        return oneGrayTxOneGrayBgStyle;
       case Color.Red:
         return oneRedTxOneRedBgStyle;
       case Color.Pink:
@@ -715,8 +676,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTxTwoBgStyle;
-      case Color.Gray:
-        return oneGrayTxTwoGrayBgStyle;
       case Color.Red:
         return oneRedTxTwoRedBgStyle;
       case Color.Pink:
@@ -750,8 +709,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return themeDefaultBg;
-      case Color.Gray:
-        return themeGrayBg;
       case Color.Red:
         return themeRedBg;
       case Color.Pink:
@@ -785,8 +742,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return themeTxPseudoStyle;
-      case Color.Gray:
-        return themeGrayTxPseudoStyle;
       case Color.Red:
         return themeRedTxPseudoStyle;
       case Color.Pink:
@@ -820,8 +775,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTxThemeDefaultBgNavbarButtonPseudoStyle;
-      case Color.Gray:
-        return oneTxThemeGrayBgNavbarButtonPseudoStyle;
       case Color.Red:
         return oneTxThemeRedBgNavbarButtonPseudoStyle;
       case Color.Pink:
@@ -855,8 +808,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTxThemeBgPillPseudoStyle;
-      case Color.Gray:
-        return oneTxThemeGrayBgPillPseudoStyle;
       case Color.Red:
         return oneTxThemeRedBgPillPseudoStyle;
       case Color.Pink:
@@ -890,8 +841,6 @@ export class GlobalUtility {
     switch (color) {
       case Color.Default:
         return oneTxThemeBgMenuButtonPseudoStyle;
-      case Color.Gray:
-        return oneTxThemeGrayBgMenuButtonPseudoStyle;
       case Color.Red:
         return oneTxThemeRedBgMenuButtonPseudoStyle;
       case Color.Pink:

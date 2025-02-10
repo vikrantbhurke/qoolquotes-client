@@ -28,7 +28,6 @@ export const CustomEnumScrollableCombobox = ({
   value,
   handleValue,
   id,
-  Icon = null,
 }: any) => {
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
@@ -48,12 +47,9 @@ export const CustomEnumScrollableCombobox = ({
       key={item}
       value={item}
       className={oneTxThemeYellowBgMenuButtonPseudoStyle}>
-      <Group justify="center">
-        {Icon}
-        <Text fz="sm" tt="capitalize" ta="center">
-          {globalUtility.getKeyByValue(EnumObject, item)}
-        </Text>
-      </Group>
+      <Text fz="sm" tt="capitalize" ta="center">
+        {globalUtility.getKeyByValue(EnumObject, item)}
+      </Text>
     </Combobox.Option>
   ));
 

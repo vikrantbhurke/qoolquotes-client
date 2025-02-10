@@ -2,7 +2,11 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneTx, themeYellowBg } from "@/global/styles/renamed.variables";
+import {
+  oneTx,
+  themeDefaultBg,
+  themeYellowBg,
+} from "@/global/styles/renamed.variables";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text, Image } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -81,7 +85,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
 
   let themeColor = isQuotePage
     ? globalUtility.getThemeBg(color)
-    : themeYellowBg;
+    : themeDefaultBg;
 
   let todaysIconColor = "transparent";
   if (location.pathname === "/") todaysIconColor = themeColor;
@@ -104,7 +108,7 @@ export const FooterLayout = ({ opened, toggle }: any) => {
   const authorsPath =
     location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
 
-  const searchIconColor = isSearchbarVisible ? themeYellowBg : "transparent";
+  const searchIconColor = isSearchbarVisible ? themeDefaultBg : "transparent";
 
   return (
     <Group justify="space-evenly" grow gap={0} h={layoutCompHeight}>

@@ -77,7 +77,11 @@ export const MenuLayout = () => {
           </Menu.Target>
         ) : (
           <Menu.Target>
-            <Burger size="sm" visibleFrom={responsiveBreakpoint} />
+            <Burger
+              size="sm"
+              visibleFrom={responsiveBreakpoint}
+              color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+            />
           </Menu.Target>
         )}
 

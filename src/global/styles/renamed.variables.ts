@@ -6,7 +6,6 @@ export const HCBorder = `2px solid ${borderHCColor}`;
 
 // Theme Colors
 export const themeDefaultColor = "var(--theme-default)";
-export const themeGrayColor = "var(--theme-gray)";
 export const themeRedColor = "var(--theme-red)";
 export const themePinkColor = "var(--theme-pink)";
 export const themeGrapeColor = "var(--theme-grape)";
@@ -22,7 +21,6 @@ export const themeOrangeColor = "var(--theme-orange)";
 
 // Theme Backgrounds
 export const themeDefaultBg = "var(--theme-default-bg)";
-export const themeGrayBg = "var(--theme-gray-bg)";
 export const themeRedBg = "var(--theme-red-bg)";
 export const themePinkBg = "var(--theme-pink-bg)";
 export const themeGrapeBg = "var(--theme-grape-bg)";
@@ -47,18 +45,6 @@ export const fourTx = "var(--quaternary-text)";
 export const fourBg = "var(--quaternary-background)";
 export const fiveTx = "var(--quinary-text)";
 export const fiveBg = "var(--quinary-background)";
-
-// Gray
-export const oneGrayTx = "var(--primary-gray-text)";
-export const oneGrayBg = "var(--primary-gray-background)";
-export const twoGrayTx = "var(--secondary-gray-text)";
-export const twoGrayBg = "var(--secondary-gray-background)";
-export const threeGrayTx = "var(--tertiary-gray-text)";
-export const threeGrayBg = "var(--tertiary-gray-background)";
-export const fourGrayTx = "var(--quaternary-gray-text)";
-export const fourGrayBg = "var(--quaternary-gray-background)";
-export const fiveGrayTx = "var(--quinary-gray-text)";
-export const fiveGrayBg = "var(--quinary-gray-background)";
 
 // Red
 export const oneRedTx = "var(--primary-red-text)";

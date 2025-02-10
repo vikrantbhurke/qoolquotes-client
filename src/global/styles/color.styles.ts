@@ -1,16 +1,5 @@
 import { lighten, darken } from "@mantine/core";
 
-export const GrayDarkOne = "#101113";
-export const GrayDarkTwo = lighten("#101113", 0.03);
-export const GrayDarkThree = lighten("#101113", 0.06);
-export const GrayDarkFour = lighten("#101113", 0.09);
-export const GrayDarkFive = lighten("#101113", 0.12);
-export const GrayLightOne = "#f1f3f5";
-export const GrayLightTwo = darken("#f1f3f5", 0.05);
-export const GrayLightThree = darken("#f1f3f5", 0.08);
-export const GrayLightFour = darken("#f1f3f5", 0.11);
-export const GrayLightFive = darken("#f1f3f5", 0.14);
-
 export const RedDarkOne = "#280808";
 export const RedDarkTwo = lighten("#280808", 0.03);
 export const RedDarkThree = lighten("#280808", 0.06);

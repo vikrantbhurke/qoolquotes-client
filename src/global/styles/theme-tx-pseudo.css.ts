@@ -1,7 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import {
   oneTx,
-  oneGrayTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -15,7 +14,6 @@ import {
   oneYellowTx,
   oneOrangeTx,
   themeDefaultColor,
-  themeGrayColor,
   themeRedColor,
   themePinkColor,
   themeGrapeColor,
@@ -42,21 +40,6 @@ export const themeTxPseudoStyle = style({
   },
   ":focus": {
     color: themeDefaultColor,
-  },
-});
-
-export const themeGrayTxPseudoStyle = style({
-  color: oneGrayTx,
-  transition: "color 0.2s ease-in-out",
-
-  ":hover": {
-    color: themeGrayColor,
-  },
-  ":active": {
-    color: themeGrayColor,
-  },
-  ":focus": {
-    color: themeGrayColor,
   },
 });
 

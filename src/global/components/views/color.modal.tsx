@@ -60,11 +60,6 @@ export const ColorModal = ({ opened, close }: any) => {
           data={Object.values(Color)}
           handleValue={handleColor}
           value={globalUtility.getKeyByValue(Color, color)}
-          Icon={
-            <ColorSwatch color="maroon" style={{ color: "#fff" }} radius="sm">
-              <I I={IconLetterA} />
-            </ColorSwatch>
-          }
         />
       </Stack>
     </Modal>

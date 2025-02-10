@@ -1,6 +1,5 @@
 import {
   oneTx,
-  oneGrayTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -14,7 +13,6 @@ import {
   oneYellowTx,
   oneOrangeTx,
   oneBg,
-  oneGrayBg,
   oneRedBg,
   onePinkBg,
   oneGrapeBg,
@@ -28,7 +26,6 @@ import {
   oneYellowBg,
   oneOrangeBg,
   themeDefaultBg,
-  themeGrayBg,
   themeRedBg,
   themePinkBg,
   themeGrapeBg,
@@ -80,45 +77,6 @@ export const oneTxThemeDefaultBgNavbarButtonPseudoStyle = style({
     [`${vars.darkSelector}:focus`]: {
       color: oneTx,
       backgroundColor: themeDefaultBg,
-    },
-  },
-});
-
-export const oneTxThemeGrayBgNavbarButtonPseudoStyle = style({
-  color: oneGrayTx,
-  backgroundColor: oneGrayBg,
-  transition: "background-color 0.2s ease-in-out",
-  fontFamily: "Inter",
-
-  ":hover": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":active": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":focus": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneGrayTx,
-      backgroundColor: oneGrayBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
     },
   },
 });

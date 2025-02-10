@@ -1,6 +1,5 @@
 import {
   oneTx,
-  oneGrayTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -14,7 +13,6 @@ import {
   oneYellowTx,
   oneOrangeTx,
   threeBg,
-  threeGrayBg,
   threeRedBg,
   threePinkBg,
   threeGrapeBg,
@@ -28,7 +26,6 @@ import {
   threeYellowBg,
   threeOrangeBg,
   themeDefaultBg,
-  themeGrayBg,
   themeRedBg,
   themePinkBg,
   themeGrapeBg,
@@ -80,45 +77,6 @@ export const oneTxThemeBgPillPseudoStyle = style({
     [`${vars.darkSelector}:focus`]: {
       color: oneTx,
       backgroundColor: themeDefaultBg,
-    },
-  },
-});
-
-export const oneTxThemeGrayBgPillPseudoStyle = style({
-  color: oneGrayTx,
-  backgroundColor: threeGrayBg,
-  transition: "background-color 0.2s ease-in-out",
-  fontFamily: "Inter",
-
-  ":hover": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":active": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-  ":focus": {
-    color: oneGrayTx,
-    backgroundColor: themeGrayBg,
-  },
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneGrayTx,
-      backgroundColor: threeGrayBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: oneGrayTx,
-      backgroundColor: themeGrayBg,
     },
   },
 });

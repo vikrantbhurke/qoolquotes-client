@@ -296,9 +296,17 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                       onClick={toggle}
                       src={auth.profilepic}
                       hiddenFrom={responsiveBreakpoint}
+                      color={
+                        isQuotePage ? globalUtility.getOneTx(color) : oneTx
+                      }
                     />
                   ) : (
-                    <Avatar onClick={toggle} hiddenFrom={responsiveBreakpoint}>
+                    <Avatar
+                      onClick={toggle}
+                      hiddenFrom={responsiveBreakpoint}
+                      color={
+                        isQuotePage ? globalUtility.getOneTx(color) : oneTx
+                      }>
                       {auth.firstname[0]}
                       {auth.lastname[0]}
                     </Avatar>
@@ -309,8 +317,8 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                   opened={opened}
                   onClick={toggle}
                   hiddenFrom={responsiveBreakpoint}
+                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
                   size="sm"
-                  c={oneTx}
                 />
               )}
             </Group>

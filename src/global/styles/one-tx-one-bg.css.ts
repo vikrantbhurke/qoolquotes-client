@@ -1,6 +1,5 @@
 import {
   oneTx,
-  oneGrayTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -14,7 +13,6 @@ import {
   oneYellowTx,
   oneOrangeTx,
   oneBg,
-  oneGrayBg,
   oneRedBg,
   onePinkBg,
   oneGrapeBg,
@@ -40,19 +38,6 @@ export const oneTxOneBgStyle = style({
     [vars.darkSelector]: {
       color: oneTx,
       backgroundColor: oneBg,
-    },
-  },
-});
-
-export const oneGrayTxOneGrayBgStyle = style({
-  color: oneGrayTx,
-  backgroundColor: oneGrayBg,
-  fontFamily: "Inter",
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneGrayTx,
-      backgroundColor: oneGrayBg,
     },
   },
 });
