@@ -7,6 +7,7 @@ import { RootState } from "@/global/states/store";
 import { deleteUserById } from "@/user/user.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NotificationColor } from "@/global/enums";
+import { resetColor, resetFont } from "@/global/states/view.slice";
 
 export const useDeleteUserById = () => {
   const navigate = useNavigate();
@@ -41,6 +42,8 @@ export const useDeleteUserById = () => {
 
     onSuccess: async () => {
       dispatch(signOut());
+      dispatch(resetFont());
+      dispatch(resetColor());
 
       await queryClient.invalidateQueries();
       showNotification("Account deleted.", NotificationColor.Success);

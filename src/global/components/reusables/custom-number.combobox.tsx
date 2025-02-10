@@ -3,7 +3,10 @@ import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
 import { oneTxThemeYellowBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
-import { oneTx, threeBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultTx,
+  threeDefaultBg,
+} from "@/global/styles/renamed.variables";
 import {
   getDropdownStyles,
   getComboboxTextInputForPaginationStyles,
@@ -55,8 +58,10 @@ export const CustomNumberCombobox = ({
     </Combobox.Option>
   ));
 
-  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneTx;
-  const ThreeBgColor = isQuotePage ? globalUtility.getThreeBg(color) : threeBg;
+  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneDefaultTx;
+  const threeBgColor = isQuotePage
+    ? globalUtility.getThreeBg(color)
+    : threeDefaultBg;
 
   return (
     <Combobox
@@ -74,7 +79,7 @@ export const CustomNumberCombobox = ({
           readOnly
           styles={getComboboxTextInputForPaginationStyles(
             oneTxColor,
-            ThreeBgColor
+            threeBgColor
           )}
           wrapperProps={{
             onFocus: () => handleFocus(id),

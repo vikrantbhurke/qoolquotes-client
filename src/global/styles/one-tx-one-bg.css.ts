@@ -1,5 +1,5 @@
 import {
-  oneTx,
+  oneDefaultTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -12,7 +12,7 @@ import {
   oneLimeTx,
   oneYellowTx,
   oneOrangeTx,
-  oneBg,
+  oneDefaultBg,
   oneRedBg,
   onePinkBg,
   oneGrapeBg,
@@ -29,15 +29,15 @@ import {
 import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 
-export const oneTxOneBgStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+export const oneDefaultTxOneDefaultBgStyle = style({
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   fontFamily: "Inter",
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: oneBg,
+      color: oneDefaultTx,
+      backgroundColor: oneDefaultBg,
     },
   },
 });

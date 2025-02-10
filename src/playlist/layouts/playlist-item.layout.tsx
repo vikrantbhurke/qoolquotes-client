@@ -18,7 +18,11 @@ import {
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -82,14 +86,14 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
         />
       )}
 
-      <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
         <Stack h="100%" gap="xl" align="center" justify="space-between">
           <Space visibleFrom={responsiveBreakpoint} h={isMobile ? 50 : 90} />
 
           <Stack
             w={isMobile ? "100%" : 400}
             gap="lg"
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Stack gap="sm">
@@ -207,14 +211,14 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
             <Grid>
               <Grid.Col span={4}>
                 {isPending ? (
-                  <Button fullWidth c={oneBg} bg={oneTx}>
+                  <Button fullWidth c={oneDefaultBg} bg={oneDefaultTx}>
                     View
                   </Button>
                 ) : (
                   <Button
                     fullWidth
-                    c={oneBg}
-                    bg={oneTx}
+                    c={oneDefaultBg}
+                    bg={oneDefaultTx}
                     onClick={handleNavigateToQuotesByPlaylist}>
                     View
                   </Button>

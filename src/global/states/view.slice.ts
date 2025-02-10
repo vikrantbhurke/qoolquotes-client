@@ -2,6 +2,44 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Color, Font } from "../enums";
 
+const loadFont = () => {
+  try {
+    const serializedFont = localStorage.getItem("font");
+    return serializedFont ? JSON.parse(serializedFont) : undefined;
+  } catch (err) {
+    console.error("Could not load font", err);
+    return undefined;
+  }
+};
+
+const saveFont = (font: Font) => {
+  try {
+    const serializedFont = JSON.stringify(font);
+    localStorage.setItem("font", serializedFont);
+  } catch (err) {
+    console.error("Could not save font", err);
+  }
+};
+
+const loadColor = () => {
+  try {
+    const serializedColor = localStorage.getItem("color");
+    return serializedColor ? JSON.parse(serializedColor) : undefined;
+  } catch (err) {
+    console.error("Could not load color", err);
+    return undefined;
+  }
+};
+
+const saveColor = (color: Color) => {
+  try {
+    const serializedColor = JSON.stringify(color);
+    localStorage.setItem("color", serializedColor);
+  } catch (err) {
+    console.error("Could not save color", err);
+  }
+};
+
 export interface ViewState {
   search: string;
   width: number;
@@ -24,8 +62,8 @@ const initialState: ViewState = {
   isMobile: false,
   isAdHeaderVisible: false,
   isPaginationVisible: false,
-  font: Font.Inter,
-  color: Color.Default,
+  font: loadFont() || Font.Inter,
+  color: loadColor() || Color.Default,
 };
 
 export const viewSlice = createSlice({
@@ -58,9 +96,19 @@ export const viewSlice = createSlice({
     },
     setFont: (state, action: PayloadAction<Font>) => {
       state.font = action.payload;
+      saveFont(action.payload);
+    },
+    resetFont: (state) => {
+      state.font = Font.Inter;
+      saveFont(Font.Inter);
     },
     setColor: (state, action: PayloadAction<Color>) => {
       state.color = action.payload;
+      saveColor(action.payload);
+    },
+    resetColor: (state) => {
+      state.color = Color.Default;
+      saveColor(Color.Default);
     },
   },
 });
@@ -75,7 +123,9 @@ export const {
   setIsAdHeaderVisible,
   setIsPaginationVisible,
   setFont,
+  resetFont,
   setColor,
+  resetColor,
 } = viewSlice.actions;
 
 export default viewSlice.reducer;

@@ -1,7 +1,7 @@
 import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 import {
-  oneTx,
+  oneDefaultTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -14,7 +14,7 @@ import {
   oneLimeTx,
   oneYellowTx,
   oneOrangeTx,
-  twoBg,
+  twoDefaultBg,
   twoRedBg,
   twoPinkBg,
   twoGrapeBg,
@@ -29,15 +29,15 @@ import {
   twoOrangeBg,
 } from "./renamed.variables";
 
-export const oneTxTwoBgStyle = style({
-  color: oneTx,
-  backgroundColor: twoBg,
+export const oneDefaultTxTwoDefaultBgStyle = style({
+  color: oneDefaultTx,
+  backgroundColor: twoDefaultBg,
   fontFamily: "Inter",
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: twoBg,
+      color: oneDefaultTx,
+      backgroundColor: twoDefaultBg,
     },
   },
 });

@@ -1,5 +1,5 @@
 import {
-  oneTx,
+  oneDefaultTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -12,7 +12,7 @@ import {
   oneLimeTx,
   oneYellowTx,
   oneOrangeTx,
-  threeBg,
+  threeDefaultBg,
   threeRedBg,
   threePinkBg,
   threeGrapeBg,
@@ -42,40 +42,40 @@ import {
 import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 
-export const oneTxThemeBgPillPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: threeBg,
+export const oneTxThemeDefaultBgPillPseudoStyle = style({
+  color: oneDefaultTx,
+  backgroundColor: threeDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
   },

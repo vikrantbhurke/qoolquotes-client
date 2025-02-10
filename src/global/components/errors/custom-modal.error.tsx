@@ -1,5 +1,5 @@
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { Center, Group, Pagination, Space, Stack, Text } from "@mantine/core";
 
 export const CustomModalError = ({ message }: any) => {
@@ -8,7 +8,7 @@ export const CustomModalError = ({ message }: any) => {
       gap={2}
       p={3}
       h={200}
-      bg={oneBg}
+      bg={oneDefaultBg}
       className={roundBorderStyle}
       justify="space-between">
       <Space />

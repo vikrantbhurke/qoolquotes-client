@@ -21,7 +21,11 @@ import {
   IconFilterFilled,
 } from "@tabler/icons-react";
 import { roundTopBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { oneTxOneBgButtonPseudoStyle } from "@/global/styles/one-tx-one-bg-button-pseudo.css";
 import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
@@ -59,7 +63,7 @@ export const TopicsLayout = () => {
   const isSearching = location.pathname.includes("search");
 
   return (
-    <Box component="div" bg={twoBg}>
+    <Box component="div" bg={twoDefaultBg}>
       <Container
         size={authorTopicLayoutWidth}
         p={0}
@@ -67,7 +71,7 @@ export const TopicsLayout = () => {
         <Stack
           gap={0}
           h="100%"
-          bg={oneBg}
+          bg={oneDefaultBg}
           className={`${!isMobile && roundTopBorderStyle}`}>
           <Group px="sm" justify="space-between" gap={0}>
             <Group gap={3}>
@@ -100,7 +104,7 @@ export const TopicsLayout = () => {
             <ActionIcon
               ml={marginLeft}
               h={layoutCompHeight}
-              c={isFilterApplied ? "green" : oneTx}
+              c={isFilterApplied ? "green" : oneDefaultTx}
               className={oneTxOneBgButtonPseudoStyle}
               onClick={isMobile ? drawerOpen : modalOpen}>
               {isFilterApplied ? (

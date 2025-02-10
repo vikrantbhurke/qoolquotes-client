@@ -3,7 +3,11 @@ import { useAuthReroute } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { useSignInUserForm } from "@/user/hooks/create";
 import {
@@ -49,13 +53,13 @@ export const SignInUserFormLayout = () => {
   const handleBlur = () => dispatch(setFocusedInput(""));
 
   return (
-    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+    <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
       <Stack px="md" justify="center" align="center" h="100%">
         <form onSubmit={form.onSubmit(handleSignInUser)}>
           <Stack
             w={400}
             gap="lg"
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Center h={128}>
@@ -92,7 +96,7 @@ export const SignInUserFormLayout = () => {
               <Text fz="sm" c="dimmed" ta="center" mt={5}>
                 Do not have an account yet?{" "}
                 <Anchor
-                  c={oneTx}
+                  c={oneDefaultTx}
                   underline="never"
                   onClick={handleNavigateToSignUp}>
                   Create account
@@ -142,10 +146,10 @@ export const SignInUserFormLayout = () => {
               disabled={isPending}
               type="submit"
               fullWidth
-              c={oneBg}
-              bg={oneTx}
+              c={oneDefaultBg}
+              bg={oneDefaultTx}
               loading={isPending}
-              loaderProps={{ type: "dots", color: oneBg }}>
+              loaderProps={{ type: "dots", color: oneDefaultBg }}>
               Sign In
             </Button>
           </Stack>

@@ -1,6 +1,6 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useRef } from "react";
@@ -54,7 +54,7 @@ export const CustomList = ({
           {dataArray.map((item: any, index: number) => {
             return (
               <Box key={index} px="xs">
-                <Box h="100%" bg={oneBg} component="div">
+                <Box h="100%" bg={oneDefaultBg} component="div">
                   <ListItemLayout item={item} />
                 </Box>
               </Box>
@@ -68,7 +68,7 @@ export const CustomList = ({
         style={{
           zIndex: 1,
         }}
-        bg={oneBg}>
+        bg={oneDefaultBg}>
         <CustomNumberCombobox
           data={Array.from({ length: totalPages }, (_, i) => i + 1)}
           value={page}

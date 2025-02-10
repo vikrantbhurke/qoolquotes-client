@@ -1,4 +1,7 @@
-import { oneTx, threeBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultTx,
+  threeDefaultBg,
+} from "@/global/styles/renamed.variables";
 import {
   QuoteLikesCountLayout,
   QuoteLikerReadonlyButtonLayout,
@@ -169,8 +172,8 @@ export const QuoteGridItemLayout = ({ item }: any) => {
               label="Copied!"
               position="bottom"
               opened={opened}
-              bg={threeBg}
-              c={oneTx}>
+              bg={threeDefaultBg}
+              c={oneDefaultTx}>
               {opened ? (
                 <ActionIcon c="teal" aria-label="Copy to clipboard">
                   <I I={IconCheck} color="teal" />

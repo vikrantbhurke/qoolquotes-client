@@ -4,7 +4,7 @@ import { useRemoveQuoteFromPlaylist } from "../hooks/delete";
 import { useCheckPlaylistQuote } from "../hooks/read";
 import { useSelector } from "react-redux";
 import { getDropdownStyles } from "@/global/styles/global.styles";
-import { HCBorder, oneTx } from "@/global/styles/renamed.variables";
+import { HCBorder, oneDefaultTx } from "@/global/styles/renamed.variables";
 import { RootState } from "@/global/states/store";
 
 export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
@@ -39,7 +39,7 @@ export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
       styles={{
         input: { border: HCBorder, backgroundColor: dropdownBg },
       }}
-      iconColor={oneTx}
+      iconColor={oneDefaultTx}
       checked={playlistQuote?.exists || false}
       onChange={handleChange}
     />

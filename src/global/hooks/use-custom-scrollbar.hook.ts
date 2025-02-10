@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { twoBg } from "../styles/renamed.variables";
+import { twoDefaultBg } from "../styles/renamed.variables";
 
 export const useCustomScrollbar = () => {
   useEffect(() => {
@@ -11,7 +11,7 @@ export const useCustomScrollbar = () => {
     
           .custom-scrollbar::-webkit-scrollbar {
             width: 10px;
-            background: ${twoBg};
+            background: ${twoDefaultBg};
           }
     
           .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -22,7 +22,7 @@ export const useCustomScrollbar = () => {
     
           .custom-scrollbar {
             scrollbar-width: thin;
-            scrollbar-color: gray ${twoBg};
+            scrollbar-color: gray ${twoDefaultBg};
           }
         `;
     document.head.appendChild(style);

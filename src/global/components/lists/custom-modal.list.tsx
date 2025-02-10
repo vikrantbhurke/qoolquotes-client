@@ -1,5 +1,5 @@
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { fiveBg, twoBg } from "@/global/styles/renamed.variables";
+import { fiveDefaultBg, twoDefaultBg } from "@/global/styles/renamed.variables";
 import { Group, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { Fragment, useRef } from "react";
@@ -34,7 +34,7 @@ export const CustomModalList = ({
       gap={2}
       p={3}
       h={200}
-      bg={twoBg}
+      bg={twoDefaultBg}
       className={roundBorderStyle}
       justify="space-between">
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
@@ -48,9 +48,9 @@ export const CustomModalList = ({
       </ScrollArea>
 
       <Pagination.Root value={page} onChange={handlePage} total={totalPages}>
-        <Group gap={5} justify="space-evenly" py={2} bg={twoBg}>
-          <Pagination.Previous w="49%" bg={fiveBg} />
-          <Pagination.Next w="49%" bg={fiveBg} />
+        <Group gap={5} justify="space-evenly" py={2} bg={twoDefaultBg}>
+          <Pagination.Previous w="49%" bg={fiveDefaultBg} />
+          <Pagination.Next w="49%" bg={fiveDefaultBg} />
         </Group>
       </Pagination.Root>
     </Stack>

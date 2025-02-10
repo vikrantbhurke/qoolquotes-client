@@ -15,8 +15,8 @@ import {
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { noBorderStyle } from "@/global/styles/app.css";
-import { oneTxOneBgStyle } from "@/global/styles/one-tx-one-bg.css";
-import { oneTxTwoBgStyle } from "@/global/styles/one-tx-two-bg.css";
+import { oneDefaultTxOneDefaultBgStyle } from "@/global/styles/one-tx-one-bg.css";
+import { oneDefaultTxTwoDefaultBgStyle } from "@/global/styles/one-tx-two-bg.css";
 import {
   useIsQuotePage,
   useViewInfo,
@@ -43,55 +43,60 @@ export const AppLayout = () => {
     opened
   );
 
+  const oneTxOneBgStyles = isQuotePage
+    ? globalUtility.getOneTxOneBgStyle(color)
+    : oneDefaultTxOneDefaultBgStyle;
+
+  const oneTxTwoBgStyles = isQuotePage
+    ? globalUtility.getOneTxTwoBgStyle(color)
+    : oneDefaultTxTwoDefaultBgStyle;
+
   return (
     <AppShell
       header={header}
       navbar={navbar}
       aside={aside}
       footer={footer}
-      className={`${isQuotePage ? globalUtility.getOneTxOneBgStyle(color) : oneTxOneBgStyle}`}
+      className={`${oneTxOneBgStyles}`}
       p={0}>
       <AppShell.Header
         visibleFrom={responsiveBreakpoint}
         style={{ zIndex: 2 }}
-        className={`${`${isQuotePage ? globalUtility.getOneTxTwoBgStyle(color) : oneTxTwoBgStyle} ${noBorderStyle}`}`}>
+        className={`${`${oneTxTwoBgStyles} ${noBorderStyle}`}`}>
         <HeaderLayout opened={opened} toggle={toggle} />
       </AppShell.Header>
 
       <AppShell.Header
         hiddenFrom={responsiveBreakpoint}
         style={{ zIndex: 2 }}
-        className={`${isQuotePage ? globalUtility.getOneTxOneBgStyle(color) : oneTxOneBgStyle} ${noBorderStyle}`}>
+        className={`${oneTxOneBgStyles} ${noBorderStyle}`}>
         <HeaderLayout opened={opened} toggle={toggle} />
       </AppShell.Header>
 
       <AppShell.Navbar
         style={{ zIndex: 2 }}
         hiddenFrom={responsiveBreakpoint}
-        className={`${isQuotePage ? globalUtility.getOneTxOneBgStyle(color) : oneTxOneBgStyle}`}>
+        className={oneTxOneBgStyles}>
         <NavbarMobileLayout toggle={toggle} />
       </AppShell.Navbar>
 
       <AppShell.Navbar
         visibleFrom={responsiveBreakpoint}
-        className={`${isQuotePage ? globalUtility.getOneTxTwoBgStyle(color) : oneTxTwoBgStyle} ${noBorderStyle}`}>
+        className={`${oneTxTwoBgStyles} ${noBorderStyle}`}>
         <NavbarDesktopLayout />
       </AppShell.Navbar>
 
-      <AppShell.Aside
-        className={`${isQuotePage ? globalUtility.getOneTxTwoBgStyle(color) : oneTxTwoBgStyle} ${noBorderStyle}`}>
+      <AppShell.Aside className={`${oneTxTwoBgStyles} ${noBorderStyle}`}>
         <AsideLayout />
       </AppShell.Aside>
 
-      <AppShell.Main
-        className={`${isQuotePage ? globalUtility.getOneTxOneBgStyle(color) : oneTxOneBgStyle}`}
-        h="100vh">
+      <AppShell.Main className={oneTxOneBgStyles} h="100vh">
         <MainLayout />
       </AppShell.Main>
 
       <AppShell.Footer
         style={{ zIndex: 2 }}
-        className={`${noBorderStyle} ${isQuotePage ? globalUtility.getOneTxOneBgStyle(color) : oneTxOneBgStyle}`}
+        className={`${noBorderStyle} ${oneTxOneBgStyles}`}
         hiddenFrom={responsiveBreakpoint}>
         <FooterLayout opened={opened} toggle={toggle} />
       </AppShell.Footer>

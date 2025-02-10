@@ -1,5 +1,20 @@
 import { lighten, darken } from "@mantine/core";
 
+export const DefaultDarkBorder = lighten("#09090B", 0.1);
+export const DefaultLightBorder = darken("#F8FAFD", 0.2);
+
+export const DefaultDarkOne = "#09090B";
+export const DefaultDarkTwo = lighten("#09090B", 0.03);
+export const DefaultDarkThree = lighten("#09090B", 0.06);
+export const DefaultDarkFour = lighten("#09090B", 0.09);
+export const DefaultDarkFive = lighten("#09090B", 0.12);
+
+export const DefaultLightOne = "#FFFFFF";
+export const DefaultLightTwo = darken("#F8FAFD", 0.05);
+export const DefaultLightThree = darken("#F8FAFD", 0.08);
+export const DefaultLightFour = darken("#F8FAFD", 0.11);
+export const DefaultLightFive = darken("#F8FAFD", 0.14);
+
 export const RedDarkOne = "#280808";
 export const RedDarkTwo = lighten("#280808", 0.03);
 export const RedDarkThree = lighten("#280808", 0.06);

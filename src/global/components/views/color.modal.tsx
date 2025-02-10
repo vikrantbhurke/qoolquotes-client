@@ -1,13 +1,21 @@
 import { Color } from "@/global/enums";
 import { RootState } from "@/global/states/store";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import { ActionIcon, Group, Modal, Space, Stack } from "@mantine/core";
+import {
+  ActionIcon,
+  ColorSwatch,
+  Group,
+  Modal,
+  Space,
+  Stack,
+} from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { CustomEnumScrollableCombobox, I } from "../reusables";
 import { globalUtility } from "@/global/utilities";
-import { IconRefresh } from "@tabler/icons-react";
-import { setColor } from "@/global/states/view.slice";
+import { IconLetterA, IconRefresh } from "@tabler/icons-react";
+import { resetColor, setColor } from "@/global/states/view.slice";
+import { borderHCStyle } from "@/global/styles/app.css";
 
 export const ColorModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
@@ -18,7 +26,7 @@ export const ColorModal = ({ opened, close }: any) => {
   };
 
   const handleRefresh = () => {
-    dispatch(setColor(Color.Default));
+    dispatch(resetColor());
   };
 
   return (
@@ -32,6 +40,13 @@ export const ColorModal = ({ opened, close }: any) => {
       <Stack align="center" gap="xs">
         <Group justify="space-between" w="100%">
           <Space w="md" />
+
+          <ColorSwatch
+            color={globalUtility.getOneBg(color)}
+            size={40}
+            className={borderHCStyle}>
+            <I I={IconLetterA} c={globalUtility.getOneTx(color)} />
+          </ColorSwatch>
 
           {color !== Color.Default ? (
             <ActionIcon aria-label="Refresh" onClick={handleRefresh}>

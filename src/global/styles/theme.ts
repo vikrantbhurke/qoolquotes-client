@@ -1,6 +1,6 @@
 import { themeToVars } from "@mantine/vanilla-extract";
 import { interFontStyle } from "./app.css";
-import { oneTx, threeBg } from "./renamed.variables";
+import { oneDefaultTx, threeDefaultBg } from "./renamed.variables";
 import {
   Text,
   createTheme,
@@ -19,7 +19,7 @@ export const theme = createTheme({
   components: {
     Button: Button.extend({
       defaultProps: {
-        color: oneTx,
+        color: oneDefaultTx,
         className: interFontStyle,
         radius: 8,
       },
@@ -28,21 +28,21 @@ export const theme = createTheme({
     ActionIcon: ActionIcon.extend({
       defaultProps: {
         bg: "transparent",
-        c: oneTx,
+        c: oneDefaultTx,
         size: "xs",
       },
     }),
 
     Text: Text.extend({
       defaultProps: {
-        color: oneTx,
+        color: oneDefaultTx,
         className: interFontStyle,
       },
     }),
 
     Textarea: Textarea.extend({
       defaultProps: {
-        color: oneTx,
+        color: oneDefaultTx,
         radius: "md",
         className: interFontStyle,
       },
@@ -50,7 +50,7 @@ export const theme = createTheme({
 
     TextInput: TextInput.extend({
       defaultProps: {
-        color: oneTx,
+        color: oneDefaultTx,
         radius: "md",
         className: interFontStyle,
       },
@@ -64,7 +64,7 @@ export const theme = createTheme({
 
     PasswordInput: PasswordInput.extend({
       defaultProps: {
-        color: oneTx,
+        color: oneDefaultTx,
         radius: "md",
         className: interFontStyle,
       },
@@ -72,7 +72,7 @@ export const theme = createTheme({
 
     Title: Title.extend({
       defaultProps: {
-        c: oneTx,
+        c: oneDefaultTx,
         className: interFontStyle,
       },
     }),
@@ -93,8 +93,8 @@ export const theme = createTheme({
 
       styles: {
         control: {
-          color: oneTx,
-          backgroundColor: threeBg,
+          color: oneDefaultTx,
+          backgroundColor: threeDefaultBg,
           border: "none",
           className: interFontStyle,
         },

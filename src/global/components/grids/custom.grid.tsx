@@ -2,7 +2,7 @@ import { Breakpoint } from "@/global/enums";
 import { useCustomScrollbar } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneTxOneBgStyle } from "@/global/styles/one-tx-one-bg.css";
+import { oneDefaultTxOneDefaultBgStyle } from "@/global/styles/one-tx-one-bg.css";
 import { listItemHeight } from "@/global/styles/global.styles";
 import { globalUtility } from "@/global/utilities";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
@@ -139,7 +139,7 @@ export const CustomGrid = ({
         <Box component="div" mx={isMobile ? 0 : 16}>
           <Center
             h={listItemHeight}
-            className={`${oneTxOneBgStyle} ${roundBorderStyle}`}>
+            className={`${oneDefaultTxOneDefaultBgStyle} ${roundBorderStyle}`}>
             <Text fz="sm">An error occured.</Text>
           </Center>
         </Box>

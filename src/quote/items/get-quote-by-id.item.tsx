@@ -1,7 +1,7 @@
 import { useGetQuoteById } from "../hooks/read";
 import { QuoteItemLayout } from "../layouts";
 import { CustomError } from "@/global/components/errors";
-import { twoBg } from "@/global/styles/renamed.variables";
+import { twoDefaultBg } from "@/global/styles/renamed.variables";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
@@ -9,7 +9,7 @@ export const GetQuoteByIdItem = () => {
   const { quote, isPending, isError, error } = useGetQuoteById();
   const { isMobile } = useSelector((state: RootState) => state.view);
 
-  const bg = isMobile ? "" : twoBg;
+  const bg = isMobile ? "" : twoDefaultBg;
 
   if (isError) return <CustomError message={error?.message} bg={bg} />;
   if (!quote && !isPending)

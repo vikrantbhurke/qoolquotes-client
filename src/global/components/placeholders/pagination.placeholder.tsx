@@ -1,4 +1,4 @@
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { getTopRoundBordersStyles } from "@/global/styles/global.styles";
 import { Center, Pagination } from "@mantine/core";
 import { CustomNumberCombobox } from "../reusables";
@@ -15,7 +15,7 @@ export const PaginationPlaceholder = () => {
           zIndex: 1,
           ...getTopRoundBordersStyles(isMobile),
         }}
-        bg={oneBg}>
+        bg={oneDefaultBg}>
         <CustomNumberCombobox
           data={[1]}
           value={1}

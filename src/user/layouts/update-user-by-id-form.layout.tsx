@@ -20,7 +20,12 @@ import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh } from "@tabler/icons-react";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg, fiveTx } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+  fiveDefaultTx,
+} from "@/global/styles/renamed.variables";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
@@ -56,17 +61,17 @@ export const UpdateUserByIdFormLayout = () => {
   const handleCancel = () => navigate(-1);
 
   return (
-    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+    <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
       <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
         <form onSubmit={form.onSubmit(handleUpdateUserById)}>
           <Stack
             w={400}
             gap="lg"
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Modal
-              c={oneTx}
+              c={oneDefaultTx}
               styles={modal}
               opened={picViewOpened}
               onClose={() => setOpened(false)}
@@ -117,7 +122,11 @@ export const UpdateUserByIdFormLayout = () => {
             <Stack gap="sm">
               <Stack>
                 {file && (
-                  <Text p="xs" fz="xs" bg={twoBg} className={roundBorderStyle}>
+                  <Text
+                    p="xs"
+                    fz="xs"
+                    bg={twoDefaultBg}
+                    className={roundBorderStyle}>
                     Selected file: {file.name}
                   </Text>
                 )}
@@ -132,7 +141,11 @@ export const UpdateUserByIdFormLayout = () => {
                       }}
                       accept="image/*">
                       {(props) => (
-                        <Button fullWidth bg={fiveTx} c={oneBg} {...props}>
+                        <Button
+                          fullWidth
+                          bg={fiveDefaultTx}
+                          c={oneDefaultBg}
+                          {...props}>
                           Upload
                         </Button>
                       )}

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
@@ -30,7 +30,7 @@ export const GetAuthorsMantineGrid = () => {
       <MantineGrid
         p={4}
         page={page}
-        gridBg={oneBg}
+        gridBg={oneDefaultBg}
         setPage={setPage}
         dataArray={Array(42).fill({ isPending })}
         totalPages={1}
@@ -63,7 +63,7 @@ export const GetAuthorsMantineGrid = () => {
       <MantineGrid
         p={4}
         page={page}
-        gridBg={oneBg}
+        gridBg={oneDefaultBg}
         setPage={setPage}
         dataArray={authors.content}
         totalPages={authors.totalPages}

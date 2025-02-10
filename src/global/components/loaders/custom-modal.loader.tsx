@@ -1,4 +1,4 @@
-import { oneBg, oneTx } from "@/global/styles/renamed.variables";
+import { oneDefaultBg, oneDefaultTx } from "@/global/styles/renamed.variables";
 import { roundBorderStyle } from "@/global/styles/app.css";
 import { Center, Group, Loader, Pagination, Space, Stack } from "@mantine/core";
 
@@ -8,12 +8,12 @@ export const CustomModalLoader = () => {
       gap={2}
       p={3}
       h={200}
-      bg={oneBg}
+      bg={oneDefaultBg}
       className={roundBorderStyle}
       justify="space-between">
       <Space />
       <Center>
-        <Loader type="dots" color={oneTx} size="sm" />
+        <Loader type="dots" color={oneDefaultTx} size="sm" />
       </Center>
       <Pagination.Root value={0} onChange={() => {}} total={0}>
         <Group gap={5} justify="space-evenly" py={2}>

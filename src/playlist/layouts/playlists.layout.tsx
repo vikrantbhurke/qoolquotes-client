@@ -1,7 +1,11 @@
 import { roundTopBorderStyle } from "@/global/styles/app.css";
 import { oneTxOneBgButtonPseudoStyle } from "@/global/styles/one-tx-one-bg-button-pseudo.css";
-import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import { themeDefaultTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import {
   layoutCompHeight,
   getPlaylistTabStyles,
@@ -103,7 +107,7 @@ export const PlaylistsLayout = () => {
   const isFilterApplied = order !== Order.Descending || sort !== Sort.Date;
 
   return (
-    <Box component="div" bg={twoBg}>
+    <Box component="div" bg={twoDefaultBg}>
       <Container
         size={playlistLayoutWidth}
         p={0}
@@ -111,7 +115,7 @@ export const PlaylistsLayout = () => {
         <Stack gap={0} h="100%">
           <Radio.Group
             value={tab}
-            bg={oneBg}
+            bg={oneDefaultBg}
             className={`${!isMobile && roundTopBorderStyle}`}>
             <DeletePlaylistsModalLayout
               opened={deletePlaylistOpened}
@@ -136,7 +140,7 @@ export const PlaylistsLayout = () => {
               <Group gap={0} justify="center">
                 <Button
                   h={layoutCompHeight}
-                  className={`${themeTxPseudoStyle}`}
+                  className={`${themeDefaultTxPseudoStyle}`}
                   style={getPlaylistTabStyles(tab === "All")}
                   onClick={handleNavigateToPlaylists}>
                   All{" "}
@@ -147,7 +151,7 @@ export const PlaylistsLayout = () => {
                 <ComponentOrFragmentRoute clearance={Clearance.LevelTwo}>
                   <Button
                     h={layoutCompHeight}
-                    className={`${themeTxPseudoStyle}`}
+                    className={`${themeDefaultTxPseudoStyle}`}
                     style={getPlaylistTabStyles(tab === "Created")}
                     onClick={handleNavigateToCreatedPlaylists}>
                     Created{" "}
@@ -157,7 +161,7 @@ export const PlaylistsLayout = () => {
 
                   <Button
                     h={layoutCompHeight}
-                    className={`${themeTxPseudoStyle}`}
+                    className={`${themeDefaultTxPseudoStyle}`}
                     style={getPlaylistTabStyles(tab === "Saved")}
                     onClick={handleNavigateToSavedPlaylists}>
                     Saved{" "}
@@ -182,7 +186,7 @@ export const PlaylistsLayout = () => {
 
                 <ActionIcon
                   h={layoutCompHeight}
-                  c={isFilterApplied ? "green" : oneTx}
+                  c={isFilterApplied ? "green" : oneDefaultTx}
                   className={oneTxOneBgButtonPseudoStyle}
                   onClick={isMobile ? drawerOpen : modalOpen}>
                   {isFilterApplied ? (
@@ -199,7 +203,7 @@ export const PlaylistsLayout = () => {
           </Radio.Group>
 
           <Center
-            bg={oneBg}
+            bg={oneDefaultBg}
             ref={ref}
             style={{
               zIndex: 1,

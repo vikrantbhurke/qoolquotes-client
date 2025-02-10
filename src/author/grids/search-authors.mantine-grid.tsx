@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setPage } from "../author.slice";
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
 
@@ -29,7 +29,7 @@ export const SearchAuthorsMantineGrid = () => {
       <MantineGrid
         p={4}
         page={page}
-        gridBg={oneBg}
+        gridBg={oneDefaultBg}
         setPage={setPage}
         dataArray={Array(42).fill({ isPending })}
         totalPages={1}
@@ -57,7 +57,7 @@ export const SearchAuthorsMantineGrid = () => {
     <MantineGrid
       p={4}
       page={page}
-      gridBg={oneBg}
+      gridBg={oneDefaultBg}
       setPage={setPage}
       onMouseEnter={() => {}}
       onMouseLeave={() => {}}

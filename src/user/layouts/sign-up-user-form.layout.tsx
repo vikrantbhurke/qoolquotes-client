@@ -1,6 +1,10 @@
 import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
 import {
@@ -48,7 +52,7 @@ export const SignUpUserFormLayout = () => {
   };
 
   return (
-    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+    <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
       <Stack px="md" justify="center" align="center" h="100%">
         <form onSubmit={form.onSubmit(handleSignUpUser)}>
           <ScrollArea
@@ -65,7 +69,7 @@ export const SignUpUserFormLayout = () => {
               w={400}
               gap="lg"
               p={isMobile ? "md" : "xl"}
-              bg={oneBg}
+              bg={oneDefaultBg}
               className={`${roundBorderStyle}`}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
@@ -76,7 +80,7 @@ export const SignUpUserFormLayout = () => {
                   {form.isDirty() ? (
                     <ActionIcon
                       bg="transparent"
-                      c={oneTx}
+                      c={oneDefaultTx}
                       aria-label="Refresh"
                       onClick={form.reset}>
                       <I I={IconRefresh} />
@@ -92,7 +96,7 @@ export const SignUpUserFormLayout = () => {
                 <Text fz="sm" c="dimmed" ta="center" mt={5}>
                   Already have an account?{" "}
                   <Anchor
-                    c={oneTx}
+                    c={oneDefaultTx}
                     underline="never"
                     onClick={handleNavigateToSignIn}>
                     Sign in
@@ -231,10 +235,10 @@ export const SignUpUserFormLayout = () => {
                 disabled={isPending}
                 type="submit"
                 fullWidth
-                c={oneBg}
-                bg={oneTx}
+                c={oneDefaultBg}
+                bg={oneDefaultTx}
                 loading={isPending}
-                loaderProps={{ type: "dots", color: oneBg }}>
+                loaderProps={{ type: "dots", color: oneDefaultBg }}>
                 Sign Up
               </Button>
             </Stack>

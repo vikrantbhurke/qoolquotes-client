@@ -1,5 +1,5 @@
 import { CreateCitedQuoteFormLayout } from "@/cited-quote/layouts";
-import { oneTx } from "@/global/styles/renamed.variables";
+import { oneDefaultTx } from "@/global/styles/renamed.variables";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { CreateMessageFormLayout } from "@/message/layouts";
 import { Modal, Tabs, Text } from "@mantine/core";
@@ -14,7 +14,7 @@ export const ContactModal = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       centered>
-      <Tabs defaultValue="message" color={oneTx}>
+      <Tabs defaultValue="message" color={oneDefaultTx}>
         <Tabs.List justify="center">
           <Tabs.Tab value="message" leftSection={<I I={IconMail} />}>
             <Text fz="sm">Send A Message</Text>

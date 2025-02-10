@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
-import { oneBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg } from "@/global/styles/renamed.variables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
 
@@ -28,7 +28,7 @@ export const GetPlaylistsByCreatorIdCustomList = () => {
     return (
       <CustomList
         page={1}
-        listBg={oneBg}
+        listBg={oneDefaultBg}
         setPage={setPage}
         dataArray={Array(10).fill({ isPending })}
         totalPages={1}
@@ -56,7 +56,7 @@ export const GetPlaylistsByCreatorIdCustomList = () => {
     <CustomList
       page={page}
       setPage={setPage}
-      listBg={oneBg}
+      listBg={oneDefaultBg}
       dataArray={playlists.content}
       totalPages={playlists.totalPages}
       ListItemLayout={PlaylistListItemLayout}

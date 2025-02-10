@@ -15,7 +15,11 @@ import {
   Group,
 } from "@mantine/core";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -35,7 +39,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
   return (
     <>
       <Modal
-        c={oneTx}
+        c={oneDefaultTx}
         styles={modal}
         opened={picOpened}
         onClose={() => setPicOpened(false)}
@@ -52,7 +56,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
 
       <DeleteUserModalLayout opened={opened} close={close} />
 
-      <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+      <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
         <Stack
           h="100%"
           gap="xl"
@@ -67,7 +71,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
           <Stack
             w={isMobile ? "100%" : 400}
             gap="xl"
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Stack align="center">

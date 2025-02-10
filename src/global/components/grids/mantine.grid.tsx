@@ -2,7 +2,11 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, oneTx, threeBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  oneDefaultTx,
+  threeDefaultBg,
+} from "@/global/styles/renamed.variables";
 import {
   Box,
   Center,
@@ -72,6 +76,12 @@ export const MantineGrid = ({
   else
     totalGhostItems = dataArrayLength % 3 === 0 ? 0 : 3 - (dataArrayLength % 3);
 
+  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneDefaultTx;
+  const oneBgColor = isQuotePage ? globalUtility.getOneBg(color) : oneDefaultBg;
+  const threeBgColor = isQuotePage
+    ? globalUtility.getThreeBg(color)
+    : threeDefaultBg;
+
   const extraGridItems: Array<any> = new Array(totalGhostItems)
     .fill(0)
     .map((_) => {
@@ -81,7 +91,7 @@ export const MantineGrid = ({
             component="div"
             h="100%"
             style={{ borderRadius: 8 }}
-            bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}></Box>
+            bg={oneBgColor}></Box>
         </Grid.Col>
       );
     });
@@ -99,7 +109,7 @@ export const MantineGrid = ({
               <Grid.Col p={p} span={{ base: 12, lg: 6, xl: 4 }} key={index}>
                 <Box
                   component="div"
-                  bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}
+                  bg={oneBgColor}
                   className={`${roundBorderStyle}`}
                   h="100%"
                   onMouseEnter={onMouseEnter}
@@ -116,7 +126,7 @@ export const MantineGrid = ({
 
       <Center
         ref={ref}
-        bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}
+        bg={oneBgColor}
         style={{
           zIndex: 1,
           ...getTopRoundBordersStyles(isMobile),
@@ -133,10 +143,8 @@ export const MantineGrid = ({
           <Pagination
             styles={{
               control: {
-                color: isQuotePage ? globalUtility.getOneTx(color) : oneTx,
-                backgroundColor: isQuotePage
-                  ? globalUtility.getThreeBg(color)
-                  : threeBg,
+                color: oneTxColor,
+                backgroundColor: threeBgColor,
               },
             }}
             size="sm"

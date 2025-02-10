@@ -11,22 +11,28 @@ import {
 } from "@mantine/core";
 import {
   IconBrush,
+  IconBulb,
   IconDownload,
   IconLetterA,
   IconLogin,
   IconLogout,
-  IconMoon,
   IconSearch,
-  IconSun,
 } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
-import { setIsSearchbarVisible } from "@/global/states/view.slice";
+import {
+  resetColor,
+  resetFont,
+  setIsSearchbarVisible,
+} from "@/global/states/view.slice";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
-import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
-import { oneTx, themeGreenColor } from "@/global/styles/renamed.variables";
+import { themeDefaultTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import {
+  oneDefaultTx,
+  themeGreenColor,
+} from "@/global/styles/renamed.variables";
 import { signOut } from "@/user/auth.slice";
 import {
   layoutCompHeight,
@@ -80,6 +86,8 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
   const handleSignOut = () => {
     dispatch(signOut());
+    dispatch(resetFont());
+    dispatch(resetColor());
     navigate("/sign-in");
     opened && toggle();
   };
@@ -128,6 +136,12 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
   const handleTheme = () => toggleColorScheme();
 
+  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneDefaultTx;
+
+  const themeTxPseudoStyles = isQuotePage
+    ? globalUtility.getThemeTxPseudoStyle(color)
+    : themeDefaultTxPseudoStyle;
+
   return (
     <>
       {isSearchbarVisible ? (
@@ -138,14 +152,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
             <Group gap={4} onClick={handleNavigateToTodaysQuote} align="center">
               <Image src={logo} alt="logo" w={32} />
 
-              <Text
-                fw={textBolder}
-                fz="lg"
-                className={
-                  isQuotePage
-                    ? globalUtility.getThemeTxPseudoStyle(color)
-                    : themeTxPseudoStyle
-                }>
+              <Text fw={textBolder} fz="lg" className={themeTxPseudoStyles}>
                 {import.meta.env.VITE_APP_NAME}
               </Text>
             </Group>
@@ -167,14 +174,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTodaysQuote}
                 visibleFrom={responsiveBreakpoint}>
-                <Text
-                  fz="sm"
-                  fw={textBold}
-                  className={
-                    isQuotePage
-                      ? globalUtility.getThemeTxPseudoStyle(color)
-                      : themeTxPseudoStyle
-                  }>
+                <Text fz="sm" fw={textBold} className={themeTxPseudoStyles}>
                   Today's
                 </Text>
               </Group>
@@ -182,14 +182,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToFeed}
                 visibleFrom={responsiveBreakpoint}>
-                <Text
-                  fz="sm"
-                  fw={textBold}
-                  className={
-                    isQuotePage
-                      ? globalUtility.getThemeTxPseudoStyle(color)
-                      : themeTxPseudoStyle
-                  }>
+                <Text fz="sm" fw={textBold} className={themeTxPseudoStyles}>
                   Feed
                 </Text>
               </Group>
@@ -197,14 +190,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTopics}
                 visibleFrom={responsiveBreakpoint}>
-                <Text
-                  fz="sm"
-                  fw={textBold}
-                  className={
-                    isQuotePage
-                      ? globalUtility.getThemeTxPseudoStyle(color)
-                      : themeTxPseudoStyle
-                  }>
+                <Text fz="sm" fw={textBold} className={themeTxPseudoStyles}>
                   Topics
                 </Text>
               </Group>
@@ -212,14 +198,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToAuthors}
                 visibleFrom={responsiveBreakpoint}>
-                <Text
-                  fz="sm"
-                  fw={textBold}
-                  className={
-                    isQuotePage
-                      ? globalUtility.getThemeTxPseudoStyle(color)
-                      : themeTxPseudoStyle
-                  }>
+                <Text fz="sm" fw={textBold} className={themeTxPseudoStyles}>
                   Authors
                 </Text>
               </Group>
@@ -227,61 +206,39 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToPlaylists}
                 visibleFrom={responsiveBreakpoint}>
-                <Text
-                  fz="sm"
-                  fw={textBold}
-                  className={
-                    isQuotePage
-                      ? globalUtility.getThemeTxPseudoStyle(color)
-                      : themeTxPseudoStyle
-                  }>
+                <Text fz="sm" fw={textBold} className={themeTxPseudoStyles}>
                   Playlists
                 </Text>
               </Group>
 
               <ActionIcon size="sm" onClick={handleOpenSearchbar}>
-                <I
-                  I={IconSearch}
-                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
-                />
+                <I I={IconSearch} color={oneTxColor} />
               </ActionIcon>
 
               <ActionIcon size="sm" onClick={handleTheme}>
                 {colorScheme === "dark" ? (
-                  <I I={IconSun} color="orange" />
+                  <I I={IconBulb} color={oneTxColor} />
                 ) : (
-                  <I I={IconMoon} color="dodgerblue" />
+                  <I I={IconBulb} color={oneTxColor} />
                 )}
               </ActionIcon>
 
               {auth.id ? (
                 <ActionIcon size="sm" onClick={handleSignOut}>
-                  <I
-                    I={IconLogout}
-                    color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
-                  />
+                  <I I={IconLogout} color={oneTxColor} />
                 </ActionIcon>
               ) : (
                 <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
-                  <I
-                    I={IconLogin}
-                    color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
-                  />
+                  <I I={IconLogin} color={oneTxColor} />
                 </ActionIcon>
               )}
 
               <ActionIcon size="sm" onClick={fontOpen}>
-                <I
-                  I={IconLetterA}
-                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
-                />
+                <I I={IconLetterA} color={oneTxColor} />
               </ActionIcon>
 
               <ActionIcon size="sm" onClick={colorOpen}>
-                <I
-                  I={IconBrush}
-                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
-                />
+                <I I={IconBrush} color={oneTxColor} />
               </ActionIcon>
 
               <FontModal opened={fontOpened} close={fontClose} />
@@ -296,17 +253,13 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                       onClick={toggle}
                       src={auth.profilepic}
                       hiddenFrom={responsiveBreakpoint}
-                      color={
-                        isQuotePage ? globalUtility.getOneTx(color) : oneTx
-                      }
+                      color={oneTxColor}
                     />
                   ) : (
                     <Avatar
                       onClick={toggle}
                       hiddenFrom={responsiveBreakpoint}
-                      color={
-                        isQuotePage ? globalUtility.getOneTx(color) : oneTx
-                      }>
+                      color={oneTxColor}>
                       {auth.firstname[0]}
                       {auth.lastname[0]}
                     </Avatar>
@@ -317,7 +270,7 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                   opened={opened}
                   onClick={toggle}
                   hiddenFrom={responsiveBreakpoint}
-                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                  color={oneTxColor}
                   size="sm"
                 />
               )}

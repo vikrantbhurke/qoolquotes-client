@@ -1,6 +1,6 @@
 import { Group, Text } from "@mantine/core";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { twoBg } from "@/global/styles/renamed.variables";
+import { twoDefaultBg } from "@/global/styles/renamed.variables";
 import { PlaylistQuotesAddRemoveButtonLayout } from "@/playlist-quote/layouts";
 import { CustomSkeleton } from "@/global/components/reusables";
 
@@ -10,7 +10,7 @@ export const PlaylistModalListItemLayout = ({ item }: any) => {
   return (
     <Group
       key={item.id}
-      bg={twoBg}
+      bg={twoDefaultBg}
       className={roundBorderStyle}
       gap="xs"
       p="xs"

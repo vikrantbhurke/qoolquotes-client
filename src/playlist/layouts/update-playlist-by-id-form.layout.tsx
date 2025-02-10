@@ -30,7 +30,7 @@ import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import { oneBg, twoBg } from "@/global/styles/renamed.variables";
+import { oneDefaultBg, twoDefaultBg } from "@/global/styles/renamed.variables";
 
 export const UpdatePlaylistByIdFormLayout = () => {
   const dispatch = useDispatch();
@@ -62,13 +62,13 @@ export const UpdatePlaylistByIdFormLayout = () => {
   };
 
   return (
-    <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
+    <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
       <Stack px="md" h="100%" gap="xl" justify="center" align="center" py="xl">
         <form onSubmit={form.onSubmit(handleUpdatePlaylistById)}>
           <Stack
             w={400}
             gap="lg"
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             className={`${roundBorderStyle}`}>
             <Group gap={0} align="center" justify="space-between">

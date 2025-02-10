@@ -1,9 +1,13 @@
-import { LCBorder } from "./renamed.variables";
+import { HCBorder, LCBorder } from "./renamed.variables";
 import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 
 export const noBorderStyle = style({
   border: "none",
+});
+
+export const borderHCStyle = style({
+  border: HCBorder,
 });
 
 export const roundBorderStyle = style({

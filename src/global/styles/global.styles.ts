@@ -1,5 +1,11 @@
 import { Breakpoint } from "../enums";
-import { twoBg, oneBg, oneTx, threeBg, HCBorder } from "./renamed.variables";
+import {
+  twoDefaultBg,
+  oneDefaultBg,
+  oneDefaultTx,
+  threeDefaultBg,
+  HCBorder,
+} from "./renamed.variables";
 
 export const textBold = 500;
 export const marginLeft = 50;
@@ -25,10 +31,10 @@ export const modal = {
     fontFamily: "Inter",
   },
   content: {
-    backgroundColor: oneBg,
+    backgroundColor: oneDefaultBg,
     borderRadius: 10,
   },
-  header: { backgroundColor: oneBg },
+  header: { backgroundColor: oneDefaultBg },
 };
 
 export const modalOverlayProps = {
@@ -43,10 +49,10 @@ export const drawer = {
     fontWeight: 700,
   },
   content: {
-    backgroundColor: oneBg,
+    backgroundColor: oneDefaultBg,
     borderRadius: "20px 20px 0 0",
   },
-  header: { backgroundColor: oneBg },
+  header: { backgroundColor: oneDefaultBg },
 };
 
 export const stringTruncate = {
@@ -58,7 +64,7 @@ export const stringTruncate = {
 };
 
 export const getDropdownStyles = (colorScheme: string) => ({
-  dropdownBg: colorScheme === "dark" ? threeBg : oneBg,
+  dropdownBg: colorScheme === "dark" ? threeDefaultBg : oneDefaultBg,
 });
 
 export const getAppShellStyles = (
@@ -86,7 +92,7 @@ export const getAppShellStyles = (
 
 export const getSearchTextInputStyles = (isMobile: boolean, width: number) => ({
   input: {
-    backgroundColor: oneBg,
+    backgroundColor: oneDefaultBg,
     height: isMobile ? layoutCompHeight : "100%",
     width,
     maxWidth: isMobile ? "100%" : 500,
@@ -119,7 +125,7 @@ export const removeBoxShadowStyles = (e: any) => {
 export const getFormTextInputStyles = (isFocused: boolean) => ({
   input: {
     padding: "1rem",
-    backgroundColor: twoBg,
+    backgroundColor: twoDefaultBg,
     border: isFocused ? HCBorder : "none",
     fontFamily: "Inter",
   },
@@ -129,8 +135,8 @@ export const getComboboxTextInputStyles = (isFocused: boolean) => ({
   input: {
     textAlign: "center" as const,
     padding: "1rem",
-    color: oneTx,
-    backgroundColor: twoBg,
+    color: oneDefaultTx,
+    backgroundColor: twoDefaultBg,
     border: isFocused ? HCBorder : "none",
     fontFamily: "Inter",
   },
@@ -150,9 +156,9 @@ export const getComboboxTextInputForPaginationStyles = (
 
 export const getPlaylistTabStyles = (isActive: boolean) => {
   return {
-    backgroundColor: oneBg,
+    backgroundColor: oneDefaultBg,
     borderRadius: 0,
-    borderBottom: isActive ? `2px solid ${oneTx}` : "none",
+    borderBottom: isActive ? `2px solid ${oneDefaultTx}` : "none",
     borderTop: "none",
     borderLeft: "none",
     borderRight: "none",

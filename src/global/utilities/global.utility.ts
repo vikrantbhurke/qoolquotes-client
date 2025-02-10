@@ -1,135 +1,70 @@
 import { Color, Font } from "../enums";
 import {
-  oneTx,
-  twoTx,
-  oneBg,
-  twoBg,
-  threeTx,
-  threeBg,
-  fourTx,
-  fourBg,
-  fiveTx,
-  fiveBg,
+  oneDefaultTx,
+  oneDefaultBg,
+  twoDefaultBg,
+  threeDefaultTx,
+  threeDefaultBg,
   oneRedTx,
   oneRedBg,
-  twoRedTx,
   twoRedBg,
   threeRedTx,
   threeRedBg,
-  fourRedTx,
-  fourRedBg,
-  fiveRedTx,
-  fiveRedBg,
   onePinkTx,
   onePinkBg,
-  twoPinkTx,
   twoPinkBg,
   threePinkTx,
   threePinkBg,
-  fourPinkTx,
-  fourPinkBg,
-  fivePinkTx,
-  fivePinkBg,
   oneGrapeTx,
   oneGrapeBg,
-  twoGrapeTx,
   twoGrapeBg,
   threeGrapeTx,
   threeGrapeBg,
-  fourGrapeTx,
-  fourGrapeBg,
-  fiveGrapeTx,
-  fiveGrapeBg,
   oneVioletTx,
   oneVioletBg,
-  twoVioletTx,
   twoVioletBg,
   threeVioletTx,
   threeVioletBg,
-  fourVioletTx,
-  fourVioletBg,
-  fiveVioletTx,
-  fiveVioletBg,
   oneIndigoTx,
-  twoIndigoTx,
   oneIndigoBg,
   twoIndigoBg,
   threeIndigoTx,
   threeIndigoBg,
-  fourIndigoTx,
-  fourIndigoBg,
-  fiveIndigoTx,
-  fiveIndigoBg,
   oneBlueTx,
   oneBlueBg,
-  twoBlueTx,
   twoBlueBg,
   threeBlueTx,
   threeBlueBg,
-  fourBlueTx,
-  fourBlueBg,
-  fiveBlueTx,
-  fiveBlueBg,
   oneCyanTx,
-  twoCyanTx,
   oneCyanBg,
   twoCyanBg,
   threeCyanTx,
   threeCyanBg,
-  fourCyanTx,
-  fourCyanBg,
-  fiveCyanTx,
-  fiveCyanBg,
   oneTealTx,
-  twoTealTx,
   oneTealBg,
   twoTealBg,
   threeTealTx,
   threeTealBg,
-  fourTealTx,
-  fourTealBg,
-  fiveTealTx,
-  fiveTealBg,
   oneGreenTx,
-  twoGreenTx,
   oneGreenBg,
   twoGreenBg,
   threeGreenTx,
   threeGreenBg,
-  fourGreenTx,
-  fourGreenBg,
-  fiveGreenTx,
-  fiveGreenBg,
   oneLimeTx,
-  twoLimeTx,
   oneLimeBg,
   twoLimeBg,
   threeLimeTx,
   threeLimeBg,
-  fourLimeTx,
-  fourLimeBg,
-  fiveLimeTx,
-  fiveLimeBg,
   oneYellowTx,
-  twoYellowTx,
   oneYellowBg,
   twoYellowBg,
   threeYellowTx,
   threeYellowBg,
-  fourYellowTx,
-  fourYellowBg,
-  fiveYellowTx,
-  fiveYellowBg,
   oneOrangeTx,
-  twoOrangeTx,
   oneOrangeBg,
   twoOrangeBg,
   threeOrangeTx,
   threeOrangeBg,
-  fourOrangeTx,
-  fourOrangeBg,
-  fiveOrangeTx,
-  fiveOrangeBg,
   themeDefaultBg,
   themeRedBg,
   themePinkBg,
@@ -145,7 +80,7 @@ import {
   themeOrangeBg,
 } from "../styles/renamed.variables";
 import {
-  themeTxPseudoStyle,
+  themeDefaultTxPseudoStyle,
   themeRedTxPseudoStyle,
   themePinkTxPseudoStyle,
   themeGrapeTxPseudoStyle,
@@ -160,7 +95,7 @@ import {
   themeOrangeTxPseudoStyle,
 } from "../styles/theme-tx-pseudo.css";
 import {
-  oneTxOneBgStyle,
+  oneDefaultTxOneDefaultBgStyle,
   oneRedTxOneRedBgStyle,
   onePinkTxOnePinkBgStyle,
   oneGrapeTxOneGrapeBgStyle,
@@ -175,7 +110,7 @@ import {
   oneOrangeTxOneOrangeBgStyle,
 } from "../styles/one-tx-one-bg.css";
 import {
-  oneTxTwoBgStyle,
+  oneDefaultTxTwoDefaultBgStyle,
   oneRedTxTwoRedBgStyle,
   onePinkTxTwoPinkBgStyle,
   oneGrapeTxTwoGrapeBgStyle,
@@ -205,7 +140,7 @@ import {
   oneTxThemeOrangeBgNavbarButtonPseudoStyle,
 } from "../styles/one-tx-theme-bg-navbar-button-pseudo.css";
 import {
-  oneTxThemeBgPillPseudoStyle,
+  oneTxThemeDefaultBgPillPseudoStyle,
   oneTxThemeRedBgPillPseudoStyle,
   oneTxThemePinkBgPillPseudoStyle,
   oneTxThemeGrapeBgPillPseudoStyle,
@@ -219,21 +154,6 @@ import {
   oneTxThemeYellowBgPillPseudoStyle,
   oneTxThemeOrangeBgPillPseudoStyle,
 } from "../styles/one-tx-theme-bg-pill-pseudo.css";
-import {
-  oneTxThemeBgMenuButtonPseudoStyle,
-  oneTxThemeRedBgMenuButtonPseudoStyle,
-  oneTxThemePinkBgMenuButtonPseudoStyle,
-  oneTxThemeGrapeBgMenuButtonPseudoStyle,
-  oneTxThemeVioletBgMenuButtonPseudoStyle,
-  oneTxThemeIndigoBgMenuButtonPseudoStyle,
-  oneTxThemeBlueBgMenuButtonPseudoStyle,
-  oneTxThemeCyanBgMenuButtonPseudoStyle,
-  oneTxThemeTealBgMenuButtonPseudoStyle,
-  oneTxThemeGreenBgMenuButtonPseudoStyle,
-  oneTxThemeLimeBgMenuButtonPseudoStyle,
-  oneTxThemeYellowBgMenuButtonPseudoStyle,
-  oneTxThemeOrangeBgMenuButtonPseudoStyle,
-} from "../styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   getInterFontStyle,
   getReadexProFontStyle,
@@ -312,7 +232,7 @@ export class GlobalUtility {
   getOneTx = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return oneTx;
+        return oneDefaultTx;
       case Color.Red:
         return oneRedTx;
       case Color.Pink:
@@ -338,14 +258,14 @@ export class GlobalUtility {
       case Color.Orange:
         return oneOrangeTx;
       default:
-        return oneTx;
+        return oneDefaultTx;
     }
   };
 
   getOneBg = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return oneBg;
+        return oneDefaultBg;
       case Color.Red:
         return oneRedBg;
       case Color.Pink:
@@ -371,47 +291,14 @@ export class GlobalUtility {
       case Color.Orange:
         return oneOrangeBg;
       default:
-        return oneBg;
-    }
-  };
-
-  getTwoTx = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return twoTx;
-      case Color.Red:
-        return twoRedTx;
-      case Color.Pink:
-        return twoPinkTx;
-      case Color.Grape:
-        return twoGrapeTx;
-      case Color.Violet:
-        return twoVioletTx;
-      case Color.Indigo:
-        return twoIndigoTx;
-      case Color.Blue:
-        return twoBlueTx;
-      case Color.Cyan:
-        return twoCyanTx;
-      case Color.Teal:
-        return twoTealTx;
-      case Color.Green:
-        return twoGreenTx;
-      case Color.Lime:
-        return twoLimeTx;
-      case Color.Yellow:
-        return twoYellowTx;
-      case Color.Orange:
-        return twoOrangeTx;
-      default:
-        return twoTx;
+        return oneDefaultBg;
     }
   };
 
   getTwoBg = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return twoBg;
+        return twoDefaultBg;
       case Color.Red:
         return twoRedBg;
       case Color.Pink:
@@ -437,14 +324,14 @@ export class GlobalUtility {
       case Color.Orange:
         return twoOrangeBg;
       default:
-        return twoBg;
+        return twoDefaultBg;
     }
   };
 
   getThreeTx = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return threeTx;
+        return threeDefaultTx;
       case Color.Red:
         return threeRedTx;
       case Color.Pink:
@@ -470,14 +357,14 @@ export class GlobalUtility {
       case Color.Orange:
         return threeOrangeTx;
       default:
-        return threeTx;
+        return threeDefaultTx;
     }
   };
 
   getThreeBg = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return threeBg;
+        return threeDefaultBg;
       case Color.Red:
         return threeRedBg;
       case Color.Pink:
@@ -503,146 +390,14 @@ export class GlobalUtility {
       case Color.Orange:
         return threeOrangeBg;
       default:
-        return threeBg;
-    }
-  };
-
-  getFourTx = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return fourTx;
-      case Color.Red:
-        return fourRedTx;
-      case Color.Pink:
-        return fourPinkTx;
-      case Color.Grape:
-        return fourGrapeTx;
-      case Color.Violet:
-        return fourVioletTx;
-      case Color.Indigo:
-        return fourIndigoTx;
-      case Color.Blue:
-        return fourBlueTx;
-      case Color.Cyan:
-        return fourCyanTx;
-      case Color.Teal:
-        return fourTealTx;
-      case Color.Green:
-        return fourGreenTx;
-      case Color.Lime:
-        return fourLimeTx;
-      case Color.Yellow:
-        return fourYellowTx;
-      case Color.Orange:
-        return fourOrangeTx;
-      default:
-        return fourTx;
-    }
-  };
-
-  getFourBg = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return fourBg;
-      case Color.Red:
-        return fourRedBg;
-      case Color.Pink:
-        return fourPinkBg;
-      case Color.Grape:
-        return fourGrapeBg;
-      case Color.Violet:
-        return fourVioletBg;
-      case Color.Indigo:
-        return fourIndigoBg;
-      case Color.Blue:
-        return fourBlueBg;
-      case Color.Cyan:
-        return fourCyanBg;
-      case Color.Teal:
-        return fourTealBg;
-      case Color.Green:
-        return fourGreenBg;
-      case Color.Lime:
-        return fourLimeBg;
-      case Color.Yellow:
-        return fourYellowBg;
-      case Color.Orange:
-        return fourOrangeBg;
-      default:
-        return fourBg;
-    }
-  };
-
-  getFiveTx = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return fiveTx;
-      case Color.Red:
-        return fiveRedTx;
-      case Color.Pink:
-        return fivePinkTx;
-      case Color.Grape:
-        return fiveGrapeTx;
-      case Color.Violet:
-        return fiveVioletTx;
-      case Color.Indigo:
-        return fiveIndigoTx;
-      case Color.Blue:
-        return fiveBlueTx;
-      case Color.Cyan:
-        return fiveCyanTx;
-      case Color.Teal:
-        return fiveTealTx;
-      case Color.Green:
-        return fiveGreenTx;
-      case Color.Lime:
-        return fiveLimeTx;
-      case Color.Yellow:
-        return fiveYellowTx;
-      case Color.Orange:
-        return fiveOrangeTx;
-      default:
-        return fiveTx;
-    }
-  };
-
-  getFiveBg = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return fiveBg;
-      case Color.Red:
-        return fiveRedBg;
-      case Color.Pink:
-        return fivePinkBg;
-      case Color.Grape:
-        return fiveGrapeBg;
-      case Color.Violet:
-        return fiveVioletBg;
-      case Color.Indigo:
-        return fiveIndigoBg;
-      case Color.Blue:
-        return fiveBlueBg;
-      case Color.Cyan:
-        return fiveCyanBg;
-      case Color.Teal:
-        return fiveTealBg;
-      case Color.Green:
-        return fiveGreenBg;
-      case Color.Lime:
-        return fiveLimeBg;
-      case Color.Yellow:
-        return fiveYellowBg;
-      case Color.Orange:
-        return fiveOrangeBg;
-      default:
-        return fiveBg;
+        return threeDefaultBg;
     }
   };
 
   getOneTxOneBgStyle = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return oneTxOneBgStyle;
+        return oneDefaultTxOneDefaultBgStyle;
       case Color.Red:
         return oneRedTxOneRedBgStyle;
       case Color.Pink:
@@ -668,14 +423,14 @@ export class GlobalUtility {
       case Color.Orange:
         return oneOrangeTxOneOrangeBgStyle;
       default:
-        return oneTxOneBgStyle;
+        return oneDefaultTxOneDefaultBgStyle;
     }
   };
 
   getOneTxTwoBgStyle = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return oneTxTwoBgStyle;
+        return oneDefaultTxTwoDefaultBgStyle;
       case Color.Red:
         return oneRedTxTwoRedBgStyle;
       case Color.Pink:
@@ -701,7 +456,7 @@ export class GlobalUtility {
       case Color.Orange:
         return oneOrangeTxTwoOrangeBgStyle;
       default:
-        return oneTxTwoBgStyle;
+        return oneDefaultTxTwoDefaultBgStyle;
     }
   };
 
@@ -741,7 +496,7 @@ export class GlobalUtility {
   getThemeTxPseudoStyle = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return themeTxPseudoStyle;
+        return themeDefaultTxPseudoStyle;
       case Color.Red:
         return themeRedTxPseudoStyle;
       case Color.Pink:
@@ -767,7 +522,7 @@ export class GlobalUtility {
       case Color.Orange:
         return themeOrangeTxPseudoStyle;
       default:
-        return themeTxPseudoStyle;
+        return themeDefaultTxPseudoStyle;
     }
   };
 
@@ -807,7 +562,7 @@ export class GlobalUtility {
   getOneTxThemeBgPillButtonPseudoStyle = (color: Color) => {
     switch (color) {
       case Color.Default:
-        return oneTxThemeBgPillPseudoStyle;
+        return oneTxThemeDefaultBgPillPseudoStyle;
       case Color.Red:
         return oneTxThemeRedBgPillPseudoStyle;
       case Color.Pink:
@@ -834,39 +589,6 @@ export class GlobalUtility {
         return oneTxThemeOrangeBgPillPseudoStyle;
       default:
         return oneTxThemeYellowBgPillPseudoStyle;
-    }
-  };
-
-  getOneTxThemeBgMenuButtonPseudoStyle = (color: Color) => {
-    switch (color) {
-      case Color.Default:
-        return oneTxThemeBgMenuButtonPseudoStyle;
-      case Color.Red:
-        return oneTxThemeRedBgMenuButtonPseudoStyle;
-      case Color.Pink:
-        return oneTxThemePinkBgMenuButtonPseudoStyle;
-      case Color.Grape:
-        return oneTxThemeGrapeBgMenuButtonPseudoStyle;
-      case Color.Violet:
-        return oneTxThemeVioletBgMenuButtonPseudoStyle;
-      case Color.Indigo:
-        return oneTxThemeIndigoBgMenuButtonPseudoStyle;
-      case Color.Blue:
-        return oneTxThemeBlueBgMenuButtonPseudoStyle;
-      case Color.Cyan:
-        return oneTxThemeCyanBgMenuButtonPseudoStyle;
-      case Color.Teal:
-        return oneTxThemeTealBgMenuButtonPseudoStyle;
-      case Color.Green:
-        return oneTxThemeGreenBgMenuButtonPseudoStyle;
-      case Color.Lime:
-        return oneTxThemeLimeBgMenuButtonPseudoStyle;
-      case Color.Yellow:
-        return oneTxThemeYellowBgMenuButtonPseudoStyle;
-      case Color.Orange:
-        return oneTxThemeOrangeBgMenuButtonPseudoStyle;
-      default:
-        return oneTxThemeYellowBgMenuButtonPseudoStyle;
     }
   };
 

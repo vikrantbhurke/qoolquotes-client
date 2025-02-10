@@ -1,6 +1,9 @@
 import { RootState } from "@/global/states/store";
 import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
-import { oneTx, themeGreenColor } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultTx,
+  themeGreenColor,
+} from "@/global/styles/renamed.variables";
 import {
   oneTxThemeGreenBgMenuButtonPseudoStyle,
   oneTxThemeYellowBgMenuButtonPseudoStyle,
@@ -54,6 +57,8 @@ export const MenuLayout = () => {
     open();
   };
 
+  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneDefaultTx;
+
   return (
     <>
       <ContactModal opened={opened} close={close} />
@@ -67,9 +72,7 @@ export const MenuLayout = () => {
                 visibleFrom={responsiveBreakpoint}
               />
             ) : (
-              <Avatar
-                visibleFrom={responsiveBreakpoint}
-                color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+              <Avatar visibleFrom={responsiveBreakpoint} color={oneTxColor}>
                 {auth.firstname[0]}
                 {auth.lastname[0]}
               </Avatar>
@@ -80,7 +83,7 @@ export const MenuLayout = () => {
             <Burger
               size="sm"
               visibleFrom={responsiveBreakpoint}
-              color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+              color={oneTxColor}
             />
           </Menu.Target>
         )}

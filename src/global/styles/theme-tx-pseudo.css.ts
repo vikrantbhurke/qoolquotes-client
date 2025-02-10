@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import {
-  oneTx,
+  oneDefaultTx,
   oneRedTx,
   onePinkTx,
   oneGrapeTx,
@@ -28,8 +28,8 @@ import {
   themeOrangeColor,
 } from "./renamed.variables";
 
-export const themeTxPseudoStyle = style({
-  color: oneTx,
+export const themeDefaultTxPseudoStyle = style({
+  color: oneDefaultTx,
   transition: "color 0.2s ease-in-out",
 
   ":hover": {

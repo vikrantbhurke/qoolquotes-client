@@ -1,7 +1,7 @@
 import {
-  oneTx,
-  oneBg,
-  threeBg,
+  oneDefaultTx,
+  oneDefaultBg,
+  threeDefaultBg,
   themeDefaultBg,
   themeRedBg,
   themePinkBg,
@@ -20,507 +20,507 @@ import { vars } from "./theme";
 import { style } from "@vanilla-extract/css";
 
 export const oneTxThemeBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeDefaultBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeDefaultBg,
     },
   },
 });
 
 export const oneTxThemeRedBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeRedBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeRedBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeRedBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeRedBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeRedBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeRedBg,
     },
   },
 });
 
 export const oneTxThemePinkBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themePinkBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themePinkBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themePinkBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themePinkBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themePinkBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themePinkBg,
     },
   },
 });
 
 export const oneTxThemeGrapeBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGrapeBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGrapeBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGrapeBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGrapeBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGrapeBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGrapeBg,
     },
   },
 });
 
 export const oneTxThemeVioletBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeVioletBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeVioletBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeVioletBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeVioletBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeVioletBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeVioletBg,
     },
   },
 });
 
 export const oneTxThemeIndigoBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeIndigoBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeIndigoBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeIndigoBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeIndigoBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeIndigoBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeIndigoBg,
     },
   },
 });
 
 export const oneTxThemeBlueBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeBlueBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeBlueBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeBlueBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeBlueBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeBlueBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeBlueBg,
     },
   },
 });
 
 export const oneTxThemeCyanBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeCyanBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeCyanBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeCyanBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeCyanBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeCyanBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeCyanBg,
     },
   },
 });
 
 export const oneTxThemeTealBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeTealBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeTealBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeTealBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeTealBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeTealBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeTealBg,
     },
   },
 });
 
 export const oneTxThemeGreenBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGreenBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGreenBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeGreenBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGreenBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGreenBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeGreenBg,
     },
   },
 });
 
 export const oneTxThemeLimeBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeLimeBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeLimeBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeLimeBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeLimeBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeLimeBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeLimeBg,
     },
   },
 });
 
 export const oneTxThemeYellowBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeYellowBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeYellowBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeYellowBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeYellowBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeYellowBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeYellowBg,
     },
   },
 });
 
 export const oneTxThemeOrangeBgMenuButtonPseudoStyle = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  color: oneDefaultTx,
+  backgroundColor: oneDefaultBg,
   transition: "background-color 0.2s ease-in-out",
   fontFamily: "Inter",
 
   ":hover": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeOrangeBg,
   },
   ":active": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeOrangeBg,
   },
   ":focus": {
-    color: oneTx,
+    color: oneDefaultTx,
     backgroundColor: themeOrangeBg,
   },
 
   selectors: {
     [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: threeBg,
+      color: oneDefaultTx,
+      backgroundColor: threeDefaultBg,
     },
     [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeOrangeBg,
     },
     [`${vars.darkSelector}:active`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeOrangeBg,
     },
     [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
+      color: oneDefaultTx,
       backgroundColor: themeOrangeBg,
     },
   },

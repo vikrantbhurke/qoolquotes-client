@@ -6,7 +6,7 @@ import { CustomEnumScrollableCombobox, I } from "@/global/components/reusables";
 import { Font } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { IconRefresh } from "@tabler/icons-react";
-import { setFont } from "@/global/states/view.slice";
+import { resetFont, setFont } from "@/global/states/view.slice";
 import { RootState } from "@/global/states/store";
 
 export const FontModal = ({ opened, close }: any) => {
@@ -18,7 +18,7 @@ export const FontModal = ({ opened, close }: any) => {
   };
 
   const handleRefresh = () => {
-    dispatch(setFont(Font.Inter));
+    dispatch(resetFont());
   };
 
   return (

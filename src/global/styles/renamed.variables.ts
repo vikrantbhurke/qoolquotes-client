@@ -35,16 +35,16 @@ export const themeYellowBg = "var(--theme-yellow-bg)";
 export const themeOrangeBg = "var(--theme-orange-bg)";
 
 // Default
-export const oneTx = "var(--primary-text)";
-export const oneBg = "var(--primary-background)";
-export const twoTx = "var(--secondary-text)";
-export const twoBg = "var(--secondary-background)";
-export const threeTx = "var(--tertiary-text)";
-export const threeBg = "var(--tertiary-background)";
-export const fourTx = "var(--quaternary-text)";
-export const fourBg = "var(--quaternary-background)";
-export const fiveTx = "var(--quinary-text)";
-export const fiveBg = "var(--quinary-background)";
+export const oneDefaultTx = "var(--primary-text)";
+export const oneDefaultBg = "var(--primary-background)";
+export const twoDefaultTx = "var(--secondary-text)";
+export const twoDefaultBg = "var(--secondary-background)";
+export const threeDefaultTx = "var(--tertiary-text)";
+export const threeDefaultBg = "var(--tertiary-background)";
+export const fourDefaultTx = "var(--quaternary-text)";
+export const fourDefaultBg = "var(--quaternary-background)";
+export const fiveDefaultTx = "var(--quinary-text)";
+export const fiveDefaultBg = "var(--quinary-background)";
 
 // Red
 export const oneRedTx = "var(--primary-red-text)";

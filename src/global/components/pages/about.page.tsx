@@ -1,7 +1,11 @@
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
-import { oneBg, threeTx, twoBg } from "@/global/styles/renamed.variables";
+import {
+  oneDefaultBg,
+  threeDefaultTx,
+  twoDefaultBg,
+} from "@/global/styles/renamed.variables";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { SeoComponent } from "../reusables";
@@ -12,7 +16,7 @@ export const AboutPage = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
-    <Stack h="100%" bg={isMobile ? oneBg : twoBg}>
+    <Stack h="100%" bg={isMobile ? oneDefaultBg : twoDefaultBg}>
       <SeoComponent
         title="About Page"
         description="Learn more about Qool Quotes."
@@ -21,7 +25,7 @@ export const AboutPage = () => {
       <ScrollArea scrollbarSize={2}>
         <Center>
           <Stack
-            bg={oneBg}
+            bg={oneDefaultBg}
             p={isMobile ? "md" : "xl"}
             gap="lg"
             maw={aboutContentWidth}>
@@ -175,7 +179,7 @@ export const AboutPage = () => {
             <Divider my="xs" />
 
             <Center>
-              <Text fs="italic" c={threeTx} fz="xs">
+              <Text fs="italic" c={threeDefaultTx} fz="xs">
                 Emoji artwork provided by OpenMoji – the open-source emoji
                 project. License: CC BY-SA 4.0
               </Text>

@@ -116,7 +116,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
 
   const buttonClasses = isQuotePage
     ? globalUtility.getOneTxThemeBgNavbarButtonPseudoStyle(color)
-    : `${oneTxThemeDefaultBgNavbarButtonPseudoStyle}`;
+    : oneTxThemeDefaultBgNavbarButtonPseudoStyle;
 
   return (
     <Stack justify="space-between" gap={0} h="100%">
