@@ -2,7 +2,8 @@ import { I } from "@/global/components/reusables";
 import { useAuthReroute } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { oneBg, oneTx, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { useSignInUserForm } from "@/user/hooks/create";
 import {

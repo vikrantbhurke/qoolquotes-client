@@ -17,7 +17,8 @@ import {
   PlaylistLikerReadonlyButtonLayout,
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
-import { oneBg, oneTx, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
 import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

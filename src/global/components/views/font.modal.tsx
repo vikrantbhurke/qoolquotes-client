@@ -29,33 +29,31 @@ export const FontModal = ({ opened, close }: any) => {
       onClose={close}
       centered
       title="Select Font">
-      <Stack>
-        <Stack align="center" gap="xs">
-          <Group justify="space-between" w="100%">
-            <Space w="md" />
+      <Stack align="center" gap="xs">
+        <Group justify="space-between" w="100%">
+          <Space w="md" />
 
-            {font !== Font.Inter ? (
-              <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
-                <I I={IconRefresh} />
-              </ActionIcon>
-            ) : (
-              <ActionIcon
-                disabled
-                aria-label="Refresh Disabled"
-                c="transparent"
-              />
-            )}
-          </Group>
+          {font !== Font.Inter ? (
+            <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
+              <I I={IconRefresh} />
+            </ActionIcon>
+          ) : (
+            <ActionIcon
+              disabled
+              aria-label="Refresh Disabled"
+              c="transparent"
+            />
+          )}
+        </Group>
 
-          <CustomEnumScrollableCombobox
-            id="font-modal"
-            EnumObject={Font}
-            label="Font"
-            data={Object.values(Font)}
-            handleValue={handleFont}
-            value={globalUtility.getKeyByValue(Font, font)}
-          />
-        </Stack>
+        <CustomEnumScrollableCombobox
+          id="font-modal"
+          EnumObject={Font}
+          label="Font"
+          data={Object.values(Font)}
+          handleValue={handleFont}
+          value={globalUtility.getKeyByValue(Font, font)}
+        />
       </Stack>
     </Modal>
   );

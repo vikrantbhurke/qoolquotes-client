@@ -1,8 +1,6 @@
-import {
-  oneTx,
-  oneTxYellowBgPillPseudoStyle,
-  themeTxStyle,
-} from "@/global/styles/app.css";
+import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import { oneTx } from "@/global/styles/renamed.variables";
+import { oneTxThemeYellowBgPillPseudoStyle } from "@/global/styles/one-tx-theme-bg-pill-pseudo.css";
 import { Avatar, Button, Group, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { IconMessage2 } from "@tabler/icons-react";
@@ -45,7 +43,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
           {isPending ? (
             <CustomSkeleton w={80} h={20} />
           ) : (
-            <Text fz="sm" fw={textBold} className={`${themeTxStyle}`}>
+            <Text fz="sm" fw={textBold} className={`${themeTxPseudoStyle}`}>
               {item.name}
             </Text>
           )}
@@ -72,7 +70,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
           {isPending ? (
             <CustomSkeleton w={60} h={15} />
           ) : (
-            <Text fz="xs" className={`${themeTxStyle}`}>
+            <Text fz="xs" className={`${themeTxPseudoStyle}`}>
               {item.creatorId.username}
             </Text>
           )}
@@ -109,7 +107,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
               px={4}
               h="lg"
               c={oneTx}
-              className={oneTxYellowBgPillPseudoStyle}
+              className={oneTxThemeYellowBgPillPseudoStyle}
               onClick={handleNavigateToQuotesByPlaylist}>
               View
             </Button>

@@ -1,13 +1,14 @@
+import { useIsQuotePage } from "@/global/hooks";
+import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import {
-  borderShadowStyle,
-  noBorderStyle,
-  oneTxYellowBgMenuButtonPseudoStyle,
-} from "@/global/styles/app.css";
+import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
+import { oneTxThemeYellowBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
+import { oneTx, threeBg } from "@/global/styles/renamed.variables";
 import {
   getDropdownStyles,
   getComboboxTextInputForPaginationStyles,
 } from "@/global/styles/global.styles";
+import { globalUtility } from "@/global/utilities";
 import {
   Combobox,
   ScrollArea,
@@ -18,6 +19,7 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 export const CustomNumberCombobox = ({
@@ -27,10 +29,12 @@ export const CustomNumberCombobox = ({
   id,
   totalPages,
 }: any) => {
+  const isQuotePage = useIsQuotePage();
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
   const { dropdownBg } = getDropdownStyles(colorScheme);
+  const { color } = useSelector((state: RootState) => state.view);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -44,12 +48,15 @@ export const CustomNumberCombobox = ({
       p="xs"
       key={item}
       value={item}
-      className={oneTxYellowBgMenuButtonPseudoStyle}>
+      className={oneTxThemeYellowBgMenuButtonPseudoStyle}>
       <Text fz="sm" tt="capitalize" ta="center">
         {item}
       </Text>
     </Combobox.Option>
   ));
+
+  const oneTxColor = isQuotePage ? globalUtility.getOneTx(color) : oneTx;
+  const ThreeBgColor = isQuotePage ? globalUtility.getThreeBg(color) : threeBg;
 
   return (
     <Combobox
@@ -65,7 +72,10 @@ export const CustomNumberCombobox = ({
           w={60}
           value={value}
           readOnly
-          styles={getComboboxTextInputForPaginationStyles()}
+          styles={getComboboxTextInputForPaginationStyles(
+            oneTxColor,
+            ThreeBgColor
+          )}
           wrapperProps={{
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,

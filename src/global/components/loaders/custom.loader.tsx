@@ -1,4 +1,4 @@
-import { oneBg, oneTx } from "@/global/styles/app.css";
+import { oneBg, oneTx } from "@/global/styles/renamed.variables";
 import { Loader, Stack } from "@mantine/core";
 
 export const CustomLoader = ({ bg = oneBg }: any) => {

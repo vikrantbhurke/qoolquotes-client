@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx } from "@/global/styles/renamed.variables";
 
 export const VerifyEmailItem = () => {
   const { auth } = useSelector((state: RootState) => state.auth);

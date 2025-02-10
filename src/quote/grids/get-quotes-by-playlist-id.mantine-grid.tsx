@@ -6,16 +6,16 @@ import { useEffect } from "react";
 import { CustomError } from "@/global/components/errors";
 import { setPage } from "../quote.slice";
 import { useSelector } from "react-redux";
-import { oneBg, twoBg } from "@/global/styles/app.css";
 import {
   addBoxShadowStyles,
   removeBoxShadowStyles,
 } from "@/global/styles/global.styles";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const GetQuotesByPlaylistIdMantineGrid = () => {
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
   const { quotes, isPending, isError, error } = useGetQuotesByPlaylistId();
   const { page } = useSelector((state: RootState) => state.quote);
   const setData = useOutletContext<any>();
@@ -34,7 +34,11 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
       <MantineGrid
         p={8}
         page={page}
-        gridBg={isMobile ? oneBg : twoBg}
+        gridBg={
+          isMobile
+            ? globalUtility.getOneBg(color)
+            : globalUtility.getTwoBg(color)
+        }
         setPage={setPage}
         dataArray={Array(6).fill({ isPending })}
         totalPages={1}
@@ -62,7 +66,9 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
     <MantineGrid
       p={8}
       page={page}
-      gridBg={isMobile ? oneBg : twoBg}
+      gridBg={
+        isMobile ? globalUtility.getOneBg(color) : globalUtility.getTwoBg(color)
+      }
       setPage={setPage}
       dataArray={quotes.content}
       totalPages={quotes.totalPages}

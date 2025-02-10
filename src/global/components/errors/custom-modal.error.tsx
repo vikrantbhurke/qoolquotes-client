@@ -1,4 +1,5 @@
-import { oneBg, roundBorderStyle } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { Center, Group, Pagination, Space, Stack, Text } from "@mantine/core";
 
 export const CustomModalError = ({ message }: any) => {

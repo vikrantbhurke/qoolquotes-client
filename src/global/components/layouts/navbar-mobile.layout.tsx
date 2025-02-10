@@ -5,11 +5,11 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
+import { themeGreenColor } from "@/global/styles/renamed.variables";
 import {
-  oneTxGreenBgNavbarButtonPseudoStyle,
-  oneTxYellowBgNavbarButtonPseudoStyle,
-  themeGreenColor,
-} from "@/global/styles/app.css";
+  oneTxThemeGreenBgNavbarButtonPseudoStyle,
+  oneTxThemeYellowBgNavbarButtonPseudoStyle,
+} from "@/global/styles/one-tx-theme-bg-navbar-button-pseudo.css";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import {
@@ -30,18 +30,20 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { I } from "../reusables";
 import { ContactModal } from "../views";
-import { useInstallApp } from "@/global/hooks";
+import { useInstallApp, useIsQuotePage } from "@/global/hooks";
 import { IconCategoryFilled } from "@tabler/icons-react";
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import logo from "@/global/assets/pwa-64x64.png";
+import { globalUtility } from "@/global/utilities";
 
 export const NavbarMobileLayout = ({ toggle }: any) => {
+  const isQuotePage = useIsQuotePage();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const [, scrollTo] = useWindowScroll();
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const [opened, { open, close }] = useDisclosure();
@@ -115,7 +117,9 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
     open();
   };
 
-  const buttonClasses = `${oneTxYellowBgNavbarButtonPseudoStyle}`;
+  const buttonClasses = isQuotePage
+    ? globalUtility.getOneTxThemeBgNavbarButtonPseudoStyle(color)
+    : `${oneTxThemeYellowBgNavbarButtonPseudoStyle}`;
 
   return (
     <Stack justify="space-between" gap={0} h="100%">
@@ -133,7 +137,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
             <Button
               c={themeGreenColor}
               h={layoutCompHeight}
-              className={oneTxGreenBgNavbarButtonPseudoStyle}
+              className={oneTxThemeGreenBgNavbarButtonPseudoStyle}
               leftSection={<I I={IconDownload} />}
               onClick={handleInstallClick}>
               Install App

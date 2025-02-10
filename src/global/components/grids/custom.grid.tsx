@@ -1,12 +1,10 @@
 import { Breakpoint } from "@/global/enums";
 import { useCustomScrollbar } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
-import {
-  oneBg,
-  oneTxOneBgStyle,
-  roundBorderStyle,
-} from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneTxOneBgStyle } from "@/global/styles/one-tx-one-bg.css";
 import { listItemHeight } from "@/global/styles/global.styles";
+import { globalUtility } from "@/global/utilities";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -25,7 +23,9 @@ export const CustomGrid = ({
   useCustomScrollbar();
   const containerRef = useRef<any>(null);
   const [isWindow] = useState<any>(false);
-  const { isMobile, width } = useSelector((state: RootState) => state.view);
+  const { isMobile, width, color } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handleScroll = () => {
     const container = isWindow ? window : containerRef.current;
@@ -67,7 +67,7 @@ export const CustomGrid = ({
     .map((_) => {
       return (
         <Grid.Col p={isMobile ? 0 : 8} span={{ base: 12, lg: 6, xl: 4 }}>
-          <Box component="div" h="100%"></Box>
+          <Box component="div" h="100%" style={{ borderRadius: 8 }}></Box>
         </Grid.Col>
       );
     });
@@ -95,7 +95,7 @@ export const CustomGrid = ({
               p={isMobile ? 0 : 8}>
               <Box
                 component="div"
-                bg={oneBg}
+                bg={globalUtility.getOneBg(color)}
                 className={`${roundBorderStyle}`}
                 h="100%"
                 onMouseEnter={onMountEnter}
@@ -123,7 +123,7 @@ export const CustomGrid = ({
               p={isMobile ? 0 : 8}>
               <Box
                 component="div"
-                bg={oneBg}
+                bg={globalUtility.getOneBg(color)}
                 className={roundBorderStyle}
                 h="100%"
                 onMouseEnter={onMountEnter}

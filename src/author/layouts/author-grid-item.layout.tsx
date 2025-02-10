@@ -1,5 +1,6 @@
 import { setPage } from "@/quote/quote.slice";
-import { oneBg, themeTxStyle } from "@/global/styles/app.css";
+import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { buttonHeight, buttonNormal } from "@/global/styles/global.styles";
 import { Button, Center } from "@mantine/core";
 import { useDispatch } from "react-redux";
@@ -33,7 +34,7 @@ export const AuthorGridItemLayout = ({ item }: any) => {
           fullWidth
           h={buttonHeight}
           bg={oneBg}
-          className={`${themeTxStyle}`}
+          className={`${themeTxPseudoStyle}`}
           fw={buttonNormal}
           onClick={handleNavigateToQuoteByAuthor}>
           {item.name} ({globalUtility.formatNumber(authorQuotes?.count || 0)})

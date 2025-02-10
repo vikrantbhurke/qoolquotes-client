@@ -1,13 +1,5 @@
 import { quoteCardMaxWidth } from "@/global/styles/global.styles";
-import {
-  oneTx,
-  oneBg,
-  twoBg,
-  threeBg,
-  roundBorderStyle,
-  oneTxYellowBgPillPseudoStyle,
-  themeTxStyle,
-} from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { PlaylistModal } from "@/playlist/layouts";
@@ -46,27 +38,14 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
   const [modalOpened, { open, close }] = useDisclosure(false);
-  const { isMobile, font } = useSelector((state: RootState) => state.view);
+  const { isMobile, font, color } = useSelector(
+    (state: RootState) => state.view
+  );
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const pills = isPending ? (
-    <></>
-  ) : (
-    quote.topicIds.map((topicId: any) => {
-      return (
-        <Pill
-          key={topicId._id}
-          className={oneTxYellowBgPillPseudoStyle}
-          onClick={() => handleNavigateToQuoteByTopic(topicId)}>
-          {topicId.name}
-        </Pill>
-      );
-    })
-  );
 
   const handleNavigateToQuoteByAuthor = () => {
     dispatch(setPage(1));
@@ -100,6 +79,23 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     setTimeout(() => setOpened(false), 1500);
   };
 
+  const threeBgColor = globalUtility.getThreeBg(color);
+
+  const pills = isPending ? (
+    <></>
+  ) : (
+    quote.topicIds.map((topicId: any) => {
+      return (
+        <Pill
+          key={topicId._id}
+          className={globalUtility.getOneTxThemeBgPillButtonPseudoStyle(color)}
+          onClick={() => handleNavigateToQuoteByTopic(topicId)}>
+          {topicId.name}
+        </Pill>
+      );
+    })
+  );
+
   return (
     <>
       <PlaylistModal opened={modalOpened} close={close} />
@@ -109,11 +105,15 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
         h="100%"
         align="center"
         justify="space-between"
-        bg={isMobile ? oneBg : twoBg}>
+        bg={
+          isMobile
+            ? globalUtility.getOneBg(color)
+            : globalUtility.getTwoBg(color)
+        }>
         <Space h={isMobile ? 50 : 90} />
 
         <Stack
-          bg={oneBg}
+          bg={globalUtility.getOneBg(color)}
           className={`${roundBorderStyle}`}
           maw={quoteCardMaxWidth}
           gap="xl"
@@ -129,12 +129,13 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
               <>
                 {isPending ? (
                   <Stack gap={0} miw={350} align="center">
-                    <CustomSkeleton w="100%" />
-                    <CustomSkeleton w="100%" />
-                    <CustomSkeleton w="100%" />
+                    <CustomSkeleton w="100%" bgcolor={threeBgColor} />
+                    <CustomSkeleton w="100%" bgcolor={threeBgColor} />
+                    <CustomSkeleton w="100%" bgcolor={threeBgColor} />
                   </Stack>
                 ) : (
                   <Text
+                    c={globalUtility.getOneTx(color)}
                     style={{
                       ...styles,
                       ...globalUtility.getFont(font, isMobile),
@@ -145,7 +146,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                 )}
 
                 {isPending ? (
-                  <CustomSkeleton />
+                  <CustomSkeleton bgcolor={threeBgColor} />
                 ) : (
                   <Text
                     style={{
@@ -153,7 +154,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                       ...globalUtility.getFont(font, isMobile),
                     }}
                     ta="center"
-                    className={themeTxStyle}
+                    className={globalUtility.getThemeTxPseudoStyle(color)}
                     onClick={handleNavigateToQuoteByAuthor}>
                     {quote.authorId.name}
                   </Text>
@@ -161,9 +162,9 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
 
                 {isPending ? (
                   <Group ta="center" justify="center">
-                    <CustomSkeleton w={40} h={35} />
-                    <CustomSkeleton w={40} h={35} />
-                    <CustomSkeleton w={40} h={35} />
+                    <CustomSkeleton w={40} h={35} bgcolor={threeBgColor} />
+                    <CustomSkeleton w={40} h={35} bgcolor={threeBgColor} />
+                    <CustomSkeleton w={40} h={35} bgcolor={threeBgColor} />
                   </Group>
                 ) : (
                   <>
@@ -178,7 +179,12 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                 <Group style={styles}>
                   <Group gap={4}>
                     {isPending ? (
-                      <CustomSkeleton v="circular" w={20} h={20} />
+                      <CustomSkeleton
+                        v="circular"
+                        w={20}
+                        h={20}
+                        bgcolor={threeBgColor}
+                      />
                     ) : auth.role === Role.Public ? (
                       <QuoteLikerReadonlyButtonLayout />
                     ) : (
@@ -193,22 +199,35 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                   </Group>
 
                   {isPending ? (
-                    <CustomSkeleton v="circular" w={20} h={20} />
+                    <CustomSkeleton
+                      v="circular"
+                      w={20}
+                      h={20}
+                      bgcolor={threeBgColor}
+                    />
                   ) : (
-                    <ActionIcon size="sm" onClick={handleModalOpen}>
+                    <ActionIcon
+                      size="sm"
+                      onClick={handleModalOpen}
+                      c={globalUtility.getOneTx(color)}>
                       <I I={IconPlaylistAdd} />
                     </ActionIcon>
                   )}
 
                   {isPending ? (
-                    <CustomSkeleton v="circular" w={20} h={20} />
+                    <CustomSkeleton
+                      v="circular"
+                      w={20}
+                      h={20}
+                      bgcolor={threeBgColor}
+                    />
                   ) : (
                     <Tooltip
                       label="Copied!"
                       position="bottom"
                       opened={opened}
-                      bg={threeBg}
-                      c={oneTx}>
+                      bg={globalUtility.getThreeBg(color)}
+                      c={globalUtility.getOneTx(color)}>
                       {opened ? (
                         <ActionIcon c="teal" aria-label="Copy to clipboard">
                           <I I={IconCheck} color="teal" />
@@ -216,7 +235,8 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                       ) : (
                         <ActionIcon
                           aria-label="Copy to clipboard"
-                          onClick={handleCopy}>
+                          onClick={handleCopy}
+                          c={globalUtility.getOneTx(color)}>
                           <I I={IconCopy} />
                         </ActionIcon>
                       )}

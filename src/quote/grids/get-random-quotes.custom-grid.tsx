@@ -1,4 +1,4 @@
-import { oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
 import {
   addBoxShadowStyles,
   layoutCompHeight,
@@ -17,11 +17,12 @@ import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { CustomGrid } from "@/global/components/grids";
 import { SeoComponent } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsAdHeaderVisible);
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
 
   const { randomQuotes, isLoading, isError, hasMore, setPage } =
     useGetRandomQuotes();
@@ -33,14 +34,14 @@ export const GetRandomQuotesCustomGrid = () => {
         description={`Browse quotes and find inspiration.`}
       />
 
-      <Box component="div" bg={twoBg}>
+      <Box component="div" bg={globalUtility.getTwoBg(color)}>
         <Container
           size={quoteLayoutWidth}
           p={0}
           h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 0}px)`}>
           <Stack gap={0} h="100%">
             <Center
-              bg={oneBg}
+              bg={globalUtility.getOneBg(color)}
               ref={ref}
               style={{ zIndex: 1 }}
               className={`${!isMobile && roundBorderStyle}`}>
@@ -56,7 +57,11 @@ export const GetRandomQuotesCustomGrid = () => {
               isError={isError}
               hasMore={hasMore}
               setPage={setPage}
-              gridBg={isMobile ? oneBg : twoBg}
+              gridBg={
+                isMobile
+                  ? globalUtility.getOneBg(color)
+                  : globalUtility.getTwoBg(color)
+              }
               onMountEnter={(e: any) => !isMobile && addBoxShadowStyles(e)}
               onMountLeave={(e: any) => !isMobile && removeBoxShadowStyles(e)}
             />

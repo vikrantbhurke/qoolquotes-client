@@ -1,0 +1,144 @@
+import { lighten, darken } from "@mantine/core";
+
+export const GrayDarkOne = "#101113";
+export const GrayDarkTwo = lighten("#101113", 0.03);
+export const GrayDarkThree = lighten("#101113", 0.06);
+export const GrayDarkFour = lighten("#101113", 0.09);
+export const GrayDarkFive = lighten("#101113", 0.12);
+export const GrayLightOne = "#f1f3f5";
+export const GrayLightTwo = darken("#f1f3f5", 0.05);
+export const GrayLightThree = darken("#f1f3f5", 0.08);
+export const GrayLightFour = darken("#f1f3f5", 0.11);
+export const GrayLightFive = darken("#f1f3f5", 0.14);
+
+export const RedDarkOne = "#140404";
+export const RedDarkTwo = lighten("#140404", 0.03);
+export const RedDarkThree = lighten("#140404", 0.06);
+export const RedDarkFour = lighten("#140404", 0.09);
+export const RedDarkFive = lighten("#140404", 0.12);
+export const RedLightOne = "#ffe3e3";
+export const RedLightTwo = darken("#ffe3e3", 0.05);
+export const RedLightThree = darken("#ffe3e3", 0.08);
+export const RedLightFour = darken("#ffe3e3", 0.11);
+export const RedLightFive = darken("#ffe3e3", 0.14);
+
+export const PinkDarkOne = "#100307";
+export const PinkDarkTwo = lighten("#100307", 0.03);
+export const PinkDarkThree = lighten("#100307", 0.06);
+export const PinkDarkFour = lighten("#100307", 0.09);
+export const PinkDarkFive = lighten("#100307", 0.12);
+export const PinkLightOne = "#ffdeeb";
+export const PinkLightTwo = darken("#ffdeeb", 0.05);
+export const PinkLightThree = darken("#ffdeeb", 0.08);
+export const PinkLightFour = darken("#ffdeeb", 0.11);
+export const PinkLightFive = darken("#ffdeeb", 0.14);
+
+export const GrapeDarkOne = "#0d040f";
+export const GrapeDarkTwo = lighten("#0d040f", 0.03);
+export const GrapeDarkThree = lighten("#0d040f", 0.06);
+export const GrapeDarkFour = lighten("#0d040f", 0.09);
+export const GrapeDarkFive = lighten("#0d040f", 0.12);
+export const GrapeLightOne = "#f3d9fa";
+export const GrapeLightTwo = darken("#f3d9fa", 0.05);
+export const GrapeLightThree = darken("#f3d9fa", 0.08);
+export const GrapeLightFour = darken("#f3d9fa", 0.11);
+export const GrapeLightFive = darken("#f3d9fa", 0.14);
+
+export const VioletDarkOne = "#090613";
+export const VioletDarkTwo = lighten("#090613", 0.03);
+export const VioletDarkThree = lighten("#090613", 0.06);
+export const VioletDarkFour = lighten("#090613", 0.09);
+export const VioletDarkFive = lighten("#090613", 0.12);
+export const VioletLightOne = "#e5dbff";
+export const VioletLightTwo = darken("#e5dbff", 0.05);
+export const VioletLightThree = darken("#e5dbff", 0.08);
+export const VioletLightFour = darken("#e5dbff", 0.11);
+export const VioletLightFive = darken("#e5dbff", 0.14);
+
+export const IndigoDarkOne = "#050713";
+export const IndigoDarkTwo = lighten("#050713", 0.03);
+export const IndigoDarkThree = lighten("#050713", 0.06);
+export const IndigoDarkFour = lighten("#050713", 0.09);
+export const IndigoDarkFive = lighten("#050713", 0.12);
+export const IndigoLightOne = "#dbe4ff";
+export const IndigoLightTwo = darken("#dbe4ff", 0.05);
+export const IndigoLightThree = darken("#dbe4ff", 0.08);
+export const IndigoLightFour = darken("#dbe4ff", 0.11);
+export const IndigoLightFive = darken("#dbe4ff", 0.14);
+
+export const BlueDarkOne = "#020a11";
+export const BlueDarkTwo = lighten("#020a11", 0.03);
+export const BlueDarkThree = lighten("#020a11", 0.06);
+export const BlueDarkFour = lighten("#020a11", 0.09);
+export const BlueDarkFive = lighten("#020a11", 0.12);
+export const BlueLightOne = "#d0ebff";
+export const BlueLightTwo = darken("#d0ebff", 0.05);
+export const BlueLightThree = darken("#d0ebff", 0.08);
+export const BlueLightFour = darken("#d0ebff", 0.11);
+export const BlueLightFive = darken("#d0ebff", 0.14);
+
+export const CyanDarkOne = "#010b0d";
+export const CyanDarkTwo = lighten("#010b0d", 0.03);
+export const CyanDarkThree = lighten("#010b0d", 0.06);
+export const CyanDarkFour = lighten("#010b0d", 0.09);
+export const CyanDarkFive = lighten("#010b0d", 0.12);
+export const CyanLightOne = "#c5f6fa";
+export const CyanLightTwo = darken("#c5f6fa", 0.05);
+export const CyanLightThree = darken("#c5f6fa", 0.08);
+export const CyanLightFour = darken("#c5f6fa", 0.11);
+export const CyanLightFive = darken("#c5f6fa", 0.14);
+
+export const TealDarkOne = "#000c09";
+export const TealDarkTwo = lighten("#000c09", 0.03);
+export const TealDarkThree = lighten("#000c09", 0.06);
+export const TealDarkFour = lighten("#000c09", 0.09);
+export const TealDarkFive = lighten("#000c09", 0.12);
+export const TealLightOne = "#c3fae8";
+export const TealLightTwo = darken("#c3fae8", 0.05);
+export const TealLightThree = darken("#c3fae8", 0.08);
+export const TealLightFour = darken("#c3fae8", 0.11);
+export const TealLightFive = darken("#c3fae8", 0.14);
+
+export const GreenDarkOne = "#040d06";
+export const GreenDarkTwo = lighten("#040d06", 0.03);
+export const GreenDarkThree = lighten("#040d06", 0.06);
+export const GreenDarkFour = lighten("#040d06", 0.09);
+export const GreenDarkFive = lighten("#040d06", 0.12);
+export const GreenLightOne = "#d3f9d8";
+export const GreenLightTwo = darken("#d3f9d8", 0.05);
+export const GreenLightThree = darken("#d3f9d8", 0.08);
+export const GreenLightFour = darken("#d3f9d8", 0.11);
+export const GreenLightFive = darken("#d3f9d8", 0.14);
+
+export const LimeDarkOne = "#090e01";
+export const LimeDarkTwo = lighten("#090e01", 0.03);
+export const LimeDarkThree = lighten("#090e01", 0.06);
+export const LimeDarkFour = lighten("#090e01", 0.09);
+export const LimeDarkFive = lighten("#090e01", 0.12);
+export const LimeLightOne = "#e9fac8";
+export const LimeLightTwo = darken("#e9fac8", 0.05);
+export const LimeLightThree = darken("#e9fac8", 0.08);
+export const LimeLightFour = darken("#e9fac8", 0.11);
+export const LimeLightFive = darken("#e9fac8", 0.14);
+
+export const YellowDarkOne = "#170b00";
+export const YellowDarkTwo = lighten("#170b00", 0.03);
+export const YellowDarkThree = lighten("#170b00", 0.06);
+export const YellowDarkFour = lighten("#170b00", 0.09);
+export const YellowDarkFive = lighten("#170b00", 0.12);
+export const YellowLightOne = "#fff3bf";
+export const YellowLightTwo = darken("#fff3bf", 0.05);
+export const YellowLightThree = darken("#fff3bf", 0.08);
+export const YellowLightFour = darken("#fff3bf", 0.11);
+export const YellowLightFive = darken("#fff3bf", 0.14);
+
+export const OrangeDarkOne = "#150701";
+export const OrangeDarkTwo = lighten("#150701", 0.03);
+export const OrangeDarkThree = lighten("#150701", 0.06);
+export const OrangeDarkFour = lighten("#150701", 0.09);
+export const OrangeDarkFive = lighten("#150701", 0.12);
+export const OrangeLightOne = "#ffe8cc";
+export const OrangeLightTwo = darken("#ffe8cc", 0.05);
+export const OrangeLightThree = darken("#ffe8cc", 0.08);
+export const OrangeLightFour = darken("#ffe8cc", 0.11);
+export const OrangeLightFive = darken("#ffe8cc", 0.14);

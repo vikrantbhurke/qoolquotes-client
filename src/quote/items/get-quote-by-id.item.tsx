@@ -1,7 +1,7 @@
 import { useGetQuoteById } from "../hooks/read";
 import { QuoteItemLayout } from "../layouts";
 import { CustomError } from "@/global/components/errors";
-import { twoBg } from "@/global/styles/app.css";
+import { twoBg } from "@/global/styles/renamed.variables";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 

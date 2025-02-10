@@ -14,7 +14,8 @@ import {
   Title,
   Group,
 } from "@mantine/core";
-import { oneTx, oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";

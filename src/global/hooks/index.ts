@@ -5,6 +5,7 @@ import { useSocialAd } from "./use-social-ad.hook";
 import { useAuthReroute } from "./use-auth-reroute.hook";
 import { useInstallApp } from "./use-install-app.hook";
 import { useNotification } from "./use-notification.hook";
+import { useIsQuotePage } from "./use-is-quote-page.hook";
 import { useIsComponentVisible } from "./use-is-component-visible.hook";
 
 export {
@@ -15,5 +16,6 @@ export {
   useNotification,
   usePopunderAd,
   useSocialAd,
+  useIsQuotePage,
   useIsComponentVisible,
 };

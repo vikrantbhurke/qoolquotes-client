@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { Font } from "../enums";
+import { Color, Font } from "../enums";
 
 export interface ViewState {
   search: string;
@@ -12,6 +12,7 @@ export interface ViewState {
   isAdHeaderVisible: boolean;
   isPaginationVisible: boolean;
   font: Font;
+  color: Color;
 }
 
 const initialState: ViewState = {
@@ -24,6 +25,7 @@ const initialState: ViewState = {
   isAdHeaderVisible: false,
   isPaginationVisible: false,
   font: Font.Inter,
+  color: Color.Default,
 };
 
 export const viewSlice = createSlice({
@@ -57,6 +59,9 @@ export const viewSlice = createSlice({
     setFont: (state, action: PayloadAction<Font>) => {
       state.font = action.payload;
     },
+    setColor: (state, action: PayloadAction<Color>) => {
+      state.color = action.payload;
+    },
   },
 });
 
@@ -70,6 +75,7 @@ export const {
   setIsAdHeaderVisible,
   setIsPaginationVisible,
   setFont,
+  setColor,
 } = viewSlice.actions;
 
 export default viewSlice.reducer;

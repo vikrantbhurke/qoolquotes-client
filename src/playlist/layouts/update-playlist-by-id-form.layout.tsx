@@ -29,7 +29,8 @@ import { playlistUtility } from "../playlist.utility";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { oneBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, twoBg } from "@/global/styles/renamed.variables";
 
 export const UpdatePlaylistByIdFormLayout = () => {
   const dispatch = useDispatch();

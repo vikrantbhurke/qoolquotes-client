@@ -1,0 +1,16 @@
+export enum Color {
+  "Default" = "Default",
+  "Gray" = "Gray",
+  "Red" = "Red",
+  "Pink" = "Pink",
+  "Grape" = "Grape",
+  "Violet" = "Violet",
+  "Indigo" = "Indigo",
+  "Blue" = "Blue",
+  "Cyan" = "Cyan",
+  "Teal" = "Teal",
+  "Green" = "Green",
+  "Lime" = "Lime",
+  "Yellow" = "Yellow",
+  "Orange" = "Orange",
+}

@@ -1,4 +1,4 @@
-import { oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { getTopRoundBordersStyles } from "@/global/styles/global.styles";
 import { Center, Pagination } from "@mantine/core";
 import { CustomNumberCombobox } from "../reusables";

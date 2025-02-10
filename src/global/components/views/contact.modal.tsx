@@ -1,5 +1,5 @@
 import { CreateCitedQuoteFormLayout } from "@/cited-quote/layouts";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx } from "@/global/styles/renamed.variables";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { CreateMessageFormLayout } from "@/message/layouts";
 import { Modal, Tabs, Text } from "@mantine/core";

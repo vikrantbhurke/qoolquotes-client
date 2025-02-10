@@ -1,4 +1,4 @@
-import { oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { Stack, Text } from "@mantine/core";
 
 export const CustomError = ({ message, bg = oneBg }: any) => {

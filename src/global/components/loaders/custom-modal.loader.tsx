@@ -1,4 +1,5 @@
-import { oneBg, oneTx, roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx } from "@/global/styles/renamed.variables";
+import { roundBorderStyle } from "@/global/styles/app.css";
 import { Center, Group, Loader, Pagination, Space, Stack } from "@mantine/core";
 
 export const CustomModalLoader = () => {

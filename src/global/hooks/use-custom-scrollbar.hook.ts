@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { twoBg } from "../styles/app.css";
+import { twoBg } from "../styles/renamed.variables";
 
 export const useCustomScrollbar = () => {
   useEffect(() => {

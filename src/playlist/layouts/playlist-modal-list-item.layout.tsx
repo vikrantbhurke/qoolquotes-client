@@ -1,5 +1,6 @@
 import { Group, Text } from "@mantine/core";
-import { roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { twoBg } from "@/global/styles/renamed.variables";
 import { PlaylistQuotesAddRemoveButtonLayout } from "@/playlist-quote/layouts";
 import { CustomSkeleton } from "@/global/components/reusables";
 

@@ -1,4 +1,5 @@
-import { fiveBg, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { fiveBg, twoBg } from "@/global/styles/renamed.variables";
 import { Group, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { Fragment, useRef } from "react";

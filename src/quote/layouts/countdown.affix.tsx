@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useCountdownNextUpdate } from "../hooks/misc";
 import { Affix, Text, Transition } from "@mantine/core";
-import { roundBorderStyle, threeBg, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const CountdownAffix = (refetch: any) => {
   const { nextTimeOfDay, countdown } = useCountdownNextUpdate(refetch);
   const [mounted, setMounted] = useState<boolean>(false);
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
 
   useEffect(() => {
     setMounted(true);
@@ -28,8 +29,12 @@ export const CountdownAffix = (refetch: any) => {
           <Text
             style={styles}
             fz="xs"
-            c="dimmed"
-            bg={isMobile ? twoBg : threeBg}
+            c={globalUtility.getThreeTx(color)}
+            bg={
+              isMobile
+                ? globalUtility.getTwoBg(color)
+                : globalUtility.getThreeBg(color)
+            }
             p="xs"
             className={roundBorderStyle}>
             Read {nextTimeOfDay} Quote in {countdown}

@@ -20,13 +20,9 @@ import {
   IconFilter,
   IconFilterFilled,
 } from "@tabler/icons-react";
-import {
-  oneBg,
-  oneTx,
-  oneTxOneBgButtonPseudoStyle,
-  roundTopBorderStyle,
-  twoBg,
-} from "@/global/styles/app.css";
+import { roundTopBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
+import { oneTxOneBgButtonPseudoStyle } from "@/global/styles/one-tx-one-bg-button-pseudo.css";
 import { useRef, useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { TopicsFilterModal } from "./topics-filter.modal";

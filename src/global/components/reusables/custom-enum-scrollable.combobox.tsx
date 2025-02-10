@@ -1,10 +1,7 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import {
-  borderShadowStyle,
-  noBorderStyle,
-  oneTxYellowBgMenuButtonPseudoStyle,
-} from "@/global/styles/app.css";
+import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
+import { oneTxThemeYellowBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   getComboboxTextInputStyles,
   getDropdownStyles,
@@ -18,6 +15,7 @@ import {
   ScrollArea,
   useMantineColorScheme,
   TextInput,
+  Group,
 } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -30,6 +28,7 @@ export const CustomEnumScrollableCombobox = ({
   value,
   handleValue,
   id,
+  Icon = null,
 }: any) => {
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
@@ -48,10 +47,13 @@ export const CustomEnumScrollableCombobox = ({
       p="xs"
       key={item}
       value={item}
-      className={oneTxYellowBgMenuButtonPseudoStyle}>
-      <Text fz="sm" tt="capitalize" ta="center">
-        {globalUtility.getKeyByValue(EnumObject, item)}
-      </Text>
+      className={oneTxThemeYellowBgMenuButtonPseudoStyle}>
+      <Group justify="center">
+        {Icon}
+        <Text fz="sm" tt="capitalize" ta="center">
+          {globalUtility.getKeyByValue(EnumObject, item)}
+        </Text>
+      </Group>
     </Combobox.Option>
   ));
 

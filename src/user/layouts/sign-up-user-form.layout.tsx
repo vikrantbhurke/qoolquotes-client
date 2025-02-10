@@ -1,5 +1,6 @@
 import { CustomEnumCombobox, I } from "@/global/components/reusables";
-import { oneBg, oneTx, roundBorderStyle, twoBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { useSignUpUserForm } from "@/user/hooks/create";
 import {

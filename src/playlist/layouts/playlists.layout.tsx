@@ -1,11 +1,7 @@
-import {
-  oneBg,
-  oneTx,
-  oneTxOneBgButtonPseudoStyle,
-  twoBg,
-  roundTopBorderStyle,
-  themeTxStyle,
-} from "@/global/styles/app.css";
+import { roundTopBorderStyle } from "@/global/styles/app.css";
+import { oneTxOneBgButtonPseudoStyle } from "@/global/styles/one-tx-one-bg-button-pseudo.css";
+import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/renamed.variables";
 import {
   layoutCompHeight,
   getPlaylistTabStyles,
@@ -140,7 +136,7 @@ export const PlaylistsLayout = () => {
               <Group gap={0} justify="center">
                 <Button
                   h={layoutCompHeight}
-                  className={`${themeTxStyle}`}
+                  className={`${themeTxPseudoStyle}`}
                   style={getPlaylistTabStyles(tab === "All")}
                   onClick={handleNavigateToPlaylists}>
                   All{" "}
@@ -151,7 +147,7 @@ export const PlaylistsLayout = () => {
                 <ComponentOrFragmentRoute clearance={Clearance.LevelTwo}>
                   <Button
                     h={layoutCompHeight}
-                    className={`${themeTxStyle}`}
+                    className={`${themeTxPseudoStyle}`}
                     style={getPlaylistTabStyles(tab === "Created")}
                     onClick={handleNavigateToCreatedPlaylists}>
                     Created{" "}
@@ -161,7 +157,7 @@ export const PlaylistsLayout = () => {
 
                   <Button
                     h={layoutCompHeight}
-                    className={`${themeTxStyle}`}
+                    className={`${themeTxPseudoStyle}`}
                     style={getPlaylistTabStyles(tab === "Saved")}
                     onClick={handleNavigateToSavedPlaylists}>
                     Saved{" "}

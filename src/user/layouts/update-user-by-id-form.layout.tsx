@@ -19,13 +19,8 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh } from "@tabler/icons-react";
-import {
-  oneTx,
-  oneBg,
-  roundBorderStyle,
-  twoBg,
-  fiveTx,
-} from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg, fiveTx } from "@/global/styles/renamed.variables";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";

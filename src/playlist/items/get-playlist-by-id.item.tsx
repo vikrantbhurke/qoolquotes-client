@@ -1,7 +1,7 @@
 import { useGetPlaylistById } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
 import { PlaylistItemLayout } from "../layouts";
-import { twoBg } from "@/global/styles/app.css";
+import { twoBg } from "@/global/styles/renamed.variables";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 

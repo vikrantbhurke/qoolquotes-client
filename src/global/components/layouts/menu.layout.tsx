@@ -1,11 +1,10 @@
 import { RootState } from "@/global/states/store";
+import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
+import { oneTx, themeGreenColor } from "@/global/styles/renamed.variables";
 import {
-  borderShadowStyle,
-  noBorderStyle,
-  oneTxGreenBgMenuButtonPseudoStyle,
-  oneTxYellowBgMenuButtonPseudoStyle,
-  themeGreenColor,
-} from "@/global/styles/app.css";
+  oneTxThemeGreenBgMenuButtonPseudoStyle,
+  oneTxThemeYellowBgMenuButtonPseudoStyle,
+} from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   Avatar,
   Burger,
@@ -20,7 +19,7 @@ import {
   getDropdownStyles,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
-import { useInstallApp } from "@/global/hooks";
+import { useInstallApp, useIsQuotePage } from "@/global/hooks";
 import {
   IconDownload,
   IconInfoCircle,
@@ -31,11 +30,14 @@ import { I } from "../reusables";
 import { ContactModal } from "../views";
 import { ComponentOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
+import { globalUtility } from "@/global/utilities";
 
 export const MenuLayout = () => {
+  const isQuotePage = useIsQuotePage();
   const navigate = useNavigate();
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { auth } = useSelector((state: RootState) => state.auth);
+  const { color } = useSelector((state: RootState) => state.view);
   const [opened, { open, close }] = useDisclosure();
   const { colorScheme } = useMantineColorScheme();
   const { dropdownBg } = getDropdownStyles(colorScheme);
@@ -65,7 +67,9 @@ export const MenuLayout = () => {
                 visibleFrom={responsiveBreakpoint}
               />
             ) : (
-              <Avatar visibleFrom={responsiveBreakpoint}>
+              <Avatar
+                visibleFrom={responsiveBreakpoint}
+                color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
                 {auth.firstname[0]}
                 {auth.lastname[0]}
               </Avatar>
@@ -85,7 +89,7 @@ export const MenuLayout = () => {
               onClick={handleInstallClick}
               p="xs"
               c={themeGreenColor}
-              className={oneTxGreenBgMenuButtonPseudoStyle}
+              className={oneTxThemeGreenBgMenuButtonPseudoStyle}
               leftSection={<I I={IconDownload} />}
               hiddenFrom={responsiveBreakpoint}>
               <Text fz="sm" c={themeGreenColor}>
@@ -98,7 +102,7 @@ export const MenuLayout = () => {
             <Menu.Item
               onClick={handleNavigateToUser}
               p="xs"
-              className={oneTxYellowBgMenuButtonPseudoStyle}
+              className={oneTxThemeYellowBgMenuButtonPseudoStyle}
               leftSection={<I I={IconUser} />}>
               <Text fz="sm">Profile</Text>
             </Menu.Item>
@@ -107,7 +111,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToAbout}
             p="xs"
-            className={oneTxYellowBgMenuButtonPseudoStyle}
+            className={oneTxThemeYellowBgMenuButtonPseudoStyle}
             leftSection={<I I={IconInfoCircle} />}>
             <Text fz="sm">About</Text>
           </Menu.Item>
@@ -115,7 +119,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleContact}
             p="xs"
-            className={oneTxYellowBgMenuButtonPseudoStyle}
+            className={oneTxThemeYellowBgMenuButtonPseudoStyle}
             leftSection={<I I={IconMessage} />}>
             <Text fz="sm">Contact</Text>
           </Menu.Item>

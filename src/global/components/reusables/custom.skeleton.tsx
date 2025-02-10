@@ -1,4 +1,4 @@
-import { threeBg } from "@/global/styles/app.css";
+import { threeBg } from "@/global/styles/renamed.variables";
 import { Skeleton } from "@mui/material";
 
 export const CustomSkeleton = ({
@@ -6,14 +6,9 @@ export const CustomSkeleton = ({
   v = "text",
   w = 100,
   h = 25,
+  bgcolor = threeBg,
 }: any) => {
   return (
-    <Skeleton
-      animation={a}
-      variant={v}
-      sx={{ bgcolor: threeBg }}
-      width={w}
-      height={h}
-    />
+    <Skeleton animation={a} variant={v} sx={{ bgcolor }} width={w} height={h} />
   );
 };

@@ -2,7 +2,7 @@ import { useGetUserById } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
 import { UserItemLayout } from "../layouts/user-item.layout";
 import { SeoComponent } from "@/global/components/reusables";
-import { twoBg } from "@/global/styles/app.css";
+import { twoBg } from "@/global/styles/renamed.variables";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 

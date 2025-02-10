@@ -1,5 +1,5 @@
 import { Breakpoint } from "../enums";
-import { twoBg, oneBg, oneTx, threeBg, HCBorder } from "./app.css";
+import { twoBg, oneBg, oneTx, threeBg, HCBorder } from "./renamed.variables";
 
 export const textBold = 500;
 export const marginLeft = 50;
@@ -136,11 +136,14 @@ export const getComboboxTextInputStyles = (isFocused: boolean) => ({
   },
 });
 
-export const getComboboxTextInputForPaginationStyles = () => ({
+export const getComboboxTextInputForPaginationStyles = (
+  color: string,
+  backgroundColor: string
+) => ({
   input: {
     textAlign: "center" as const,
-    color: oneTx,
-    backgroundColor: threeBg,
+    color,
+    backgroundColor,
     border: HCBorder,
   },
 });

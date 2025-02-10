@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
-import { oneTx } from "@/global/styles/app.css";
+import { oneTx } from "@/global/styles/renamed.variables";
 
 export const VerifyAccountItem = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export const VerifyAccountItem = () => {
   return (
     <Stack justify="center" align="center" h="100%">
       <Loader type="dots" color={oneTx} />
-      <Text  fz="sm">{text}</Text>
+      <Text fz="sm">{text}</Text>
     </Stack>
   );
 };

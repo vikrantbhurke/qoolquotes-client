@@ -1,6 +1,6 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useRef } from "react";

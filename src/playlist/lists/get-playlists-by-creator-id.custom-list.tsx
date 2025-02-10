@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { setPage } from "../playlist.slice";
-import { oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/renamed.variables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
 

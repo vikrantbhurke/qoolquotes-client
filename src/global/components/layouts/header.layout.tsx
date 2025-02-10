@@ -10,6 +10,7 @@ import {
   Avatar,
 } from "@mantine/core";
 import {
+  IconBrush,
   IconDownload,
   IconLetterA,
   IconLogin,
@@ -24,7 +25,8 @@ import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
-import { oneTx, themeGreenColor, themeTxStyle } from "@/global/styles/app.css";
+import { themeTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
+import { oneTx, themeGreenColor } from "@/global/styles/renamed.variables";
 import { signOut } from "@/user/auth.slice";
 import {
   layoutCompHeight,
@@ -34,19 +36,21 @@ import {
   textBolder,
 } from "@/global/styles/global.styles";
 import { I } from "../reusables";
-import { useInstallApp } from "@/global/hooks";
+import { useInstallApp, useIsQuotePage } from "@/global/hooks";
 import logo from "@/global/assets/pwa-64x64.png";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 import { FontModal } from "../views";
-// import { FontModal } from "../views";
+import { ColorModal } from "../views";
+import { globalUtility } from "@/global/utilities";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
+  const isQuotePage = useIsQuotePage();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
@@ -55,8 +59,8 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const [fontOpened, { open: fontOpen, close: fontClose }] =
     useDisclosure(false);
 
-  // const [colorOpened, { open: colorOpen, close: colorClose }] =
-  //   useDisclosure(false);
+  const [colorOpened, { open: colorOpen, close: colorClose }] =
+    useDisclosure(false);
 
   const {
     sort: authorSort,
@@ -134,7 +138,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
             <Group gap={4} onClick={handleNavigateToTodaysQuote} align="center">
               <Image src={logo} alt="logo" w={32} />
 
-              <Text fw={textBolder} fz="lg" className={themeTxStyle}>
+              <Text
+                fw={textBolder}
+                fz="lg"
+                className={
+                  isQuotePage
+                    ? globalUtility.getThemeTxPseudoStyle(color)
+                    : themeTxPseudoStyle
+                }>
                 {import.meta.env.VITE_APP_NAME}
               </Text>
             </Group>
@@ -156,7 +167,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTodaysQuote}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fz="sm" fw={textBold} className={themeTxStyle}>
+                <Text
+                  fz="sm"
+                  fw={textBold}
+                  className={
+                    isQuotePage
+                      ? globalUtility.getThemeTxPseudoStyle(color)
+                      : themeTxPseudoStyle
+                  }>
                   Today's
                 </Text>
               </Group>
@@ -164,7 +182,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToFeed}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fz="sm" fw={textBold} className={themeTxStyle}>
+                <Text
+                  fz="sm"
+                  fw={textBold}
+                  className={
+                    isQuotePage
+                      ? globalUtility.getThemeTxPseudoStyle(color)
+                      : themeTxPseudoStyle
+                  }>
                   Feed
                 </Text>
               </Group>
@@ -172,7 +197,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToTopics}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fz="sm" fw={textBold} className={themeTxStyle}>
+                <Text
+                  fz="sm"
+                  fw={textBold}
+                  className={
+                    isQuotePage
+                      ? globalUtility.getThemeTxPseudoStyle(color)
+                      : themeTxPseudoStyle
+                  }>
                   Topics
                 </Text>
               </Group>
@@ -180,7 +212,14 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToAuthors}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fz="sm" fw={textBold} className={themeTxStyle}>
+                <Text
+                  fz="sm"
+                  fw={textBold}
+                  className={
+                    isQuotePage
+                      ? globalUtility.getThemeTxPseudoStyle(color)
+                      : themeTxPseudoStyle
+                  }>
                   Authors
                 </Text>
               </Group>
@@ -188,13 +227,23 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               <Group
                 onClick={handleNavigateToPlaylists}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fz="sm" fw={textBold} className={themeTxStyle}>
+                <Text
+                  fz="sm"
+                  fw={textBold}
+                  className={
+                    isQuotePage
+                      ? globalUtility.getThemeTxPseudoStyle(color)
+                      : themeTxPseudoStyle
+                  }>
                   Playlists
                 </Text>
               </Group>
 
               <ActionIcon size="sm" onClick={handleOpenSearchbar}>
-                <I I={IconSearch} />
+                <I
+                  I={IconSearch}
+                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                />
               </ActionIcon>
 
               <ActionIcon size="sm" onClick={handleTheme}>
@@ -207,24 +256,36 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
               {auth.id ? (
                 <ActionIcon size="sm" onClick={handleSignOut}>
-                  <I I={IconLogout} />
+                  <I
+                    I={IconLogout}
+                    color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                  />
                 </ActionIcon>
               ) : (
                 <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
-                  <I I={IconLogin} />
+                  <I
+                    I={IconLogin}
+                    color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                  />
                 </ActionIcon>
               )}
 
               <ActionIcon size="sm" onClick={fontOpen}>
-                <I I={IconLetterA} />
+                <I
+                  I={IconLetterA}
+                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                />
               </ActionIcon>
 
-              {/*   <ActionIcon size="sm" onClick={handleSignOut}>
-                <I I={IconBrush} />
-              </ActionIcon> */}
+              <ActionIcon size="sm" onClick={colorOpen}>
+                <I
+                  I={IconBrush}
+                  color={isQuotePage ? globalUtility.getOneTx(color) : oneTx}
+                />
+              </ActionIcon>
 
               <FontModal opened={fontOpened} close={fontClose} />
-              {/*   <ColorModal opened={colorOpened} close={colorClose} /> */}
+              <ColorModal opened={colorOpened} close={colorClose} />
 
               <MenuLayout />
 

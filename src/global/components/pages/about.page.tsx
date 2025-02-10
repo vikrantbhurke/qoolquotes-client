@@ -1,7 +1,7 @@
 import Banner300x250 from "@/global/ads/Banner300x250";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
-import { oneBg, threeTx, twoBg } from "@/global/styles/app.css";
+import { oneBg, threeTx, twoBg } from "@/global/styles/renamed.variables";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { SeoComponent } from "../reusables";

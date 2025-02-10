@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { oneBg, roundBorderStyle } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneBg, oneTx, threeBg } from "@/global/styles/renamed.variables";
 import {
   Box,
   Center,
@@ -16,11 +17,12 @@ import {
   layoutCompHeight,
 } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
-import { useIsComponentVisible } from "@/global/hooks";
+import { useIsComponentVisible, useIsQuotePage } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { Breakpoint } from "@/global/enums";
 import { CustomNumberCombobox } from "../reusables";
 import { RootState } from "@/global/states/store";
+import { globalUtility } from "@/global/utilities";
 
 export const MantineGrid = ({
   p,
@@ -33,12 +35,15 @@ export const MantineGrid = ({
   onMouseEnter = () => {},
   onMouseLeave = () => {},
 }: any) => {
+  const isQuotePage = useIsQuotePage();
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { isMobile, width } = useSelector((state: RootState) => state.view);
+  const { isMobile, width, color } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));
@@ -72,7 +77,11 @@ export const MantineGrid = ({
     .map((_) => {
       return (
         <Grid.Col p={isMobile ? 0 : p} span={{ base: 12, lg: 6, xl: 4 }}>
-          <Box component="div" h="100%"></Box>
+          <Box
+            component="div"
+            h="100%"
+            style={{ borderRadius: 8 }}
+            bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}></Box>
         </Grid.Col>
       );
     });
@@ -90,7 +99,7 @@ export const MantineGrid = ({
               <Grid.Col p={p} span={{ base: 12, lg: 6, xl: 4 }} key={index}>
                 <Box
                   component="div"
-                  bg={oneBg}
+                  bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}
                   className={`${roundBorderStyle}`}
                   h="100%"
                   onMouseEnter={onMouseEnter}
@@ -107,7 +116,7 @@ export const MantineGrid = ({
 
       <Center
         ref={ref}
-        bg={oneBg}
+        bg={isQuotePage ? globalUtility.getOneBg(color) : oneBg}
         style={{
           zIndex: 1,
           ...getTopRoundBordersStyles(isMobile),
@@ -122,6 +131,14 @@ export const MantineGrid = ({
           />
 
           <Pagination
+            styles={{
+              control: {
+                color: isQuotePage ? globalUtility.getOneTx(color) : oneTx,
+                backgroundColor: isQuotePage
+                  ? globalUtility.getThreeBg(color)
+                  : threeBg,
+              },
+            }}
             size="sm"
             m="xs"
             radius="sm"

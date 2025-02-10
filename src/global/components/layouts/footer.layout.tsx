@@ -1,7 +1,8 @@
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
-import { roundBorderStyle, themeYellowBg } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
+import { oneTx, themeYellowBg } from "@/global/styles/renamed.variables";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text, Image } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -20,14 +21,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { I } from "../reusables";
 import logo from "@/global/assets/pwa-64x64.png";
+import { globalUtility } from "@/global/utilities";
+import { useIsQuotePage } from "@/global/hooks";
 
 export const FooterLayout = ({ opened, toggle }: any) => {
+  const isQuotePage = useIsQuotePage();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
   const location = useLocation();
 
-  const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
+  const { isSearchbarVisible, color } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const {
     sort: authorSort,
@@ -73,23 +79,27 @@ export const FooterLayout = ({ opened, toggle }: any) => {
 
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
-  const todaysIconColor =
-    location.pathname === "/" ? themeYellowBg : "transparent";
+  let themeColor = isQuotePage
+    ? globalUtility.getThemeBg(color)
+    : themeYellowBg;
 
-  const feedIconColor =
-    location.pathname === "/feed" ? themeYellowBg : "transparent";
+  let todaysIconColor = "transparent";
+  if (location.pathname === "/") todaysIconColor = themeColor;
+
+  let feedIconColor = "transparent";
+  if (location.pathname === "/feed") feedIconColor = themeColor;
 
   const feedPath =
     location.pathname === "/feed" ? IconArticleFilledFilled : IconArticle;
 
-  const topicsIconColor =
-    location.pathname === "/topics" ? themeYellowBg : "transparent";
+  let topicsIconColor = "transparent";
+  if (location.pathname === "/topics") topicsIconColor = themeColor;
 
   const topicsPath =
     location.pathname === "/topics" ? IconCategoryFilled : IconCategory;
 
-  const authorsIconColor =
-    location.pathname === "/authors" ? themeYellowBg : "transparent";
+  let authorsIconColor = "transparent";
+  if (location.pathname === "/authors") authorsIconColor = themeColor;
 
   const authorsPath =
     location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
@@ -107,7 +117,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={todaysIconColor} px={8} py={2} className={roundBorderStyle}>
           <Image src={logo} alt="logo" w={24} p={0} m={0} />
         </Stack>
-        <Text fz="sm">Today's</Text>
+        <Text fz="sm" c={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+          Today's
+        </Text>
       </Stack>
 
       <Stack
@@ -119,7 +131,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={feedIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={feedPath} />
         </Stack>
-        <Text fz="sm">Feed</Text>
+        <Text fz="sm" c={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+          Feed
+        </Text>
       </Stack>
 
       <Stack
@@ -131,7 +145,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={topicsPath} />
         </Stack>
-        <Text fz="sm">Topics</Text>
+        <Text fz="sm" c={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+          Topics
+        </Text>
       </Stack>
 
       <Stack
@@ -147,7 +163,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
           className={roundBorderStyle}>
           <I I={authorsPath} />
         </Stack>
-        <Text fz="sm">Authors</Text>
+        <Text fz="sm" c={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+          Authors
+        </Text>
       </Stack>
 
       <Stack
@@ -159,7 +177,9 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         <Stack bg={searchIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={IconSearch} />
         </Stack>
-        <Text fz="sm">Search</Text>
+        <Text fz="sm" c={isQuotePage ? globalUtility.getOneTx(color) : oneTx}>
+          Search
+        </Text>
       </Stack>
     </Group>
   );
