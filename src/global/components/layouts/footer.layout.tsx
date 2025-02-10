@@ -2,11 +2,7 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { roundBorderStyle } from "@/global/styles/app.css";
-import {
-  oneTx,
-  themeDefaultBg,
-  themeYellowBg,
-} from "@/global/styles/renamed.variables";
+import { oneTx, themeDefaultBg } from "@/global/styles/renamed.variables";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text, Image } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";

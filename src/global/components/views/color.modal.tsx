@@ -1,19 +1,12 @@
 import { Color } from "@/global/enums";
 import { RootState } from "@/global/states/store";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import {
-  ActionIcon,
-  ColorSwatch,
-  Group,
-  Modal,
-  Space,
-  Stack,
-} from "@mantine/core";
+import { ActionIcon, Group, Modal, Space, Stack } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { CustomEnumScrollableCombobox, I } from "../reusables";
 import { globalUtility } from "@/global/utilities";
-import { IconLetterA, IconRefresh } from "@tabler/icons-react";
+import { IconRefresh } from "@tabler/icons-react";
 import { setColor } from "@/global/states/view.slice";
 
 export const ColorModal = ({ opened, close }: any) => {

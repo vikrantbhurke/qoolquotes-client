@@ -15,7 +15,6 @@ import {
   ScrollArea,
   useMantineColorScheme,
   TextInput,
-  Group,
 } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
