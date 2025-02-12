@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { PlaylistModal } from "@/playlist/layouts";
 import { useClipboard, useDisclosure } from "@mantine/hooks";
 import { setFilterObject, setPage, setQid } from "@/quote/quote.slice";
-import { IconCopy, IconPlaylistAdd, IconCheck } from "@tabler/icons-react";
+import {
+  IconCopy,
+  IconPlaylistAdd,
+  IconCheck,
+  IconDownload,
+} from "@tabler/icons-react";
 import {
   ActionIcon,
   Center,
@@ -30,6 +35,7 @@ import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
+import { DownloadImageModal } from "./download-image.modal";
 
 export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -37,7 +43,15 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const dispatch = useDispatch();
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
-  const [modalOpened, { open, close }] = useDisclosure(false);
+
+  const [playlistModalOpened, { open: playlistOpen, close: playlistClose }] =
+    useDisclosure(false);
+
+  const [
+    downloadImageModalOpened,
+    { open: downloadImageOpen, close: downloadImageClose },
+  ] = useDisclosure(false);
+
   const { isMobile, font, color } = useSelector(
     (state: RootState) => state.view
   );
@@ -63,13 +77,13 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     navigate(`/quotes/topicId/${topic._id}?page=1`);
   };
 
-  const handleModalOpen = () => {
+  const handlePlaylistModalOpen = () => {
     if (auth.role === Role.Public) {
       navigate("/sign-in");
       return;
     }
 
-    open();
+    playlistOpen();
     dispatch(setQid(quote.id));
   };
 
@@ -77,6 +91,10 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     clipboard.copy(`${quote.content} - ${quote.authorId.name}`);
     setOpened(true);
     setTimeout(() => setOpened(false), 1500);
+  };
+
+  const handleDownloadImage = () => {
+    downloadImageOpen();
   };
 
   const threeBgColor = globalUtility.getThreeBg(color);
@@ -98,7 +116,14 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
 
   return (
     <>
-      <PlaylistModal opened={modalOpened} close={close} />
+      <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
+
+      <DownloadImageModal
+        content={quote?.content}
+        author={quote?.authorId?.name}
+        opened={downloadImageModalOpened}
+        close={downloadImageClose}
+      />
 
       <Stack
         p="md"
@@ -208,7 +233,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                   ) : (
                     <ActionIcon
                       size="sm"
-                      onClick={handleModalOpen}
+                      onClick={handlePlaylistModalOpen}
                       c={globalUtility.getOneTx(color)}>
                       <I I={IconPlaylistAdd} />
                     </ActionIcon>
@@ -241,6 +266,21 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                         </ActionIcon>
                       )}
                     </Tooltip>
+                  )}
+
+                  {isPending ? (
+                    <CustomSkeleton
+                      v="circular"
+                      w={20}
+                      h={20}
+                      bgcolor={threeBgColor}
+                    />
+                  ) : (
+                    <ActionIcon
+                      onClick={handleDownloadImage}
+                      c={globalUtility.getOneTx(color)}>
+                      <I I={IconDownload} />
+                    </ActionIcon>
                   )}
                 </Group>
               </>

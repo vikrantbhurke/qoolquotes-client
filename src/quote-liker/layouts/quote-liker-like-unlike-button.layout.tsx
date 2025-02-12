@@ -32,6 +32,7 @@ export const QuoteLikerLikeUnlikeButtonLayout = ({ qid }: any) => {
     <>
       {quoteLiker?.exists ? (
         <ActionIcon
+          className="exclude"
           c="crimson"
           onClick={handleUnlikeQuote}
           disabled={isUnlikingPending}>
@@ -39,6 +40,7 @@ export const QuoteLikerLikeUnlikeButtonLayout = ({ qid }: any) => {
         </ActionIcon>
       ) : (
         <ActionIcon
+          className="exclude"
           c="crimson"
           onClick={handleLikeQuote}
           disabled={isLikingPending}>

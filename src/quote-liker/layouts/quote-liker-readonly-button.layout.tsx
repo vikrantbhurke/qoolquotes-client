@@ -11,7 +11,10 @@ export const QuoteLikerReadonlyButtonLayout = () => {
   };
 
   return (
-    <ActionIcon c="crimson" onClick={handleNavigateToSignIn}>
+    <ActionIcon
+      className="exclude"
+      c="crimson"
+      onClick={handleNavigateToSignIn}>
       <I I={IconHeartFilled} />
     </ActionIcon>
   );

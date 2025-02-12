@@ -9,7 +9,12 @@ export const QuoteLikesCountLayout = ({ qid }: any) => {
   const { color } = useSelector((state: RootState) => state.view);
 
   return (
-    <Text fz="xs" ta="center" pt={2} c={globalUtility.getOneTx(color)}>
+    <Text
+      className="exclude"
+      fz="xs"
+      ta="center"
+      pt={2}
+      c={globalUtility.getOneTx(color)}>
       {globalUtility.formatNumber(quoteLikes?.count || 0)}
     </Text>
   );
