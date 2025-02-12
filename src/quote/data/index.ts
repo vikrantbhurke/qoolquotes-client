@@ -1,3 +1,3 @@
-import { socialMediaSizes } from "./social-media-sizes";
+import { socialMediaPresets } from "./social-media-sizes";
 
-export { socialMediaSizes };
+export { socialMediaPresets };
