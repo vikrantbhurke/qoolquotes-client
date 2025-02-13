@@ -1,6 +1,6 @@
 import { themeDefaultTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
 import { oneDefaultTx } from "@/global/styles/renamed.variables";
-import { oneTxThemeYellowBgPillPseudoStyle } from "@/global/styles/one-tx-theme-bg-pill-pseudo.css";
+import { oneTxThemeDefaultBgPillPseudoStyle } from "@/global/styles/one-tx-theme-bg-pill-pseudo.css";
 import { Avatar, Button, Group, Stack, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { IconMessage2 } from "@tabler/icons-react";
@@ -110,7 +110,7 @@ export const PlaylistListItemLayout = ({ item }: any) => {
               px={4}
               h="lg"
               c={oneDefaultTx}
-              className={oneTxThemeYellowBgPillPseudoStyle}
+              className={oneTxThemeDefaultBgPillPseudoStyle}
               onClick={handleNavigateToQuotesByPlaylist}>
               View
             </Button>

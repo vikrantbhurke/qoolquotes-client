@@ -56,7 +56,7 @@ export const CreateCitedQuoteFormLayout = () => {
             <Text
               fz="xs"
               c={citedQuoteUtility.getContentColor(form.values.content.length)}>
-              {form.values.content.length} / 500
+              {form.values.content.length} / 390
             </Text>
           </Group>
 
@@ -64,7 +64,7 @@ export const CreateCitedQuoteFormLayout = () => {
             minRows={2}
             maxRows={2}
             minLength={5}
-            maxLength={500}
+            maxLength={390}
             w="100%"
             placeholder="A Qool Quote..."
             styles={getFormTextInputStyles(focusedInput === "content")}

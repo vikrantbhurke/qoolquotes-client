@@ -1,3 +1,3 @@
-import { socialMediaPresets } from "./social-media-sizes";
+import { getImageValues } from "./image-values";
 
-export { socialMediaPresets };
+export { getImageValues };

@@ -5,8 +5,8 @@ import {
   themeGreenColor,
 } from "@/global/styles/renamed.variables";
 import {
+  oneTxThemeBgMenuButtonPseudoStyle,
   oneTxThemeGreenBgMenuButtonPseudoStyle,
-  oneTxThemeYellowBgMenuButtonPseudoStyle,
 } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   Avatar,
@@ -109,7 +109,7 @@ export const MenuLayout = () => {
             <Menu.Item
               onClick={handleNavigateToUser}
               p="xs"
-              className={oneTxThemeYellowBgMenuButtonPseudoStyle}
+              className={oneTxThemeBgMenuButtonPseudoStyle}
               leftSection={<I I={IconUser} />}>
               <Text fz="sm">Profile</Text>
             </Menu.Item>
@@ -118,7 +118,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToAbout}
             p="xs"
-            className={oneTxThemeYellowBgMenuButtonPseudoStyle}
+            className={oneTxThemeBgMenuButtonPseudoStyle}
             leftSection={<I I={IconInfoCircle} />}>
             <Text fz="sm">About</Text>
           </Menu.Item>
@@ -126,7 +126,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleContact}
             p="xs"
-            className={oneTxThemeYellowBgMenuButtonPseudoStyle}
+            className={oneTxThemeBgMenuButtonPseudoStyle}
             leftSection={<I I={IconMessage} />}>
             <Text fz="sm">Contact</Text>
           </Menu.Item>

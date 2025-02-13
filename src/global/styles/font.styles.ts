@@ -58,6 +58,7 @@ export const getDongleFontStyle = (_isMobile: boolean) => ({
 export const getGaeguFontStyle = (isMobile: boolean) => ({
   fontFamily: "Gaegu",
   fontSize: isMobile ? "1.125rem" : "1.25rem",
+  lineHeight: "1.2",
 });
 
 export const getCarroisGothicScFontStyle = (isMobile: boolean) => ({
@@ -67,12 +68,13 @@ export const getCarroisGothicScFontStyle = (isMobile: boolean) => ({
 
 export const getNosiferFontStyle = (isMobile: boolean) => ({
   fontFamily: "Nosifer",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "0.75rem" : "0.875rem",
 });
 
 export const getIcelandFontStyle = (isMobile: boolean) => ({
   fontFamily: "Iceland",
   fontSize: isMobile ? "1.125rem" : "1.25rem",
+  lineHeight: "1.2",
 });
 
 export const getTourneyFontStyle = (isMobile: boolean) => ({
@@ -89,12 +91,12 @@ export const getCinzelFontStyle = (isMobile: boolean) => ({
 
 export const getAlegreyaFontStyle = (_isMobile: boolean) => ({
   fontFamily: "Alegreya",
-  fontSize: "1rem",
 });
 
 export const getJosefinSlabFontStyle = (isMobile: boolean) => ({
   fontFamily: "Josefin Slab",
   fontSize: isMobile ? "1rem" : "1.125rem",
+  lineHeight: "1.4",
 });
 
 export const getCrimsonProFontStyle = (isMobile: boolean) => ({
@@ -137,6 +139,7 @@ export const getDancingScriptFontStyle = (isMobile: boolean) => ({
 export const getCaveatFontStyle = (isMobile: boolean) => ({
   fontFamily: "Caveat",
   fontSize: isMobile ? "1.25rem" : "1.375rem",
+  lineHeight: "1.4",
 });
 
 export const getSatisfyFontStyle = (isMobile: boolean) => ({
@@ -172,16 +175,19 @@ export const getBadScriptFontStyle = (isMobile: boolean) => ({
 export const getNanumPenScriptFontStyle = (isMobile: boolean) => ({
   fontFamily: "Nanum Pen Script",
   fontSize: isMobile ? "1.25rem" : "1.375rem",
+  lineHeight: "1.2",
 });
 
 export const getReenieBeanieFontStyle = (isMobile: boolean) => ({
   fontFamily: "Reenie Beanie",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1.2",
 });
 
 export const getMarckScriptFontStyle = (isMobile: boolean) => ({
   fontFamily: "Marck Script",
   fontSize: isMobile ? "1.125rem" : "1.25rem",
+  lineHeight: "1.4",
 });
 
 export const getNothingYouCouldDoFontStyle = (isMobile: boolean) => ({
@@ -202,6 +208,7 @@ export const getCaveatBrushFontStyle = (isMobile: boolean) => ({
 export const getNanumBrushScriptFontStyle = (isMobile: boolean) => ({
   fontFamily: "Nanum Brush Script",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1",
 });
 
 export const getLoveYaLikeASisterFontStyle = (isMobile: boolean) => ({
@@ -217,16 +224,19 @@ export const getFondamentoFontStyle = (isMobile: boolean) => ({
 export const getRougeScriptFontStyle = (isMobile: boolean) => ({
   fontFamily: "Rouge Script",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1.2",
 });
 
 export const getMontezFontStyle = (isMobile: boolean) => ({
   fontFamily: "Montez",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1.2",
 });
 
 export const getClickerScriptFontStyle = (isMobile: boolean) => ({
   fontFamily: "Clicker Script",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1.2",
 });
 
 export const getShantellSansFontStyle = (_isMobile: boolean) => ({
@@ -236,7 +246,8 @@ export const getShantellSansFontStyle = (_isMobile: boolean) => ({
 
 export const getSquarePegFontStyle = (isMobile: boolean) => ({
   fontFamily: "Square Peg",
-  fontSize: isMobile ? "1.375rem" : "1.5rem",
+  fontSize: isMobile ? "1.5rem" : "1.625rem",
+  lineHeight: "1.2",
 });
 
 // System UI
@@ -258,12 +269,13 @@ export const getAlkatraFontStyle = (isMobile: boolean) => ({
 
 export const getBarrioFontStyle = (isMobile: boolean) => ({
   fontFamily: "Barrio",
-  fontSize: isMobile ? "0.875rem" : "1rem",
+  fontSize: isMobile ? "1rem" : "1.125rem",
 });
 
 export const getJollyLodgerFontStyle = (isMobile: boolean) => ({
   fontFamily: "Jolly Lodger",
   fontSize: isMobile ? "1.375rem" : "1.5rem",
+  lineHeight: "1.3",
 });
 
 export const getTrainOneFontStyle = (isMobile: boolean) => ({
@@ -301,6 +313,7 @@ export const getSourceCodeProFontStyle = (_isMobile: boolean) => ({
 export const getCutiveMonoFontStyle = (isMobile: boolean) => ({
   fontFamily: "Cutive Mono",
   fontSize: isMobile ? "1rem" : "1.125rem",
+  lineHeight: "1.3",
 });
 
 export const getShareTechMonoFontStyle = (isMobile: boolean) => ({

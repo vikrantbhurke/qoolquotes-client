@@ -20,7 +20,7 @@ class CitedQuoteUtility {
   };
 
   getContentColor = (length: number): string => {
-    if (length < 5 || length > 500) return "red";
+    if (length < 5 || length > 390) return "red";
     else return "green";
   };
 

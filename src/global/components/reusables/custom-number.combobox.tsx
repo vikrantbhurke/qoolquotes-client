@@ -2,7 +2,7 @@ import { useIsQuotePage } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
-import { oneTxThemeYellowBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
+import { oneTxThemeBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   oneDefaultTx,
   threeDefaultBg,
@@ -51,7 +51,7 @@ export const CustomNumberCombobox = ({
       p="xs"
       key={item}
       value={item}
-      className={oneTxThemeYellowBgMenuButtonPseudoStyle}>
+      className={oneTxThemeBgMenuButtonPseudoStyle}>
       <Text fz="sm" tt="capitalize" ta="center">
         {item}
       </Text>

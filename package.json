@@ -43,6 +43,7 @@
     "class-validator": "^0.14.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
+    "dom-to-image-more": "^3.5.0",
     "dotenv": "^16.4.5",
     "downloadjs": "^1.4.7",
     "file-saver": "^2.0.5",

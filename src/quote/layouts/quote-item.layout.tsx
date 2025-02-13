@@ -43,6 +43,11 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const dispatch = useDispatch();
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  const { isMobile, font, color } = useSelector(
+    (state: RootState) => state.view
+  );
 
   const [playlistModalOpened, { open: playlistOpen, close: playlistClose }] =
     useDisclosure(false);
@@ -51,11 +56,6 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     downloadImageModalOpened,
     { open: downloadImageOpen, close: downloadImageClose },
   ] = useDisclosure(false);
-
-  const { isMobile, font, color } = useSelector(
-    (state: RootState) => state.view
-  );
-  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);

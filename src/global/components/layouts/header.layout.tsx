@@ -31,7 +31,7 @@ import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { themeDefaultTxPseudoStyle } from "@/global/styles/theme-tx-pseudo.css";
 import {
   oneDefaultTx,
-  themeGreenColor,
+  themeTealColor,
 } from "@/global/styles/renamed.variables";
 import { signOut } from "@/user/auth.slice";
 import {
@@ -161,11 +161,11 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
               {!isInstalled && installPrompt && (
                 <Group
                   gap={4}
-                  c={themeGreenColor}
+                  c={themeTealColor}
                   onClick={handleInstallClick}
                   visibleFrom={responsiveBreakpoint}>
                   <I I={IconDownload} />
-                  <Text fz="sm" c={themeGreenColor} fw={textBold}>
+                  <Text fz="sm" c={themeTealColor} fw={textBold}>
                     Install App
                   </Text>
                 </Group>
@@ -223,16 +223,6 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                 )}
               </ActionIcon>
 
-              {auth.id ? (
-                <ActionIcon size="sm" onClick={handleSignOut}>
-                  <I I={IconLogout} color={oneTxColor} />
-                </ActionIcon>
-              ) : (
-                <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
-                  <I I={IconLogin} color={oneTxColor} />
-                </ActionIcon>
-              )}
-
               <ActionIcon size="sm" onClick={fontOpen}>
                 <I I={IconLetterA} color={oneTxColor} />
               </ActionIcon>
@@ -243,6 +233,16 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
               <FontModal opened={fontOpened} close={fontClose} />
               <ColorModal opened={colorOpened} close={colorClose} />
+
+              {auth.id ? (
+                <ActionIcon size="sm" onClick={handleSignOut}>
+                  <I I={IconLogout} color={oneTxColor} />
+                </ActionIcon>
+              ) : (
+                <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
+                  <I I={IconLogin} color={oneTxColor} />
+                </ActionIcon>
+              )}
 
               <MenuLayout />
 

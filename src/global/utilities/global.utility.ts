@@ -78,6 +78,19 @@ import {
   themeLimeBg,
   themeYellowBg,
   themeOrangeBg,
+  fiveDefaultTx,
+  fiveRedTx,
+  fivePinkTx,
+  fiveGrapeTx,
+  fiveVioletTx,
+  fiveIndigoTx,
+  fiveBlueTx,
+  fiveCyanTx,
+  fiveTealTx,
+  fiveGreenTx,
+  fiveLimeTx,
+  fiveYellowTx,
+  fiveOrangeTx,
 } from "../styles/renamed.variables";
 import {
   themeDefaultTxPseudoStyle,
@@ -358,6 +371,39 @@ export class GlobalUtility {
         return threeOrangeTx;
       default:
         return threeDefaultTx;
+    }
+  };
+
+  getFiveTx = (color: Color) => {
+    switch (color) {
+      case Color.Default:
+        return fiveDefaultTx;
+      case Color.Red:
+        return fiveRedTx;
+      case Color.Pink:
+        return fivePinkTx;
+      case Color.Grape:
+        return fiveGrapeTx;
+      case Color.Violet:
+        return fiveVioletTx;
+      case Color.Indigo:
+        return fiveIndigoTx;
+      case Color.Blue:
+        return fiveBlueTx;
+      case Color.Cyan:
+        return fiveCyanTx;
+      case Color.Teal:
+        return fiveTealTx;
+      case Color.Green:
+        return fiveGreenTx;
+      case Color.Lime:
+        return fiveLimeTx;
+      case Color.Yellow:
+        return fiveYellowTx;
+      case Color.Orange:
+        return fiveOrangeTx;
+      default:
+        return fiveDefaultTx;
     }
   };
 
@@ -717,6 +763,40 @@ export class GlobalUtility {
       default:
         return getInterFontStyle(isMobile);
     }
+  };
+
+  getFontType = (font: Font) => {
+    if (
+      font === Font["Inter"] ||
+      font === Font["Readex Pro"] ||
+      font === Font["Quicksand"] ||
+      font === Font["Dongle"] ||
+      font === Font["Alegreya"] ||
+      font === Font["Shantell Sans"] ||
+      font === Font["Iceberg"] ||
+      font === Font["Ysabeau SC"] ||
+      font === Font["Finger Paint"] ||
+      font === Font["Carrois Gothic SC"] ||
+      font === Font["Iceland"] ||
+      font === Font["Josefin Slab"] ||
+      font === Font["Crimson Pro"] ||
+      font === Font["Quintessential"] ||
+      font === Font["IM Fell DW Pica"] ||
+      font === Font["Permanent Marker"] ||
+      font === Font["Kaushan Script"] ||
+      font === Font["Merienda"] ||
+      font === Font["Bad Script"] ||
+      font === Font["Nanum Pen Script"] ||
+      font === Font["Short Stack"] ||
+      font === Font["Nanum Brush Script"] ||
+      font === Font["Rouge Script"] ||
+      font === Font["Alkatra"] ||
+      font === Font["Lacquer"] ||
+      font === Font["Source Code Pro"]
+    )
+      return "smallFont";
+
+    return "largeFont";
   };
 }
 

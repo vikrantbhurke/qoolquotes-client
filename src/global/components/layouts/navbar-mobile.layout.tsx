@@ -5,7 +5,7 @@ import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
 import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
-import { themeGreenColor } from "@/global/styles/renamed.variables";
+import { themeTealColor } from "@/global/styles/renamed.variables";
 import { oneTxThemeDefaultBgNavbarButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-navbar-button-pseudo.css";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
@@ -132,7 +132,7 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
         {!isInstalled && installPrompt && (
           <ComponentOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
-              c={themeGreenColor}
+              c={themeTealColor}
               h={layoutCompHeight}
               className={buttonClasses}
               leftSection={<I I={IconDownload} />}

@@ -1,7 +1,7 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
 import { borderShadowStyle, noBorderStyle } from "@/global/styles/app.css";
-import { oneTxThemeYellowBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
+import { oneTxThemeBgMenuButtonPseudoStyle } from "@/global/styles/one-tx-theme-bg-menu-button-pseudo.css";
 import {
   getComboboxTextInputStyles,
   getDropdownStyles,
@@ -46,7 +46,7 @@ export const CustomEnumCombobox = ({
       p="xs"
       key={item}
       value={item}
-      className={oneTxThemeYellowBgMenuButtonPseudoStyle}>
+      className={oneTxThemeBgMenuButtonPseudoStyle}>
       <Text fz="sm" tt="capitalize" ta="center">
         {globalUtility.getKeyByValue(EnumObject, item)}
       </Text>
