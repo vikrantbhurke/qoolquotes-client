@@ -246,7 +246,7 @@ export const getShantellSansFontStyle = (_isMobile: boolean) => ({
 
 export const getSquarePegFontStyle = (isMobile: boolean) => ({
   fontFamily: "Square Peg",
-  fontSize: isMobile ? "1.5rem" : "1.625rem",
+  fontSize: isMobile ? "1.625rem" : "1.75rem",
   lineHeight: "1.2",
 });
 

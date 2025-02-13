@@ -82,13 +82,8 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
           />
         </div>
 
-        <Stack gap={4} align="center">
-          <Group justify="space-between" w="100%">
-            <Text fz="sm">Select Format</Text>
-            <Text fz="xs" c="dimmed">
-              Download may take upto 20 seconds
-            </Text>
-          </Group>
+        <Stack gap={4} align="start">
+          <Text fz="sm">Select Format</Text>
 
           <CustomEnumCombobox
             id="format"
@@ -111,15 +106,20 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
           />
         </Stack>
 
-        <Button
-          fullWidth
-          bg="green"
-          onClick={() => handleDownload(format)}
-          rightSection={<I I={IconDownload} size={16} />}
-          loading={isDownloading}
-          loaderProps={{ type: "dots" }}>
-          Download
-        </Button>
+        <Stack gap={4} align="end">
+          <Text fz="xs" c="dimmed">
+            Download may take upto 20 seconds
+          </Text>
+          <Button
+            fullWidth
+            bg="green"
+            onClick={() => handleDownload(format)}
+            rightSection={<I I={IconDownload} size={16} />}
+            loading={isDownloading}
+            loaderProps={{ type: "dots" }}>
+            Download
+          </Button>
+        </Stack>
       </Stack>
     </Modal>
   );
@@ -210,7 +210,10 @@ export const QuoteImage = ({ captureRef, content, author, preset }: any) => {
 
       <Group justify="end" w="100%">
         <Group gap={2} align="center">
-          <Text c={globalUtility.getFiveTx(color)} fz={10} fs="italic">
+          <Text
+            c={rgba(globalUtility.getFiveTx(color), 0.5)}
+            fz={10}
+            fs="italic">
             QoolQuotes.com
           </Text>
         </Group>
