@@ -99,7 +99,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     shareOpen();
   };
 
-  const url = `${import.meta.env.CLIENT_URL}/quotes/${item?.id}`;
+  const url = `${import.meta.env.VITE_CLIENT_URL}/quotes/${item?.id}`;
   const title = `Read this ${item?.authorId?.name} quote at ${url}`;
 
   const pills = isPending ? (

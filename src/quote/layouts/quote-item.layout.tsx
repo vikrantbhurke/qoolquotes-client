@@ -107,8 +107,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   };
 
   const threeBgColor = globalUtility.getThreeBg(color);
-
-  const url = `${import.meta.env.CLIENT_URL}/quotes/${quote?.id}`;
+  const url = `${import.meta.env.VITE_CLIENT_URL}/quotes/${quote?.id}`;
   const title = `Read this ${quote?.authorId?.name} quote at ${url}`;
 
   const pills = isPending ? (
