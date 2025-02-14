@@ -33,7 +33,7 @@ import { useRef, useState } from "react";
 import { I } from "@/global/components/reusables";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { DeleteProfilePicModal } from "./delete-profile-pic-modal.layout";
+import { DeleteProfilePicModal } from "./delete-profile-pic.modal";
 
 export const UpdateUserByIdFormLayout = () => {
   const navigate = useNavigate();

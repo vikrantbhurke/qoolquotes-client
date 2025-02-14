@@ -26,7 +26,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
-import { DeleteUserModal } from "./delete-user-modal.layout";
+import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 
