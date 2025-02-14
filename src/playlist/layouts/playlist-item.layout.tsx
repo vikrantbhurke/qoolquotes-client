@@ -84,7 +84,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   };
 
   const url = `${import.meta.env.VITE_CLIENT_URL}/playlists/${playlist?.id}`;
-  const title = `View QoolQuotes ?playlist ${playlist?.name} at`;
+  const title = `View QoolQuotes playlist '${playlist?.name}' at`;
 
   return (
     <>
