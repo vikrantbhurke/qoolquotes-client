@@ -85,10 +85,13 @@ export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
         <WhatsappShareButton url={url} title={title} separator=" ">
           <WhatsappIcon size={24} round={true} />
         </WhatsappShareButton>
+
         <XShareButton url={url} title={title} />
+
         <TelegramShareButton url={url} title={title}>
           <TelegramIcon size={24} round={true} />
         </TelegramShareButton>
+
         <ThreadsShareButton url={url} title={title}>
           <ThreadsIcon size={24} round={true} />
         </ThreadsShareButton>
