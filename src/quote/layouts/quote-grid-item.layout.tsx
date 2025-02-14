@@ -21,11 +21,13 @@ import {
   IconCopy,
   IconDownload,
   IconPlaylistAdd,
+  IconShare,
 } from "@tabler/icons-react";
 import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
+import { ShareModal } from "./share.modal";
 
 export const QuoteGridItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -45,6 +47,9 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     downloadImageModalOpened,
     { open: downloadImageOpen, close: downloadImageClose },
   ] = useDisclosure(false);
+
+  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+    useDisclosure(false);
 
   const handleNavigateToQuote = () => {
     navigate(`/quotes/${item.id}`);
@@ -90,6 +95,10 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     downloadImageOpen();
   };
 
+  const handleShare = () => {
+    shareOpen();
+  };
+
   const pills = isPending ? (
     <></>
   ) : (
@@ -108,6 +117,8 @@ export const QuoteGridItemLayout = ({ item }: any) => {
   return (
     <>
       <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
+
+      <ShareModal shareModalOpened={shareModalOpened} close={shareClose} />
 
       <DownloadImageModal
         content={item?.content}
@@ -221,6 +232,14 @@ export const QuoteGridItemLayout = ({ item }: any) => {
               onClick={handleDownloadImage}
               c={globalUtility.getOneTx(color)}>
               <I I={IconDownload} />
+            </ActionIcon>
+          )}
+
+          {isPending ? (
+            <CustomSkeleton v="circular" w={20} h={20} bgcolor={threeBgColor} />
+          ) : (
+            <ActionIcon onClick={handleShare} c={globalUtility.getOneTx(color)}>
+              <I I={IconShare} />
             </ActionIcon>
           )}
         </Group>

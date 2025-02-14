@@ -10,6 +10,7 @@ import {
   IconPlaylistAdd,
   IconCheck,
   IconDownload,
+  IconShare,
 } from "@tabler/icons-react";
 import {
   ActionIcon,
@@ -36,6 +37,7 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
+import { ShareModal } from "./share.modal";
 
 export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -56,6 +58,9 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     downloadImageModalOpened,
     { open: downloadImageOpen, close: downloadImageClose },
   ] = useDisclosure(false);
+
+  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+    useDisclosure(false);
 
   useEffect(() => {
     setMounted(true);
@@ -97,6 +102,10 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     downloadImageOpen();
   };
 
+  const handleShare = () => {
+    shareOpen();
+  };
+
   const threeBgColor = globalUtility.getThreeBg(color);
 
   const pills = isPending ? (
@@ -117,6 +126,13 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   return (
     <>
       <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
+
+      <ShareModal
+        shareModalOpened={shareModalOpened}
+        close={shareClose}
+        id={quote?.id || ""}
+        title={`Read this ${quote?.authorId?.name} quote at`}
+      />
 
       <DownloadImageModal
         content={quote?.content}
@@ -280,6 +296,21 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                       onClick={handleDownloadImage}
                       c={globalUtility.getOneTx(color)}>
                       <I I={IconDownload} />
+                    </ActionIcon>
+                  )}
+
+                  {isPending ? (
+                    <CustomSkeleton
+                      v="circular"
+                      w={20}
+                      h={20}
+                      bgcolor={threeBgColor}
+                    />
+                  ) : (
+                    <ActionIcon
+                      onClick={handleShare}
+                      c={globalUtility.getOneTx(color)}>
+                      <I I={IconShare} />
                     </ActionIcon>
                   )}
                 </Group>
