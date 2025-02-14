@@ -10,25 +10,27 @@ import { useClipboard } from "@mantine/hooks";
 import { IconCheck, IconLink } from "@tabler/icons-react";
 import { useState } from "react";
 import {
-  RedditShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
   TelegramShareButton,
   ThreadsShareButton,
   WhatsappShareButton,
 } from "react-share";
 import {
-  RedditIcon,
+  FacebookIcon,
+  LinkedinIcon,
   TelegramIcon,
   ThreadsIcon,
   WhatsappIcon,
   XIcon,
 } from "react-share";
 
-export const ShareModal = ({ shareModalOpened, close, id, title }: any) => {
+export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
   const [opened, setOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
 
   const handleCopy = () => {
-    clipboard.copy(`${title} http://localhost:5173/quotes/${id}`);
+    clipboard.copy(url);
     setOpened(true);
     setTimeout(() => setOpened(false), 1500);
   };
@@ -72,35 +74,24 @@ export const ShareModal = ({ shareModalOpened, close, id, title }: any) => {
           )}
         </Tooltip>
 
-        <WhatsappShareButton
-          url={`http://localhost:5173/quotes/${id}`}
-          title={title}
-          separator=" ">
+        <FacebookShareButton url={url} title={title} hashtag={"#quote"}>
+          <FacebookIcon size={24} round />
+        </FacebookShareButton>
+
+        <LinkedinShareButton url={url} title={title}>
+          <LinkedinIcon size={24} round={true} />
+        </LinkedinShareButton>
+
+        <WhatsappShareButton url={url} title={title} separator=" ">
           <WhatsappIcon size={24} round={true} />
         </WhatsappShareButton>
-
-        <XShareButton
-          url={`http://localhost:5173/quotes/${id}`}
-          title={title}
-        />
-
-        <TelegramShareButton
-          url={`http://localhost:5173/quotes/${id}`}
-          title={title}>
+        <XShareButton url={url} title={title} />
+        <TelegramShareButton url={url} title={title}>
           <TelegramIcon size={24} round={true} />
         </TelegramShareButton>
-
-        <ThreadsShareButton
-          url={`http://localhost:5173/quotes/${id}`}
-          title={title}>
+        <ThreadsShareButton url={url} title={title}>
           <ThreadsIcon size={24} round={true} />
         </ThreadsShareButton>
-
-        <RedditShareButton
-          url={`http://localhost:5173/quotes/${id}`}
-          title={title}>
-          <RedditIcon size={24} round={true} />
-        </RedditShareButton>
       </Group>
     </Modal>
   );

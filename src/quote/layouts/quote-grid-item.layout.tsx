@@ -99,6 +99,9 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     shareOpen();
   };
 
+  const url = `${import.meta.env.VITE_APP_NAME}/quotes/${item?.id}`;
+  const title = `Read this ${item?.authorId?.name} quote at ${url}`;
+
   const pills = isPending ? (
     <></>
   ) : (
@@ -118,7 +121,12 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     <>
       <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
 
-      <ShareModal shareModalOpened={shareModalOpened} close={shareClose} />
+      <ShareModal
+        shareModalOpened={shareModalOpened}
+        close={shareClose}
+        url={url}
+        title={title}
+      />
 
       <DownloadImageModal
         content={item?.content}

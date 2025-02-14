@@ -108,6 +108,9 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
 
   const threeBgColor = globalUtility.getThreeBg(color);
 
+  const url = `${import.meta.env.VITE_APP_NAME}/quotes/${quote?.id}`;
+  const title = `Read this ${quote?.authorId?.name} quote at ${url}`;
+
   const pills = isPending ? (
     <></>
   ) : (
@@ -130,8 +133,8 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
       <ShareModal
         shareModalOpened={shareModalOpened}
         close={shareClose}
-        id={quote?.id || ""}
-        title={`Read this ${quote?.authorId?.name} quote at`}
+        url={url}
+        title={title}
       />
 
       <DownloadImageModal
