@@ -27,7 +27,7 @@ import { ActionIcon, Group, Pill, Stack, Text, Tooltip } from "@mantine/core";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
-import { ShareModal } from "./share.modal";
+import { ShareModal } from "@/global/components/views";
 
 export const QuoteGridItemLayout = ({ item }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);

@@ -10,6 +10,7 @@ import {
   Space,
   Box,
   Title,
+  ActionIcon,
 } from "@mantine/core";
 import {
   PlaylistLikerUnlikeButtonLayout,
@@ -27,7 +28,7 @@ import { setPage } from "@/quote/quote.slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { IconMessage2 } from "@tabler/icons-react";
+import { IconMessage2, IconShare } from "@tabler/icons-react";
 import { useClonePlaylist } from "../hooks/create";
 import { DeletePlaylistModalLayout } from "./delete-playlist-modal.layout";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
@@ -41,6 +42,7 @@ import { RootState } from "@/global/states/store";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
+import { ShareModal } from "@/global/components/views";
 
 export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const dispatch = useDispatch();
@@ -52,6 +54,9 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
     deletePlaylistOpened,
     { open: deletePlaylistOpen, close: deletePlaylistClose },
   ] = useDisclosure();
+
+  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+    useDisclosure(false);
 
   const { clonePlaylistMutation, isPending: isClonePending } =
     useClonePlaylist();
@@ -74,17 +79,27 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
     navigate(`/quotes/playlistId/${playlist.id}?page=1`);
   };
 
+  const handleShare = () => {
+    shareOpen();
+  };
+
+  const url = `${import.meta.env.VITE_CLIENT_URL}/playlists/${playlist?.id}`;
+  const title = `View QoolQuotes ?playlist ${playlist?.name} at`;
+
   return (
     <>
-      {isPending ? (
-        <></>
-      ) : (
-        <DeletePlaylistModalLayout
-          opened={deletePlaylistOpened}
-          close={deletePlaylistClose}
-          pid={playlist.id}
-        />
-      )}
+      <ShareModal
+        shareModalOpened={shareModalOpened}
+        close={shareClose}
+        url={url}
+        title={title}
+      />
+
+      <DeletePlaylistModalLayout
+        opened={deletePlaylistOpened}
+        close={deletePlaylistClose}
+        pid={playlist?.id}
+      />
 
       <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
         <Stack h="100%" gap="xl" align="center" justify="space-between">
@@ -203,6 +218,16 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                       <I I={IconMessage2} />
                       <PlaylistQuotesCountLayout pid={playlist.id} />
                     </>
+                  )}
+                </Group>
+
+                <Group gap={4}>
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : (
+                    <ActionIcon onClick={handleShare} aria-label="Share">
+                      <I I={IconShare} />
+                    </ActionIcon>
                   )}
                 </Group>
               </Group>

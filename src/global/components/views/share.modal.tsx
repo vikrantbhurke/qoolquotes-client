@@ -9,21 +9,8 @@ import { ActionIcon, Group, Modal, Tooltip } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
 import { IconCheck, IconLink } from "@tabler/icons-react";
 import { useState } from "react";
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TelegramShareButton,
-  ThreadsShareButton,
-  WhatsappShareButton,
-} from "react-share";
-import {
-  FacebookIcon,
-  LinkedinIcon,
-  TelegramIcon,
-  ThreadsIcon,
-  WhatsappIcon,
-  XIcon,
-} from "react-share";
+import { TelegramShareButton, WhatsappShareButton } from "react-share";
+import { TelegramIcon, WhatsappIcon, XIcon } from "react-share";
 
 export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
   const [opened, setOpened] = useState(false);
@@ -74,14 +61,6 @@ export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
           )}
         </Tooltip>
 
-        <FacebookShareButton url={url} title={title} hashtag={"#quote"}>
-          <FacebookIcon size={24} round />
-        </FacebookShareButton>
-
-        <LinkedinShareButton url={url} title={title}>
-          <LinkedinIcon size={24} round={true} />
-        </LinkedinShareButton>
-
         <WhatsappShareButton url={url} title={title} separator=" ">
           <WhatsappIcon size={24} round={true} />
         </WhatsappShareButton>
@@ -91,10 +70,6 @@ export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
         <TelegramShareButton url={url} title={title}>
           <TelegramIcon size={24} round={true} />
         </TelegramShareButton>
-
-        <ThreadsShareButton url={url} title={title}>
-          <ThreadsIcon size={24} round={true} />
-        </ThreadsShareButton>
       </Group>
     </Modal>
   );

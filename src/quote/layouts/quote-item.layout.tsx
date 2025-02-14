@@ -37,7 +37,7 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
-import { ShareModal } from "./share.modal";
+import { ShareModal } from "@/global/components/views";
 
 export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -108,7 +108,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
 
   const threeBgColor = globalUtility.getThreeBg(color);
   const url = `${import.meta.env.VITE_CLIENT_URL}/quotes/${quote?.id}`;
-  const title = `Read this ${quote?.authorId?.name} quote at ${url}`;
+  const title = `Read this ${quote?.authorId?.name} quote at`;
 
   const pills = isPending ? (
     <></>

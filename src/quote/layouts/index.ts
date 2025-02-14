@@ -1,4 +1,4 @@
-import { ShareModal } from "./share.modal";
+import { ShareModal } from "../../global/components/views/share.modal";
 import { QuotesLayout } from "./quotes.layout";
 import { CountdownAffix } from "./countdown.affix";
 import { QuoteItemLayout } from "./quote-item.layout";
