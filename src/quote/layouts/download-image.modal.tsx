@@ -5,14 +5,23 @@ import {
 } from "@/global/components/reusables";
 import { Format, Preset } from "../enums";
 import { saveAs } from "file-saver";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import { Button, Group, Modal, rgba, Space, Stack, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Modal,
+  rgba,
+  Space,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { toPng, toJpeg, toSvg } from "html-to-image";
-import { IconDownload } from "@tabler/icons-react";
+import { IconDownload, IconRefresh } from "@tabler/icons-react";
 import { getImageValues } from "../data";
 
 export const DownloadImageModal = ({ content, author, opened, close }: any) => {
@@ -20,6 +29,7 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
   const [format, setFormat] = useState<Format>(Format.Png);
   const [preset, setPreset] = useState<Preset>(Preset.Original);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [refDimensions, setRefDimensions] = useState({ w: 0, h: 0 });
 
   const handleDownload = async (format: Format) => {
     if (!captureRef.current) return;
@@ -49,10 +59,14 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
   const handleFormat = (format: Format) => setFormat(format);
   const handlePreset = (preset: Preset) => setPreset(preset);
 
-  const handleClose = () => {
-    close();
+  const handleRefresh = () => {
     setFormat(Format.Png);
     setPreset(Preset.Original);
+  };
+
+  const handleClose = () => {
+    close();
+    handleRefresh();
   };
 
   return (
@@ -66,7 +80,6 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
       title="Download Image">
       <Stack>
         {/* Render QuoteImage Component Off Screen */}
-
         <div
           style={{
             position: "absolute",
@@ -79,11 +92,26 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
             preset={preset}
             content={content}
             author={author}
+            setRefDimensions={setRefDimensions}
           />
         </div>
 
         <Stack gap={4} align="start">
-          <Text fz="sm">Select Format</Text>
+          <Group justify="space-between" w="100%">
+            <Text fz="sm">Select Format</Text>
+
+            {format !== Format.Png || preset !== Preset.Original ? (
+              <ActionIcon aria-label="Refresh" onClick={handleRefresh}>
+                <I I={IconRefresh} />
+              </ActionIcon>
+            ) : (
+              <ActionIcon
+                disabled
+                aria-label="Refresh Disabled"
+                c="transparent"
+              />
+            )}
+          </Group>
 
           <CustomEnumCombobox
             id="format"
@@ -95,7 +123,12 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
         </Stack>
 
         <Stack gap={4} align="start">
-          <Text fz="sm">Select Preset</Text>
+          <Group justify="space-between" w="100%">
+            <Text fz="sm">Select Preset</Text>
+            <Text fz="xs" c="dimmed">
+              {`${refDimensions.w} x ${refDimensions.h} px`}
+            </Text>
+          </Group>
 
           <CustomEnumScrollableCombobox
             id="preset"
@@ -125,10 +158,25 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
   );
 };
 
-export const QuoteImage = ({ captureRef, content, author, preset }: any) => {
+export const QuoteImage = ({
+  captureRef,
+  content,
+  author,
+  preset,
+  setRefDimensions,
+}: any) => {
   const { color, font, isMobile } = useSelector(
     (state: RootState) => state.view
   );
+
+  useEffect(() => {
+    if (captureRef.current) {
+      setRefDimensions({
+        w: captureRef.current.offsetWidth,
+        h: captureRef.current.offsetHeight,
+      });
+    }
+  }, [captureRef.current, preset]);
 
   const oneTx = globalUtility.getOneTx(color);
   const oneBg = globalUtility.getOneBg(color);
