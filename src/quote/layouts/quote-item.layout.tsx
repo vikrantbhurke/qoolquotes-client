@@ -24,9 +24,9 @@ import {
   Transition,
 } from "@mantine/core";
 import {
-  QuoteLikerLikeUnlikeButtonLayout,
+  QuoteLikerLikeUnlikeButton,
   QuoteLikesCountLayout,
-  QuoteLikerReadonlyButtonLayout,
+  QuoteLikerReadonlyButton,
 } from "@/quote-liker/layouts";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -51,15 +51,17 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     (state: RootState) => state.view
   );
 
-  const [playlistModalOpened, { open: playlistOpen, close: playlistClose }] =
-    useDisclosure(false);
+  const [
+    playlistModalOpened,
+    { open: playlistModalOpen, close: playlistModalClose },
+  ] = useDisclosure(false);
 
   const [
     downloadImageModalOpened,
-    { open: downloadImageOpen, close: downloadImageClose },
+    { open: downloadImageModalOpen, close: downloadImageModalClose },
   ] = useDisclosure(false);
 
-  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+  const [shareModalOpened, { open: shareModalOpen, close: shareModalClose }] =
     useDisclosure(false);
 
   useEffect(() => {
@@ -88,7 +90,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
       return;
     }
 
-    playlistOpen();
+    playlistModalOpen();
     dispatch(setQid(quote.id));
   };
 
@@ -99,11 +101,11 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
   };
 
   const handleDownloadImage = () => {
-    downloadImageOpen();
+    downloadImageModalOpen();
   };
 
   const handleShare = () => {
-    shareOpen();
+    shareModalOpen();
   };
 
   const threeBgColor = globalUtility.getThreeBg(color);
@@ -127,11 +129,11 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
 
   return (
     <>
-      <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
+      <PlaylistModal opened={playlistModalOpened} close={playlistModalClose} />
 
       <ShareModal
-        shareModalOpened={shareModalOpened}
-        close={shareClose}
+        opened={shareModalOpened}
+        close={shareModalClose}
         url={url}
         title={title}
       />
@@ -140,7 +142,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
         content={quote?.content}
         author={quote?.authorId?.name}
         opened={downloadImageModalOpened}
-        close={downloadImageClose}
+        close={downloadImageModalClose}
       />
 
       <Stack
@@ -229,9 +231,9 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
                         bgcolor={threeBgColor}
                       />
                     ) : auth.role === Role.Public ? (
-                      <QuoteLikerReadonlyButtonLayout />
+                      <QuoteLikerReadonlyButton />
                     ) : (
-                      <QuoteLikerLikeUnlikeButtonLayout qid={quote.id} />
+                      <QuoteLikerLikeUnlikeButton qid={quote.id} />
                     )}
 
                     {isPending ? (

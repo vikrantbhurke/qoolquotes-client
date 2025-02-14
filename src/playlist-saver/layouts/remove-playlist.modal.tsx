@@ -1,18 +1,19 @@
 import { Button, Modal, Stack, Text } from "@mantine/core";
-import { useDeletePlaylistsByCreatorId } from "../hooks/delete";
+import { useRemovePlaylist } from "@/playlist-saver/hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
-export const DeletePlaylistsModalLayout = ({ opened, close }: any) => {
+export const RemovePlaylistModal = ({ pid, opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
+  const { removePlaylistMutation, isPending } = useRemovePlaylist();
 
-  const { deletePlaylistsByCreatorIdMutation, isPending } =
-    useDeletePlaylistsByCreatorId();
-
-  const handleDeletePlaylistsByCreatorId = () => {
-    deletePlaylistsByCreatorIdMutation(auth.id);
+  const handleRemovePlaylist = () => {
     close();
+    removePlaylistMutation({
+      pid,
+      sid: auth.id,
+    });
   };
 
   return (
@@ -24,16 +25,16 @@ export const DeletePlaylistsModalLayout = ({ opened, close }: any) => {
       centered>
       <Stack gap="lg">
         <Text fz="sm" ta="center">
-          Are you sure you want to delete all your created playlists?
+          Are you sure you want to remove playlist?
         </Text>
 
         <Button
-          onClick={handleDeletePlaylistsByCreatorId}
+          onClick={handleRemovePlaylist}
           fullWidth
           bg="red"
           loading={isPending}
           loaderProps={{ type: "dots" }}>
-          Delete Playlists
+          Remove Playlist
         </Button>
       </Stack>
     </Modal>

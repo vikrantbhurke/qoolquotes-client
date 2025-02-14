@@ -1,9 +1,9 @@
-import { PlaylistLikerUnlikeButtonLayout } from "./playlist-liker-like-unlike-button.layout";
+import { PlaylistLikerUnlikeButton } from "./playlist-liker-like-unlike.button";
 import { PlaylistLikesCountLayout } from "./playlist-likes-count.layout";
-import { PlaylistLikerReadonlyButtonLayout } from "./playlist-liker-readonly-button.layout";
+import { PlaylistLikerReadonlyButton } from "./playlist-liker-readonly.button";
 
 export {
-  PlaylistLikerUnlikeButtonLayout,
+  PlaylistLikerUnlikeButton,
   PlaylistLikesCountLayout,
-  PlaylistLikerReadonlyButtonLayout,
+  PlaylistLikerReadonlyButton,
 };

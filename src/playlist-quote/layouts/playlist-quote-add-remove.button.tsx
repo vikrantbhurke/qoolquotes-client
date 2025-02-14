@@ -7,7 +7,7 @@ import { getDropdownStyles } from "@/global/styles/global.styles";
 import { HCBorder, oneDefaultTx } from "@/global/styles/renamed.variables";
 import { RootState } from "@/global/states/store";
 
-export const PlaylistQuotesAddRemoveButtonLayout = ({ pid }: any) => {
+export const PlaylistQuotesAddRemoveButton = ({ pid }: any) => {
   const { qid } = useSelector((state: RootState) => state.quote);
   const { playlistQuote } = useCheckPlaylistQuote({ pid, qid });
   const { colorScheme } = useMantineColorScheme();

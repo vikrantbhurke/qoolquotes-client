@@ -13,10 +13,17 @@ import {
   Button,
   Combobox,
   Pill,
+  Anchor,
 } from "@mantine/core";
 
 export const theme = createTheme({
   components: {
+    Anchor: Anchor.extend({
+      defaultProps: {
+        size: "sm",
+      },
+    }),
+
     Button: Button.extend({
       defaultProps: {
         color: oneDefaultTx,

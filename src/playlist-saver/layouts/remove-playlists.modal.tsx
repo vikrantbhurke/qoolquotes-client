@@ -4,7 +4,7 @@ import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
-export const RemovePlaylistsModalLayout = ({ opened, close }: any) => {
+export const RemovePlaylistsModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { removePlaylistsBySaverIdMutation, isPending } =

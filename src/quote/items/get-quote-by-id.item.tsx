@@ -4,12 +4,16 @@ import { CustomError } from "@/global/components/errors";
 import { twoDefaultBg } from "@/global/styles/renamed.variables";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useIsQuotePage } from "@/global/hooks";
+import { globalUtility } from "@/global/utilities";
 
 export const GetQuoteByIdItem = () => {
+  const isQuotePage = useIsQuotePage();
   const { quote, isPending, isError, error } = useGetQuoteById();
-  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { isMobile, color } = useSelector((state: RootState) => state.view);
 
-  const bg = isMobile ? "" : twoDefaultBg;
+  const twoBgColor = isQuotePage ? globalUtility.getTwoBg(color) : twoDefaultBg;
+  const bg = isMobile ? "" : twoBgColor;
 
   if (isError) return <CustomError message={error?.message} bg={bg} />;
   if (!quote && !isPending)

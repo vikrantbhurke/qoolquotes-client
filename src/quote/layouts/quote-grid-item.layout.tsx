@@ -4,8 +4,8 @@ import {
 } from "@/global/styles/renamed.variables";
 import {
   QuoteLikesCountLayout,
-  QuoteLikerReadonlyButtonLayout,
-  QuoteLikerLikeUnlikeButtonLayout,
+  QuoteLikerReadonlyButton,
+  QuoteLikerLikeUnlikeButton,
 } from "@/quote-liker/layouts";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -40,15 +40,17 @@ export const QuoteGridItemLayout = ({ item }: any) => {
     (state: RootState) => state.view
   );
 
-  const [playlistModalOpened, { open: playlistOpen, close: playlistClose }] =
-    useDisclosure(false);
+  const [
+    playlistModalOpened,
+    { open: playlistModalOpen, close: playlistModalClose },
+  ] = useDisclosure(false);
 
   const [
     downloadImageModalOpened,
-    { open: downloadImageOpen, close: downloadImageClose },
+    { open: downloadImageModalOpen, close: downloadImageModalClose },
   ] = useDisclosure(false);
 
-  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+  const [shareModalOpened, { open: shareModalOpen, close: shareModalClose }] =
     useDisclosure(false);
 
   const handleNavigateToQuote = () => {
@@ -77,7 +79,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
       return;
     }
 
-    playlistOpen();
+    playlistModalOpen();
     dispatch(setQid(item.id));
   };
 
@@ -92,11 +94,11 @@ export const QuoteGridItemLayout = ({ item }: any) => {
   const threeBgColor = globalUtility.getThreeBg(color);
 
   const handleDownloadImage = () => {
-    downloadImageOpen();
+    downloadImageModalOpen();
   };
 
   const handleShare = () => {
-    shareOpen();
+    shareModalOpen();
   };
 
   const url = `${import.meta.env.VITE_CLIENT_URL}/quotes/${item?.id}`;
@@ -119,11 +121,11 @@ export const QuoteGridItemLayout = ({ item }: any) => {
 
   return (
     <>
-      <PlaylistModal opened={playlistModalOpened} close={playlistClose} />
+      <PlaylistModal opened={playlistModalOpened} close={playlistModalClose} />
 
       <ShareModal
-        shareModalOpened={shareModalOpened}
-        close={shareClose}
+        opened={shareModalOpened}
+        close={shareModalClose}
         url={url}
         title={title}
       />
@@ -132,7 +134,7 @@ export const QuoteGridItemLayout = ({ item }: any) => {
         content={item?.content}
         author={item?.authorId?.name}
         opened={downloadImageModalOpened}
-        close={downloadImageClose}
+        close={downloadImageModalClose}
       />
 
       <Stack p="xl" justify="center" align="center" px="md">
@@ -190,9 +192,9 @@ export const QuoteGridItemLayout = ({ item }: any) => {
                 bgcolor={threeBgColor}
               />
             ) : auth.role === Role.Public ? (
-              <QuoteLikerReadonlyButtonLayout />
+              <QuoteLikerReadonlyButton />
             ) : (
-              <QuoteLikerLikeUnlikeButtonLayout qid={item.id} />
+              <QuoteLikerLikeUnlikeButton qid={item.id} />
             )}
 
             {isPending ? <></> : <QuoteLikesCountLayout qid={item.id} />}

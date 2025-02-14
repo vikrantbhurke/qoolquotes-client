@@ -12,32 +12,32 @@ import { useState } from "react";
 import { TelegramShareButton, WhatsappShareButton } from "react-share";
 import { TelegramIcon, WhatsappIcon, XIcon } from "react-share";
 
-export const ShareModal = ({ shareModalOpened, close, url, title }: any) => {
-  const [opened, setOpened] = useState(false);
+export const ShareModal = ({ opened, close, url, title }: any) => {
+  const [tooltipOpened, setTooltipOpened] = useState(false);
   const clipboard = useClipboard({ timeout: 50 });
 
   const handleCopy = () => {
     clipboard.copy(url);
-    setOpened(true);
-    setTimeout(() => setOpened(false), 1500);
+    setTooltipOpened(true);
+    setTimeout(() => setTooltipOpened(false), 1500);
   };
 
   return (
     <Modal
       styles={modal}
       overlayProps={modalOverlayProps}
-      opened={shareModalOpened}
+      opened={opened}
       onClose={close}
       centered
-      title="Share Quote">
+      title="Share">
       <Group gap="xs" align="center" justify="center">
         <Tooltip
           label="Link copied!"
           position="bottom"
-          opened={opened}
+          opened={tooltipOpened}
           bg={threeDefaultBg}
           c={oneDefaultTx}>
-          {opened ? (
+          {tooltipOpened ? (
             <ActionIcon
               size={24}
               mb={6}

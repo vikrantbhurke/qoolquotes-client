@@ -3,10 +3,10 @@ import { Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useCheckPlaylistSaver } from "../hooks/read";
 import { useSavePlaylist } from "../hooks/create";
-import { RemovePlaylistModalLayout } from "./remove-playlist-modal.layout";
+import { RemovePlaylistModal } from "./remove-playlist.modal";
 import { RootState } from "@/global/states/store";
 
-export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
+export const PlaylistSaverSaveRemoveButton = ({ pid }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const [
@@ -27,7 +27,7 @@ export const PlaylistSaverSaveRemoveButtonLayout = ({ pid }: any) => {
 
   return (
     <>
-      <RemovePlaylistModalLayout
+      <RemovePlaylistModal
         opened={removePlaylistOpened}
         close={removePlaylistClose}
         pid={pid}

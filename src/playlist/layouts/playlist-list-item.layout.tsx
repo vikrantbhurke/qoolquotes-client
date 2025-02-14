@@ -7,9 +7,9 @@ import { IconMessage2 } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/quote/quote.slice";
 import {
-  PlaylistLikerUnlikeButtonLayout,
+  PlaylistLikerUnlikeButton,
   PlaylistLikesCountLayout,
-  PlaylistLikerReadonlyButtonLayout,
+  PlaylistLikerReadonlyButton,
 } from "@/playlist-liker/layouts";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import { useSelector } from "react-redux";
@@ -84,9 +84,9 @@ export const PlaylistListItemLayout = ({ item }: any) => {
             {isPending ? (
               <CustomSkeleton v="circular" w={20} h={20} />
             ) : auth.role === Role.Public ? (
-              <PlaylistLikerReadonlyButtonLayout />
+              <PlaylistLikerReadonlyButton />
             ) : (
-              <PlaylistLikerUnlikeButtonLayout pid={item.id} />
+              <PlaylistLikerUnlikeButton pid={item.id} />
             )}
 
             {isPending ? <></> : <PlaylistLikesCountLayout pid={item.id} />}

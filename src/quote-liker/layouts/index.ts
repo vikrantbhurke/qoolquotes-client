@@ -1,9 +1,9 @@
-import { QuoteLikerLikeUnlikeButtonLayout } from "./quote-liker-like-unlike-button.layout";
+import { QuoteLikerLikeUnlikeButton } from "./quote-liker-like-unlike-button.layout";
 import { QuoteLikesCountLayout } from "./quote-likes-count.layout";
-import { QuoteLikerReadonlyButtonLayout } from "./quote-liker-readonly-button.layout";
+import { QuoteLikerReadonlyButton } from "./quote-liker-readonly-button.layout";
 
 export {
-  QuoteLikerLikeUnlikeButtonLayout,
+  QuoteLikerLikeUnlikeButton,
   QuoteLikesCountLayout,
-  QuoteLikerReadonlyButtonLayout,
+  QuoteLikerReadonlyButton,
 };

@@ -1,4 +1,4 @@
 import { PlaylistQuotesCountLayout } from "./playlist-quotes-count.layout";
-import { PlaylistQuotesAddRemoveButtonLayout } from "./playlist-quote-add-remove-button.layout";
+import { PlaylistQuotesAddRemoveButton } from "./playlist-quote-add-remove.button";
 
-export { PlaylistQuotesCountLayout, PlaylistQuotesAddRemoveButtonLayout };
+export { PlaylistQuotesCountLayout, PlaylistQuotesAddRemoveButton };

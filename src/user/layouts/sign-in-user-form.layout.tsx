@@ -96,6 +96,7 @@ export const SignInUserFormLayout = () => {
               <Text fz="sm" c="dimmed" ta="center" mt={5}>
                 Do not have an account yet?{" "}
                 <Anchor
+                  // size="md"
                   c={oneDefaultTx}
                   underline="never"
                   onClick={handleNavigateToSignUp}>

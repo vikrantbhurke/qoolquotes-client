@@ -3,7 +3,7 @@ import { ActionIcon } from "@mantine/core";
 import { IconHeartFilled } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
-export const PlaylistLikerReadonlyButtonLayout = () => {
+export const PlaylistLikerReadonlyButton = () => {
   const navigate = useNavigate();
 
   const handleNavigateToSignIn = () => {

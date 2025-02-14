@@ -38,8 +38,8 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
-import { DeletePlaylistsModalLayout } from "./delete-playlists-modal.layout";
-import { RemovePlaylistsModalLayout } from "@/playlist-saver/layouts";
+import { DeletePlaylistsModal } from "./delete-playlists.modal";
+import { RemovePlaylistsModal } from "@/playlist-saver/layouts";
 import { globalUtility } from "@/global/utilities";
 import { I } from "@/global/components/reusables";
 import Banner320x50 from "@/global/ads/Banner320x50";
@@ -60,13 +60,13 @@ export const PlaylistsLayout = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
 
   const [
-    deletePlaylistOpened,
-    { open: openDeletePlaylist, close: closeDeletePlaylist },
+    deletePlaylistsModalOpened,
+    { open: deletePlaylistsModalOpen, close: deletePlaylistsModalClose },
   ] = useDisclosure();
 
   const [
-    removePlaylistsOpened,
-    { open: openRemovePlaylist, close: closeRemovePlaylist },
+    removePlaylistsModalOpened,
+    { open: removePlaylistsModalOpen, close: removePlaylistModalClose },
   ] = useDisclosure();
 
   const [drawerOpened, { open: drawerOpen, close: drawerClose }] =
@@ -117,14 +117,14 @@ export const PlaylistsLayout = () => {
             value={tab}
             bg={oneDefaultBg}
             className={`${!isMobile && roundTopBorderStyle}`}>
-            <DeletePlaylistsModalLayout
-              opened={deletePlaylistOpened}
-              close={closeDeletePlaylist}
+            <DeletePlaylistsModal
+              opened={deletePlaylistsModalOpened}
+              close={deletePlaylistsModalClose}
             />
 
-            <RemovePlaylistsModalLayout
-              opened={removePlaylistsOpened}
-              close={closeRemovePlaylist}
+            <RemovePlaylistsModal
+              opened={removePlaylistsModalOpened}
+              close={removePlaylistModalClose}
             />
 
             <Group justify="space-between" px="sm" gap={0}>
@@ -173,11 +173,11 @@ export const PlaylistsLayout = () => {
 
               <Group gap="xs" justify="center">
                 {tab === "Saved" && data.totalElements ? (
-                  <ActionIcon onClick={openRemovePlaylist}>
+                  <ActionIcon onClick={removePlaylistsModalOpen}>
                     <I I={IconTrash} color="crimson" />
                   </ActionIcon>
                 ) : tab === "Created" && data.totalElements ? (
-                  <ActionIcon onClick={openDeletePlaylist}>
+                  <ActionIcon onClick={deletePlaylistsModalOpen}>
                     <I I={IconTrash} color="crimson" />
                   </ActionIcon>
                 ) : (

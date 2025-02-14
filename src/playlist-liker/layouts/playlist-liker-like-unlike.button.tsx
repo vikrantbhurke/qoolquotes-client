@@ -9,7 +9,7 @@ import { Role } from "@/user/enums";
 import { I } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 
-export const PlaylistLikerUnlikeButtonLayout = ({ pid }: any) => {
+export const PlaylistLikerUnlikeButton = ({ pid }: any) => {
   const navigate = useNavigate();
   const { auth } = useSelector((state: RootState) => state.auth);
 

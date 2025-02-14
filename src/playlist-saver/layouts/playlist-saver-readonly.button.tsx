@@ -1,7 +1,7 @@
 import { Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
-export const PlaylistSaverReadonlyButtonLayout = () => {
+export const PlaylistSaverReadonlyButton = () => {
   const navigate = useNavigate();
 
   const handleNavigateToSignIn = () => {

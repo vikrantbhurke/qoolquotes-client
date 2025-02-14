@@ -2,7 +2,7 @@ import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeletePlaylistById } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 
-export const DeletePlaylistModalLayout = ({ pid, opened, close }: any) => {
+export const DeletePlaylistModal = ({ pid, opened, close }: any) => {
   const { deletePlaylistByIdMutation, isPending } = useDeletePlaylistById();
 
   const handleDeletePlaylistById = () => {

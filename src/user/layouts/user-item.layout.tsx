@@ -26,7 +26,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
-import { DeleteUserModalLayout } from "./delete-user-modal.layout";
+import { DeleteUserModal } from "./delete-user-modal.layout";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 
@@ -54,7 +54,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
         </Center>
       </Modal>
 
-      <DeleteUserModalLayout opened={opened} close={close} />
+      <DeleteUserModal opened={opened} close={close} />
 
       <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
         <Stack

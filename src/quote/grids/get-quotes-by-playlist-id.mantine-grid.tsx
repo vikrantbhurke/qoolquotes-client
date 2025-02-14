@@ -49,7 +49,10 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
   if (isError)
     return (
       <>
-        <CustomError message={error?.message} />
+        <CustomError
+          message={error?.message}
+          bg={globalUtility.getOneBg(color)}
+        />
         <PaginationPlaceholder />
       </>
     );
@@ -57,7 +60,10 @@ export const GetQuotesByPlaylistIdMantineGrid = () => {
   if (!quotes.content.length)
     return (
       <>
-        <CustomError message="Quotes not found." />
+        <CustomError
+          message="Quotes not found."
+          bg={globalUtility.getOneBg(color)}
+        />
         <PaginationPlaceholder />
       </>
     );

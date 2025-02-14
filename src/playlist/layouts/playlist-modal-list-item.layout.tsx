@@ -1,7 +1,7 @@
 import { Group, Text } from "@mantine/core";
 import { roundBorderStyle } from "@/global/styles/app.css";
 import { twoDefaultBg } from "@/global/styles/renamed.variables";
-import { PlaylistQuotesAddRemoveButtonLayout } from "@/playlist-quote/layouts";
+import { PlaylistQuotesAddRemoveButton } from "@/playlist-quote/layouts";
 import { CustomSkeleton } from "@/global/components/reusables";
 
 export const PlaylistModalListItemLayout = ({ item }: any) => {
@@ -22,7 +22,7 @@ export const PlaylistModalListItemLayout = ({ item }: any) => {
         </>
       ) : (
         <>
-          <PlaylistQuotesAddRemoveButtonLayout pid={item.id} />
+          <PlaylistQuotesAddRemoveButton pid={item.id} />
           <Text fz="sm">{item.name}</Text>
         </>
       )}

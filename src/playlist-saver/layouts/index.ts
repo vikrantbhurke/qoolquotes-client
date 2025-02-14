@@ -1,11 +1,11 @@
-import { PlaylistSaverSaveRemoveButtonLayout } from "./playlist-saver-save-remove-button.layout";
-import { RemovePlaylistModalLayout } from "./remove-playlist-modal.layout";
-import { RemovePlaylistsModalLayout } from "./remove-playlists-modal.layout";
-import { PlaylistSaverReadonlyButtonLayout } from "./playlist-saver-readonly-button.layout";
+import { PlaylistSaverSaveRemoveButton } from "./playlist-saver-save-remove.button";
+import { RemovePlaylistModal } from "./remove-playlist.modal";
+import { RemovePlaylistsModal } from "./remove-playlists.modal";
+import { PlaylistSaverReadonlyButton } from "./playlist-saver-readonly.button";
 
 export {
-  PlaylistSaverSaveRemoveButtonLayout,
-  RemovePlaylistModalLayout,
-  RemovePlaylistsModalLayout,
-  PlaylistSaverReadonlyButtonLayout,
+  PlaylistSaverSaveRemoveButton,
+  RemovePlaylistModal,
+  RemovePlaylistsModal,
+  PlaylistSaverReadonlyButton,
 };

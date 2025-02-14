@@ -7,7 +7,7 @@ import { ActionIcon } from "@mantine/core";
 import { I } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 
-export const QuoteLikerLikeUnlikeButtonLayout = ({ qid }: any) => {
+export const QuoteLikerLikeUnlikeButton = ({ qid }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { quoteLiker } = useCheckQuoteLiker({

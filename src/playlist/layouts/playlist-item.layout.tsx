@@ -13,9 +13,9 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import {
-  PlaylistLikerUnlikeButtonLayout,
+  PlaylistLikerUnlikeButton,
   PlaylistLikesCountLayout,
-  PlaylistLikerReadonlyButtonLayout,
+  PlaylistLikerReadonlyButton,
 } from "@/playlist-liker/layouts";
 import { useDisclosure } from "@mantine/hooks";
 import { roundBorderStyle } from "@/global/styles/app.css";
@@ -30,11 +30,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IconMessage2, IconShare } from "@tabler/icons-react";
 import { useClonePlaylist } from "../hooks/create";
-import { DeletePlaylistModalLayout } from "./delete-playlist-modal.layout";
+import { DeletePlaylistModal } from "./delete-playlist.modal";
 import { PlaylistQuotesCountLayout } from "@/playlist-quote/layouts";
 import {
-  PlaylistSaverReadonlyButtonLayout,
-  PlaylistSaverSaveRemoveButtonLayout,
+  PlaylistSaverReadonlyButton,
+  PlaylistSaverSaveRemoveButton,
 } from "@/playlist-saver/layouts";
 import { Role } from "@/user/enums";
 import { CustomSkeleton, I } from "@/global/components/reusables";
@@ -51,11 +51,11 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const { isMobile } = useSelector((state: RootState) => state.view);
 
   const [
-    deletePlaylistOpened,
-    { open: deletePlaylistOpen, close: deletePlaylistClose },
+    deletePlaylistModalOpened,
+    { open: deletePlaylistModalOpen, close: deletePlaylistModalClose },
   ] = useDisclosure();
 
-  const [shareModalOpened, { open: shareOpen, close: shareClose }] =
+  const [shareModalOpened, { open: shareModalOpen, close: shareModalClose }] =
     useDisclosure(false);
 
   const { clonePlaylistMutation, isPending: isClonePending } =
@@ -80,7 +80,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   };
 
   const handleShare = () => {
-    shareOpen();
+    shareModalOpen();
   };
 
   const url = `${import.meta.env.VITE_CLIENT_URL}/playlists/${playlist?.id}`;
@@ -89,15 +89,15 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   return (
     <>
       <ShareModal
-        shareModalOpened={shareModalOpened}
-        close={shareClose}
+        opened={shareModalOpened}
+        close={shareModalClose}
         url={url}
         title={title}
       />
 
-      <DeletePlaylistModalLayout
-        opened={deletePlaylistOpened}
-        close={deletePlaylistClose}
+      <DeletePlaylistModal
+        opened={deletePlaylistModalOpened}
+        close={deletePlaylistModalClose}
         pid={playlist?.id}
       />
 
@@ -198,9 +198,9 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                   {isPending ? (
                     <CustomSkeleton v="circular" w={20} h={20} />
                   ) : auth.role === Role.Public ? (
-                    <PlaylistLikerReadonlyButtonLayout />
+                    <PlaylistLikerReadonlyButton />
                   ) : (
-                    <PlaylistLikerUnlikeButtonLayout pid={playlist.id} />
+                    <PlaylistLikerUnlikeButton pid={playlist.id} />
                   )}
 
                   {isPending ? (
@@ -267,7 +267,10 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                   </Grid.Col>
 
                   <Grid.Col span={4}>
-                    <Button fullWidth bg="red" onClick={deletePlaylistOpen}>
+                    <Button
+                      fullWidth
+                      bg="red"
+                      onClick={deletePlaylistModalOpen}>
                       Delete
                     </Button>
                   </Grid.Col>
@@ -278,9 +281,9 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                     {isPending ? (
                       <CustomSkeleton v="circular" w={20} h={20} />
                     ) : auth.role === Role.Public ? (
-                      <PlaylistSaverReadonlyButtonLayout />
+                      <PlaylistSaverReadonlyButton />
                     ) : (
-                      <PlaylistSaverSaveRemoveButtonLayout pid={playlist.id} />
+                      <PlaylistSaverSaveRemoveButton pid={playlist.id} />
                     )}
                   </Grid.Col>
 

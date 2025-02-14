@@ -22,7 +22,7 @@ import { Access } from "../enums";
 import { globalUtility } from "@/global/utilities";
 import { useNavigate } from "react-router-dom";
 import {
-  PlaylistLikerUnlikeButtonLayout,
+  PlaylistLikerUnlikeButton,
   PlaylistLikesCountLayout,
 } from "@/playlist-liker/layouts";
 import { playlistUtility } from "../playlist.utility";
@@ -188,7 +188,7 @@ export const UpdatePlaylistByIdFormLayout = () => {
 
               <Group>
                 <Group gap={4}>
-                  <PlaylistLikerUnlikeButtonLayout pid={playlist.id} />
+                  <PlaylistLikerUnlikeButton pid={playlist.id} />
                   <PlaylistLikesCountLayout pid={playlist.id} />
                 </Group>
 

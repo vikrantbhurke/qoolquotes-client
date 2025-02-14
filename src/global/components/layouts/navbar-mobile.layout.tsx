@@ -121,14 +121,6 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
   return (
     <Stack justify="space-between" gap={0} h="100%">
       <Stack gap={isMobile ? 0 : "xs"} p="xs">
-        <Button
-          h={layoutCompHeight}
-          className={buttonClasses}
-          leftSection={<Image src={logo} alt="logo" w={32} />}
-          onClick={handleNavigateToTodaysQuote}>
-          Today's
-        </Button>
-
         {!isInstalled && installPrompt && (
           <ComponentOrFragmentRoute clearance={Clearance.LevelOne}>
             <Button
@@ -141,6 +133,14 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
             </Button>
           </ComponentOrFragmentRoute>
         )}
+
+        <Button
+          h={layoutCompHeight}
+          className={buttonClasses}
+          leftSection={<Image src={logo} alt="logo" w={32} />}
+          onClick={handleNavigateToTodaysQuote}>
+          Today's
+        </Button>
 
         <Button
           h={layoutCompHeight}
