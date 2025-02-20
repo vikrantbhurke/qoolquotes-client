@@ -30,7 +30,7 @@ export default function PayPalSubscription() {
   const suspendSubscription = async () => {
     try {
       setLoading(true);
-      await axios.post(`/paypal/cancel-subscription`, {
+      await axios.post(`/paypal/suspend-subscription`, {
         email: auth.email,
       });
       console.log("Subscription suspended successfully!");
@@ -46,7 +46,7 @@ export default function PayPalSubscription() {
   const activateSubscription = async () => {
     try {
       setLoading(true);
-      await axios.post(`/paypal/cancel-subscription`, {
+      await axios.post(`/paypal/activate-subscription`, {
         email: auth.email,
       });
       console.log("Subscription activated successfully!");
