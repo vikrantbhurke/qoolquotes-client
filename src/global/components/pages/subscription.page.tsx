@@ -12,7 +12,7 @@ export const SubscriptionPage = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
   let [message, setMessage] = useState("");
   let [success, setSuccess] = useState(true);
-  let [subscriptionId, setSubscriptionId] = useState("none");
+  let [_subscriptionId, setSubscriptionId] = useState("none");
   const { user, isPending, isError } = useGetUserById(auth.id);
   const { isMobile } = useSelector((state: RootState) => state.view);
   console.log("User", success, user?.subscriptionId);

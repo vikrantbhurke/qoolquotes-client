@@ -7,7 +7,7 @@ import { oneDefaultBg } from "@/global/styles/renamed.variables";
 
 // Your PayPal plan ID
 export default function PayPalSubscription() {
-  const [subscriptionId, setSubscriptionId] = useState<string | null>(null);
+  const [_subscriptionId, setSubscriptionId] = useState<string | null>(null);
   const [subscriptionDetails, setSubscriptionDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
