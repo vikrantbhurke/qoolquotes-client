@@ -1,12 +1,14 @@
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import { Button } from "@mantine/core";
 import { oneDefaultBg } from "@/global/styles/renamed.variables";
+import { useSelector } from "react-redux";
 
 // const API_URL = import.meta.env.VITE_SERVER_URL; // Your Express backend URL
 
 // Your PayPal plan ID
 export default function PayPalSubscription() {
+  const { auth } = useSelector((state: any) => state.auth);
   const [_subscriptionId, setSubscriptionId] = useState<string | null>(null);
   const [subscriptionDetails, setSubscriptionDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -25,26 +27,12 @@ export default function PayPalSubscription() {
     }
   };
 
-  const getSubscriptionDetails = async () => {
-    // if (!subscriptionId) return alert("Enter a Subscription ID");
-
-    try {
-      setLoading(true);
-      const response = await axios.get(`/paypal/get-subscription`);
-      setSubscriptionDetails(response.data);
-    } catch (error) {
-      console.error("Get subscription error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const suspendSubscription = async () => {
-    // if (!subscriptionId) return alert("Enter a Subscription ID");
-
     try {
       setLoading(true);
-      await axios.post(`/paypal/suspend-subscription`, {});
+      await axios.post(`/paypal/cancel-subscription`, {
+        email: auth.email,
+      });
       console.log("Subscription suspended successfully!");
       setSubscriptionDetails(null);
       setSubscriptionId(null);
@@ -56,11 +44,11 @@ export default function PayPalSubscription() {
   };
 
   const activateSubscription = async () => {
-    // if (!subscriptionId) return alert("Enter a Subscription ID");
-
     try {
       setLoading(true);
-      await axios.post(`/paypal/activate-subscription`, {});
+      await axios.post(`/paypal/cancel-subscription`, {
+        email: auth.email,
+      });
       console.log("Subscription activated successfully!");
       setSubscriptionDetails(null);
       setSubscriptionId(null);
@@ -72,11 +60,11 @@ export default function PayPalSubscription() {
   };
 
   const cancelSubscription = async () => {
-    // if (!subscriptionId) return alert("Enter a Subscription ID");
-
     try {
       setLoading(true);
-      await axios.post(`/paypal/cancel-subscription`, {});
+      await axios.post(`/paypal/cancel-subscription`, {
+        email: auth.email,
+      });
       console.log("Subscription canceled successfully!");
       setSubscriptionDetails(null);
       setSubscriptionId(null);
@@ -114,16 +102,6 @@ export default function PayPalSubscription() {
         radius={6}
         fullWidth>
         {loading ? "Processing..." : "Subscribe with PayPal"}
-      </Button>
-
-      <Button
-        onClick={getSubscriptionDetails}
-        disabled={loading}
-        bg={oneDefaultBg}
-        c="black"
-        radius={6}
-        fullWidth>
-        Get Subscription Details
       </Button>
 
       <Button
