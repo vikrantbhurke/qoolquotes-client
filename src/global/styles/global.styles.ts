@@ -55,6 +55,11 @@ export const drawer = {
   header: { backgroundColor: oneDefaultBg },
 };
 
+export const wordBreakWhiteSpace = {
+  whiteSpace: "normal",
+  wordBreak: "break-word" as const,
+};
+
 export const stringTruncate = {
   display: "inline-block",
   maxWidth: "15ch",

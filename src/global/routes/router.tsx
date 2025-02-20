@@ -7,6 +7,7 @@ import {
 import { AppLayout } from "@/global/components/layouts";
 import {
   AboutPage,
+  SubscriptionPage,
   VerifyAccountPage,
   VerifyEmailPage,
 } from "../components/pages";
@@ -40,6 +41,7 @@ import {
   SignUpUserItem,
   UpdateUserByIdItem,
 } from "@/user/items";
+import PayPalSubscription from "../components/pages/paypal.page";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -106,6 +108,11 @@ const router = createBrowserRouter(
       />
 
       <Route path="users/verify-email/:token" element={<VerifyEmailPage />} />
+
+      <Route path="subscription" element={<SubscriptionPage />} />
+
+      <Route path="paypal" element={<PayPalSubscription />} />
+
       <Route path="*" element={<></>} />
     </Route>
   )

@@ -9,7 +9,12 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  getDropdownStyles,
+  modal,
+  modalOverlayProps,
+  wordBreakWhiteSpace,
+} from "@/global/styles/global.styles";
 import {
   ActionIcon,
   Button,
@@ -19,10 +24,18 @@ import {
   Space,
   Stack,
   Text,
+  Tooltip,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { toPng, toJpeg, toSvg } from "html-to-image";
-import { IconDownload, IconRefresh } from "@tabler/icons-react";
+import { IconDownload, IconInfoCircle, IconRefresh } from "@tabler/icons-react";
 import { getImageValues } from "../data";
+import { oneDefaultTx } from "@/global/styles/renamed.variables";
+import {
+  borderShadowStyle,
+  noBorderStyle,
+  roundBorderStyle,
+} from "@/global/styles/app.css";
 
 export const DownloadImageModal = ({ content, author, opened, close }: any) => {
   const captureRef = useRef<HTMLDivElement | any>(null);
@@ -30,6 +43,8 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
   const [preset, setPreset] = useState<Preset>(Preset.Original);
   const [isDownloading, setIsDownloading] = useState(false);
   const [refDimensions, setRefDimensions] = useState({ w: 0, h: 0 });
+  const { colorScheme } = useMantineColorScheme();
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const handleDownload = async (format: Format) => {
     if (!captureRef.current) return;
@@ -140,9 +155,34 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
         </Stack>
 
         <Stack gap={4} align="end">
-          <Text fz="xs" c="dimmed">
-            Download may take upto 20 seconds
-          </Text>
+          <Group justify="center" align="center" gap={4}>
+            <Tooltip
+              c={oneDefaultTx}
+              bg={dropdownBg}
+              p="md"
+              className={`${borderShadowStyle} ${roundBorderStyle}`}
+              events={{ hover: true, focus: true, touch: true }}
+              multiline
+              maw={400}
+              position="top-start"
+              label={
+                <div style={wordBreakWhiteSpace}>
+                  Download may take upto 20 seconds due to font, color, and high
+                  resolution image rendering.
+                </div>
+              }>
+              <IconInfoCircle
+                color="gray"
+                size={16}
+                className={`${noBorderStyle}`}
+              />
+            </Tooltip>
+
+            <Text fz="xs" c="dimmed">
+              Download may take time
+            </Text>
+          </Group>
+
           <Button
             fullWidth
             bg="green"
