@@ -16,9 +16,8 @@ export default function PayPalSubscription() {
       setLoading(true);
       const response = await axios.post(`/paypal/create-subscription`, {});
 
-      if (response.data.approve_url) {
-        window.location.href = response.data.approve_url;
-      }
+      if (response.data.approve_url)
+        window.open(response.data.approve_url, "_blank");
     } catch (error) {
       console.error("Subscription error:", error);
     } finally {
