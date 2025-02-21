@@ -29,6 +29,7 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
+import { PayPalSubscriptionLayout } from "@/subscription/paypal/layouts";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
@@ -157,6 +158,8 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                 )}
               </Grid.Col>
             </Grid>
+
+            <PayPalSubscriptionLayout />
           </Stack>
 
           <Space h={isMobile ? 50 : 90} />

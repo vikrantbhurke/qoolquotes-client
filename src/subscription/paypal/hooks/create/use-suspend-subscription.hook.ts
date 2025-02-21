@@ -1,19 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
-import { signUpUser } from "@/user/user.network";
+import { suspendSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
 
-export const useSignUpUser = () => {
+export const useSuspendSubscription = () => {
   const { showNotification } = useNotification();
 
-  const { mutate: signUpUserMutation, isPending } = useMutation({
-    mutationFn: signUpUser,
+  const { mutate: suspendSubscriptionMutation, isPending } = useMutation({
+    mutationFn: suspendSubscription,
 
-    onSuccess: async (_data: any, variables: any, _context: any) => {
-      showNotification(
-        `Verify your email at ${variables.email}.`,
-        NotificationColor.Info
-      );
+    onSuccess: async (data: any, _variables: any, _context: any) => {
+      showNotification(data?.message, NotificationColor.Success);
     },
 
     onError: (error: any) => {
@@ -24,5 +21,5 @@ export const useSignUpUser = () => {
     },
   });
 
-  return { signUpUserMutation, isPending };
+  return { suspendSubscriptionMutation, isPending };
 };

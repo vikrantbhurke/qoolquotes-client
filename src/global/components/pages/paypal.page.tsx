@@ -9,8 +9,6 @@ import { useSelector } from "react-redux";
 // Your PayPal plan ID
 export default function PayPalSubscription() {
   const { auth } = useSelector((state: any) => state.auth);
-  const [_subscriptionId, setSubscriptionId] = useState<string | null>(null);
-  const [subscriptionDetails, setSubscriptionDetails] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   const handleCreateSubscription = async () => {
@@ -19,7 +17,7 @@ export default function PayPalSubscription() {
       const response = await axios.post(`/paypal/create-subscription`, {});
 
       if (response.data.approve_url)
-        window.open(response.data.approve_url, "_blank");
+        window.open(response.data.approve_url, "_self");
     } catch (error) {
       console.error("Subscription error:", error);
     } finally {
@@ -34,8 +32,6 @@ export default function PayPalSubscription() {
         email: auth.email,
       });
       console.log("Subscription suspended successfully!");
-      setSubscriptionDetails(null);
-      setSubscriptionId(null);
     } catch (error) {
       console.error("Suspend subscription error:", error);
     } finally {
@@ -50,8 +46,6 @@ export default function PayPalSubscription() {
         email: auth.email,
       });
       console.log("Subscription activated successfully!");
-      setSubscriptionDetails(null);
-      setSubscriptionId(null);
     } catch (error) {
       console.error("Activate subscription error:", error);
     } finally {
@@ -66,8 +60,6 @@ export default function PayPalSubscription() {
         email: auth.email,
       });
       console.log("Subscription canceled successfully!");
-      setSubscriptionDetails(null);
-      setSubscriptionId(null);
     } catch (error) {
       console.error("Cancel subscription error:", error);
     } finally {
@@ -84,15 +76,6 @@ export default function PayPalSubscription() {
         padding: 20,
       }}>
       <h2>PayPal Subscription</h2>
-
-      {subscriptionDetails && (
-        <div style={{ marginTop: 20, textAlign: "left" }}>
-          <h4>Subscription Details:</h4>
-          <pre style={{ background: "#f4f4f4", padding: 10 }}>
-            {JSON.stringify(subscriptionDetails, null, 2)}
-          </pre>
-        </div>
-      )}
 
       <Button
         onClick={handleCreateSubscription}

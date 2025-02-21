@@ -23,6 +23,7 @@ export const GetUserByIdItem = () => {
         title={`Profile Page`}
         description="Learn more about Qool Quotes."
       />
+
       <UserItemLayout user={user} isPending={isPending} />
     </>
   );

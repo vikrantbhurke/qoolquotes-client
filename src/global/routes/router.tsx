@@ -41,7 +41,7 @@ import {
   SignUpUserItem,
   UpdateUserByIdItem,
 } from "@/user/items";
-import PayPalSubscription from "../components/pages/paypal.page";
+import { PayPalSubscriptionItem } from "@/subscription/paypal/items";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -111,7 +111,7 @@ const router = createBrowserRouter(
 
       <Route path="subscription" element={<SubscriptionPage />} />
 
-      <Route path="paypal" element={<PayPalSubscription />} />
+      <Route path="paypal" element={<PayPalSubscriptionItem />} />
 
       <Route path="*" element={<></>} />
     </Route>
