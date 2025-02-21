@@ -41,7 +41,6 @@ import {
   SignUpUserItem,
   UpdateUserByIdItem,
 } from "@/user/items";
-import { PayPalSubscriptionItem } from "@/subscription/paypal/items";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -110,8 +109,6 @@ const router = createBrowserRouter(
       <Route path="users/verify-email/:token" element={<VerifyEmailPage />} />
 
       <Route path="subscription" element={<SubscriptionPage />} />
-
-      <Route path="paypal" element={<PayPalSubscriptionItem />} />
 
       <Route path="*" element={<></>} />
     </Route>

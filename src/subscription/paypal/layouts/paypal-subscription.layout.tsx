@@ -5,11 +5,19 @@ import {
   useSuspendSubscription,
 } from "../hooks/create";
 import { useSelector } from "react-redux";
-import { Button, Stack, Text, Title } from "@mantine/core";
+import { RootState } from "@/global/states/store";
 import { SubscriptionStatus } from "@/subscription/enums";
+import { Button, Stack, Text, Title } from "@mantine/core";
+import { useGetSubscription } from "../hooks/read";
 
 export const PayPalSubscriptionLayout = () => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
+  const { subscription, isPending, isError, error } = useGetSubscription();
+
+  if (isPending) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
+  if (!subscription) return <div>No subscription found</div>;
+  console.log("Subscription", subscription);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
@@ -28,7 +36,7 @@ export const PayPalSubscriptionLayout = () => {
     useCancelSubscription();
 
   const handleCreateSubscription = () => {
-    createSubscriptionMutation({});
+    createSubscriptionMutation({ userId: auth.id });
   };
 
   const handleSuspendSubscription = () => {
