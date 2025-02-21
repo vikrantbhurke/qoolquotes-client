@@ -2,7 +2,7 @@ import axios from "axios";
 import { EmailDTO, UserIdDTO } from "../dtos";
 
 export const createSubscription = async (userIdDTO: UserIdDTO) => {
-  const result = await axios.post(`/paypal/create-subscription`, { userIdDTO });
+  const result = await axios.post(`/paypal/create-subscription`, userIdDTO);
   return result.data;
 };
 
