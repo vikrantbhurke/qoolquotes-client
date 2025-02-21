@@ -12,12 +12,7 @@ import { useGetSubscription } from "../hooks/read";
 
 export const PayPalSubscriptionLayout = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { subscription, isPending, isError, error } = useGetSubscription();
-
-  if (isPending) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-  if (!subscription) return <div>No subscription found</div>;
-  console.log("Subscription", subscription);
+  const { subscription } = useGetSubscription();
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
@@ -57,7 +52,7 @@ export const PayPalSubscriptionLayout = () => {
     `⭐ Create, share and save playlists.`,
     `⭐ Apply custom colors and fonts to quotes.`,
   ];
-
+  console.log("Subscription", subscription && subscription);
   return (
     <Stack gap="sm">
       {(auth.subscriptionStatus === SubscriptionStatus.Inactive ||
