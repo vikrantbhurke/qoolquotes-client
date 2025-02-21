@@ -12,22 +12,11 @@ import { theme } from "@/global/styles/theme";
 import { Router } from "@/global/routes";
 import { store } from "@/global/states/store";
 import { configureAxios } from "@/global/networks";
-import {
-  PayPalScriptProvider,
-  ReactPayPalScriptOptions,
-} from "@paypal/react-paypal-js";
 
 export const queryClient = new QueryClient();
 configureAxios();
 
 const App = () => {
-  const initialOptions: ReactPayPalScriptOptions = {
-    clientId: import.meta.env.VITE_PAYPAL_APP_CLIENT_ID,
-    vault: true,
-    intent: "subscription",
-    components: "buttons",
-  };
-
   return (
     <HelmetProvider>
       <Provider store={store}>
@@ -37,10 +26,8 @@ const App = () => {
           defaultColorScheme="dark"
           cssVariablesResolver={resolveCssVariables}>
           <QueryClientProvider client={queryClient}>
-            <PayPalScriptProvider options={initialOptions}>
-              <Notifications />
-              <Router />
-            </PayPalScriptProvider>
+            <Notifications />
+            <Router />
           </QueryClientProvider>
         </MantineProvider>
       </Provider>

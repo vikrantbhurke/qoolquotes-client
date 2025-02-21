@@ -148,7 +148,8 @@ const ProductDisplay = () => {
         <input
           type="hidden"
           name="plan_id"
-          value={import.meta.env.VITE_PAYPAL_PLAN_ID}
+          // value={import.meta.env.VITE_PAYPAL_PLAN_ID}
+          value={"asd"}
         />
         <Button
           id="create-paypal-subscription-button"
