@@ -3,10 +3,10 @@ import { useNotification } from "@/global/hooks";
 import { suspendSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
 import { useGetUserByUsername } from "@/user/hooks/read";
-import { useState } from "react";
 
-export const useSuspendSubscription = () => {
-  const [_refresh, setRefresh] = useState(false);
+export const useSuspendSubscription = (
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const { showNotification } = useNotification();
   const { fetchUserByUsername } = useGetUserByUsername();
 

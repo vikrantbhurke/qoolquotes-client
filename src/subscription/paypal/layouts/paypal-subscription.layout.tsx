@@ -29,15 +29,15 @@ export const PayPalSubscriptionLayout = () => {
   const {
     suspendSubscriptionMutation,
     isPending: isSuspendSubscriptionPending,
-  } = useSuspendSubscription();
+  } = useSuspendSubscription(setRefresh);
 
   const {
     activateSubscriptionMutation,
     isPending: isActivateSubscriptionPending,
-  } = useActivateSubscription();
+  } = useActivateSubscription(setRefresh);
 
   const { cancelSubscriptionMutation, isPending: isCancelSubscriptionPending } =
-    useCancelSubscription();
+    useCancelSubscription(setRefresh);
 
   const handleCreateSubscription = () => {
     createSubscriptionMutation({ userId: auth.id });
