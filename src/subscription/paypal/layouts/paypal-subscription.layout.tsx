@@ -17,9 +17,15 @@ export const PayPalSubscriptionLayout = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("subscribed") && auth.id) fetchUserByUsername();
-    window.location.reload();
+    const handleRefresh = async () => {
+      const query = new URLSearchParams(window.location.search);
+      if (query.get("subscribed") && auth.id) {
+        await fetchUserByUsername();
+        window.location.reload();
+      }
+    };
+
+    handleRefresh();
   }, []);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =

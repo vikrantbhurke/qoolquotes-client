@@ -13,7 +13,7 @@ export const useCancelSubscription = () => {
 
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
-      fetchUserByUsername();
+      await fetchUserByUsername();
       window.location.reload();
     },
 
