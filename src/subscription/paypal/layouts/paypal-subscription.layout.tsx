@@ -4,10 +4,10 @@ import {
   useSuspendSubscription,
   useActivateSubscription,
 } from "../hooks/create";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setSubscribed } from "@/user/auth.slice";
+// import { setSubscribed } from "@/user/auth.slice";
 import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
 import { Button, Stack, Text, Title } from "@mantine/core";
@@ -16,9 +16,14 @@ export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
   const { refetchSubscription } = useGetSubscription();
   useSelector((state: RootState) => state.auth.subscribed);
-  const { auth, subscription, subscribed } = useSelector(
-    (state: RootState) => state.auth
-  );
+
+  const {
+    auth,
+    subscription,
+    // subscribed
+  } = useSelector((state: RootState) => state.auth);
+
+  const [subscribed, setSubscribed] = useState(false);
 
   console.log("Subscription", subscription);
 
@@ -32,14 +37,20 @@ export const PayPalSubscriptionLayout = () => {
 
       if (isSubscribed) {
         await refetchSubscription();
-        dispatch(setSubscribed(true));
+        // dispatch(setSubscribed(true));
+        setSubscribed(true);
         console.log("refetchSubscription fired");
         console.log("setSubscribed dispatched");
       }
     };
 
     handleGetSubscription();
-  }, [subscribed, refetchSubscription, dispatch, setSubscribed]);
+  }, [
+    subscribed,
+    refetchSubscription,
+    dispatch,
+    // setSubscribed
+  ]);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
