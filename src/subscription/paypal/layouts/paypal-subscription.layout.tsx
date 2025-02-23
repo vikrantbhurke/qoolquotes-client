@@ -5,52 +5,42 @@ import {
   useActivateSubscription,
 } from "../hooks/create";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-// import { setSubscribed } from "@/user/auth.slice";
 import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
 import { Button, Stack, Text, Title } from "@mantine/core";
 
 export const PayPalSubscriptionLayout = () => {
-  const dispatch = useDispatch();
   const { refetchSubscription } = useGetSubscription();
-  useSelector((state: RootState) => state.auth.subscribed);
-
-  const {
-    auth,
-    subscription,
-    // subscribed
-  } = useSelector((state: RootState) => state.auth);
-
   const [subscribed, setSubscribed] = useState(false);
-
-  console.log("Subscription", subscription);
+  const { auth, subscription } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
-      const isSubscribed = query.get("subscribed");
 
-      console.log("useEffect fired");
-      console.log("isSubscribed", isSubscribed);
-
-      if (isSubscribed) {
+      if (query.get("subscribed")) {
         await refetchSubscription();
-        // dispatch(setSubscribed(true));
-        setSubscribed(true);
-        console.log("refetchSubscription fired");
-        console.log("setSubscribed dispatched");
+        setSubscribed((prev) => !prev);
       }
     };
 
     handleGetSubscription();
-  }, [
-    subscribed,
-    refetchSubscription,
-    dispatch,
-    // setSubscribed
-  ]);
+  }, []); // Runs once on mount
+
+  useEffect(() => {
+    const handleGetSubscription = async () => {
+      const query = new URLSearchParams(window.location.search);
+
+      if (query.get("subscribed")) {
+        await refetchSubscription();
+      }
+    };
+
+    handleGetSubscription();
+  }, [subscribed]); // Runs whenever subscribed changes
+
+  console.log("Subscription", subscription);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
