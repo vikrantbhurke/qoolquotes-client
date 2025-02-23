@@ -36,6 +36,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
+  useSelector((state: RootState) => state.view.refresh);
   const { isMobile } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
 
