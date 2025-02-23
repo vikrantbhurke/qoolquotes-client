@@ -25,9 +25,11 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
+import { useGetSubscription } from "@/subscription/paypal/hooks/read";
 
 export const AppLayout = () => {
   useViewInfo();
+  useGetSubscription();
   const isQuotePage = useIsQuotePage();
   // usePopunderAd();
   // useSocialAd();

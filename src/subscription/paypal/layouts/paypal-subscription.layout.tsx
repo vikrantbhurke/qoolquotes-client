@@ -8,22 +8,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { SubscriptionStatus } from "@/subscription/enums";
 import { Button, Stack, Text, Title } from "@mantine/core";
-import { useGetSubscription } from "../hooks/read";
-import { useEffect } from "react";
-import { useGetUserByUsername } from "@/user/hooks/read";
 
 export const PayPalSubscriptionLayout = () => {
-  const { fetchUserByUsername } = useGetUserByUsername();
-  const { auth } = useSelector((state: RootState) => state.auth);
-  const query = new URLSearchParams(window.location.search);
+  const { auth, subscription } = useSelector((state: RootState) => state.auth);
 
-  useEffect(() => {
-    const handleRefresh = async () => {
-      if (query.get("subscribed") && auth.id) await fetchUserByUsername();
-    };
-
-    handleRefresh();
-  }, [query]);
+  console.log("Subscription", subscription);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
@@ -66,11 +55,6 @@ export const PayPalSubscriptionLayout = () => {
 
   return (
     <Stack gap="sm">
-      {(auth.subscriptionStatus === SubscriptionStatus.Active ||
-        auth.subscriptionStatus === SubscriptionStatus.Suspended) && (
-        <SubscriptionInfo />
-      )}
-
       {(auth.subscriptionStatus === SubscriptionStatus.Inactive ||
         auth.subscriptionStatus === SubscriptionStatus.Canceled ||
         auth.subscriptionStatus === SubscriptionStatus.Expired) && (
@@ -140,12 +124,4 @@ export const PayPalSubscriptionLayout = () => {
       )}
     </Stack>
   );
-};
-
-export const SubscriptionInfo = () => {
-  const { subscription } = useGetSubscription();
-
-  if (subscription) console.log("Subscription", subscription);
-
-  return <></>;
 };
