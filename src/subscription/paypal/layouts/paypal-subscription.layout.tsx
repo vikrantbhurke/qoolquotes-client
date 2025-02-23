@@ -23,8 +23,9 @@ export const PayPalSubscriptionLayout = () => {
   useEffect(() => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
-
-      if (query.get("subscribed")) {
+      const isSubscribed = query.get("subscribed");
+      console.log("isSubscribed", isSubscribed);
+      if (isSubscribed) {
         await refetchSubscription();
         dispatch(setSubscribed(true));
       }
