@@ -9,9 +9,31 @@ import { RootState } from "@/global/states/store";
 import { SubscriptionStatus } from "@/subscription/enums";
 import { Button, Stack, Text, Title } from "@mantine/core";
 import { useGetSubscription } from "../hooks/read";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { getUserByUsername } from "@/user/user.network";
+import { useDispatch } from "react-redux";
+import { setAuth } from "@/user/auth.slice";
 
 export const PayPalSubscriptionLayout = () => {
+  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
   const { auth } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    const fetchAuth = async () => {
+      const user = await queryClient.fetchQuery({
+        queryKey: ["getUserByUsername", auth.username],
+        queryFn: () => getUserByUsername(auth.username),
+      });
+
+      dispatch(setAuth(user));
+    };
+
+    if (query.get("subscribed") && auth.id) fetchAuth();
+  }, []);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();

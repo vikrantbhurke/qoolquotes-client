@@ -4,6 +4,7 @@ import { Role } from "./enums";
 
 export interface AuthState {
   auth: any;
+  subscribed: boolean;
 }
 
 const initialState: AuthState = {
@@ -14,6 +15,7 @@ const initialState: AuthState = {
         id: null,
         role: Role.Public,
       },
+  subscribed: false,
 };
 
 // @ts-ignore
@@ -25,6 +27,9 @@ const authSlice = createSlice({
       state.auth = action.payload;
       localStorage.setItem("auth", JSON.stringify(action.payload));
     },
+    setSubscribed: (state, action: PayloadAction<boolean>) => {
+      state.subscribed = action.payload;
+    },
     signOut: (state) => {
       state.auth = {
         id: null,
@@ -35,5 +40,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, signOut } = authSlice.actions;
+export const { setAuth, setSubscribed, signOut } = authSlice.actions;
 export default authSlice.reducer;
