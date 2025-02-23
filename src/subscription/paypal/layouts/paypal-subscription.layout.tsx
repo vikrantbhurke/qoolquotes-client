@@ -16,6 +16,7 @@ export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
   const { refetchSubscription } = useGetSubscription();
   const { auth, subscription } = useSelector((state: RootState) => state.auth);
+  useSelector((state: RootState) => state.auth.subscribed);
 
   console.log("Subscription", subscription);
 
