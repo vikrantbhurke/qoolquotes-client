@@ -51,7 +51,6 @@ export interface ViewState {
   isPaginationVisible: boolean;
   font: Font;
   color: Color;
-  refresh: boolean;
 }
 
 const initialState: ViewState = {
@@ -65,7 +64,6 @@ const initialState: ViewState = {
   isPaginationVisible: false,
   font: loadFont() || Font.Inter,
   color: loadColor() || Color.Default,
-  refresh: false,
 };
 
 export const viewSlice = createSlice({
@@ -112,9 +110,6 @@ export const viewSlice = createSlice({
       state.color = Color.Default;
       saveColor(Color.Default);
     },
-    setRefresh: (state) => {
-      state.refresh = !state.refresh;
-    },
   },
 });
 
@@ -131,7 +126,6 @@ export const {
   resetFont,
   setColor,
   resetColor,
-  setRefresh,
 } = viewSlice.actions;
 
 export default viewSlice.reducer;

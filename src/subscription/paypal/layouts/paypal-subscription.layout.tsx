@@ -11,26 +11,19 @@ import { Button, Stack, Text, Title } from "@mantine/core";
 import { useGetSubscription } from "../hooks/read";
 import { useEffect } from "react";
 import { useGetUserByUsername } from "@/user/hooks/read";
-import { useDispatch } from "react-redux";
-import { setRefresh } from "@/global/states/view.slice";
 
 export const PayPalSubscriptionLayout = () => {
-  const dispatch = useDispatch();
   const { fetchUserByUsername } = useGetUserByUsername();
   const { auth } = useSelector((state: RootState) => state.auth);
-  useSelector((state: RootState) => state.view.refresh);
+  const query = new URLSearchParams(window.location.search);
 
   useEffect(() => {
     const handleRefresh = async () => {
-      const query = new URLSearchParams(window.location.search);
-      if (query.get("subscribed") && auth.id) {
-        await fetchUserByUsername();
-        dispatch(setRefresh());
-      }
+      if (query.get("subscribed") && auth.id) await fetchUserByUsername();
     };
 
     handleRefresh();
-  }, []);
+  }, [query]);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
