@@ -1,0 +1,84 @@
+{
+  "status": "ACTIVE",
+  "status_update_time": "2025-02-23T14:33:21Z",
+  "id": "I-LMAB6PGN4TL5",
+  "plan_id": "P-0UR04308GJ657024EM64CFGY",
+  "start_time": "2025-02-23T14:32:44Z",
+  "quantity": "1",
+  "shipping_amount": {
+    "currency_code": "USD",
+    "value": "0.0"
+  },
+  "subscriber": {
+    "email_address": "sb-klucw37943028@personal.example.com",
+    "payer_id": "SZPE4PFVX6FAS",
+    "name": {
+      "given_name": "John",
+      "surname": "Doe"
+    },
+    "shipping_address": {
+      "address": {
+        "address_line_1": "1 Main St",
+        "admin_area_2": "San Jose",
+        "admin_area_1": "CA",
+        "postal_code": "95131",
+        "country_code": "US"
+      }
+    }
+  },
+  "billing_info": {
+    "outstanding_balance": {
+      "currency_code": "USD",
+      "value": "0.0"
+    },
+    "cycle_executions": [
+      {
+        "tenure_type": "REGULAR",
+        "sequence": 1,
+        "cycles_completed": 1,
+        "cycles_remaining": 0,
+        "current_pricing_scheme_version": 1,
+        "total_cycles": 0
+      }
+    ],
+    "last_payment": {
+      "amount": {
+        "currency_code": "USD",
+        "value": "10.0"
+      },
+      "time": "2025-02-23T14:33:21Z"
+    },
+    "next_billing_time": "2026-02-23T10:00:00Z",
+    "failed_payments_count": 0
+  },
+  "create_time": "2025-02-23T14:33:20Z",
+  "update_time": "2025-02-23T14:33:21Z",
+  "plan_overridden": false,
+  "links": [
+    {
+      "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-LMAB6PGN4TL5/cancel",
+      "rel": "cancel",
+      "method": "POST"
+    },
+    {
+      "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-LMAB6PGN4TL5",
+      "rel": "edit",
+      "method": "PATCH"
+    },
+    {
+      "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-LMAB6PGN4TL5",
+      "rel": "self",
+      "method": "GET"
+    },
+    {
+      "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-LMAB6PGN4TL5/suspend",
+      "rel": "suspend",
+      "method": "POST"
+    },
+    {
+      "href": "https://api.sandbox.paypal.com/v1/billing/subscriptions/I-LMAB6PGN4TL5/capture",
+      "rel": "capture",
+      "method": "POST"
+    }
+  ]
+}
