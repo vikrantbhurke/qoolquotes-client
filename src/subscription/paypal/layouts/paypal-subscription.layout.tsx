@@ -15,8 +15,10 @@ import { useGetSubscription } from "../hooks/read";
 export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
   const { refetchSubscription } = useGetSubscription();
-  const { auth, subscription } = useSelector((state: RootState) => state.auth);
-  useSelector((state: RootState) => state.auth.subscribed);
+
+  const { auth, subscription, subscribed } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   console.log("Subscription", subscription);
 
@@ -27,7 +29,7 @@ export const PayPalSubscriptionLayout = () => {
       dispatch(setSubscribed(true));
       refetchSubscription();
     }
-  }, []);
+  }, [subscribed]);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
