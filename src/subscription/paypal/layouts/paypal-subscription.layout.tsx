@@ -24,15 +24,20 @@ export const PayPalSubscriptionLayout = () => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
       const isSubscribed = query.get("subscribed");
+
+      console.log("useEffect fired");
       console.log("isSubscribed", isSubscribed);
+
       if (isSubscribed) {
         await refetchSubscription();
         dispatch(setSubscribed(true));
+        console.log("refetchSubscription fired");
+        console.log("setSubscribed dispatched");
       }
     };
 
     handleGetSubscription();
-  }, []);
+  }, [refetchSubscription, dispatch, setSubscribed]);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();
