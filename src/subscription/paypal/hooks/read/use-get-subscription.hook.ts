@@ -15,15 +15,21 @@ export const useGetSubscription = () => {
     isPending,
     isError,
     error,
+    refetch: refetchSubscription,
   } = useQuery({
-    queryKey: ["getSubscription", auth.email],
-    queryFn: () => getSubscription({ email: auth.email }),
-    enabled: !!auth.email,
+    queryKey: ["getSubscription", auth?.email],
+    queryFn: () => getSubscription({ email: auth?.email }),
+    enabled: !!auth?.email,
+    gcTime: 0,
+    staleTime: 0,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
   });
 
   useEffect(() => {
     if (subscription) dispatch(setSubscription(subscription));
   }, [subscription]);
 
-  return { subscription, isPending, isError, error };
+  return { subscription, isPending, isError, error, refetchSubscription };
 };
