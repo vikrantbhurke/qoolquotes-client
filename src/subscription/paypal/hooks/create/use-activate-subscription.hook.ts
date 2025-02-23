@@ -4,9 +4,7 @@ import { activateSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
 import { useGetUserByUsername } from "@/user/hooks/read";
 
-export const useActivateSubscription = (
-  setRefresh: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+export const useActivateSubscription = () => {
   const { showNotification } = useNotification();
   const { fetchUserByUsername } = useGetUserByUsername();
 
@@ -16,7 +14,7 @@ export const useActivateSubscription = (
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       fetchUserByUsername();
-      setRefresh((prev) => !prev);
+      window.location.reload();
     },
 
     onError: (error: any) => {

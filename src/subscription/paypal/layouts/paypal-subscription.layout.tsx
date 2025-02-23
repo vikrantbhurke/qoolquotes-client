@@ -9,18 +9,17 @@ import { RootState } from "@/global/states/store";
 import { SubscriptionStatus } from "@/subscription/enums";
 import { Button, Stack, Text, Title } from "@mantine/core";
 import { useGetSubscription } from "../hooks/read";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGetUserByUsername } from "@/user/hooks/read";
 
 export const PayPalSubscriptionLayout = () => {
-  const [_refresh, setRefresh] = useState(false);
   const { fetchUserByUsername } = useGetUserByUsername();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get("subscribed") && auth.id) fetchUserByUsername();
-    setRefresh((prev) => !prev);
+    window.location.reload();
   }, []);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
@@ -29,15 +28,15 @@ export const PayPalSubscriptionLayout = () => {
   const {
     suspendSubscriptionMutation,
     isPending: isSuspendSubscriptionPending,
-  } = useSuspendSubscription(setRefresh);
+  } = useSuspendSubscription();
 
   const {
     activateSubscriptionMutation,
     isPending: isActivateSubscriptionPending,
-  } = useActivateSubscription(setRefresh);
+  } = useActivateSubscription();
 
   const { cancelSubscriptionMutation, isPending: isCancelSubscriptionPending } =
-    useCancelSubscription(setRefresh);
+    useCancelSubscription();
 
   const handleCreateSubscription = () => {
     createSubscriptionMutation({ userId: auth.id });
