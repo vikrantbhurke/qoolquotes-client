@@ -30,12 +30,14 @@ import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 import { PayPalSubscriptionLayout } from "@/subscription/paypal/layouts";
+import { userUtility } from "../user.utility";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
   const { isMobile } = useSelector((state: RootState) => state.view);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   return (
     <>
@@ -99,7 +101,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                   </>
                 )}
 
-                <Stack gap={0} align="center">
+                <Stack gap={0} align="start">
                   {isPending ? (
                     <CustomSkeleton w={130} />
                   ) : (
@@ -107,7 +109,6 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                       {user.firstname} {user.lastname}
                     </Title>
                   )}
-
                   {isPending ? (
                     <CustomSkeleton h={20} />
                   ) : (
@@ -115,8 +116,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                       @{user.username}
                     </Text>
                   )}
-
-                  <Group gap="xs">
+                  <Group gap={4}>
                     {isPending ? (
                       <CustomSkeleton h={20} w={130} />
                     ) : (
@@ -125,6 +125,17 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                         <Text fz="sm">{user.email}</Text>
                       </>
                     )}
+                  </Group>
+
+                  <Group gap={4}>
+                    <Text fz="sm">Subscription Status:</Text>
+                    <Text
+                      fz="sm"
+                      c={userUtility.getSubscriptionStatusColor(
+                        auth.subscriptionStatus
+                      )}>
+                      {auth.subscriptionStatus}
+                    </Text>
                   </Group>
                 </Stack>
               </Group>

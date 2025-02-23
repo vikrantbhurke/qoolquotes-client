@@ -1,8 +1,26 @@
 import Validator from "password-validator";
 import isEmail from "validator/lib/isEmail";
 import { UserError } from "./user.error";
+import { SubscriptionStatus } from "@/subscription/enums";
 
 class UserUtility {
+  getSubscriptionStatusColor = (status: SubscriptionStatus) => {
+    switch (status) {
+      case SubscriptionStatus.Active:
+        return "green";
+      case SubscriptionStatus.Inactive:
+        return "red";
+      case SubscriptionStatus.Suspended:
+        return "yellow";
+      case SubscriptionStatus.Canceled:
+        return "gray";
+      case SubscriptionStatus.Expired:
+        return "gray";
+      default:
+        return "gray";
+    }
+  };
+
   validateFirstname = (firstname: string) => {
     const firstnameSchema = new Validator();
     firstnameSchema

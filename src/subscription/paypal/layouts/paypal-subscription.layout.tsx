@@ -96,6 +96,7 @@ export const PayPalSubscriptionLayout = () => {
               </Text>
             ))}
           </Stack>
+
           <Button
             onClick={handleCreateSubscription}
             disabled={isCreateSubscriptionPending}
