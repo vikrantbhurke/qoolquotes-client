@@ -41,7 +41,7 @@ export const SubscriptionLayout = () => {
       )}
 
       {(startTime || updatedTime || nextBillingTime) && (
-        <Stack gap="xs">
+        <Stack gap={0}>
           <Title order={5} ta="center">
             Subscription Details
           </Title>
