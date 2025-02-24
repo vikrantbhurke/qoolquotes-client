@@ -34,9 +34,10 @@ export const PayPalSubscriptionLayout = () => {
         setTimeout(() => {
           showNotification(
             `Subscription may take some time to be active. Reload page in few seconds.`,
-            NotificationColor.Info
+            NotificationColor.Info,
+            10000
           );
-        }, 8000);
+        }, 9000);
       }
     };
 

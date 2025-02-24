@@ -10,7 +10,7 @@ export const SubscriptionLayout = () => {
   const list = [
     `⭐ Remove all ads.`,
     `⭐ Remove playlist limit.`,
-    `⭐ Apply custom colors and fonts to quotes.`,
+    `⭐ Apply custom colors & fonts to quotes.`,
   ];
 
   const status = subscription?.status;

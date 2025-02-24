@@ -3,7 +3,11 @@ import { NotificationColor } from "../enums/notification-color.enum";
 import { noBorderStyle } from "../styles/app.css";
 
 export const useNotification = () => {
-  const showNotification = (title: string, color: NotificationColor) => {
+  const showNotification = (
+    title: string,
+    color: NotificationColor,
+    autoClose = 5000
+  ) => {
     notifications.show({
       title,
       withCloseButton: false,
@@ -19,7 +23,7 @@ export const useNotification = () => {
         backgroundColor: color,
         border: noBorderStyle,
       },
-      autoClose: 5000,
+      autoClose,
     });
   };
 
