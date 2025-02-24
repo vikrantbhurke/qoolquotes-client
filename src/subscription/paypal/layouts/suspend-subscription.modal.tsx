@@ -10,8 +10,8 @@ export const SuspendSubscriptionModal = ({ opened, close }: any) => {
   const { suspendSubscriptionMutation, isPending, isSuccess } =
     useSuspendSubscription();
 
-  const handleSuspendSubscription = () => {
-    suspendSubscriptionMutation({ email: auth.email });
+  const handleSuspendSubscription = async () => {
+    await suspendSubscriptionMutation({ email: auth.email });
     isSuccess && close();
   };
 
@@ -23,12 +23,6 @@ export const SuspendSubscriptionModal = ({ opened, close }: any) => {
       onClose={close}
       centered>
       <Stack gap="lg">
-        <Text fz="sm" ta="center">
-          Are you sure you want to suspend your subscription? During suspension
-          period, you will not be able to access QoolQuotes paid features. You
-          will also not be charged until you reactivate your subscription.
-        </Text>
-
         <Text fz="sm" ta="center">
           Are you sure you want to suspend your subscription? You can't access
           paid features and you won't be charged while suspended. You can always

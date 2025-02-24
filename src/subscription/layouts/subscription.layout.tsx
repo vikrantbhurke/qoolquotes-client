@@ -3,9 +3,11 @@ import { PayPalSubscriptionLayout } from "../paypal/layouts";
 import { Group, Stack, Text, Title } from "@mantine/core";
 import { useGetSubscription } from "../paypal/hooks/read";
 import { Status } from "../enums";
+import { CustomSkeleton } from "@/global/components/reusables";
+import { threeDefaultBg } from "@/global/styles/renamed.variables";
 
 export const SubscriptionLayout = () => {
-  const { subscription } = useGetSubscription();
+  const { subscription, isPending, isError } = useGetSubscription();
 
   const list = [
     `⭐ Remove all ads.`,
@@ -13,9 +15,23 @@ export const SubscriptionLayout = () => {
     `⭐ Apply custom colors & fonts to quotes.`,
   ];
 
-  const status = subscription?.status;
-  const startTime = subscription?.start_time;
-  const nextBillingTime = subscription?.billing_info?.next_billing_time;
+  if (isPending || isError) {
+    return (
+      <>
+        <Stack gap={0} miw={350} align="center">
+          <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
+          <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
+          <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
+        </Stack>
+
+        <PayPalSubscriptionLayout />
+      </>
+    );
+  }
+
+  const status = subscription.status;
+  const startTime = subscription.start_time;
+  const nextBillingTime = subscription.billing_info.next_billing_time;
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
 
   return (
@@ -48,9 +64,9 @@ export const SubscriptionLayout = () => {
             <Title
               order={6}
               c={subscriptionUtility.getStatusColor(
-                subscriptionUtility.getStatus(subscription?.status)
+                subscriptionUtility.getStatus(subscription.status)
               )}>
-              {subscriptionUtility.getStatus(subscription?.status)}
+              {subscriptionUtility.getStatus(subscription.status)}
             </Title>
           </Group>
 

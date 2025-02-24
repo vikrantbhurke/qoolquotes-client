@@ -10,8 +10,8 @@ export const CancelSubscriptionModal = ({ opened, close }: any) => {
   const { cancelSubscriptionMutation, isPending, isSuccess } =
     useCancelSubscription();
 
-  const handleCancelSubscription = () => {
-    cancelSubscriptionMutation({ email: auth.email });
+  const handleCancelSubscription = async () => {
+    await cancelSubscriptionMutation({ email: auth.email });
     isSuccess && close();
   };
 
