@@ -11,29 +11,33 @@ import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
 import { Button, Stack } from "@mantine/core";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
+import { useNotification } from "@/global/hooks";
+import { NotificationColor } from "@/global/enums";
 
 export const PayPalSubscriptionLayout = () => {
-  const { subscription, refetchSubscription } = useGetSubscription();
+  const { showNotification } = useNotification();
+  const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
 
-      if (query.get("subscribed") && !sessionStorage.getItem("hasReloaded")) {
-        await refetchSubscription();
-        sessionStorage.setItem("hasReloaded", "true");
+      if (query.get("subscribed")) {
+        showNotification(
+          `QoolQuotes subscription successful.`,
+          NotificationColor.Success
+        );
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        showNotification(
+          `Subscription may take some time to be active. Reload page in few seconds.`,
+          NotificationColor.Info
+        );
       }
     };
 
     handleGetSubscription();
   }, []);
-
-  console.log("Subscription", subscription);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
     useCreateSubscription();

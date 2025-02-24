@@ -42,9 +42,13 @@ export const SubscriptionLayout = () => {
 
       {(startTime || updatedTime || nextBillingTime) && (
         <Stack gap={0}>
+          <Title order={5} ta="center">
+            Subscription Details
+          </Title>
+
           <Group gap="xs">
             <Title order={6} ta="center">
-              Subscription Status:{" "}
+              Status:{" "}
             </Title>
 
             <Title
@@ -59,7 +63,7 @@ export const SubscriptionLayout = () => {
           {startTime && (
             <Group gap="xs">
               <Title order={6} ta="center">
-                Subscription Started On:{" "}
+                Started On:{" "}
               </Title>
 
               <Text fz="sm">
@@ -71,7 +75,7 @@ export const SubscriptionLayout = () => {
           {updatedTime && (
             <Group gap="xs">
               <Title order={6} ta="center">
-                Subscription Updated On:{" "}
+                Updated On:{" "}
               </Title>
 
               <Text fz="sm">
