@@ -29,9 +29,9 @@ export const SubscriptionLayout = () => {
     );
   }
 
-  const status = subscription.status;
-  const startTime = subscription.start_time;
-  const nextBillingTime = subscription.billing_info.next_billing_time;
+  const status = subscription?.status;
+  const startTime = subscription?.start_time;
+  const nextBillingTime = subscription?.billing_info?.next_billing_time;
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
 
   return (
@@ -64,9 +64,9 @@ export const SubscriptionLayout = () => {
             <Title
               order={6}
               c={subscriptionUtility.getStatusColor(
-                subscriptionUtility.getStatus(subscription.status)
+                subscriptionUtility.getStatus(subscription?.status)
               )}>
-              {subscriptionUtility.getStatus(subscription.status)}
+              {subscriptionUtility.getStatus(subscription?.status)}
             </Title>
           </Group>
 
