@@ -1,14 +1,11 @@
 import { subscriptionUtility } from "../subscription.utility";
 import { PayPalSubscriptionLayout } from "../paypal/layouts";
 import { Group, Stack, Text, Title } from "@mantine/core";
-import { RootState } from "@/global/states/store";
-import { useSelector } from "react-redux";
+import { useGetSubscription } from "../paypal/hooks/read";
 import { Status } from "../enums";
 
 export const SubscriptionLayout = () => {
-  const { subscription } = useSelector(
-    (state: RootState) => state.subscription
-  );
+  const { subscription } = useGetSubscription();
 
   const list = [
     `⭐ Remove all ads.`,

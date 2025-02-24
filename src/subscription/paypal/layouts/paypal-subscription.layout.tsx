@@ -13,12 +13,8 @@ import { Button, Stack } from "@mantine/core";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const PayPalSubscriptionLayout = () => {
-  const { refetchSubscription } = useGetSubscription();
+  const { subscription, refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
-
-  const { subscription } = useSelector(
-    (state: RootState) => state.subscription
-  );
 
   useEffect(() => {
     const handleGetSubscription = async () => {
@@ -30,7 +26,7 @@ export const PayPalSubscriptionLayout = () => {
 
         setTimeout(() => {
           window.location.reload();
-        }, 5000);
+        }, 1000);
       }
     };
 
