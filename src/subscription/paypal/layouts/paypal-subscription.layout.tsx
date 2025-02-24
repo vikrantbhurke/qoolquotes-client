@@ -4,16 +4,22 @@ import {
   useSuspendSubscription,
   useActivateSubscription,
 } from "../hooks/create";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { Status } from "@/subscription/enums";
 import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
-import { Button, Stack, Text, Title } from "@mantine/core";
+import { Button, Stack } from "@mantine/core";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const PayPalSubscriptionLayout = () => {
   const { refetchSubscription } = useGetSubscription();
   const [subscribed, setSubscribed] = useState(false);
-  const { auth, subscription } = useSelector((state: RootState) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
+
+  const { subscription } = useSelector(
+    (state: RootState) => state.subscription
+  );
 
   useEffect(() => {
     const handleGetSubscription = async () => {
@@ -26,7 +32,7 @@ export const PayPalSubscriptionLayout = () => {
     };
 
     handleGetSubscription();
-  }, []); // Runs once on mount
+  }, []);
 
   useEffect(() => {
     const handleGetSubscription = async () => {
@@ -38,7 +44,7 @@ export const PayPalSubscriptionLayout = () => {
     };
 
     handleGetSubscription();
-  }, [subscribed]); // Runs whenever subscribed changes
+  }, [subscribed]);
 
   console.log("Subscription", subscription);
 
@@ -74,51 +80,32 @@ export const PayPalSubscriptionLayout = () => {
     cancelSubscriptionMutation({ email: auth.email });
   };
 
-  const list = [
-    `⭐ Remove all ads.`,
-    `⭐ Remove playlist limits.`,
-    `⭐ Create, share and save playlists.`,
-    `⭐ Apply custom colors and fonts to quotes.`,
-  ];
+  const status = subscription?.status;
+
+  const isSuspended =
+    subscriptionUtility.getStatus(status) === Status.Suspended;
+  const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
+  const isActive = subscriptionUtility.getStatus(status) === Status.Active;
+  const isCanceled = subscriptionUtility.getStatus(status) === Status.Canceled;
+  const isExpired = subscriptionUtility.getStatus(status) === Status.Expired;
 
   return (
     <Stack gap="sm">
-      {/* {(auth.subscriptionStatus === SubscriptionStatus.Inactive ||
-        auth.subscriptionStatus === SubscriptionStatus.Canceled ||
-        auth.subscriptionStatus === SubscriptionStatus.Expired) && ( */}
-
-      {(subscription?.status === "CANCELLED" ||
-        subscription?.status === "EXPIRED" ||
-        !subscription) && (
-        <>
-          <Stack gap="xs">
-            <Title order={5} ta="center">
-              Subscribe for just ${10} / year.
-            </Title>
-
-            {list.map((item, index) => (
-              <Text size="sm" key={index}>
-                {item}
-              </Text>
-            ))}
-          </Stack>
-
-          <Button
-            onClick={handleCreateSubscription}
-            disabled={isCreateSubscriptionPending}
-            type="submit"
-            fullWidth
-            bg="#F2BA36"
-            c="black"
-            loading={isCreateSubscriptionPending}
-            loaderProps={{ type: "dots", color: "black" }}>
-            Subscribe with PayPal
-          </Button>
-        </>
+      {(isCanceled || isExpired || isInactive) && (
+        <Button
+          onClick={handleCreateSubscription}
+          disabled={isCreateSubscriptionPending}
+          type="submit"
+          fullWidth
+          bg="#F2BA36"
+          c="black"
+          loading={isCreateSubscriptionPending}
+          loaderProps={{ type: "dots", color: "black" }}>
+          Subscribe with PayPal
+        </Button>
       )}
 
-      {/* {auth.subscriptionStatus === SubscriptionStatus.Active && ( */}
-      {subscription?.status === "ACTIVE" && (
+      {isActive && (
         <Button
           onClick={handleSuspendSubscription}
           disabled={isSuspendSubscriptionPending}
@@ -131,8 +118,7 @@ export const PayPalSubscriptionLayout = () => {
         </Button>
       )}
 
-      {/* {auth.subscriptionStatus === SubscriptionStatus.Suspended && ( */}
-      {subscription?.status === "SUSPENDED" && (
+      {isSuspended && (
         <Button
           onClick={handleActivateSubscription}
           disabled={isActivateSubscriptionPending}
@@ -144,10 +130,7 @@ export const PayPalSubscriptionLayout = () => {
         </Button>
       )}
 
-      {/* {(auth.subscriptionStatus === SubscriptionStatus.Active ||
-        auth.subscriptionStatus === SubscriptionStatus.Suspended) && ( */}
-      {(subscription?.status === "ACTIVE" ||
-        subscription?.status === "SUSPENDED") && (
+      {(isActive || isSuspended) && (
         <Button
           onClick={handleCancelSubscription}
           disabled={isCancelSubscriptionPending}

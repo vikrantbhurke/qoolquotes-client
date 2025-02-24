@@ -256,25 +256,21 @@ export const UpdateUserByIdFormLayout = () => {
               </Stack>
             </Stack>
 
-            <Grid>
-              <Grid.Col span={6}>
-                <Button
-                  disabled={isPending}
-                  type="submit"
-                  fullWidth
-                  bg="blue"
-                  loading={isPending}
-                  loaderProps={{ type: "dots" }}>
-                  Update Profile
-                </Button>
-              </Grid.Col>
+            <Stack gap="xs">
+              <Button
+                disabled={isPending}
+                type="submit"
+                fullWidth
+                bg="blue"
+                loading={isPending}
+                loaderProps={{ type: "dots" }}>
+                Update Profile
+              </Button>
 
-              <Grid.Col span={6}>
-                <Button fullWidth bg="yellow" onClick={handleCancel}>
-                  Cancel
-                </Button>
-              </Grid.Col>
-            </Grid>
+              <Button fullWidth bg="yellow" onClick={handleCancel}>
+                Cancel
+              </Button>
+            </Stack>
           </Stack>
         </form>
       </Stack>

@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { RootState } from "@/global/states/store";
 import { getSubscription } from "../../paypal.network";
 import { useDispatch } from "react-redux";
-import { setSubscription } from "@/user/auth.slice";
+import { setSubscription } from "@/subscription/subscription.slice";
 import { useEffect } from "react";
 
 export const useGetSubscription = () => {

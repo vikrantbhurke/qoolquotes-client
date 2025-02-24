@@ -1,20 +1,20 @@
 import Validator from "password-validator";
 import isEmail from "validator/lib/isEmail";
 import { UserError } from "./user.error";
-import { SubscriptionStatus } from "@/subscription/enums";
+import { Status } from "@/subscription/enums";
 
 class UserUtility {
-  getSubscriptionStatusColor = (status: SubscriptionStatus) => {
+  getStatusColor = (status: Status) => {
     switch (status) {
-      case SubscriptionStatus.Active:
+      case Status.Active:
         return "green";
-      case SubscriptionStatus.Inactive:
+      case Status.Inactive:
         return "red";
-      case SubscriptionStatus.Suspended:
+      case Status.Suspended:
         return "yellow";
-      case SubscriptionStatus.Canceled:
+      case Status.Canceled:
         return "gray";
-      case SubscriptionStatus.Expired:
+      case Status.Expired:
         return "gray";
       default:
         return "gray";

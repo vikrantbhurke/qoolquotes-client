@@ -3,7 +3,6 @@ import { modal } from "@/global/styles/global.styles";
 import {
   Button,
   Stack,
-  Grid,
   Avatar,
   Modal,
   Center,
@@ -29,15 +28,19 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
-import { PayPalSubscriptionLayout } from "@/subscription/paypal/layouts";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { userUtility } from "../user.utility";
+import { SubscriptionLayout } from "@/subscription/layouts";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
   const { isMobile } = useSelector((state: RootState) => state.view);
-  const { auth } = useSelector((state: RootState) => state.auth);
+
+  const { subscription } = useSelector(
+    (state: RootState) => state.subscription
+  );
 
   return (
     <>
@@ -131,46 +134,40 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                     <Text fz="sm">Subscription Status:</Text>
                     <Text
                       fz="sm"
-                      c={userUtility.getSubscriptionStatusColor(
-                        auth.subscriptionStatus
+                      c={userUtility.getStatusColor(
+                        subscriptionUtility.getStatus(subscription?.status)
                       )}>
-                      {auth.subscriptionStatus}
+                      {subscriptionUtility.getStatus(subscription?.status)}
                     </Text>
                   </Group>
                 </Stack>
               </Group>
             </Stack>
 
-            <Grid>
-              <Grid.Col span={6}>
-                {isPending ? (
-                  <Button fullWidth bg="blue">
-                    Edit Profile
-                  </Button>
-                ) : (
-                  <Button
-                    fullWidth
-                    bg="blue"
-                    onClick={() => navigate(`/users/${user.id}/edit`)}>
-                    Edit Profile
-                  </Button>
-                )}
-              </Grid.Col>
+            {isPending ? (
+              <Stack gap="xs">
+                <Button fullWidth bg="blue">
+                  Edit Profile
+                </Button>
+                <Button fullWidth bg="red">
+                  Delete Account
+                </Button>
+              </Stack>
+            ) : (
+              <Stack gap="xs">
+                <Button
+                  fullWidth
+                  bg="blue"
+                  onClick={() => navigate(`/users/${user.id}/edit`)}>
+                  Edit Profile
+                </Button>
+                <Button fullWidth bg="red" onClick={open}>
+                  Delete Account
+                </Button>
+              </Stack>
+            )}
 
-              <Grid.Col span={6}>
-                {isPending ? (
-                  <Button fullWidth bg="red">
-                    Delete Account
-                  </Button>
-                ) : (
-                  <Button fullWidth bg="red" onClick={open}>
-                    Delete Account
-                  </Button>
-                )}
-              </Grid.Col>
-            </Grid>
-
-            <PayPalSubscriptionLayout />
+            <SubscriptionLayout />
           </Stack>
 
           <Space h={isMobile ? 50 : 90} />
