@@ -18,7 +18,7 @@ export const PayPalSubscriptionLayout = () => {
   const { showNotification } = useNotification();
   const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
-  console.log("Subscription", subscription);
+
   useEffect(() => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
@@ -29,12 +29,14 @@ export const PayPalSubscriptionLayout = () => {
             `QoolQuotes subscription successful.`,
             NotificationColor.Success
           );
+        }, 3000);
 
+        setTimeout(() => {
           showNotification(
             `Subscription may take some time to be active. Reload page in few seconds.`,
             NotificationColor.Info
           );
-        }, 3000);
+        }, 8000);
       }
     };
 

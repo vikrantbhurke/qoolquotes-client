@@ -72,7 +72,7 @@ export const SubscriptionLayout = () => {
             </Group>
           )}
 
-          {updatedTime && (
+          {updatedTime && startTime !== updatedTime && (
             <Group gap="xs">
               <Title order={6} ta="center">
                 Updated On:{" "}
@@ -87,7 +87,7 @@ export const SubscriptionLayout = () => {
           {nextBillingTime && (
             <Group gap="xs">
               <Title order={6} ta="center">
-                Next Billing Time:{" "}
+                Renewing On:{" "}
               </Title>
 
               <Text fz="sm">

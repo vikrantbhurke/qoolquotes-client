@@ -46,14 +46,14 @@ export class SubscriptionUtility {
     const year = date.getUTCFullYear();
 
     // Extract time components
-    let hours = date.getUTCHours();
-    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-    const ampm = hours >= 12 ? "PM" : "AM";
+    // let hours = date.getUTCHours();
+    // const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    // const ampm = hours >= 12 ? "PM" : "AM";
 
     // Convert to 12-hour format
-    hours = hours % 12 || 12;
+    // hours = hours % 12 || 12;
 
-    return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+    return `${day}/${month}/${year}`;
   }
 
   getDaySuffix(day: number) {
