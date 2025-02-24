@@ -6,10 +6,13 @@ import { useCancelSubscription } from "../hooks/create";
 
 export const CancelSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { cancelSubscriptionMutation, isPending } = useCancelSubscription();
+
+  const { cancelSubscriptionMutation, isPending, isSuccess } =
+    useCancelSubscription();
 
   const handleCancelSubscription = () => {
     cancelSubscriptionMutation({ email: auth.email });
+    isSuccess && close();
   };
 
   return (
@@ -22,8 +25,8 @@ export const CancelSubscriptionModal = ({ opened, close }: any) => {
       <Stack gap="lg">
         <Text fz="sm" ta="center">
           Are you sure you want to cancel your subscription? You will lose
-          access to QoolQuotes paid features immediately. You will have to
-          subscribe again to regain access.
+          access to paid features immediately. You will have to subscribe again
+          to regain access.
         </Text>
 
         <Button

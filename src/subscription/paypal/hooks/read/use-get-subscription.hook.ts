@@ -16,11 +16,11 @@ export const useGetSubscription = () => {
     queryKey: ["getSubscription", auth?.email],
     queryFn: () => getSubscription({ email: auth?.email }),
     enabled: !!auth?.email,
-    gcTime: 0,
-    staleTime: 0,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
+    // gcTime: 0,
+    // staleTime: 0,
+    // refetchOnMount: true,
+    // refetchOnWindowFocus: true,
+    // refetchOnReconnect: true,
   });
 
   return { subscription, isPending, isError, error, refetchSubscription };

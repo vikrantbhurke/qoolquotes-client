@@ -41,8 +41,7 @@ export const PayPalSubscriptionLayout = () => {
         setTimeout(() => {
           showNotification(
             `Congrats! You have successfully subscribed to QoolQuotes.`,
-            NotificationColor.Success,
-            5000
+            NotificationColor.Success
           );
         }, 2000);
 
@@ -52,7 +51,7 @@ export const PayPalSubscriptionLayout = () => {
             NotificationColor.Info,
             8000
           );
-        }, 12000);
+        }, 9000);
       }
     };
 
