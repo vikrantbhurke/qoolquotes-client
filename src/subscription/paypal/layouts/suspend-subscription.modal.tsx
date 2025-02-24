@@ -6,11 +6,10 @@ import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 
 export const SuspendSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
+  const { suspendSubscriptionMutation } = useSuspendSubscription();
 
-  const { suspendSubscriptionMutation, isPending } = useSuspendSubscription();
-
-  const handleSuspendSubscription = async () => {
-    await suspendSubscriptionMutation({ email: auth.email });
+  const handleSuspendSubscription = () => {
+    suspendSubscriptionMutation({ email: auth.email });
     close();
   };
 
@@ -32,10 +31,7 @@ export const SuspendSubscriptionModal = ({ opened, close }: any) => {
           onClick={handleSuspendSubscription}
           fullWidth
           bg="#F2BA36"
-          c="black"
-          disabled={isPending}
-          loading={isPending}
-          loaderProps={{ type: "dots", color: "black" }}>
+          c="black">
           Suspend Subscription
         </Button>
       </Stack>

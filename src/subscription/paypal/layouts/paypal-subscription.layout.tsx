@@ -1,6 +1,8 @@
 import {
   useCreateSubscription,
   useActivateSubscription,
+  useSuspendSubscription,
+  useCancelSubscription,
 } from "../hooks/create";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -20,6 +22,17 @@ export const PayPalSubscriptionLayout = () => {
   const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
+  const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
+    useCreateSubscription();
+
+  const {
+    activateSubscriptionMutation,
+    isPending: isActivateSubscriptionPending,
+  } = useActivateSubscription();
+
+  const { isPending: isSuspendSubscriptionPending } = useSuspendSubscription();
+  const { isPending: isCancelSubscriptionPending } = useCancelSubscription();
+
   const [
     suspendSubscriptionModalOpened,
     {
@@ -37,7 +50,12 @@ export const PayPalSubscriptionLayout = () => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
 
-      if (query.get("subscribed")) {
+      if (
+        query.get("subscribed") &&
+        !sessionStorage.getItem("subscriptionNotified")
+      ) {
+        sessionStorage.setItem("subscriptionNotified", "true");
+
         setTimeout(() => {
           showNotification(
             `Congrats! You have successfully subscribed to QoolQuotes.`,
@@ -57,14 +75,6 @@ export const PayPalSubscriptionLayout = () => {
 
     handleGetSubscription();
   }, []);
-
-  const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
-    useCreateSubscription();
-
-  const {
-    activateSubscriptionMutation,
-    isPending: isActivateSubscriptionPending,
-  } = useActivateSubscription();
 
   const handleCreateSubscription = () => {
     createSubscriptionMutation({ userId: auth.id });
@@ -113,7 +123,10 @@ export const PayPalSubscriptionLayout = () => {
             onClick={suspendSubscriptionModalOpen}
             bg="#F2BA36"
             c="black"
-            fullWidth>
+            fullWidth
+            disabled={isSuspendSubscriptionPending}
+            loading={isSuspendSubscriptionPending}
+            loaderProps={{ type: "dots", color: "black" }}>
             Suspend Subscription
           </Button>
         )}
@@ -131,7 +144,13 @@ export const PayPalSubscriptionLayout = () => {
         )}
 
         {(isActive || isSuspended) && (
-          <Button onClick={cancelSubscriptionModalOpen} bg="red" fullWidth>
+          <Button
+            onClick={cancelSubscriptionModalOpen}
+            bg="red"
+            fullWidth
+            disabled={isCancelSubscriptionPending}
+            loading={isCancelSubscriptionPending}
+            loaderProps={{ type: "dots" }}>
             Cancel Subscription
           </Button>
         )}

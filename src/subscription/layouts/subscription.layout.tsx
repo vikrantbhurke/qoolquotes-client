@@ -50,7 +50,7 @@ export const SubscriptionLayout = () => {
         </Stack>
       )}
 
-      {(startTime || nextBillingTime) && (
+      {!isInactive && (
         <Stack gap={0}>
           <Title order={5} ta="center">
             Subscription Details

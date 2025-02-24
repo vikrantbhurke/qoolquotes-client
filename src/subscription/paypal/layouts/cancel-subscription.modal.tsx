@@ -7,10 +7,10 @@ import { useCancelSubscription } from "../hooks/create";
 export const CancelSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { cancelSubscriptionMutation, isPending } = useCancelSubscription();
+  const { cancelSubscriptionMutation } = useCancelSubscription();
 
-  const handleCancelSubscription = async () => {
-    await cancelSubscriptionMutation({ email: auth.email });
+  const handleCancelSubscription = () => {
+    cancelSubscriptionMutation({ email: auth.email });
     close();
   };
 
@@ -28,13 +28,7 @@ export const CancelSubscriptionModal = ({ opened, close }: any) => {
           to regain access.
         </Text>
 
-        <Button
-          onClick={handleCancelSubscription}
-          fullWidth
-          bg="red"
-          disabled={isPending}
-          loading={isPending}
-          loaderProps={{ type: "dots", color: "black" }}>
+        <Button onClick={handleCancelSubscription} fullWidth bg="red">
           Cancel Subscription
         </Button>
       </Stack>
