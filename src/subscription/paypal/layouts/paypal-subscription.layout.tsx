@@ -26,7 +26,7 @@ export const PayPalSubscriptionLayout = () => {
       const query = new URLSearchParams(window.location.search);
 
       if (query.get("subscribed")) {
-        await refetchSubscription();
+        await refetchSubscription(subscription?.id);
         setSubscribed((prev) => !prev);
       }
     };
@@ -39,7 +39,7 @@ export const PayPalSubscriptionLayout = () => {
       const query = new URLSearchParams(window.location.search);
 
       if (query.get("subscribed")) {
-        await refetchSubscription();
+        await refetchSubscription(subscription?.id);
       }
     };
 

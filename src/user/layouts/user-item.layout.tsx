@@ -28,8 +28,6 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
-import { userUtility } from "../user.utility";
 import { SubscriptionLayout } from "@/subscription/layouts";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
@@ -37,10 +35,6 @@ export const UserItemLayout = ({ user, isPending }: any) => {
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
   const { isMobile } = useSelector((state: RootState) => state.view);
-
-  const { subscription } = useSelector(
-    (state: RootState) => state.subscription
-  );
 
   return (
     <>
@@ -128,17 +122,6 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                         <Text fz="sm">{user.email}</Text>
                       </>
                     )}
-                  </Group>
-
-                  <Group gap={4}>
-                    <Text fz="sm">Subscription Status:</Text>
-                    <Text
-                      fz="sm"
-                      c={userUtility.getStatusColor(
-                        subscriptionUtility.getStatus(subscription?.status)
-                      )}>
-                      {subscriptionUtility.getStatus(subscription?.status)}
-                    </Text>
                   </Group>
                 </Stack>
               </Group>

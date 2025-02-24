@@ -1,6 +1,6 @@
 import { subscriptionUtility } from "../subscription.utility";
 import { PayPalSubscriptionLayout } from "../paypal/layouts";
-import { Stack, Text, Title } from "@mantine/core";
+import { Group, Stack, Text, Title } from "@mantine/core";
 import { RootState } from "@/global/states/store";
 import { useSelector } from "react-redux";
 import { Status } from "../enums";
@@ -17,11 +17,11 @@ export const SubscriptionLayout = () => {
   ];
 
   const status = subscription?.status;
+  const startTime = subscription?.start_time;
+  const updatedTime = subscription?.status_update_time;
+  const nextBillingTime = subscription?.billing_info?.next_billing_time;
 
-  //   const isSuspended =
-  //     subscriptionUtility.getStatus(status) === Status.Suspended;
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
-  //   const isActive = subscriptionUtility.getStatus(status) === Status.Active;
   const isCanceled = subscriptionUtility.getStatus(status) === Status.Canceled;
   const isExpired = subscriptionUtility.getStatus(status) === Status.Expired;
 
@@ -41,6 +41,60 @@ export const SubscriptionLayout = () => {
             ))}
           </Stack>
         </>
+      )}
+
+      {(startTime || updatedTime || nextBillingTime) && (
+        <Stack gap={0}>
+          <Group gap="xs">
+            <Title order={6} ta="center">
+              Subscription Status:{" "}
+            </Title>
+
+            <Title
+              order={6}
+              c={subscriptionUtility.getStatusColor(
+                subscriptionUtility.getStatus(subscription?.status)
+              )}>
+              {subscriptionUtility.getStatus(subscription?.status)}
+            </Title>
+          </Group>
+
+          {startTime && (
+            <Group gap="xs">
+              <Title order={6} ta="center">
+                Subscription Started On:{" "}
+              </Title>
+
+              <Text fz="sm">
+                {subscriptionUtility.formatDateTime(startTime)}
+              </Text>
+            </Group>
+          )}
+
+          {updatedTime && (
+            <Group gap="xs">
+              <Title order={6} ta="center">
+                Subscription Updated On:{" "}
+              </Title>
+
+              <Text fz="sm">
+                {subscriptionUtility.formatDateTime(updatedTime)}
+              </Text>
+            </Group>
+          )}
+
+          {nextBillingTime && (
+            <Group gap="xs">
+              <Title order={6} ta="center">
+                Next Billing Time:{" "}
+              </Title>
+
+              <Text fz="sm">
+                {subscriptionUtility.formatDateTime(nextBillingTime)}
+              </Text>
+            </Group>
+          )}
+        </Stack>
       )}
 
       <PayPalSubscriptionLayout />
