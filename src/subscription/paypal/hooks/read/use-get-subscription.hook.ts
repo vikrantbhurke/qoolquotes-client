@@ -11,6 +11,7 @@ export const useGetSubscription = () => {
     isPending,
     isError,
     error,
+    refetch: refetchSubscription,
   } = useQuery({
     queryKey: ["getSubscription", auth?.email],
     queryFn: () => getSubscription({ email: auth?.email }),
@@ -22,5 +23,5 @@ export const useGetSubscription = () => {
     refetchOnReconnect: true,
   });
 
-  return { subscription, isPending, isError, error };
+  return { subscription, isPending, isError, error, refetchSubscription };
 };
