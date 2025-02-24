@@ -27,7 +27,10 @@ export const PayPalSubscriptionLayout = () => {
       if (query.get("subscribed") && !sessionStorage.getItem("hasReloaded")) {
         await refetchSubscription();
         sessionStorage.setItem("hasReloaded", "true");
-        window.location.reload();
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     };
 
