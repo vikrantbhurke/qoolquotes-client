@@ -8,7 +8,6 @@ import {
   Center,
   Image,
   Text,
-  Space,
   Box,
   Title,
   Group,
@@ -23,8 +22,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
-import Banner320x50 from "@/global/ads/Banner320x50";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
@@ -61,13 +58,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
           h="100%"
           gap="xl"
           align="center"
-          justify={isMobile ? "start" : "space-between"}>
-          <Center p="md">
-            <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Stack>
-          </Center>
-
+          justify={isMobile ? "start" : "center"}>
           <Stack
             w={isMobile ? "100%" : 400}
             gap="xl"
@@ -152,8 +143,6 @@ export const UserItemLayout = ({ user, isPending }: any) => {
 
             <SubscriptionLayout />
           </Stack>
-
-          <Space h={isMobile ? 50 : 90} />
         </Stack>
       </Box>
     </>

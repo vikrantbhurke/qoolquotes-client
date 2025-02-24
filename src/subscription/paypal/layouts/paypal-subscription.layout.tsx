@@ -1,5 +1,5 @@
 import {
-  useCancelSubscription,
+  // useCancelSubscription,
   useCreateSubscription,
   useSuspendSubscription,
   useActivateSubscription,
@@ -26,18 +26,19 @@ export const PayPalSubscriptionLayout = () => {
       if (query.get("subscribed")) {
         setTimeout(() => {
           showNotification(
-            `QoolQuotes subscription successful.`,
-            NotificationColor.Success
+            `Congrats! You have successfully subscribed to QoolQuotes.`,
+            NotificationColor.Success,
+            5000
           );
-        }, 3000);
+        }, 2000);
 
         setTimeout(() => {
           showNotification(
-            `Subscription may take some time to be active. Reload page in few seconds.`,
+            `Subscription may take some time for activation. Reload page in few seconds.`,
             NotificationColor.Info,
-            10000
+            8000
           );
-        }, 9000);
+        }, 12000);
       }
     };
 
@@ -57,8 +58,8 @@ export const PayPalSubscriptionLayout = () => {
     isPending: isActivateSubscriptionPending,
   } = useActivateSubscription();
 
-  const { cancelSubscriptionMutation, isPending: isCancelSubscriptionPending } =
-    useCancelSubscription();
+  // const { cancelSubscriptionMutation, isPending: isCancelSubscriptionPending } =
+  //   useCancelSubscription();
 
   const handleCreateSubscription = () => {
     createSubscriptionMutation({ userId: auth.id });
@@ -72,9 +73,9 @@ export const PayPalSubscriptionLayout = () => {
     activateSubscriptionMutation({ email: auth.email });
   };
 
-  const handleCancelSubscription = () => {
-    cancelSubscriptionMutation({ email: auth.email });
-  };
+  // const handleCancelSubscription = () => {
+  //   cancelSubscriptionMutation({ email: auth.email });
+  // };
 
   const status = subscription?.status;
 
@@ -126,7 +127,7 @@ export const PayPalSubscriptionLayout = () => {
         </Button>
       )}
 
-      {(isActive || isSuspended) && (
+      {/* {(isActive || isSuspended) && (
         <Button
           onClick={handleCancelSubscription}
           disabled={isCancelSubscriptionPending}
@@ -136,7 +137,7 @@ export const PayPalSubscriptionLayout = () => {
           loaderProps={{ type: "dots", color: "white" }}>
           Cancel Subscription
         </Button>
-      )}
+      )} */}
     </Stack>
   );
 };
