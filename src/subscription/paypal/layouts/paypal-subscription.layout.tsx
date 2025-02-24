@@ -4,15 +4,15 @@ import {
   useSuspendSubscription,
   useActivateSubscription,
 } from "../hooks/create";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Status } from "@/subscription/enums";
 import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
 import { Button, Stack } from "@mantine/core";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const PayPalSubscriptionLayout = () => {
   const { showNotification } = useNotification();

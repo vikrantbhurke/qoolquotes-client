@@ -21,6 +21,7 @@ export const useGetSubscription = () => {
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
+    refetchInterval: (): any => (subscription ? false : 5000),
   });
 
   return { subscription, isPending, isError, error, refetchSubscription };
