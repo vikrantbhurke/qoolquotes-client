@@ -30,7 +30,7 @@ export const PayPalSubscriptionLayout = () => {
 
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, 5000);
       }
     };
 
