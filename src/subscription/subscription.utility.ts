@@ -9,9 +9,9 @@ export class SubscriptionUtility {
       case "SUSPENDED":
         return Status.Suspended;
       case "CANCELLED":
-        return Status.Canceled;
+        return Status.Inactive;
       case "EXPIRED":
-        return Status.Expired;
+        return Status.Inactive;
       // Stripe
       case "active":
         return Status.Active;
@@ -28,10 +28,6 @@ export class SubscriptionUtility {
         return "red";
       case Status.Suspended:
         return "yellow";
-      case Status.Canceled:
-        return "gray";
-      case Status.Expired:
-        return "gray";
       default:
         return "gray";
     }

@@ -15,32 +15,26 @@ export const SubscriptionLayout = () => {
 
   const status = subscription?.status;
   const startTime = subscription?.start_time;
-  const updatedTime = subscription?.status_update_time;
   const nextBillingTime = subscription?.billing_info?.next_billing_time;
-
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
-  const isCanceled = subscriptionUtility.getStatus(status) === Status.Canceled;
-  const isExpired = subscriptionUtility.getStatus(status) === Status.Expired;
 
   return (
     <>
-      {(isCanceled || isExpired || isInactive) && (
-        <>
-          <Stack gap="xs">
-            <Title order={5} ta="center">
-              Subscribe for just ${10} / year.
-            </Title>
+      {isInactive && (
+        <Stack gap="xs">
+          <Title order={5} ta="center">
+            Subscribe for just ${10} / year.
+          </Title>
 
-            {list.map((item, index) => (
-              <Text size="sm" key={index}>
-                {item}
-              </Text>
-            ))}
-          </Stack>
-        </>
+          {list.map((item, index) => (
+            <Text size="sm" key={index}>
+              {item}
+            </Text>
+          ))}
+        </Stack>
       )}
 
-      {(startTime || updatedTime || nextBillingTime) && (
+      {(startTime || nextBillingTime) && (
         <Stack gap={0}>
           <Title order={5} ta="center">
             Subscription Details
