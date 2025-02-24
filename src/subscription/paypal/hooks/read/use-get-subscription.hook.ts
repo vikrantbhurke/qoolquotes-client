@@ -10,10 +10,6 @@ export const useGetSubscription = () => {
   const dispatch = useDispatch();
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { subscription: subscriptionState } = useSelector(
-    (state: RootState) => state.subscription
-  );
-
   const {
     data: subscription,
     isPending,
@@ -23,7 +19,7 @@ export const useGetSubscription = () => {
   } = useQuery({
     queryKey: ["getSubscription", auth?.email],
     queryFn: () => getSubscription({ email: auth?.email }),
-    enabled: !!auth?.email && !!subscriptionState?.id,
+    enabled: !!auth?.email,
     gcTime: 0,
     staleTime: 0,
     refetchOnMount: true,
