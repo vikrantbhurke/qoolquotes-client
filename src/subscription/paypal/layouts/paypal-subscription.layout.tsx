@@ -5,7 +5,7 @@ import {
   useActivateSubscription,
 } from "../hooks/create";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Status } from "@/subscription/enums";
 import { RootState } from "@/global/states/store";
 import { useGetSubscription } from "../hooks/read";
@@ -14,7 +14,6 @@ import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const PayPalSubscriptionLayout = () => {
   const { refetchSubscription } = useGetSubscription();
-  const [subscribed, setSubscribed] = useState(false);
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { subscription } = useSelector(
@@ -25,26 +24,15 @@ export const PayPalSubscriptionLayout = () => {
     const handleGetSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
 
-      if (query.get("subscribed")) {
+      if (query.get("subscribed") && !sessionStorage.getItem("hasReloaded")) {
         await refetchSubscription();
-        setSubscribed((prev) => !prev);
+        sessionStorage.setItem("hasReloaded", "true");
+        window.location.reload();
       }
     };
 
     handleGetSubscription();
   }, []);
-
-  useEffect(() => {
-    const handleGetSubscription = async () => {
-      const query = new URLSearchParams(window.location.search);
-
-      if (query.get("subscribed")) {
-        await refetchSubscription();
-      }
-    };
-
-    handleGetSubscription();
-  }, [subscribed]);
 
   console.log("Subscription", subscription);
 
