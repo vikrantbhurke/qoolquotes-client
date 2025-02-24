@@ -23,7 +23,7 @@ export const useGetSubscription = () => {
   } = useQuery({
     queryKey: ["getSubscription", auth?.email],
     queryFn: () => getSubscription({ email: auth?.email }),
-    enabled: !!auth?.email && subscriptionState?.id,
+    enabled: !!auth?.email && !!subscriptionState?.id,
     gcTime: 0,
     staleTime: 0,
     refetchOnMount: true,
