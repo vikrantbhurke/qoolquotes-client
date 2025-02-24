@@ -7,12 +7,11 @@ import { useCancelSubscription } from "../hooks/create";
 export const CancelSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { cancelSubscriptionMutation, isPending, isSuccess } =
-    useCancelSubscription();
+  const { cancelSubscriptionMutation, isPending } = useCancelSubscription();
 
   const handleCancelSubscription = async () => {
     await cancelSubscriptionMutation({ email: auth.email });
-    isSuccess && close();
+    close();
   };
 
   return (

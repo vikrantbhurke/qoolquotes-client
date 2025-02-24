@@ -7,12 +7,11 @@ import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 export const SuspendSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { suspendSubscriptionMutation, isPending, isSuccess } =
-    useSuspendSubscription();
+  const { suspendSubscriptionMutation, isPending } = useSuspendSubscription();
 
   const handleSuspendSubscription = async () => {
     await suspendSubscriptionMutation({ email: auth.email });
-    isSuccess && close();
+    close();
   };
 
   return (

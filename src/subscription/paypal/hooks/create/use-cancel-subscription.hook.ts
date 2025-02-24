@@ -8,11 +8,7 @@ export const useCancelSubscription = () => {
   const { showNotification } = useNotification();
   const { refetchSubscription } = useGetSubscription();
 
-  const {
-    mutate: cancelSubscriptionMutation,
-    isPending,
-    isSuccess,
-  } = useMutation({
+  const { mutate: cancelSubscriptionMutation, isPending } = useMutation({
     mutationFn: cancelSubscription,
 
     onSuccess: async (data: any, _variables: any, _context: any) => {
@@ -28,5 +24,5 @@ export const useCancelSubscription = () => {
     },
   });
 
-  return { cancelSubscriptionMutation, isPending, isSuccess };
+  return { cancelSubscriptionMutation, isPending };
 };
