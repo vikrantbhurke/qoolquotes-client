@@ -3,8 +3,11 @@ import { useNotification } from "@/global/hooks";
 import { suspendSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
 import { useGetSubscription } from "../read";
+import { useDispatch } from "react-redux";
+import { resetColor, resetFont } from "@/global/states/view.slice";
 
 export const useSuspendSubscription = () => {
+  const dispatch = useDispatch();
   const { showNotification } = useNotification();
   const { refetchSubscription } = useGetSubscription();
 
@@ -18,6 +21,8 @@ export const useSuspendSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchSubscription();
+      dispatch(resetColor());
+      dispatch(resetFont());
     },
 
     onError: (error: any) => {

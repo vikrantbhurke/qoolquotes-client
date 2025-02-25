@@ -14,8 +14,11 @@ import { NotificationColor } from "@/global/enums";
 import { CancelSubscriptionModal } from "./cancel-subscription.modal";
 import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
+import { useDispatch } from "react-redux";
+import { signOut } from "@/user/auth.slice";
 
 export const PayPalSubscriptionLayout = () => {
+  const dispatch = useDispatch();
   const { showNotification } = useNotification();
   const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -51,6 +54,8 @@ export const PayPalSubscriptionLayout = () => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
+        dispatch(signOut());
+
         setTimeout(() => {
           showNotification(
             `Congrats! You have successfully subscribed to ${import.meta.env.VITE_APP_NAME}.`,
@@ -60,11 +65,11 @@ export const PayPalSubscriptionLayout = () => {
 
         setTimeout(() => {
           showNotification(
-            `Subscription may take some time to activate. Refresh in few seconds.`,
+            `Subscription may take upto a minute to activate. Sign in back in few seconds.`,
             NotificationColor.Info,
             8000
           );
-        }, 9000);
+        }, 8000);
       }
     };
 
