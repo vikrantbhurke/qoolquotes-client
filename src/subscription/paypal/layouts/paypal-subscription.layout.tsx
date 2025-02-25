@@ -15,12 +15,13 @@ import { CancelSubscriptionModal } from "./cancel-subscription.modal";
 import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
-import { signOut } from "@/user/auth.slice";
-import { useNavigate } from "react-router-dom";
+import { setAuth } from "@/user/auth.slice";
+// import { useNavigate } from "react-router-dom";
+import { Role } from "@/user/enums";
 
 export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { showNotification } = useNotification();
   const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -56,8 +57,9 @@ export const PayPalSubscriptionLayout = () => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
-        dispatch(signOut());
-        navigate("/sign-in");
+        dispatch(setAuth({ ...auth, role: Role.Subscriber }));
+        // dispatch(signOut());
+        // navigate("/sign-in");
 
         setTimeout(() => {
           showNotification(
@@ -66,13 +68,13 @@ export const PayPalSubscriptionLayout = () => {
           );
         }, 2000);
 
-        setTimeout(() => {
-          showNotification(
-            `Subscription may take upto a minute to activate. Sign in back in few seconds.`,
-            NotificationColor.Info,
-            8000
-          );
-        }, 8000);
+        // setTimeout(() => {
+        //   showNotification(
+        //     `Subscription may take upto a minute to activate. Sign in back in few seconds.`,
+        //     NotificationColor.Info,
+        //     8000
+        //   );
+        // }, 8000);
       }
     };
 
