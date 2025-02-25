@@ -8,12 +8,14 @@ import {
   Text,
   useMantineColorScheme,
   Avatar,
+  Indicator,
 } from "@mantine/core";
 import {
   IconBrush,
   IconBulb,
   IconDownload,
   IconLetterA,
+  IconLock,
   IconLogin,
   IconLogout,
   IconSearch,
@@ -50,6 +52,9 @@ import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
 import { FontModal } from "../views";
 import { ColorModal } from "../views";
 import { globalUtility } from "@/global/utilities";
+import { Clearance } from "@/user/enums";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { SubscribeModal } from "@/subscription/layouts";
 
 export const HeaderLayout = ({ opened, toggle }: any) => {
   const isQuotePage = useIsQuotePage();
@@ -61,6 +66,9 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
+
+  const [subscribeOpened, { open: subscribeOpen, close: subscribeClose }] =
+    useDisclosure(false);
 
   const [fontOpened, { open: fontOpen, close: fontClose }] =
     useDisclosure(false);
@@ -144,6 +152,8 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
 
   return (
     <>
+      <SubscribeModal opened={subscribeOpened} close={subscribeClose} />
+
       {isSearchbarVisible ? (
         <SearchLayout />
       ) : (
@@ -223,26 +233,62 @@ export const HeaderLayout = ({ opened, toggle }: any) => {
                 )}
               </ActionIcon>
 
-              <ActionIcon size="sm" onClick={fontOpen}>
-                <I I={IconLetterA} color={oneTxColor} />
-              </ActionIcon>
+              <ComponentOneOrTwoRoute
+                clearance={Clearance.LevelThree}
+                compOne={
+                  <ActionIcon size="sm" onClick={fontOpen}>
+                    <I I={IconLetterA} color={oneTxColor} />
+                  </ActionIcon>
+                }
+                compTwo={
+                  <Indicator
+                    h={22}
+                    color="transparent"
+                    position="top-start"
+                    label={<I I={IconLock} size={14} color={oneDefaultTx} />}>
+                    <ActionIcon size="sm" onClick={subscribeOpen}>
+                      <I I={IconLetterA} color={oneTxColor} />
+                    </ActionIcon>
+                  </Indicator>
+                }
+              />
 
-              <ActionIcon size="sm" onClick={colorOpen}>
-                <I I={IconBrush} color={oneTxColor} />
-              </ActionIcon>
+              <ComponentOneOrTwoRoute
+                clearance={Clearance.LevelThree}
+                compOne={
+                  <ActionIcon size="sm" onClick={colorOpen}>
+                    <I I={IconBrush} color={oneTxColor} />
+                  </ActionIcon>
+                }
+                compTwo={
+                  <Indicator
+                    h={22}
+                    color="transparent"
+                    position="top-start"
+                    label={<I I={IconLock} size={14} color={oneDefaultTx} />}>
+                    <ActionIcon size="sm" onClick={subscribeOpen}>
+                      <I I={IconBrush} color={oneTxColor} />
+                    </ActionIcon>
+                  </Indicator>
+                }
+              />
 
               <FontModal opened={fontOpened} close={fontClose} />
               <ColorModal opened={colorOpened} close={colorClose} />
 
-              {auth.id ? (
-                <ActionIcon size="sm" onClick={handleSignOut}>
-                  <I I={IconLogout} color={oneTxColor} />
-                </ActionIcon>
-              ) : (
-                <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
-                  <I I={IconLogin} color={oneTxColor} />
-                </ActionIcon>
-              )}
+              <ComponentOneOrTwoRoute
+                clearance={Clearance.LevelTwo}
+                compOne={
+                  <ActionIcon size="sm" onClick={handleSignOut}>
+                    <I I={IconLogout} color={oneTxColor} />
+                  </ActionIcon>
+                }
+                compTwo={
+                  <ActionIcon size="sm" onClick={handleNavigateToSignIn}>
+                    <I I={IconLogin} color={oneTxColor} />
+                  </ActionIcon>
+                }
+              />
 
               <MenuLayout />
 
