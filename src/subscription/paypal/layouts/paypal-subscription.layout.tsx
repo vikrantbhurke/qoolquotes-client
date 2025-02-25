@@ -64,14 +64,6 @@ export const PayPalSubscriptionLayout = () => {
             NotificationColor.Success
           );
         }, 2000);
-
-        // setTimeout(() => {
-        //   showNotification(
-        //     `Subscription may take upto 30 seconds to reflect here. Revisit this page in few seconds.`,
-        //     NotificationColor.Info,
-        //     8000
-        //   );
-        // }, 8000);
       }
     };
 
@@ -89,7 +81,7 @@ export const PayPalSubscriptionLayout = () => {
   const query = new URLSearchParams(window.location.search);
 
   const status =
-    query.get("subscribed") === " true" ? "ACTIVE" : subscription?.status;
+    query.get("subscribed") === "true" ? "ACTIVE" : subscription?.status;
 
   const isSuspended =
     subscriptionUtility.getStatus(status) === Status.Suspended;
