@@ -1,11 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { suspendSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
 import { useGetSubscription } from "../read";
 import { useDispatch } from "react-redux";
 import { resetColor, resetFont } from "@/global/states/view.slice";
-import { getUserByUsername } from "@/user/user.network";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
@@ -13,7 +12,6 @@ import { Role } from "@/user/enums";
 
 export const useSuspendSubscription = () => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
   const { showNotification } = useNotification();
   const { refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -34,13 +32,6 @@ export const useSuspendSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchSubscription();
-
-      const user = await queryClient.fetchQuery({
-        queryKey: ["getUserByUsername", auth.username],
-        queryFn: () => getUserByUsername(auth.username),
-      });
-
-      dispatch(setAuth(user));
       dispatch(resetColor());
       dispatch(resetFont());
     },

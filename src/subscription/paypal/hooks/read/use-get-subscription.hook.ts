@@ -23,7 +23,5 @@ export const useGetSubscription = () => {
     refetchOnReconnect: true,
   });
 
-  console.log("Subscription Is: ", subscription);
-
   return { subscription, isPending, isError, error, refetchSubscription };
 };

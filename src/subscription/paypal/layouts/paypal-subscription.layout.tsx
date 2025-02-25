@@ -23,7 +23,7 @@ export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   const { showNotification } = useNotification();
-  const { subscription } = useGetSubscription();
+  const { subscription, refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
@@ -56,10 +56,8 @@ export const PayPalSubscriptionLayout = () => {
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
-
         dispatch(setAuth({ ...auth, role: Role.Subscriber }));
-        // dispatch(signOut());
-        // navigate("/sign-in");
+        await refetchSubscription();
 
         setTimeout(() => {
           showNotification(
@@ -67,6 +65,9 @@ export const PayPalSubscriptionLayout = () => {
             NotificationColor.Success
           );
         }, 2000);
+
+        // dispatch(signOut());
+        // navigate("/sign-in");
 
         // setTimeout(() => {
         //   showNotification(
