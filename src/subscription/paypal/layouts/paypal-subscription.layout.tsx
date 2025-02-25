@@ -53,14 +53,14 @@ export const PayPalSubscriptionLayout = () => {
 
         setTimeout(() => {
           showNotification(
-            `Congrats! You have successfully subscribed to QoolQuotes.`,
+            `Congrats! You have successfully subscribed to ${import.meta.env.VITE_APP_NAME}.`,
             NotificationColor.Success
           );
         }, 2000);
 
         setTimeout(() => {
           showNotification(
-            `Subscription may take some time for activation. Revisit QoolQuotes in a minute or two.`,
+            `Subscription may take some time to activate. Refresh in few seconds.`,
             NotificationColor.Info,
             8000
           );
