@@ -13,8 +13,8 @@ export const PlaylistModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
 
   const handleModalClose = () => {
-    close();
     dispatch(setQid(""));
+    close();
   };
 
   return (

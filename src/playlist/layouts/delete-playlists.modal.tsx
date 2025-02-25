@@ -3,16 +3,20 @@ import { useDeletePlaylistsByCreatorId } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useEffect } from "react";
 
 export const DeletePlaylistsModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { deletePlaylistsByCreatorIdMutation, isPending } =
+  const { deletePlaylistsByCreatorIdMutation, isPending, isSuccess } =
     useDeletePlaylistsByCreatorId();
 
-  const handleDeletePlaylistsByCreatorId = () => {
-    deletePlaylistsByCreatorIdMutation(auth.id);
-    close();
+  useEffect(() => {
+    if (isSuccess) close();
+  }, [isSuccess]);
+
+  const handleDeletePlaylistsByCreatorId = async () => {
+    await deletePlaylistsByCreatorIdMutation(auth.id);
   };
 
   return (
@@ -28,10 +32,11 @@ export const DeletePlaylistsModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleDeletePlaylistsByCreatorId}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeletePlaylistsByCreatorId}
           loaderProps={{ type: "dots" }}>
           Delete Playlists
         </Button>

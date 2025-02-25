@@ -7,7 +7,11 @@ export const useRemovePlaylistsBySaverId = () => {
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
 
-  const { mutate: removePlaylistsBySaverIdMutation, isPending } = useMutation({
+  const {
+    mutate: removePlaylistsBySaverIdMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: removePlaylistsBySaverId,
 
     onSuccess: async (_data: any) => {
@@ -38,5 +42,5 @@ export const useRemovePlaylistsBySaverId = () => {
     },
   });
 
-  return { removePlaylistsBySaverIdMutation, isPending };
+  return { removePlaylistsBySaverIdMutation, isPending, isSuccess };
 };

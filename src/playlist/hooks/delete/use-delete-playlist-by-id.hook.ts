@@ -15,7 +15,11 @@ export const useDeletePlaylistById = () => {
   const queryClient = useQueryClient();
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { mutate: deletePlaylistByIdMutation, isPending } = useMutation({
+  const {
+    mutate: deletePlaylistByIdMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: deletePlaylistById,
 
     onMutate: async (pid) => {
@@ -73,5 +77,5 @@ export const useDeletePlaylistById = () => {
     },
   });
 
-  return { deletePlaylistByIdMutation, isPending };
+  return { deletePlaylistByIdMutation, isPending, isSuccess };
 };

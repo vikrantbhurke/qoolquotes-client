@@ -7,7 +7,11 @@ export const useRemovePlaylist = () => {
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
 
-  const { mutate: removePlaylistMutation, isPending } = useMutation({
+  const {
+    mutate: removePlaylistMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: removePlaylist,
 
     onSuccess: async (_data: any, { pid, sid }: any) => {
@@ -46,5 +50,5 @@ export const useRemovePlaylist = () => {
     },
   });
 
-  return { removePlaylistMutation, isPending };
+  return { removePlaylistMutation, isPending, isSuccess };
 };

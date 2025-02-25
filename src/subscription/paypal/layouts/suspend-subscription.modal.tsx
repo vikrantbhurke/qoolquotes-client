@@ -3,14 +3,20 @@ import { RootState } from "@/global/states/store";
 import { useSuspendSubscription } from "../hooks/create";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import { useEffect } from "react";
 
 export const SuspendSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { suspendSubscriptionMutation } = useSuspendSubscription();
 
-  const handleSuspendSubscription = () => {
-    suspendSubscriptionMutation({ email: auth.email });
-    close();
+  const { suspendSubscriptionMutation, isPending, isSuccess } =
+    useSuspendSubscription();
+
+  useEffect(() => {
+    if (isSuccess) close();
+  }, [isSuccess]);
+
+  const handleSuspendSubscription = async () => {
+    await suspendSubscriptionMutation({ email: auth.email });
   };
 
   return (
@@ -28,10 +34,13 @@ export const SuspendSubscriptionModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleSuspendSubscription}
           fullWidth
           bg="#F2BA36"
-          c="black">
+          c="black"
+          disabled={isPending}
+          loading={isPending}
+          onClick={handleSuspendSubscription}
+          loaderProps={{ type: "dots", color: "black" }}>
           Suspend Subscription
         </Button>
       </Stack>

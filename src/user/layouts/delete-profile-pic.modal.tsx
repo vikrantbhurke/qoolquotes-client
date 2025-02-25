@@ -11,13 +11,13 @@ export const DeleteProfilePicModal = ({ opened, close }: any) => {
   const { deleteProfilePicByIdMutation, isPending, isSuccess } =
     useDeleteProfilePicById();
 
-  const handleDeleteProfilePicById = () => {
-    deleteProfilePicByIdMutation(auth.id);
-  };
-
   useEffect(() => {
     if (isSuccess) close();
   }, [isSuccess]);
+
+  const handleDeleteProfilePicById = () => {
+    deleteProfilePicByIdMutation(auth.id);
+  };
 
   return (
     <Modal
@@ -32,10 +32,11 @@ export const DeleteProfilePicModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleDeleteProfilePicById}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeleteProfilePicById}
           loaderProps={{ type: "dots" }}>
           Delete Profile Pic
         </Button>

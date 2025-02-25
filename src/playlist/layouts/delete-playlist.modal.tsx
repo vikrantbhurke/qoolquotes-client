@@ -1,12 +1,18 @@
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeletePlaylistById } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import { useEffect } from "react";
 
 export const DeletePlaylistModal = ({ pid, opened, close }: any) => {
-  const { deletePlaylistByIdMutation, isPending } = useDeletePlaylistById();
+  const { deletePlaylistByIdMutation, isPending, isSuccess } =
+    useDeletePlaylistById();
 
-  const handleDeletePlaylistById = () => {
-    deletePlaylistByIdMutation(pid);
+  useEffect(() => {
+    if (isSuccess) close();
+  }, [isSuccess]);
+
+  const handleDeletePlaylistById = async () => {
+    await deletePlaylistByIdMutation(pid);
   };
 
   return (
@@ -22,10 +28,11 @@ export const DeletePlaylistModal = ({ pid, opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleDeletePlaylistById}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeletePlaylistById}
           loaderProps={{ type: "dots" }}>
           Delete Playlist
         </Button>

@@ -3,12 +3,17 @@ import { useRemovePlaylistsBySaverId } from "@/playlist-saver/hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useEffect } from "react";
 
 export const RemovePlaylistsModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { removePlaylistsBySaverIdMutation, isPending } =
+  const { removePlaylistsBySaverIdMutation, isPending, isSuccess } =
     useRemovePlaylistsBySaverId();
+
+  useEffect(() => {
+    if (isSuccess) close();
+  }, [isSuccess]);
 
   const handleRemovePlaylistsBySaverId = () => {
     removePlaylistsBySaverIdMutation(auth.id);
@@ -28,10 +33,11 @@ export const RemovePlaylistsModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleRemovePlaylistsBySaverId}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleRemovePlaylistsBySaverId}
           loaderProps={{ type: "dots" }}>
           Remove Playlists
         </Button>

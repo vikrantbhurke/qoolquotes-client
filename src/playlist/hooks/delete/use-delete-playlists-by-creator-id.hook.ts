@@ -7,65 +7,65 @@ export const useDeletePlaylistsByCreatorId = () => {
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
 
-  const { mutate: deletePlaylistsByCreatorIdMutation, isPending } = useMutation(
-    {
-      mutationFn: deletePlaylistsByCreatorId,
+  const {
+    mutate: deletePlaylistsByCreatorIdMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: deletePlaylistsByCreatorId,
 
-      onMutate: async () => {
-        await queryClient.cancelQueries({
-          queryKey: ["getPlaylistsByCreatorId"],
-        });
+    onMutate: async () => {
+      await queryClient.cancelQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
 
-        const previousPlaylists = queryClient.getQueryData([
-          "getPlaylistsByCreatorId",
-        ]);
+      const previousPlaylists = queryClient.getQueryData([
+        "getPlaylistsByCreatorId",
+      ]);
 
-        queryClient.setQueryData(["getPlaylistsByCreatorId"], null);
+      queryClient.setQueryData(["getPlaylistsByCreatorId"], null);
 
-        return { previousPlaylists };
-      },
+      return { previousPlaylists };
+    },
 
-      onSuccess: async (_data: any) => {
-        showNotification(`Playlists deleted.`, NotificationColor.Success);
+    onSuccess: async (_data: any) => {
+      showNotification(`Playlists deleted.`, NotificationColor.Success);
 
-        await queryClient.invalidateQueries({
-          queryKey: ["getPlaylistById"],
-        });
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistById"],
+      });
 
-        await queryClient.invalidateQueries({
-          queryKey: ["getPlaylists"],
-        });
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylists"],
+      });
 
-        await queryClient.invalidateQueries({
-          queryKey: ["searchPlaylists"],
-        });
+      await queryClient.invalidateQueries({
+        queryKey: ["searchPlaylists"],
+      });
 
-        await queryClient.invalidateQueries({
-          queryKey: ["getPlaylistsByCreatorId"],
-        });
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsByCreatorId"],
+      });
 
-        await queryClient.invalidateQueries({
-          queryKey: ["getPlaylistsBySaverId"],
-        });
-      },
+      await queryClient.invalidateQueries({
+        queryKey: ["getPlaylistsBySaverId"],
+      });
+    },
 
-      onError: async (error: any, _variables: any, context: any) => {
-        showNotification(
-          error?.response?.data?.message ||
-            error.message ||
-            "An error occurred",
-          NotificationColor.Failure
+    onError: async (error: any, _variables: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message || "An error occurred",
+        NotificationColor.Failure
+      );
+
+      if (context?.previousPlaylists) {
+        queryClient.setQueryData(
+          ["getPlaylistsByCreatorId"],
+          context.previousPlaylists
         );
+      }
+    },
+  });
 
-        if (context?.previousPlaylists) {
-          queryClient.setQueryData(
-            ["getPlaylistsByCreatorId"],
-            context.previousPlaylists
-          );
-        }
-      },
-    }
-  );
-
-  return { deletePlaylistsByCreatorIdMutation, isPending };
+  return { deletePlaylistsByCreatorIdMutation, isPending, isSuccess };
 };

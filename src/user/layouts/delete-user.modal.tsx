@@ -9,13 +9,13 @@ export const DeleteUserModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const { deleteUserByIdMutation, isPending, isSuccess } = useDeleteUserById();
 
-  const handleDeleteUserById = () => {
-    deleteUserByIdMutation(auth.id);
-  };
-
   useEffect(() => {
     if (isSuccess) close();
   }, [isSuccess]);
+
+  const handleDeleteUserById = () => {
+    deleteUserByIdMutation(auth.id);
+  };
 
   return (
     <Modal
@@ -30,10 +30,11 @@ export const DeleteUserModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleDeleteUserById}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeleteUserById}
           loaderProps={{ type: "dots" }}>
           Delete Account
         </Button>
