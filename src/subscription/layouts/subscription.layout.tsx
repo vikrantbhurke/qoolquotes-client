@@ -29,9 +29,19 @@ export const SubscriptionLayout = () => {
     );
   }
 
-  const status = subscription?.status;
-  const startTime = subscription?.start_time;
-  const nextBillingTime = subscription?.billing_info?.next_billing_time;
+  const date = new Date();
+  const query = new URLSearchParams(window.location.search);
+  const subscribedTrue = query.get("subscribed") === "true";
+  const status = subscribedTrue ? "ACTIVE" : subscription?.status;
+
+  const startTime = subscribedTrue
+    ? date.toLocaleDateString("en-GB")
+    : subscription?.start_time;
+
+  const nextBillingTime = subscribedTrue
+    ? date.setFullYear(date.getFullYear() + 1).toLocaleString("en-GB")
+    : subscription?.billing_info?.next_billing_time;
+
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
 
   return (

@@ -17,11 +17,9 @@ import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
-import { useQueryClient } from "@tanstack/react-query";
 
 export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
   const { showNotification } = useNotification();
   const { subscription, refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -57,24 +55,6 @@ export const PayPalSubscriptionLayout = () => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
-        await queryClient.cancelQueries({
-          queryKey: ["getSubscription", auth.email],
-        });
-
-        await queryClient.setQueryData(
-          ["getSubscription", auth.email],
-          (previousSubscription: any) => {
-            return {
-              ...previousSubscription,
-              status: "ACTIVE",
-              start_time: Date.now(),
-              billing_info: {
-                next_billing_time: Date.now() + 31556952000,
-              },
-            };
-          }
-        );
-
         await refetchSubscription();
         dispatch(setAuth({ ...auth, role: Role.Subscriber }));
 
@@ -106,7 +86,10 @@ export const PayPalSubscriptionLayout = () => {
     activateSubscriptionMutation({ email: auth.email });
   };
 
-  const status = subscription?.status;
+  const query = new URLSearchParams(window.location.search);
+
+  const status =
+    query.get("subscribed") === " true" ? "ACTIVE" : subscription?.status;
 
   const isSuspended =
     subscriptionUtility.getStatus(status) === Status.Suspended;
