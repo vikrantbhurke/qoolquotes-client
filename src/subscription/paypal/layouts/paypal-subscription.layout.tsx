@@ -52,7 +52,7 @@ export const PayPalSubscriptionLayout = () => {
       const query = new URLSearchParams(window.location.search);
 
       if (
-        query.get("subscribed") &&
+        query.get("subscribed") === "true" &&
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");

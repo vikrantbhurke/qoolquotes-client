@@ -126,10 +126,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
             </Stack>
 
             {isPending ? (
-              <Stack gap="xs">
-                <CustomSkeleton h={60} w="100%" />
-                <CustomSkeleton h={60} w="100%" />
-              </Stack>
+              <CustomSkeleton h={60} w="100%" />
             ) : (
               <Stack gap="xs">
                 <Button
