@@ -68,7 +68,7 @@ export const PayPalSubscriptionLayout = () => {
 
         setTimeout(() => {
           showNotification(
-            `Subscription may take upto a minute to activate and reflect here. Revisit this page in few seconds.`,
+            `Subscription may take upto 30 seconds to reflect here. Revisit this page in few seconds.`,
             NotificationColor.Info,
             8000
           );

@@ -17,15 +17,15 @@ export const SubscriptionLayout = () => {
 
   if (isPending || isError) {
     return (
-      <>
-        <Stack gap={0} miw={350} align="center">
+      <Stack>
+        <Stack gap={0} align="center">
           <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
           <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
           <CustomSkeleton w="100%" bgcolor={threeDefaultBg} />
         </Stack>
 
-        <PayPalSubscriptionLayout />
-      </>
+        <CustomSkeleton w="100%" bgcolor={threeDefaultBg} h={60} />
+      </Stack>
     );
   }
 
