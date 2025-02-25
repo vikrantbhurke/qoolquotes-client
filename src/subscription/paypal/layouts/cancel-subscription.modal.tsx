@@ -39,7 +39,7 @@ export const CancelSubscriptionModal = ({ opened, close }: any) => {
           disabled={isPending}
           loading={isPending}
           onClick={handleCancelSubscription}
-          loaderProps={{ type: "dots", color: "black" }}>
+          loaderProps={{ type: "dots", color: "white" }}>
           Cancel Subscription
         </Button>
       </Stack>

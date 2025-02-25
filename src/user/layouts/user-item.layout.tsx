@@ -127,14 +127,8 @@ export const UserItemLayout = ({ user, isPending }: any) => {
 
             {isPending ? (
               <Stack gap="xs">
-                <Button fullWidth bg="blue">
-                  Edit Profile
-                </Button>
-                {isInactive && (
-                  <Button fullWidth bg="red">
-                    Delete Account
-                  </Button>
-                )}
+                <CustomSkeleton h={60} w="100%" />
+                <CustomSkeleton h={60} w="100%" />
               </Stack>
             ) : (
               <Stack gap="xs">

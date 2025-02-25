@@ -16,12 +16,12 @@ import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@/user/auth.slice";
-// import { useNavigate } from "react-router-dom";
 import { Role } from "@/user/enums";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { showNotification } = useNotification();
   const { subscription, refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -56,6 +56,25 @@ export const PayPalSubscriptionLayout = () => {
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
+
+        await queryClient.cancelQueries({
+          queryKey: ["getSubscription"],
+        });
+
+        await queryClient.setQueryData(
+          ["getSubscription"],
+          (previousSubscription: any) => {
+            return {
+              ...previousSubscription,
+              status: "ACTIVE",
+              start_time: Date.now(),
+              billing_info: {
+                next_billing_time: Date.now() + 31556952000,
+              },
+            };
+          }
+        );
+
         await refetchSubscription();
         dispatch(setAuth({ ...auth, role: Role.Subscriber }));
 
@@ -66,13 +85,13 @@ export const PayPalSubscriptionLayout = () => {
           );
         }, 2000);
 
-        setTimeout(() => {
-          showNotification(
-            `Subscription may take upto 30 seconds to reflect here. Revisit this page in few seconds.`,
-            NotificationColor.Info,
-            8000
-          );
-        }, 8000);
+        // setTimeout(() => {
+        //   showNotification(
+        //     `Subscription may take upto 30 seconds to reflect here. Revisit this page in few seconds.`,
+        //     NotificationColor.Info,
+        //     8000
+        //   );
+        // }, 8000);
       }
     };
 
