@@ -58,11 +58,11 @@ export const PayPalSubscriptionLayout = () => {
         sessionStorage.setItem("subscriptionNotified", "true");
 
         await queryClient.cancelQueries({
-          queryKey: ["getSubscription"],
+          queryKey: ["getSubscription", auth.email],
         });
 
         await queryClient.setQueryData(
-          ["getSubscription"],
+          ["getSubscription", auth.email],
           (previousSubscription: any) => {
             return {
               ...previousSubscription,
