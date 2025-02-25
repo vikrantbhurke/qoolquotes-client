@@ -26,12 +26,19 @@ import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 import { SubscriptionLayout } from "@/subscription/layouts";
+import { useGetSubscription } from "@/subscription/paypal/hooks/read";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
+import { Status } from "@/subscription/enums";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
+  const { subscription } = useGetSubscription();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
   const { isMobile } = useSelector((state: RootState) => state.view);
+
+  const status = subscription?.status;
+  const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
 
   return (
     <>
@@ -123,9 +130,11 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                 <Button fullWidth bg="blue">
                   Edit Profile
                 </Button>
-                <Button fullWidth bg="red">
-                  Delete Account
-                </Button>
+                {isInactive && (
+                  <Button fullWidth bg="red">
+                    Delete Account
+                  </Button>
+                )}
               </Stack>
             ) : (
               <Stack gap="xs">
@@ -135,9 +144,11 @@ export const UserItemLayout = ({ user, isPending }: any) => {
                   onClick={() => navigate(`/users/${user.id}/edit`)}>
                   Edit Profile
                 </Button>
-                <Button fullWidth bg="red" onClick={open}>
-                  Delete Account
-                </Button>
+                {isInactive && (
+                  <Button fullWidth bg="red" onClick={open}>
+                    Delete Account
+                  </Button>
+                )}
               </Stack>
             )}
 
