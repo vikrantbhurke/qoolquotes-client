@@ -16,9 +16,11 @@ import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
 import { signOut } from "@/user/auth.slice";
+import { useNavigate } from "react-router-dom";
 
 export const PayPalSubscriptionLayout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { showNotification } = useNotification();
   const { subscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -55,6 +57,7 @@ export const PayPalSubscriptionLayout = () => {
         sessionStorage.setItem("subscriptionNotified", "true");
 
         dispatch(signOut());
+        navigate("/sign-in");
 
         setTimeout(() => {
           showNotification(
