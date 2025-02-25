@@ -144,11 +144,11 @@ export const SignInUserFormLayout = () => {
             </Stack>
 
             <Button
-              disabled={isPending}
               type="submit"
               fullWidth
               c={oneDefaultBg}
               bg={oneDefaultTx}
+              disabled={isPending}
               loading={isPending}
               loaderProps={{ type: "dots", color: oneDefaultBg }}>
               Sign In

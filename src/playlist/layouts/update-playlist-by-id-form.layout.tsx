@@ -203,9 +203,9 @@ export const UpdatePlaylistByIdFormLayout = () => {
               <Grid.Col span={6}>
                 <Button
                   fullWidth
-                  disabled={isPending}
                   type="submit"
                   bg="blue"
+                  disabled={isPending}
                   loading={isPending}
                   loaderProps={{ type: "dots" }}>
                   Update

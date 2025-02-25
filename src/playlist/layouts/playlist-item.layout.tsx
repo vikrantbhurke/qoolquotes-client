@@ -292,6 +292,7 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
                       fullWidth
                       bg="blue"
                       onClick={handleClonePlaylist}
+                      disabled={isPending}
                       loading={isClonePending}
                       loaderProps={{ type: "dots" }}>
                       Clone

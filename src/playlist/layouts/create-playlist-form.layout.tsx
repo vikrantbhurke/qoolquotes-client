@@ -132,6 +132,7 @@ export const CreatePlaylistFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
+          disabled={isPending}
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Create Playlist

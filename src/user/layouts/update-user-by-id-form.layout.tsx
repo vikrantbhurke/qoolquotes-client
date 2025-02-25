@@ -258,10 +258,10 @@ export const UpdateUserByIdFormLayout = () => {
 
             <Stack gap="xs">
               <Button
-                disabled={isPending}
                 type="submit"
                 fullWidth
                 bg="blue"
+                disabled={isPending}
                 loading={isPending}
                 loaderProps={{ type: "dots" }}>
                 Update Profile

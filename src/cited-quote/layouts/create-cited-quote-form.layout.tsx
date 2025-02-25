@@ -146,6 +146,7 @@ export const CreateCitedQuoteFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
+          disabled={isPending}
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Cite Quote

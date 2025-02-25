@@ -188,6 +188,7 @@ export const DownloadImageModal = ({ content, author, opened, close }: any) => {
             bg="green"
             onClick={() => handleDownload(format)}
             rightSection={<I I={IconDownload} size={16} />}
+            disabled={isDownloading}
             loading={isDownloading}
             loaderProps={{ type: "dots" }}>
             Download

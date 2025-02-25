@@ -35,12 +35,12 @@ export const PlaylistSaverSaveRemoveButton = ({ pid }: any) => {
 
       <Button
         fullWidth
-        disabled={isPending}
         bg={playlistSaver?.exists ? "red" : "green"}
         onClick={() => {
           if (playlistSaver?.exists) removePlaylistOpen();
           else handleSavePlaylist();
         }}
+        disabled={isPending}
         loading={isPending}
         loaderProps={{ type: "dots" }}>
         {playlistSaver?.exists ? "Remove" : "Save"}
