@@ -16,7 +16,7 @@ export class SubscriptionUtility {
       case "active":
         return Status.Active;
       default:
-        return Status.Unknown;
+        return Status.Inactive;
     }
   }
 
