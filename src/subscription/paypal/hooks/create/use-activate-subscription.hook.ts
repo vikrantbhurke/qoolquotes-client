@@ -7,10 +7,12 @@ import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { useDispatch } from "react-redux";
 import { Role } from "@/user/enums";
+import { useGetSubscription } from "../read";
 
 export const useActivateSubscription = () => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
+  const { refetchSubscription } = useGetSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { mutate: activateSubscriptionMutation, isPending } = useMutation({
@@ -18,6 +20,7 @@ export const useActivateSubscription = () => {
 
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
+      await refetchSubscription();
       dispatch(setAuth({ ...auth, role: Role.Subscriber }));
     },
 

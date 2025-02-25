@@ -56,8 +56,8 @@ export const PayPalSubscriptionLayout = () => {
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
-        dispatch(setAuth({ ...auth, role: Role.Subscriber }));
         await refetchSubscription();
+        dispatch(setAuth({ ...auth, role: Role.Subscriber }));
 
         setTimeout(() => {
           showNotification(
