@@ -23,26 +23,19 @@ export const useCancelSubscription = () => {
   } = useMutation({
     mutationFn: cancelSubscription,
 
-    onMutate: async () => {
-      const previousAuth = auth;
-      dispatch(setAuth({ ...auth, role: Role.Private }));
-      return { previousAuth };
-    },
-
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchSubscription();
+      dispatch(setAuth({ ...auth, role: Role.Private }));
       dispatch(resetColor());
       dispatch(resetFont());
     },
 
-    onError: (error: any, context: any) => {
+    onError: (error: any) => {
       showNotification(
         error?.response?.data?.message || error.message || "An error occurred",
         NotificationColor.Failure
       );
-
-      dispatch(setAuth(context.previousAuth));
     },
   });
 

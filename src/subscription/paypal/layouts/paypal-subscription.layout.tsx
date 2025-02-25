@@ -66,16 +66,13 @@ export const PayPalSubscriptionLayout = () => {
           );
         }, 2000);
 
-        // dispatch(signOut());
-        // navigate("/sign-in");
-
-        // setTimeout(() => {
-        //   showNotification(
-        //     `Subscription may take upto a minute to activate. Sign in back in few seconds.`,
-        //     NotificationColor.Info,
-        //     8000
-        //   );
-        // }, 8000);
+        setTimeout(() => {
+          showNotification(
+            `Subscription may take upto a minute to activate and reflect here. Revisit this page in few seconds.`,
+            NotificationColor.Info,
+            8000
+          );
+        }, 8000);
       }
     };
 
