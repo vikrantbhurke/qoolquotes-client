@@ -39,6 +39,7 @@ import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
 import { ShareModal } from "@/global/components/views";
 import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { userUtility } from "@/user/user.utility";
 
 export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -128,6 +129,8 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
     })
   );
 
+  const isSubscriber = userUtility.isSubscriber(auth.role);
+
   return (
     <>
       <PlaylistModal opened={playlistModalOpened} close={playlistModalClose} />
@@ -150,7 +153,7 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
         p="md"
         h="100%"
         align="center"
-        justify="space-between"
+        justify={isSubscriber ? "center" : "space-between"}
         bg={
           isMobile
             ? globalUtility.getOneBg(color)

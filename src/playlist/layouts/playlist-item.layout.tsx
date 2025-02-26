@@ -44,6 +44,7 @@ import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { ShareModal } from "@/global/components/views";
 import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { userUtility } from "@/user/user.utility";
 
 export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const dispatch = useDispatch();
@@ -87,6 +88,8 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const url = `${import.meta.env.VITE_CLIENT_URL}/playlists/${playlist?.id}`;
   const title = `View QoolQuotes playlist '${playlist?.name}' at`;
 
+  const isSubscriber = userUtility.isSubscriber(auth.role);
+
   return (
     <>
       <ShareModal
@@ -103,7 +106,11 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
       />
 
       <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
-        <Stack h="100%" gap="xl" align="center" justify="space-between">
+        <Stack
+          h="100%"
+          gap="xl"
+          align="center"
+          justify={isSubscriber ? "center" : "space-between"}>
           <ComponentOneOrTwoRoute
             clearance={Clearance.LevelThree}
             compOne={<></>}
