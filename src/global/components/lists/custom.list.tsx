@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { CustomNumberCombobox } from "../reusables";
 import { RootState } from "@/global/states/store";
+import { userUtility } from "@/user/user.utility";
 
 export const CustomList = ({
   dataArray,
@@ -23,6 +24,7 @@ export const CustomList = ({
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { auth } = useSelector((state: RootState) => state.auth);
   const { isMobile } = useSelector((state: RootState) => state.view);
 
   const handlePage = (page: number) => {
@@ -43,11 +45,13 @@ export const CustomList = ({
     }
   };
 
+  const isSubscriber = userUtility.isSubscriber(auth.role);
+
   return (
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${layoutCompHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${layoutCompHeight}px - ${isSubscriber ? 0 : isMobile ? 50 : 90}px)`}
       bg={listBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Box component="div">

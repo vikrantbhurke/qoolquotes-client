@@ -1,8 +1,13 @@
 import Validator from "password-validator";
 import isEmail from "validator/lib/isEmail";
 import { UserError } from "./user.error";
+import { Clearance, Role } from "./enums";
 
 class UserUtility {
+  isSubscriber = (role: Role) => {
+    return Clearance.LevelThree.includes(role);
+  };
+
   validateFirstname = (firstname: string) => {
     const firstnameSchema = new Validator();
     firstnameSchema

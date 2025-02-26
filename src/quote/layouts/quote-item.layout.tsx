@@ -156,7 +156,11 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
             ? globalUtility.getOneBg(color)
             : globalUtility.getTwoBg(color)
         }>
-        <Space h={isMobile ? 50 : 90} />
+        <ComponentOneOrTwoRoute
+          clearance={Clearance.LevelThree}
+          compOne={<></>}
+          compTwo={<Space h={isMobile ? 50 : 90} />}
+        />
 
         <Stack
           bg={globalUtility.getOneBg(color)}

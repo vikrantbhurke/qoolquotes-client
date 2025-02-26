@@ -20,7 +20,8 @@ import { oneDefaultTxTwoDefaultBgStyle } from "@/global/styles/one-tx-two-bg.css
 import {
   useIsQuotePage,
   useViewInfo,
-  // usePopunderAd
+  usePopunderAd,
+  useSocialAd,
 } from "@/global/hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
@@ -29,8 +30,8 @@ import { globalUtility } from "@/global/utilities";
 export const AppLayout = () => {
   useViewInfo();
   const isQuotePage = useIsQuotePage();
-  // usePopunderAd();
-  // useSocialAd();
+  usePopunderAd();
+  useSocialAd();
 
   const { isMobile, color } = useSelector((state: RootState) => state.view);
   const [opened, { toggle }] = useDisclosure();

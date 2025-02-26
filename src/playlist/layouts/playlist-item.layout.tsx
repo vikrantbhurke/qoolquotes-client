@@ -104,7 +104,16 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
 
       <Box component="div" bg={isMobile ? oneDefaultBg : twoDefaultBg} h="100%">
         <Stack h="100%" gap="xl" align="center" justify="space-between">
-          <Space visibleFrom={responsiveBreakpoint} h={isMobile ? 50 : 90} />
+          <ComponentOneOrTwoRoute
+            clearance={Clearance.LevelThree}
+            compOne={<></>}
+            compTwo={
+              <Space
+                visibleFrom={responsiveBreakpoint}
+                h={isMobile ? 50 : 90}
+              />
+            }
+          />
 
           <Stack
             w={isMobile ? "100%" : 400}

@@ -27,6 +27,7 @@ import { Breakpoint } from "@/global/enums";
 import { CustomNumberCombobox } from "../reusables";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
+import { userUtility } from "@/user/user.utility";
 
 export const MantineGrid = ({
   p,
@@ -45,6 +46,8 @@ export const MantineGrid = ({
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { auth } = useSelector((state: RootState) => state.auth);
+
   const { isMobile, width, color } = useSelector(
     (state: RootState) => state.view
   );
@@ -96,11 +99,13 @@ export const MantineGrid = ({
       );
     });
 
+  const isSubscriber = userUtility.isSubscriber(auth.role);
+
   return (
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${layoutCompHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${layoutCompHeight}px - ${isSubscriber ? 0 : isMobile ? 50 : 90}px)`}
       bg={gridBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Grid grow justify="center" gutter={0} py={isMobile ? 0 : p}>

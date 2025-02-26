@@ -4,6 +4,7 @@ import { RootState } from "@/global/states/store";
 import { roundBorderStyle } from "@/global/styles/app.css";
 import { listItemHeight } from "@/global/styles/global.styles";
 import { globalUtility } from "@/global/utilities";
+import { userUtility } from "@/user/user.utility";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -22,6 +23,8 @@ export const CustomGrid = ({
   useCustomScrollbar();
   const containerRef = useRef<any>(null);
   const [isWindow] = useState<any>(false);
+  const { auth } = useSelector((state: RootState) => state.auth);
+
   const { isMobile, width, color } = useSelector(
     (state: RootState) => state.view
   );
@@ -71,9 +74,11 @@ export const CustomGrid = ({
       );
     });
 
+  const isSubscriber = userUtility.isSubscriber(auth.role);
+
   return (
     <Stack
-      h={`calc(100% - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${isSubscriber ? 0 : isMobile ? 50 : 90}px)`}
       bg={gridBg}
       gap={0}
       className="custom-scrollbar"
