@@ -10,8 +10,8 @@ export const SubscriptionLayout = () => {
   const { subscription, isPending, isError } = useGetSubscription();
 
   const list = [
-    `⭐ Remove all ads.`,
-    `⭐ Remove playlist limit.`,
+    `⭐ Remove all advertisements.`,
+    `⭐ Remove playlist count & size limit.`,
     `⭐ Apply custom colors & fonts to quotes.`,
   ];
 

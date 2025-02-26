@@ -31,6 +31,8 @@ export const useAddQuoteToPlaylist = () => {
     },
 
     onSuccess: async (_data: any, { pid, qid }: any) => {
+      showNotification(`Quote added.`, NotificationColor.Success);
+
       await queryClient.invalidateQueries({
         queryKey: ["checkPlaylistQuote", pid, qid],
       });

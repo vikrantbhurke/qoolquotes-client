@@ -31,6 +31,8 @@ export const useRemoveQuoteFromPlaylist = () => {
     },
 
     onSuccess: async (_data: any, { pid, qid }: any) => {
+      showNotification(`Quote removed.`, NotificationColor.Success);
+
       await queryClient.invalidateQueries({
         queryKey: ["checkPlaylistQuote", pid, qid],
       });

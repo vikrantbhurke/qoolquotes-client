@@ -37,7 +37,9 @@ export const UserItemLayout = ({ user, isPending }: any) => {
   const [picOpened, setPicOpened] = useState(false);
   const { isMobile } = useSelector((state: RootState) => state.view);
 
-  const status = subscription?.status;
+  const query = new URLSearchParams(window.location.search);
+  const subscribedTrue = query.get("subscribed") === "true";
+  const status = subscribedTrue ? "ACTIVE" : subscription?.status;
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
 
   return (
