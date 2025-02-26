@@ -1,6 +1,9 @@
 import { Clearance } from "@/user/enums";
 import { Button, Center, Image, Stack } from "@mantine/core";
-import { ComponentOrFragmentRoute } from "@/global/routes";
+import {
+  ComponentOneOrTwoRoute,
+  ComponentOrFragmentRoute,
+} from "@/global/routes";
 import { RootState } from "@/global/states/store";
 import { setPage as setTopicPage } from "@/topic/topic.slice";
 import { setPage as setAuthorPage } from "@/author/author.slice";
@@ -235,7 +238,15 @@ export const NavbarMobileLayout = ({ toggle }: any) => {
         <ContactModal opened={opened} close={close} />
       </Stack>
 
-      <Center p="md">{isMobile ? <Banner320x50 /> : <Banner300x250 />}</Center>
+      <ComponentOneOrTwoRoute
+        clearance={Clearance.LevelThree}
+        compOne={<></>}
+        compTwo={
+          <Center p="md">
+            {isMobile ? <Banner320x50 /> : <Banner300x250 />}
+          </Center>
+        }
+      />
     </Stack>
   );
 };

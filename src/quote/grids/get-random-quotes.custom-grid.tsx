@@ -18,6 +18,8 @@ import { CustomGrid } from "@/global/components/grids";
 import { SeoComponent } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { Clearance } from "@/user/enums";
 
 export const GetRandomQuotesCustomGrid = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,15 +42,21 @@ export const GetRandomQuotesCustomGrid = () => {
           p={0}
           h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 0}px)`}>
           <Stack gap={0} h="100%">
-            <Center
-              bg={globalUtility.getOneBg(color)}
-              ref={ref}
-              style={{ zIndex: 1 }}
-              className={`${!isMobile && roundBorderStyle}`}>
-              <Stack h={isMobile ? 50 : 90}>
-                {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-              </Stack>
-            </Center>
+            <ComponentOneOrTwoRoute
+              clearance={Clearance.LevelThree}
+              compOne={<></>}
+              compTwo={
+                <Center
+                  bg={globalUtility.getOneBg(color)}
+                  ref={ref}
+                  style={{ zIndex: 1 }}
+                  className={`${!isMobile && roundBorderStyle}`}>
+                  <Stack h={isMobile ? 50 : 90}>
+                    {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+                  </Stack>
+                </Center>
+              }
+            />
 
             <CustomGrid
               dataArray={randomQuotes}

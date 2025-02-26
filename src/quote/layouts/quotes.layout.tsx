@@ -28,6 +28,8 @@ import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { Clearance } from "@/user/enums";
 
 export const QuotesLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -111,15 +113,21 @@ export const QuotesLayout = () => {
             </Group>
           </Group>
 
-          <Center
-            ref={ref}
-            bg={globalUtility.getOneBg(color)}
-            style={{ zIndex: 1 }}
-            className={`${roundBottomBorderStyle}`}>
-            <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Stack>
-          </Center>
+          <ComponentOneOrTwoRoute
+            clearance={Clearance.LevelThree}
+            compOne={<></>}
+            compTwo={
+              <Center
+                ref={ref}
+                bg={globalUtility.getOneBg(color)}
+                style={{ zIndex: 1 }}
+                className={`${roundBottomBorderStyle}`}>
+                <Stack h={isMobile ? 50 : 90}>
+                  {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+                </Stack>
+              </Center>
+            }
+          />
 
           <Outlet context={setData} />
         </Stack>

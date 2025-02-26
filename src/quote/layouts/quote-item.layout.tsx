@@ -30,7 +30,7 @@ import {
 } from "@/quote-liker/layouts";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Role } from "@/user/enums";
+import { Clearance, Role } from "@/user/enums";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
@@ -38,6 +38,7 @@ import { RootState } from "@/global/states/store";
 import { globalUtility } from "@/global/utilities";
 import { DownloadImageModal } from "./download-image.modal";
 import { ShareModal } from "@/global/components/views";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
 
 export const QuoteItemLayout = ({ quote, isPending }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -323,11 +324,17 @@ export const QuoteItemLayout = ({ quote, isPending }: any) => {
           </Transition>
         </Stack>
 
-        <Center p="md">
-          <Stack h={isMobile ? 50 : 90}>
-            {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-          </Stack>
-        </Center>
+        <ComponentOneOrTwoRoute
+          clearance={Clearance.LevelThree}
+          compOne={<></>}
+          compTwo={
+            <Center p="md">
+              <Stack h={isMobile ? 50 : 90}>
+                {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+              </Stack>
+            </Center>
+          }
+        />
       </Stack>
     </>
   );

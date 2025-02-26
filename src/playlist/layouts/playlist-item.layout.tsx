@@ -36,13 +36,14 @@ import {
   PlaylistSaverReadonlyButton,
   PlaylistSaverSaveRemoveButton,
 } from "@/playlist-saver/layouts";
-import { Role } from "@/user/enums";
+import { Clearance, Role } from "@/user/enums";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { RootState } from "@/global/states/store";
 import { setFilterObject } from "@/quote/quote.slice";
 import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import Banner320x50 from "@/global/ads/Banner320x50";
 import { ShareModal } from "@/global/components/views";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
 
 export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
   const dispatch = useDispatch();
@@ -303,11 +304,17 @@ export const PlaylistItemLayout = ({ playlist, isPending }: any) => {
             </Grid>
           </Stack>
 
-          <Center p="md">
-            <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Stack>
-          </Center>
+          <ComponentOneOrTwoRoute
+            clearance={Clearance.LevelThree}
+            compOne={<></>}
+            compTwo={
+              <Center p="md">
+                <Stack h={isMobile ? 50 : 90}>
+                  {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+                </Stack>
+              </Center>
+            }
+          />
         </Stack>
       </Box>
     </>

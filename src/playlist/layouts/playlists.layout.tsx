@@ -27,7 +27,10 @@ import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import { setTab } from "../playlist.slice";
 import { useDispatch } from "react-redux";
-import { ComponentOrFragmentRoute } from "@/global/routes";
+import {
+  ComponentOneOrTwoRoute,
+  ComponentOrFragmentRoute,
+} from "@/global/routes";
 import { Clearance } from "@/user/enums";
 import { useRef, useState } from "react";
 import { setPage } from "@/playlist/playlist.slice";
@@ -202,16 +205,22 @@ export const PlaylistsLayout = () => {
             <PlaylistsFilterModal opened={modalOpened} close={modalClose} />
           </Radio.Group>
 
-          <Center
-            bg={oneDefaultBg}
-            ref={ref}
-            style={{
-              zIndex: 1,
-            }}>
-            <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <MobileLeaderboard />}
-            </Stack>
-          </Center>
+          <ComponentOneOrTwoRoute
+            clearance={Clearance.LevelThree}
+            compOne={<></>}
+            compTwo={
+              <Center
+                bg={oneDefaultBg}
+                ref={ref}
+                style={{
+                  zIndex: 1,
+                }}>
+                <Stack h={isMobile ? 50 : 90}>
+                  {isMobile ? <Banner320x50 /> : <MobileLeaderboard />}
+                </Stack>
+              </Center>
+            }
+          />
 
           <Outlet context={setData} />
         </Stack>

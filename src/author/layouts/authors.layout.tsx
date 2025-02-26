@@ -40,6 +40,8 @@ import Banner320x50 from "@/global/ads/Banner320x50";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsAdHeaderVisible } from "@/global/states/view.slice";
 import { RootState } from "@/global/states/store";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { Clearance } from "@/user/enums";
 
 export const AuthorsLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -118,11 +120,17 @@ export const AuthorsLayout = () => {
             <AuthorsFilterModal opened={modalOpened} close={modalClose} />
           </Group>
 
-          <Center ref={ref} style={{ zIndex: 1 }}>
-            <Stack h={isMobile ? 50 : 90}>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Stack>
-          </Center>
+          <ComponentOneOrTwoRoute
+            clearance={Clearance.LevelThree}
+            compOne={<></>}
+            compTwo={
+              <Center ref={ref} style={{ zIndex: 1 }}>
+                <Stack h={isMobile ? 50 : 90}>
+                  {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+                </Stack>
+              </Center>
+            }
+          />
 
           <Outlet context={setData} />
         </Stack>

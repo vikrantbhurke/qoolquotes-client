@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import { SeoComponent } from "../reusables";
 import { aboutContentWidth } from "@/global/styles/global.styles";
 import { RootState } from "@/global/states/store";
+import { ComponentOneOrTwoRoute } from "@/global/routes";
+import { Clearance } from "@/user/enums";
 
 export const AboutPage = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -29,9 +31,15 @@ export const AboutPage = () => {
             p={isMobile ? "md" : "xl"}
             gap="lg"
             maw={aboutContentWidth}>
-            <Center>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Center>
+            <ComponentOneOrTwoRoute
+              clearance={Clearance.LevelThree}
+              compOne={<></>}
+              compTwo={
+                <Center>
+                  {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
+                </Center>
+              }
+            />
 
             <Center>
               <Title order={2}>About</Title>
@@ -142,9 +150,15 @@ export const AboutPage = () => {
                   </Text>
                 </Stack> */}
 
-            <Center p="md">
-              {isMobile ? <Banner320x50 /> : <Banner300x250 />}
-            </Center>
+            <ComponentOneOrTwoRoute
+              clearance={Clearance.LevelThree}
+              compOne={<></>}
+              compTwo={
+                <Center p="md">
+                  {isMobile ? <Banner320x50 /> : <Banner300x250 />}
+                </Center>
+              }
+            />
 
             <Center>
               <Title order={3}>Why Choose Our App?</Title>
