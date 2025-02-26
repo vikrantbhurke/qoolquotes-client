@@ -129,7 +129,7 @@ export const SignInUserFormLayout = () => {
 
                 <PasswordInput
                   required
-                  minLength={6}
+                  minLength={8}
                   maxLength={20}
                   styles={getFormTextInputStyles(focusedInput === "password")}
                   wrapperProps={{

@@ -167,7 +167,7 @@ export const SignUpUserFormLayout = () => {
                   <TextInput
                     required
                     minLength={5}
-                    maxLength={20}
+                    maxLength={30}
                     styles={getFormTextInputStyles(focusedInput === "email")}
                     wrapperProps={{
                       onFocus: () => handleFocus("email"),
@@ -184,7 +184,7 @@ export const SignUpUserFormLayout = () => {
 
                   <PasswordInput
                     required
-                    minLength={6}
+                    minLength={8}
                     maxLength={20}
                     styles={getFormTextInputStyles(focusedInput === "password")}
                     wrapperProps={{
@@ -202,7 +202,7 @@ export const SignUpUserFormLayout = () => {
 
                   <PasswordInput
                     required
-                    minLength={6}
+                    minLength={8}
                     maxLength={20}
                     styles={getFormTextInputStyles(
                       focusedInput === "confirmPassword"
