@@ -60,8 +60,6 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
-        await refetchPayPalSubscription();
-
         dispatch(
           setAuth({
             ...auth,
@@ -69,6 +67,8 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
             subscription: Subscription.PayPal,
           })
         );
+
+        await refetchPayPalSubscription();
 
         setTimeout(() => {
           showNotification(

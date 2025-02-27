@@ -60,8 +60,6 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
-        await refetchStripeSubscription();
-
         dispatch(
           setAuth({
             ...auth,
@@ -69,6 +67,8 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
             subscriptio: Subscription.Stripe,
           })
         );
+
+        await refetchStripeSubscription();
 
         setTimeout(() => {
           showNotification(
