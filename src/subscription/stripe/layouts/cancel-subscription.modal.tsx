@@ -2,21 +2,23 @@ import { RootState } from "@/global/states/store";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useSelector } from "react-redux";
-import { useCancelSubscription } from "../hooks/create";
+import { useCancelStripeSubscription } from "../hooks/create";
 import { useEffect } from "react";
 
-export const CancelSubscriptionModal = ({ opened, close }: any) => {
+export const CancelStripeSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { cancelSubscriptionMutation, isPending, isSuccess } =
-    useCancelSubscription();
+  const { cancelStripeSubscriptionMutation, isPending, isSuccess } =
+    useCancelStripeSubscription();
 
   useEffect(() => {
     if (isSuccess) close();
   }, [isSuccess]);
 
-  const handleCancelSubscription = async () => {
-    await cancelSubscriptionMutation({ email: auth.email });
+  const handleCancelStripeSubscription = async () => {
+    await cancelStripeSubscriptionMutation({
+      subscriptionId: auth.subscriptionId,
+    });
   };
 
   return (
@@ -38,7 +40,7 @@ export const CancelSubscriptionModal = ({ opened, close }: any) => {
           bg="red"
           disabled={isPending}
           loading={isPending}
-          onClick={handleCancelSubscription}
+          onClick={handleCancelStripeSubscription}
           loaderProps={{ type: "dots", color: "white" }}>
           Cancel Subscription
         </Button>

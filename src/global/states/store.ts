@@ -7,7 +7,6 @@ import authorReducer from "@/author/author.slice";
 import quoteReducer from "@/quote/quote.slice";
 import messageReducer from "@/message/message.slice";
 import playlistReducer from "@/playlist/playlist.slice";
-import subscriptionReducer from "@/subscription/subscription.slice";
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +18,6 @@ export const store = configureStore({
     quote: quoteReducer,
     message: messageReducer,
     playlist: playlistReducer,
-    subscription: subscriptionReducer,
   },
 });
 

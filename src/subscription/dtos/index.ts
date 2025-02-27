@@ -1,4 +1,4 @@
-import { EmailDTO } from "./email.dto";
 import { UserIdDTO } from "./user-id.dto";
+import { SubscriptionIdDTO } from "./subscription-id.dto";
 
-export type { EmailDTO, UserIdDTO };
+export type { UserIdDTO, SubscriptionIdDTO };

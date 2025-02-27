@@ -1,4 +1,4 @@
-import { SubscriptionLayout } from "./subscription.layout";
 import { SubscribeModal } from "./subscribe.modal";
+import { SubscriptionLayout } from "./subscription.layout";
 
-export { SubscriptionLayout, SubscribeModal };
+export { SubscribeModal, SubscriptionLayout };

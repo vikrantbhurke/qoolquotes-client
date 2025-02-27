@@ -1,27 +1,47 @@
 import axios from "axios";
-import { EmailDTO, UserIdDTO } from "../dtos";
+import { SubscriptionIdDTO, UserIdDTO } from "../dtos";
 
-export const createSubscription = async (userIdDTO: UserIdDTO) => {
+export const createPayPalSubscription = async (userIdDTO: UserIdDTO) => {
   const result = await axios.post(`/paypal/create-subscription`, userIdDTO);
   return result.data;
 };
 
-export const getSubscription = async (emailDTO: EmailDTO) => {
-  const result = await axios.post(`/paypal/get-subscription`, emailDTO);
+export const getPayPalSubscription = async (
+  subscriptionIdDTO: SubscriptionIdDTO
+) => {
+  const result = await axios.post(
+    `/paypal/get-subscription`,
+    subscriptionIdDTO
+  );
   return result.data;
 };
 
-export const suspendSubscription = async (emailDTO: EmailDTO) => {
-  const result = await axios.post(`/paypal/suspend-subscription`, emailDTO);
+export const suspendPayPalSubscription = async (
+  subscriptionIdDTO: SubscriptionIdDTO
+) => {
+  const result = await axios.post(
+    `/paypal/suspend-subscription`,
+    subscriptionIdDTO
+  );
   return result.data;
 };
 
-export const activateSubscription = async (emailDTO: EmailDTO) => {
-  const result = await axios.post(`/paypal/activate-subscription`, emailDTO);
+export const activatePayPalSubscription = async (
+  subscriptionIdDTO: SubscriptionIdDTO
+) => {
+  const result = await axios.post(
+    `/paypal/activate-subscription`,
+    subscriptionIdDTO
+  );
   return result.data;
 };
 
-export const cancelSubscription = async (emailDTO: EmailDTO) => {
-  const result = await axios.post(`/paypal/cancel-subscription`, emailDTO);
+export const cancelPayPalSubscription = async (
+  subscriptionIdDTO: SubscriptionIdDTO
+) => {
+  const result = await axios.post(
+    `/paypal/cancel-subscription`,
+    subscriptionIdDTO
+  );
   return result.data;
 };

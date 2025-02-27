@@ -1,6 +1,6 @@
 import { AboutPage } from "./about.page";
-import { SubscriptionPage } from "./subscription.page";
 import { VerifyAccountPage } from "./verify-account.page";
 import { VerifyEmailPage } from "./verify-email.page";
+import { UserPage } from "./user.page";
 
-export { AboutPage, SubscriptionPage, VerifyAccountPage, VerifyEmailPage };
+export { AboutPage, VerifyAccountPage, VerifyEmailPage, UserPage };

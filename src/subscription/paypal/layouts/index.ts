@@ -1,9 +1,3 @@
-import { PayPalSubscriptionLayout } from "./paypal-subscription.layout";
-import { CancelSubscriptionModal } from "./cancel-subscription.modal";
-import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
+import { PayPalSubscriptionButtons } from "./paypal-subscription.buttons";
 
-export {
-  PayPalSubscriptionLayout,
-  CancelSubscriptionModal,
-  SuspendSubscriptionModal,
-};
+export { PayPalSubscriptionButtons };

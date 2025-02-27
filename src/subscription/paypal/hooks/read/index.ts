@@ -1,3 +1,3 @@
-import { useGetSubscription } from "./use-get-subscription.hook";
+import { useGetPayPalSubscription } from "./use-get-paypal-subscription.hook";
 
-export { useGetSubscription };
+export { useGetPayPalSubscription };

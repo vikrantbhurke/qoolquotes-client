@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
-import { cancelSubscription } from "../../paypal.network";
+import { suspendPayPalSubscription } from "../../paypal.network";
 import { NotificationColor } from "@/global/enums";
-import { useGetSubscription } from "../read";
+import { useGetPayPalSubscription } from "../read";
 import { useDispatch } from "react-redux";
 import { resetColor, resetFont } from "@/global/states/view.slice";
 import { useSelector } from "react-redux";
@@ -10,28 +10,28 @@ import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
 
-export const useCancelSubscription = () => {
+export const useSuspendPayPalSubscription = () => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
-  const { refetchSubscription } = useGetSubscription();
+  const { refetchPayPalSubscription } = useGetPayPalSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const {
-    mutate: cancelSubscriptionMutation,
+    mutate: suspendPayPalSubscriptionMutation,
     isPending,
     isSuccess,
   } = useMutation({
-    mutationFn: cancelSubscription,
+    mutationFn: suspendPayPalSubscription,
 
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
-      await refetchSubscription();
+      await refetchPayPalSubscription();
       dispatch(setAuth({ ...auth, role: Role.Private }));
       dispatch(resetColor());
       dispatch(resetFont());
     },
 
-    onError: (error: any) => {
+    onError: async (error: any) => {
       showNotification(
         error?.response?.data?.message || error.message || "An error occurred",
         NotificationColor.Failure
@@ -39,5 +39,9 @@ export const useCancelSubscription = () => {
     },
   });
 
-  return { cancelSubscriptionMutation, isPending, isSuccess };
+  return {
+    suspendPayPalSubscriptionMutation,
+    isPending,
+    isSuccess,
+  };
 };

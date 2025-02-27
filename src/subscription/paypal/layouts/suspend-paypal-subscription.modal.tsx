@@ -1,22 +1,24 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { useSuspendSubscription } from "../hooks/create";
+import { useSuspendPayPalSubscription } from "../hooks/create";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useEffect } from "react";
 
-export const SuspendSubscriptionModal = ({ opened, close }: any) => {
+export const SuspendPayPalSubscriptionModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { suspendSubscriptionMutation, isPending, isSuccess } =
-    useSuspendSubscription();
+  const { suspendPayPalSubscriptionMutation, isPending, isSuccess } =
+    useSuspendPayPalSubscription();
 
   useEffect(() => {
     if (isSuccess) close();
   }, [isSuccess]);
 
-  const handleSuspendSubscription = async () => {
-    await suspendSubscriptionMutation({ email: auth.email });
+  const handleSuspendPayPalSubscription = async () => {
+    await suspendPayPalSubscriptionMutation({
+      subscriptionId: auth.subscriptionId,
+    });
   };
 
   return (
@@ -39,7 +41,7 @@ export const SuspendSubscriptionModal = ({ opened, close }: any) => {
           c="black"
           disabled={isPending}
           loading={isPending}
-          onClick={handleSuspendSubscription}
+          onClick={handleSuspendPayPalSubscription}
           loaderProps={{ type: "dots", color: "black" }}>
           Suspend Subscription
         </Button>

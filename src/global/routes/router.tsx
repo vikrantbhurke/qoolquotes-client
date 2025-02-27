@@ -7,7 +7,7 @@ import {
 import { AppLayout } from "@/global/components/layouts";
 import {
   AboutPage,
-  SubscriptionPage,
+  UserPage,
   VerifyAccountPage,
   VerifyEmailPage,
 } from "../components/pages";
@@ -36,7 +36,6 @@ import {
 import { GetQuoteByIdItem, GetTodaysQuoteItem } from "@/quote/items";
 import { GetPlaylistByIdItem, UpdatePlaylistByIdItem } from "@/playlist/items";
 import {
-  GetUserByIdItem,
   SignInUserItem,
   SignUpUserItem,
   UpdateUserByIdItem,
@@ -98,7 +97,7 @@ const router = createBrowserRouter(
         <Route path="search/:search" element={<SearchTopicsMantineGrid />} />
       </Route>
 
-      <Route path="users/:uid" element={<GetUserByIdItem />} />
+      <Route path="users/:uid" element={<UserPage />} />
       <Route path="users/:uid/edit" element={<UpdateUserByIdItem />} />
 
       <Route
@@ -107,8 +106,6 @@ const router = createBrowserRouter(
       />
 
       <Route path="users/verify-email/:token" element={<VerifyEmailPage />} />
-
-      <Route path="subscription" element={<SubscriptionPage />} />
 
       <Route path="*" element={<></>} />
     </Route>

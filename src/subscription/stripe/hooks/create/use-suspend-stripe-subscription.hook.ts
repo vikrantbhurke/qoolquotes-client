@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
-import { suspendSubscription } from "../../paypal.network";
+import { suspendStripeSubscription } from "../../stripe.network";
 import { NotificationColor } from "@/global/enums";
-import { useGetSubscription } from "../read";
+import { useGetStripeSubscription } from "../read";
 import { useDispatch } from "react-redux";
 import { resetColor, resetFont } from "@/global/states/view.slice";
 import { useSelector } from "react-redux";
@@ -10,22 +10,22 @@ import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
 
-export const useSuspendSubscription = () => {
+export const useSuspendStripeSubscription = () => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
-  const { refetchSubscription } = useGetSubscription();
+  const { refetchStripeSubscription } = useGetStripeSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const {
-    mutate: suspendSubscriptionMutation,
+    mutate: suspendStripeSubscriptionMutation,
     isPending,
     isSuccess,
   } = useMutation({
-    mutationFn: suspendSubscription,
+    mutationFn: suspendStripeSubscription,
 
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
-      await refetchSubscription();
+      await refetchStripeSubscription();
       dispatch(setAuth({ ...auth, role: Role.Private }));
       dispatch(resetColor());
       dispatch(resetFont());
@@ -39,5 +39,9 @@ export const useSuspendSubscription = () => {
     },
   });
 
-  return { suspendSubscriptionMutation, isPending, isSuccess };
+  return {
+    suspendStripeSubscriptionMutation,
+    isPending,
+    isSuccess,
+  };
 };

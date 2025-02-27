@@ -1,11 +1,11 @@
-import { useCancelSubscription } from "./use-cancel-subscription.hook";
-import { useActivateSubscription } from "./use-activate-subscription.hook";
-import { useSuspendSubscription } from "./use-suspend-subscription.hook";
-import { useCreateSubscription } from "./use-create-subscription.hook";
+import { useCancelPayPalSubscription } from "./use-cancel-paypal-subscription.hook";
+import { useActivatePayPalSubscription } from "./use-activate-paypal-subscription.hook";
+import { useSuspendPayPalSubscription } from "./use-suspend-paypal-subscription.hook";
+import { useCreatePayPalSubscription } from "./use-create-paypal-subscription.hook";
 
 export {
-  useCancelSubscription,
-  useActivateSubscription,
-  useSuspendSubscription,
-  useCreateSubscription,
+  useCancelPayPalSubscription,
+  useActivatePayPalSubscription,
+  useSuspendPayPalSubscription,
+  useCreatePayPalSubscription,
 };

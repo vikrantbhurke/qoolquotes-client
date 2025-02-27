@@ -1,52 +1,57 @@
 import {
-  useCreateSubscription,
-  useActivateSubscription,
+  useCreatePayPalSubscription,
+  useActivatePayPalSubscription,
 } from "../hooks/create";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Status } from "@/subscription/enums";
+import { Status, Subscription } from "@/subscription/enums";
 import { Button, Stack } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useNotification } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
-import { useGetSubscription } from "../hooks/read";
+import { useGetPayPalSubscription } from "../hooks/read";
 import { NotificationColor } from "@/global/enums";
-import { CancelSubscriptionModal } from "./cancel-subscription.modal";
-import { SuspendSubscriptionModal } from "./suspend-subscription.modal";
+import { CancelPayPalSubscriptionModal } from "./cancel-paypal-subscription.modal";
+import { SuspendPayPalSubscriptionModal } from "./suspend-paypal-subscription.modal";
 import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
 
-export const PayPalSubscriptionLayout = () => {
+export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
-  const { subscription, refetchSubscription } = useGetSubscription();
+  const { refetchPayPalSubscription } = useGetPayPalSubscription();
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { createSubscriptionMutation, isPending: isCreateSubscriptionPending } =
-    useCreateSubscription();
+  const {
+    createPayPalSubscriptionMutation,
+    isPending: isCreatePayPalSubscriptionPending,
+  } = useCreatePayPalSubscription();
 
   const {
-    activateSubscriptionMutation,
-    isPending: isActivateSubscriptionPending,
-  } = useActivateSubscription();
+    activatePayPalSubscriptionMutation,
+    isPending: isActivatePayPalSubscriptionPending,
+  } = useActivatePayPalSubscription();
 
   const [
-    suspendSubscriptionModalOpened,
+    suspendPayPalSubscriptionModalOpened,
     {
-      open: suspendSubscriptionModalOpen,
-      close: suspendSubscriptionModalClose,
+      open: suspendPayPalSubscriptionModalOpen,
+      close: suspendPayPalSubscriptionModalClose,
     },
   ] = useDisclosure();
 
   const [
-    cancelSubscriptionModalOpened,
-    { open: cancelSubscriptionModalOpen, close: cancelSubscriptionModalClose },
+    cancelPayPalSubscriptionModalOpened,
+    {
+      open: cancelPayPalSubscriptionModalOpen,
+      close: cancelPayPalSubscriptionModalClose,
+    },
   ] = useDisclosure();
 
   useEffect(() => {
-    const handleGetSubscription = async () => {
+    const handleGetPayPalSubscription = async () => {
       const query = new URLSearchParams(window.location.search);
 
       if (
@@ -55,8 +60,15 @@ export const PayPalSubscriptionLayout = () => {
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
 
-        await refetchSubscription();
-        dispatch(setAuth({ ...auth, role: Role.Subscriber }));
+        await refetchPayPalSubscription();
+
+        dispatch(
+          setAuth({
+            ...auth,
+            role: Role.Subscriber,
+            subscription: Subscription.PayPal,
+          })
+        );
 
         setTimeout(() => {
           showNotification(
@@ -67,21 +79,21 @@ export const PayPalSubscriptionLayout = () => {
       }
     };
 
-    handleGetSubscription();
+    handleGetPayPalSubscription();
   }, []);
 
-  const handleCreateSubscription = () => {
-    createSubscriptionMutation({ userId: auth.id });
+  const handleCreatePayPalSubscription = () => {
+    createPayPalSubscriptionMutation({ userId: auth.id });
   };
 
-  const handleActivateSubscription = () => {
-    activateSubscriptionMutation({ email: auth.email });
+  const handleActivatePayPalSubscription = () => {
+    activatePayPalSubscriptionMutation({ subscriptionId: auth.subscriptionId });
   };
 
   const query = new URLSearchParams(window.location.search);
 
   const status =
-    query.get("subscribed") === "true" ? "ACTIVE" : subscription?.status;
+    query.get("subscribed") === "true" ? "ACTIVE" : paypalSubscription?.status;
 
   const isSuspended =
     subscriptionUtility.getStatus(status) === Status.Suspended;
@@ -90,14 +102,14 @@ export const PayPalSubscriptionLayout = () => {
 
   return (
     <>
-      <SuspendSubscriptionModal
-        opened={suspendSubscriptionModalOpened}
-        close={suspendSubscriptionModalClose}
+      <SuspendPayPalSubscriptionModal
+        opened={suspendPayPalSubscriptionModalOpened}
+        close={suspendPayPalSubscriptionModalClose}
       />
 
-      <CancelSubscriptionModal
-        opened={cancelSubscriptionModalOpened}
-        close={cancelSubscriptionModalClose}
+      <CancelPayPalSubscriptionModal
+        opened={cancelPayPalSubscriptionModalOpened}
+        close={cancelPayPalSubscriptionModalClose}
       />
 
       <Stack gap="sm">
@@ -107,9 +119,9 @@ export const PayPalSubscriptionLayout = () => {
             c="black"
             bg="#F2BA36"
             type="submit"
-            onClick={handleCreateSubscription}
-            disabled={isCreateSubscriptionPending}
-            loading={isCreateSubscriptionPending}
+            onClick={handleCreatePayPalSubscription}
+            disabled={isCreatePayPalSubscriptionPending}
+            loading={isCreatePayPalSubscriptionPending}
             loaderProps={{ type: "dots", color: "black" }}>
             Subscribe with PayPal
           </Button>
@@ -117,7 +129,7 @@ export const PayPalSubscriptionLayout = () => {
 
         {isActive && (
           <Button
-            onClick={suspendSubscriptionModalOpen}
+            onClick={suspendPayPalSubscriptionModalOpen}
             bg="#F2BA36"
             c="black"
             fullWidth>
@@ -129,16 +141,19 @@ export const PayPalSubscriptionLayout = () => {
           <Button
             bg="green"
             fullWidth
-            onClick={handleActivateSubscription}
-            disabled={isActivateSubscriptionPending}
-            loading={isActivateSubscriptionPending}
+            onClick={handleActivatePayPalSubscription}
+            disabled={isActivatePayPalSubscriptionPending}
+            loading={isActivatePayPalSubscriptionPending}
             loaderProps={{ type: "dots", color: "white" }}>
             Activate Subscription
           </Button>
         )}
 
         {(isActive || isSuspended) && (
-          <Button onClick={cancelSubscriptionModalOpen} bg="red" fullWidth>
+          <Button
+            onClick={cancelPayPalSubscriptionModalOpen}
+            bg="red"
+            fullWidth>
             Cancel Subscription
           </Button>
         )}
