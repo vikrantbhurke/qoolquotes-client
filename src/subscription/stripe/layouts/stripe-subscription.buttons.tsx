@@ -99,6 +99,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
     subscriptionUtility.getStatus(status) === Status.Suspended;
   const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
   const isActive = subscriptionUtility.getStatus(status) === Status.Active;
+  const isNotPayPal = auth.subscription !== Subscription.PayPal;
 
   return (
     <>
@@ -113,7 +114,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {auth.subscription !== Subscription.PayPal && isInactive && (
+        {isNotPayPal && isInactive && (
           <Button
             fullWidth
             bg="#556CD6"
@@ -126,7 +127,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {isActive && (
+        {isNotPayPal && isActive && (
           <Button
             onClick={suspendStripeSubscriptionModalOpen}
             bg="#F2BA36"
@@ -136,7 +137,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {isSuspended && (
+        {isNotPayPal && isSuspended && (
           <Button
             bg="green"
             fullWidth
@@ -148,7 +149,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {(isActive || isSuspended) && (
+        {isNotPayPal && (isActive || isSuspended) && (
           <Button
             onClick={cancelStripeSubscriptionModalOpen}
             bg="red"
