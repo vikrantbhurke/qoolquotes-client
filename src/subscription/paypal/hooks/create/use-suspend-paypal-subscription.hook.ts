@@ -32,6 +32,7 @@ export const useSuspendPayPalSubscription = () => {
     },
 
     onError: async (error: any) => {
+      console.log("Error suspending PayPal subscription: ", error);
       showNotification(
         error?.response?.data?.message || error.message || "An error occurred",
         NotificationColor.Failure
