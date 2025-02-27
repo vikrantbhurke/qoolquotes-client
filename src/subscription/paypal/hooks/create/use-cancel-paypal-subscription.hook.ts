@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
+import { Subscription } from "@/subscription/enums";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const useCancelPayPalSubscription = () => {
   const dispatch = useDispatch();
@@ -26,7 +28,17 @@ export const useCancelPayPalSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchPayPalSubscription();
-      dispatch(setAuth({ ...auth, role: Role.Private }));
+
+      dispatch(
+        setAuth({
+          ...auth,
+          role: Role.Private,
+          subscriptionId: "none",
+          subscription: Subscription.Free,
+          subscriptionStatus: subscriptionUtility.getStatus("CANCELLED") as any,
+        })
+      );
+
       dispatch(resetColor());
       dispatch(resetFont());
     },

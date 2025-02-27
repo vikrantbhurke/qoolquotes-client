@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const useSuspendPayPalSubscription = () => {
   const dispatch = useDispatch();
@@ -26,13 +27,20 @@ export const useSuspendPayPalSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchPayPalSubscription();
-      dispatch(setAuth({ ...auth, role: Role.Private }));
+
+      dispatch(
+        setAuth({
+          ...auth,
+          role: Role.Private,
+          subscriptionStatus: subscriptionUtility.getStatus("SUSPENDED") as any,
+        })
+      );
+
       dispatch(resetColor());
       dispatch(resetFont());
     },
 
     onError: async (error: any) => {
-      console.log("Error suspending PayPal subscription: ", error);
       showNotification(
         error?.response?.data?.message || error.message || "An error occurred",
         NotificationColor.Failure

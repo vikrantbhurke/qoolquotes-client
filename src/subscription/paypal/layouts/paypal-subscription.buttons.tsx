@@ -65,6 +65,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
             ...auth,
             role: Role.Subscriber,
             subscription: Subscription.PayPal,
+            subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,
           })
         );
 
