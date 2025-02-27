@@ -1,18 +1,13 @@
 import axios from "axios";
-import { SubscriptionIdDTO, UserIdDTO } from "../dtos";
+import { EmailDTO, SubscriptionIdDTO, UserIdDTO } from "../dtos";
 
 export const createStripeSubscription = async (userIdDTO: UserIdDTO) => {
   const result = await axios.post(`/stripe/create-subscription`, userIdDTO);
   return result.data;
 };
 
-export const getStripeSubscription = async (
-  subscriptionIdDTO: SubscriptionIdDTO
-) => {
-  const result = await axios.post(
-    `/stripe/get-subscription`,
-    subscriptionIdDTO
-  );
+export const getStripeSubscription = async (emailDTO: EmailDTO) => {
+  const result = await axios.post(`/stripe/get-subscription`, emailDTO);
   return result.data;
 };
 
