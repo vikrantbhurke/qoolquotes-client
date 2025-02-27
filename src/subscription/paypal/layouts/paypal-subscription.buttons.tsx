@@ -113,7 +113,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {isInactive && (
+        {auth.subscription !== Subscription.Stripe && isInactive && (
           <Button
             fullWidth
             c="black"

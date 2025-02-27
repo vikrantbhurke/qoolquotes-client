@@ -113,7 +113,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {isInactive && (
+        {auth.subscription !== Subscription.PayPal && isInactive && (
           <Button
             fullWidth
             bg="#556CD6"
