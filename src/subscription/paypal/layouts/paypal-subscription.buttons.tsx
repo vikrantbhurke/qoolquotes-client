@@ -59,10 +59,12 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
+        const subscriptionId = query.get("subscription_id");
 
         dispatch(
           setAuth({
             ...auth,
+            subscriptionId,
             role: Role.Subscriber,
             subscription: Subscription.PayPal,
             subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,

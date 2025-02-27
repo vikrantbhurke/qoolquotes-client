@@ -27,6 +27,8 @@ export const useSuspendPayPalSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchPayPalSubscription();
+      dispatch(resetColor());
+      dispatch(resetFont());
 
       dispatch(
         setAuth({
@@ -35,9 +37,6 @@ export const useSuspendPayPalSubscription = () => {
           subscriptionStatus: subscriptionUtility.getStatus("SUSPENDED") as any,
         })
       );
-
-      dispatch(resetColor());
-      dispatch(resetFont());
     },
 
     onError: async (error: any) => {

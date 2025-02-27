@@ -8,6 +8,7 @@ import { setAuth } from "@/user/auth.slice";
 import { useDispatch } from "react-redux";
 import { Role } from "@/user/enums";
 import { useGetStripeSubscription } from "../read";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const useActivateStripeSubscription = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,14 @@ export const useActivateStripeSubscription = () => {
       onSuccess: async (data: any, _variables: any, _context: any) => {
         showNotification(data?.message, NotificationColor.Success);
         await refetchStripeSubscription();
-        dispatch(setAuth({ ...auth, role: Role.Subscriber }));
+
+        dispatch(
+          setAuth({
+            ...auth,
+            role: Role.Subscriber,
+            subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,
+          })
+        );
       },
 
       onError: async (error: any) => {

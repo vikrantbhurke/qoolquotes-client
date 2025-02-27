@@ -59,12 +59,15 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
+        const subscriptionId = query.get("subscription_id");
 
         dispatch(
           setAuth({
             ...auth,
+            subscriptionId,
             role: Role.Subscriber,
-            subscriptio: Subscription.Stripe,
+            subscription: Subscription.Stripe,
+            subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,
           })
         );
 

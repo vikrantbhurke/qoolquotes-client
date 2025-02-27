@@ -28,6 +28,8 @@ export const useCancelPayPalSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchPayPalSubscription();
+      dispatch(resetColor());
+      dispatch(resetFont());
 
       dispatch(
         setAuth({
@@ -38,9 +40,6 @@ export const useCancelPayPalSubscription = () => {
           subscriptionStatus: subscriptionUtility.getStatus("CANCELLED") as any,
         })
       );
-
-      dispatch(resetColor());
-      dispatch(resetFont());
     },
 
     onError: (error: any) => {

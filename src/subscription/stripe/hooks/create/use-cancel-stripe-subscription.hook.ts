@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
+import { Subscription } from "@/subscription/enums";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const useCancelStripeSubscription = () => {
   const dispatch = useDispatch();
@@ -26,9 +28,18 @@ export const useCancelStripeSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchStripeSubscription();
-      dispatch(setAuth({ ...auth, role: Role.Private }));
       dispatch(resetColor());
       dispatch(resetFont());
+
+      dispatch(
+        setAuth({
+          ...auth,
+          role: Role.Private,
+          subscriptionId: "none",
+          subscription: Subscription.Free,
+          subscriptionStatus: subscriptionUtility.getStatus("CANCELLED") as any,
+        })
+      );
     },
 
     onError: (error: any) => {

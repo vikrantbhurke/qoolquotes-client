@@ -7,6 +7,7 @@ import { Subscription } from "@/subscription/enums";
 export const useGetStripeSubscription = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const isSubscriptionStripe = auth?.subscription === Subscription.Stripe;
+  const hasSubscriptionId = auth?.subscriptionId !== "none";
 
   const {
     data: stripeSubscription,
@@ -15,9 +16,10 @@ export const useGetStripeSubscription = () => {
     error,
     refetch: refetchStripeSubscription,
   } = useQuery({
-    queryKey: ["getStripeSubscription", auth?.email],
-    queryFn: () => getStripeSubscription({ email: auth?.email }),
-    enabled: !!auth?.email && !!isSubscriptionStripe,
+    queryKey: ["getStripeSubscription", auth?.subscriptionId],
+    queryFn: () =>
+      getStripeSubscription({ subscriptionId: auth?.subscriptionId }),
+    enabled: !!hasSubscriptionId && !!isSubscriptionStripe,
   });
 
   return {

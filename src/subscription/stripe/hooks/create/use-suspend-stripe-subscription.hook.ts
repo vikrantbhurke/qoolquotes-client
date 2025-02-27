@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
+import { subscriptionUtility } from "@/subscription/subscription.utility";
 
 export const useSuspendStripeSubscription = () => {
   const dispatch = useDispatch();
@@ -26,9 +27,16 @@ export const useSuspendStripeSubscription = () => {
     onSuccess: async (data: any, _variables: any, _context: any) => {
       showNotification(data?.message, NotificationColor.Success);
       await refetchStripeSubscription();
-      dispatch(setAuth({ ...auth, role: Role.Private }));
       dispatch(resetColor());
       dispatch(resetFont());
+
+      dispatch(
+        setAuth({
+          ...auth,
+          role: Role.Private,
+          subscriptionStatus: subscriptionUtility.getStatus("SUSPENDED") as any,
+        })
+      );
     },
 
     onError: async (error: any) => {
