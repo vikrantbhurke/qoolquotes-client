@@ -30,8 +30,6 @@ export const SubscriptionLayout = ({
   let behavior = null;
   let startTime;
   let nextBillingTime;
-  let isActive = false;
-  let isSuspended = false;
   let isInactive = true;
 
   if (paypalSubscription) {
@@ -42,8 +40,6 @@ export const SubscriptionLayout = ({
     if (paypalStatus === "CANCELLED") status = Status.Inactive;
     if (paypalStatus === "EXPIRED") status = Status.Inactive;
 
-    isActive = status === Status.Active;
-    isSuspended = status === Status.Suspended;
     isInactive = status === Status.Inactive;
 
     startTime = isPayPal ? dateIsoString : start_time;
@@ -62,8 +58,6 @@ export const SubscriptionLayout = ({
     if (stripeStatus === "canceled") status = Status.Inactive;
     if (stripeStatus === "incomplete") status = Status.Inactive;
 
-    isActive = status === Status.Active;
-    isSuspended = status === Status.Suspended;
     isInactive = status === Status.Inactive;
 
     startTime = isStripe
