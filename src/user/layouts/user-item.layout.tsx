@@ -17,22 +17,20 @@ import { useState } from "react";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/global/states/store";
-import { Subscription } from "@/subscription/enums";
+import { useGetStripeSubscription } from "@/subscription/stripe/hooks/read";
+import { useGetPayPalSubscription } from "@/subscription/paypal/hooks/read";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
-  const { auth } = useSelector((state: RootState) => state.auth);
-
-  const query = new URLSearchParams(window.location.search);
+  const { paypalSubscription } = useGetPayPalSubscription();
+  const { stripeSubscription } = useGetStripeSubscription();
 
   const isFree =
-    auth.subscription === Subscription.Free ||
-    (query.get("subscription") !== "paypal" &&
-      query.get("subscription") !== "stripe");
+    stripeSubscription?.status !== "active" &&
+    paypalSubscription?.status !== "ACTIVE" &&
+    paypalSubscription?.status !== "SUSPENDED";
 
   return (
     <>
