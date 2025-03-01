@@ -30,8 +30,8 @@ export const SubscriptionLayout = ({
   let behavior = null;
   let startTime;
   let nextBillingTime;
-  let isActive;
-  let isSuspended;
+  let isActive = false;
+  let isSuspended = false;
   let isInactive = true;
 
   if (paypalSubscription) {
