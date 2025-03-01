@@ -19,13 +19,20 @@ import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { Role } from "../enums";
+import { Subscription } from "@/subscription/enums";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
   const { auth } = useSelector((state: RootState) => state.auth);
+
+  const query = new URLSearchParams(window.location.search);
+
+  const isFree =
+    auth.subscription === Subscription.Free ||
+    (query.get("subscription") !== "paypal" &&
+      query.get("subscription") !== "stripe");
 
   return (
     <>
@@ -108,7 +115,8 @@ export const UserItemLayout = ({ user, isPending }: any) => {
             onClick={() => navigate(`/users/${user.id}/edit`)}>
             Edit Profile
           </Button>
-          {auth.role === Role.Private && (
+
+          {isFree && (
             <Button fullWidth bg="red" onClick={open}>
               Delete Account
             </Button>

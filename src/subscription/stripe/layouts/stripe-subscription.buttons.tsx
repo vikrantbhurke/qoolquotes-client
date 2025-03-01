@@ -112,9 +112,15 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
     if (stripeStatus === "incomplete") status = Status.Inactive;
   }
 
+  const query = new URLSearchParams(window.location.search);
   const isActive = status === Status.Active;
-  const isSuspended = status === Status.Suspended;
   const isInactive = status === Status.Inactive;
+  const isSuspended = status === Status.Suspended;
+  const isFree = auth.subscription === Subscription.Free;
+
+  const isStripe =
+    auth.subscription === Subscription.Stripe ||
+    query.get("subscription") === "stripe";
 
   return (
     <>
@@ -129,7 +135,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {isInactive && (
+        {isFree && isInactive && (
           <Button
             fullWidth
             bg="#556CD6"
@@ -142,7 +148,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {isActive && (
+        {isStripe && isActive && (
           <Button
             onClick={suspendStripeSubscriptionModalOpen}
             bg="#F2BA36"
@@ -152,7 +158,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {isSuspended && (
+        {isStripe && isSuspended && (
           <Button
             bg="green"
             fullWidth
@@ -164,7 +170,7 @@ export const StripeSubscriptionButtons = ({ stripeSubscription }: any) => {
           </Button>
         )}
 
-        {(isActive || isSuspended) && (
+        {isStripe && (isActive || isSuspended) && (
           <Button
             onClick={cancelStripeSubscriptionModalOpen}
             bg="red"

@@ -103,9 +103,15 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
     if (paypalStatus === "EXPIRED") status = Status.Inactive;
   }
 
+  const query = new URLSearchParams(window.location.search);
   const isActive = status === Status.Active;
-  const isSuspended = status === Status.Suspended;
   const isInactive = status === Status.Inactive;
+  const isSuspended = status === Status.Suspended;
+  const isFree = auth.subscription === Subscription.Free;
+
+  const isPayPal =
+    auth.subscription === Subscription.PayPal ||
+    query.get("subscription") === "paypal";
 
   return (
     <>
@@ -120,7 +126,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {isInactive && (
+        {isFree && isInactive && (
           <Button
             fullWidth
             c="black"
@@ -134,7 +140,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {isActive && (
+        {isPayPal && isActive && (
           <Button
             onClick={suspendPayPalSubscriptionModalOpen}
             bg="#F2BA36"
@@ -144,7 +150,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {isSuspended && (
+        {isPayPal && isSuspended && (
           <Button
             bg="green"
             fullWidth
@@ -156,7 +162,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {(isActive || isSuspended) && (
+        {isPayPal && (isActive || isSuspended) && (
           <Button
             onClick={cancelPayPalSubscriptionModalOpen}
             bg="red"
