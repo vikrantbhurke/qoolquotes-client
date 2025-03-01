@@ -8,7 +8,7 @@ import { setAuth } from "@/user/auth.slice";
 import { useDispatch } from "react-redux";
 import { Role } from "@/user/enums";
 import { useGetStripeSubscription } from "../read";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
+import { Status } from "@/subscription/enums";
 
 export const useActivateStripeSubscription = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export const useActivateStripeSubscription = () => {
           setAuth({
             ...auth,
             role: Role.Subscriber,
-            subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,
+            subscriptionStatus: Status.Active,
           })
         );
       },

@@ -1,8 +1,8 @@
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "@/global/states/store";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/global/states/store";
 import { oneDefaultBg, oneDefaultTx } from "@/global/styles/renamed.variables";
 
 export const SubscribeModal = ({ opened, close }: any) => {

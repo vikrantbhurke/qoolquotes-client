@@ -1,14 +1,14 @@
 import { subscriptionUtility } from "../subscription.utility";
 import { Group, Stack, Text, Title } from "@mantine/core";
-import { Status } from "../enums";
-// import { useSelector } from "react-redux";
-// import { RootState } from "@/global/states/store";
+import { Status, Subscription } from "../enums";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const SubscriptionLayout = ({
   paypalSubscription,
-  // stripeSubscription,
+  stripeSubscription,
 }: any) => {
-  // const { auth } = useSelector((state: RootState) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const list = [
     `⭐ Remove all advertisements.`,
@@ -16,27 +16,65 @@ export const SubscriptionLayout = ({
     `⭐ Apply custom colors & fonts to quotes.`,
   ];
 
-  // Optimistically update the UI until PayPal returns the updated subscription details
+  // Optimistically update the UI until PayPal or Stripe returns the updated subscription details
   const date = new Date();
   const dateIsoString = date.toISOString().split(".")[0] + "Z";
   const nextYearDate = date.setFullYear(date.getFullYear() + 1);
-
   const nextYearIsoString =
     new Date(nextYearDate).toISOString().split(".")[0] + "Z";
 
-  const query = new URLSearchParams(window.location.search);
-  const subscribedTrue = query.get("subscribed") === "true";
-  const status = subscribedTrue ? "ACTIVE" : paypalSubscription?.status;
-  const startTime = subscribedTrue
-    ? dateIsoString
-    : paypalSubscription?.start_time;
+  const isPayPal = auth.subsciption === Subscription.PayPal;
+  const isStripe = auth.subsciption === Subscription.Stripe;
 
-  const nextBillingTime = subscribedTrue
-    ? nextYearIsoString
-    : paypalSubscription?.billing_info?.next_billing_time;
+  let status: Status = Status.Inactive;
+  let behavior = null;
+  let startTime;
+  let nextBillingTime;
+  let isActive;
+  let isSuspended;
+  let isInactive = true;
 
-  const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
-  console.log("isInactive", isInactive);
+  if (paypalSubscription) {
+    const { status: paypalStatus, start_time } = paypalSubscription;
+
+    if (paypalStatus === "ACTIVE") status = Status.Active;
+    if (paypalStatus === "SUSPENDED") status = Status.Suspended;
+    if (paypalStatus === "CANCELLED") status = Status.Inactive;
+    if (paypalStatus === "EXPIRED") status = Status.Inactive;
+
+    isActive = status === Status.Active;
+    isSuspended = status === Status.Suspended;
+    isInactive = status === Status.Inactive;
+
+    startTime = isPayPal ? dateIsoString : start_time;
+
+    nextBillingTime = isPayPal
+      ? nextYearIsoString
+      : paypalSubscription.billing_info.next_billing_time;
+  }
+
+  if (stripeSubscription) {
+    const { status: stripeStatus, pause_collection } = stripeSubscription;
+    if (pause_collection) behavior = pause_collection;
+
+    if (stripeStatus === "active" && !behavior) status = Status.Active;
+    if (stripeStatus === "active" && behavior) status = Status.Suspended;
+    if (stripeStatus === "canceled") status = Status.Inactive;
+    if (stripeStatus === "incomplete") status = Status.Inactive;
+
+    isActive = status === Status.Active;
+    isSuspended = status === Status.Suspended;
+    isInactive = status === Status.Inactive;
+
+    startTime = isStripe
+      ? dateIsoString
+      : new Date(stripeSubscription.current_period_start * 1000).toISOString();
+
+    nextBillingTime = isStripe
+      ? nextYearIsoString
+      : new Date(stripeSubscription.current_period_end * 1000).toISOString();
+  }
+
   return (
     <>
       {isInactive && (
@@ -64,38 +102,28 @@ export const SubscriptionLayout = ({
               Status:{" "}
             </Title>
 
-            <Title
-              order={6}
-              c={subscriptionUtility.getStatusColor(
-                subscriptionUtility.getStatus(status)
-              )}>
-              {subscriptionUtility.getStatus(status)}
+            <Title order={6} c={subscriptionUtility.getStatusColor(status)}>
+              {status}
             </Title>
           </Group>
 
-          {startTime && (
-            <Group gap="xs">
-              <Title order={6} ta="center">
-                Started On:{" "}
-              </Title>
+          <Group gap="xs">
+            <Title order={6} ta="center">
+              Started On:{" "}
+            </Title>
 
-              <Text fz="sm">
-                {subscriptionUtility.formatDateTime(startTime)}
-              </Text>
-            </Group>
-          )}
+            <Text fz="sm">{subscriptionUtility.formatDateTime(startTime)}</Text>
+          </Group>
 
-          {nextBillingTime && (
-            <Group gap="xs">
-              <Title order={6} ta="center">
-                Renews On:{" "}
-              </Title>
+          <Group gap="xs">
+            <Title order={6} ta="center">
+              Renews On:{" "}
+            </Title>
 
-              <Text fz="sm">
-                {subscriptionUtility.formatDateTime(nextBillingTime)}
-              </Text>
-            </Group>
-          )}
+            <Text fz="sm">
+              {subscriptionUtility.formatDateTime(nextBillingTime)}
+            </Text>
+          </Group>
         </Stack>
       )}
     </>

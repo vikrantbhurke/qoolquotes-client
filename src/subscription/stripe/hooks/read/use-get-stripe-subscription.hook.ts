@@ -10,11 +10,11 @@ export const useGetStripeSubscription = () => {
   const hasSubscriptionId = auth?.subscriptionId !== "none";
 
   const {
+    refetch: refetchStripeSubscription,
     data: stripeSubscription,
     isPending,
     isError,
     error,
-    refetch: refetchStripeSubscription,
   } = useQuery({
     queryKey: ["getStripeSubscription", auth?.subscriptionId],
     queryFn: () =>
@@ -23,10 +23,10 @@ export const useGetStripeSubscription = () => {
   });
 
   return {
+    refetchStripeSubscription,
     stripeSubscription,
     isPending,
     isError,
     error,
-    refetchStripeSubscription,
   };
 };

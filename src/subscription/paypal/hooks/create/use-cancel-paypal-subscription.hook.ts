@@ -9,8 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
-import { Subscription } from "@/subscription/enums";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
+import { Status, Subscription } from "@/subscription/enums";
 
 export const useCancelPayPalSubscription = () => {
   const dispatch = useDispatch();
@@ -37,7 +36,7 @@ export const useCancelPayPalSubscription = () => {
           role: Role.Private,
           subscriptionId: "none",
           subscription: Subscription.Free,
-          subscriptionStatus: subscriptionUtility.getStatus("CANCELLED") as any,
+          subscriptionStatus: Status.Inactive,
         })
       );
     },

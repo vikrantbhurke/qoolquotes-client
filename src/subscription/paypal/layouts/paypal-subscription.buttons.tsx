@@ -13,7 +13,6 @@ import { useGetPayPalSubscription } from "../hooks/read";
 import { NotificationColor } from "@/global/enums";
 import { CancelPayPalSubscriptionModal } from "./cancel-paypal-subscription.modal";
 import { SuspendPayPalSubscriptionModal } from "./suspend-paypal-subscription.modal";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
 import { useDispatch } from "react-redux";
 import { setAuth } from "@/user/auth.slice";
 import { Role } from "@/user/enums";
@@ -56,6 +55,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
 
       if (
         query.get("subscribed") === "true" &&
+        query.get("subscription") === "paypal" &&
         !sessionStorage.getItem("subscriptionNotified")
       ) {
         sessionStorage.setItem("subscriptionNotified", "true");
@@ -67,7 +67,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
             subscriptionId,
             role: Role.Subscriber,
             subscription: Subscription.PayPal,
-            subscriptionStatus: subscriptionUtility.getStatus("ACTIVE") as any,
+            subscriptionStatus: Status.Active,
           })
         );
 
@@ -93,16 +93,19 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
     activatePayPalSubscriptionMutation({ subscriptionId: auth.subscriptionId });
   };
 
-  const query = new URLSearchParams(window.location.search);
+  let status: Status = Status.Inactive;
 
-  const status =
-    query.get("subscribed") === "true" ? "ACTIVE" : paypalSubscription?.status;
+  if (paypalSubscription) {
+    const { status: paypalStatus } = paypalSubscription;
+    if (paypalStatus === "ACTIVE") status = Status.Active;
+    if (paypalStatus === "SUSPENDED") status = Status.Suspended;
+    if (paypalStatus === "CANCELLED") status = Status.Inactive;
+    if (paypalStatus === "EXPIRED") status = Status.Inactive;
+  }
 
-  const isSuspended =
-    subscriptionUtility.getStatus(status) === Status.Suspended;
-  const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
-  const isActive = subscriptionUtility.getStatus(status) === Status.Active;
-  const isNotStripe = auth.subscription !== Subscription.Stripe;
+  const isActive = status === Status.Active;
+  const isSuspended = status === Status.Suspended;
+  const isInactive = status === Status.Inactive;
 
   return (
     <>
@@ -117,7 +120,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
       />
 
       <Stack gap="sm">
-        {isNotStripe && isInactive && (
+        {isInactive && (
           <Button
             fullWidth
             c="black"
@@ -131,7 +134,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {isNotStripe && isActive && (
+        {isActive && (
           <Button
             onClick={suspendPayPalSubscriptionModalOpen}
             bg="#F2BA36"
@@ -141,7 +144,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {isNotStripe && isSuspended && (
+        {isSuspended && (
           <Button
             bg="green"
             fullWidth
@@ -153,7 +156,7 @@ export const PayPalSubscriptionButtons = ({ paypalSubscription }: any) => {
           </Button>
         )}
 
-        {isNotStripe && (isActive || isSuspended) && (
+        {(isActive || isSuspended) && (
           <Button
             onClick={cancelPayPalSubscriptionModalOpen}
             bg="red"

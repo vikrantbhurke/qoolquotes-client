@@ -15,6 +15,12 @@ export class SubscriptionUtility {
       // Stripe
       case "active":
         return Status.Active;
+      case "mark_uncollectible":
+        return Status.Suspended;
+      case "canceled":
+        return Status.Inactive;
+      case "incomplete":
+        return Status.Inactive;
       default:
         return Status.Inactive;
     }

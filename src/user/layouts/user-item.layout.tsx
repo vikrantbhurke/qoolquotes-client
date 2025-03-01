@@ -17,20 +17,15 @@ import { useState } from "react";
 import { DeleteUserModal } from "./delete-user.modal";
 import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled } from "@tabler/icons-react";
-import { useGetPayPalSubscription } from "@/subscription/paypal/hooks/read";
-import { subscriptionUtility } from "@/subscription/subscription.utility";
-import { Status } from "@/subscription/enums";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
+import { Role } from "../enums";
 
 export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
-  const { paypalSubscription } = useGetPayPalSubscription();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
-
-  const query = new URLSearchParams(window.location.search);
-  const subscribedTrue = query.get("subscribed") === "true";
-  const status = subscribedTrue ? "ACTIVE" : paypalSubscription?.status;
-  const isInactive = subscriptionUtility.getStatus(status) === Status.Inactive;
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   return (
     <>
@@ -113,7 +108,7 @@ export const UserItemLayout = ({ user, isPending }: any) => {
             onClick={() => navigate(`/users/${user.id}/edit`)}>
             Edit Profile
           </Button>
-          {isInactive && (
+          {auth.role === Role.Private && (
             <Button fullWidth bg="red" onClick={open}>
               Delete Account
             </Button>

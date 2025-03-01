@@ -10,11 +10,11 @@ export const useGetPayPalSubscription = () => {
   const hasSubscriptionId = auth?.subscriptionId !== "none";
 
   const {
+    refetch: refetchPayPalSubscription,
     data: paypalSubscription,
     isPending,
     isError,
     error,
-    refetch: refetchPayPalSubscription,
   } = useQuery({
     queryKey: ["getPayPalSubscription", auth?.subscriptionId],
     queryFn: () =>
@@ -23,10 +23,10 @@ export const useGetPayPalSubscription = () => {
   });
 
   return {
+    refetchPayPalSubscription,
     paypalSubscription,
     isPending,
     isError,
     error,
-    refetchPayPalSubscription,
   };
 };
